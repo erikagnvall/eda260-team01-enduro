@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
@@ -92,11 +93,18 @@ public class Sorter {
 	 * @throws IOException In case of an I/O error.
 	 */
 	public void createResultFile(String fileName) throws IOException {
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
-		out.println("StartNr; Totaltid; Starttid; Måltid");
-		out.println("1; 00.30.00; 12.00.00; 12.30.00");
-		out.close();
-		//TODO
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+			out.println("StartNr; Totaltid; Starttid; Måltid");
+			Iterator<Integer> itr = timeData.getRunnerIterator();
+			while(itr.hasNext()){
+				int i = itr.next();
+				Time startTime = timeData.getStartTime(i).get(0);
+				Time finishTime = timeData.getFinishTime(i).get(0);
+				Time totalTime = startTime.getTotalTime(finishTime);
+				out.println(i +"; " + totalTime.toString() +"; " + startTime + "; " + finishTime);
+			}
+			out.close();
 	}
-	
 }
+	
+
