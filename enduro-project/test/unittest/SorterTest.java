@@ -41,17 +41,15 @@ public class SorterTest {
 		try{
 			sorter.readStartFile("fakeStart.txt");
 			sorter.readFinishFile("fakeFinish.txt");
-			// Writer ej implementerad än.
 			sorter.createResultFile("fakesortertestresult.txt");
-			
 			
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));
 			while(in.ready()){
 				list.add(in.readLine().split("; "));
 			}
-			assertEquals("1; 12.00.00", list.get(1)[0] + "; " + list.get(1)[3]);
-			assertEquals("1; 12.30.00", list.get(1)[0] + "; " + list.get(1)[4]);
+			assertEquals("1; 12.00.00", list.get(1)[0] + "; " + list.get(1)[2]);
+			assertEquals("1; 12.30.00", list.get(1)[0] + "; " + list.get(1)[3]);
 		} catch (Exception e) {
 			System.err.println(e);
 		}
