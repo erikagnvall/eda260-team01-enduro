@@ -1,5 +1,7 @@
 package unittest;
 
+import java.util.ArrayList;
+
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
 import org.junit.*;
@@ -16,11 +18,32 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testGetStartTime() {
-		assertEquals("12.00.00", timeData.getStartTime(1).toString());
+		//System.out.println(timeData.getStartTime(1));
+		ArrayList<Time> times = timeData.getStartTime(1);
+		assertTrue(times.size()==1);
+		boolean exists = false;
+		for(Time t:times) {
+			if(t.equals(new Time(12,0,0))) {
+				exists = true;		
+			}
+		}
+		assertTrue(exists);
 	}
 	
 	@Test public void testGetFinishTime() {
-		assertEquals("12.30.00", timeData.getFinishTime(1).toString());
+		ArrayList<Time> times = timeData.getFinishTime(1);
+		assertTrue(times.size()==1);
+		boolean exists = false;
+		for(Time t:times) {
+			if(t.equals(new Time(12,30,0))) {
+				exists = true;		
+			}
+		}
+		assertTrue(exists);
+	}
+	
+	@Test public void testWrongRunnerNumber() {
+		assertTrue(timeData.getFinishTime(-2) == null);
 	}
 
 }
