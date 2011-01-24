@@ -32,7 +32,6 @@ public class RegistrationButton extends JButton implements ActionListener {
 		this.registrationTextField = registrationTextField;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent ae) {
 		registrationTextField.actionPerformed(ae);
 	}
