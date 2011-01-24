@@ -52,4 +52,8 @@ public class Time implements Comparable<Time>{
 		return new Long(startSecs).compareTo(new Long(endSecs));
 	}
 	
+	public boolean equals(Time t) {
+		return compareTo(t)==0;
+	}
+	
 }
