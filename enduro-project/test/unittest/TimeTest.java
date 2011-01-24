@@ -30,8 +30,10 @@ public class TimeTest {
 	@Test public void testComparTo() {
 		assertTrue(0 < t1.compareTo(t2));
 		assertTrue(0 > t2.compareTo(t1));
-		assertTrue(0 == t1.compareTo(t1));
-		
+		assertTrue(0 == (new Time(12,23,56)).compareTo(t1));
+	}
+	@Test public void testStringParse() {
+		assertEquals(t1, new Time("12.23.56"));
 	}
 	
 }
