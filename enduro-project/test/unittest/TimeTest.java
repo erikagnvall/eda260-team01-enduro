@@ -2,6 +2,7 @@ package unittest;
 
 import enduro.racedata.Time;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class TimeTest {
@@ -20,6 +21,17 @@ public class TimeTest {
 	
 	@Test public void testStringRepresentation2() {
 		assertEquals("01.02.09", t2.toString());
+	}
+	@Test public void testtotalTime() {
+		Time t3 =t2.getTotalTime(t1);
+		assertEquals("11.21.47",t3.toString());
+		
+	}
+	@Test public void testComparTo() {
+		assertTrue(0 < t1.compareTo(t2));
+		assertTrue(0 > t2.compareTo(t1));
+		assertTrue(0 == t1.compareTo(t1));
+		
 	}
 	
 }

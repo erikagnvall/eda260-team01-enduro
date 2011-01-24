@@ -1,0 +1,2 @@
+StartNr; Totaltid; Starttid; Måltid
+1; 00.30.00; 12.00.00; 12.30.00
