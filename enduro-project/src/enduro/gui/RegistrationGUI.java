@@ -14,39 +14,32 @@ public class RegistrationGUI extends JFrame {
 	 */
 	public RegistrationGUI() {
 		super("Registration GUI");
-		Font font = new Font(null, Font.PLAIN, 120);
-		setLayout(new BorderLayout());
-		RegistrationTextArea registrationTextArea = new RegistrationTextArea(
-				font);
-		add(BorderLayout.CENTER, registrationTextArea);
-		JPanel northPanel = new JPanel();
-		RegistrationTextField registrationField = new RegistrationTextField(
-				font, registrationTextArea);
-		registrationField.setFont(font);
-
-		northPanel.add(registrationField);
-		northPanel.add(new RegistrationButton("Register", font,
-				registrationField));
-		add(BorderLayout.NORTH, northPanel);
-		setSize(getWorkspaceSize());
+		buildLayout();
 		setResizable(false);
+		pack();
 		setExtendedState(MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
 	/**
-	 * Makes the window maximized in a good way.
-	 * 
-	 * @return The Dimension for the maximized window.
+	 * Adds all the components to the JFrame.
 	 */
-	private Dimension getWorkspaceSize() {
-		Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(
-				getGraphicsConfiguration());
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = screenSize.width - insets.left - insets.right;
-		int height = screenSize.height - insets.top - insets.bottom;
-		return new Dimension(width, height);
+	private void buildLayout() {
+		Font font = new Font(null, Font.PLAIN, 120);
+		setLayout(new BorderLayout());
+
+		RegistrationTextArea registrationTextArea = new RegistrationTextArea(
+				font);
+		add(BorderLayout.CENTER, registrationTextArea);
+
+		JPanel northPanel = new JPanel();
+		RegistrationTextField registrationTextField = new RegistrationTextField(
+				font, registrationTextArea);
+		northPanel.add(registrationTextField);
+		northPanel.add(new RegistrationButton("Register", font,
+				registrationTextField));
+		add(BorderLayout.NORTH, northPanel);
 	}
 
 	/** Main method. */

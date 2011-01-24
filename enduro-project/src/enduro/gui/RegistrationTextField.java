@@ -63,7 +63,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 */
 	private void saveToFile() {
 		try {
-			registration = new Registration("finish.txt");
+			registration = new Registration("times.txt");
 			registration.registerTime(Integer.parseInt(getText()), new Time(
 					getTime()));
 			registration.close();
