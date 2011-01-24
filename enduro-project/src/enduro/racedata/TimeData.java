@@ -74,6 +74,10 @@ public class TimeData {
 		return finishTimes.get(startNbr);
 	}
 	
+	/**
+	 * Returns a sorted iterator over the identification number related to the runners
+	 * @return
+	 */
 	public Iterator<Integer> getRunnerIterator() {
 		return startNbrs.iterator();
 	}
