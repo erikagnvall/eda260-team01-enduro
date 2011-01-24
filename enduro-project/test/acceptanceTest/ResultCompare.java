@@ -14,9 +14,11 @@ public class ResultCompare {
 
 	private InputStream facit, result;
 	
-	public ResultCompare(InputStream facit, InputStream result){
+	public ResultCompare(InputStream facit, InputStream result) throws Exception {
 		this.facit = facit;
 		this.result = result;
+		this.facit.mark(facit.available());
+		this.result.mark(result.available());
 	}
 	
 	/**
@@ -55,11 +57,11 @@ public class ResultCompare {
 			String resultString = resultReader.readLine();
 			
 			if(facitString.compareTo(resultString)!=0) {
-				System.out.println("ERROR line " + line + "\n");
-				System.out.println("\t facit:" + facitString + "\n");
-				System.out.println("\t result:" + resultString + "\n");
+				System.out.println("ERROR line " + line);
+				System.out.println("      facit:" + facitString);
+				System.out.println("     result:" + resultString);
 			} else if(!printOnlyErrors)
-				System.out.println("line " + line + ":" + facitString + "\n");
+				System.out.println("line " + line + ":" + facitString);
 		}
 	}
 	

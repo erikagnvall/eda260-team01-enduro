@@ -1,7 +1,9 @@
 package acceptanceTest;
 
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FilenameFilter;
 
 /**
  * naming convention: 
@@ -15,15 +17,13 @@ import java.io.FileReader;
  */
 public class CompareAcceptanceTests {
 
-	String[] facitFiles, resultFiles;
+	String[] facitFiles;
 	String facitFolder, resultFolder;
 	
 	public CompareAcceptanceTests(String facitFolder, String resultFolder) {
 		File facit = new File(facitFolder);
-		File result = new File(resultFolder);
 		
-		facitFiles = facit.list();
-		resultFiles = result.list();
+		facitFiles = facit.list(new FileFilter());
 		
 		this.facitFolder = facitFolder;
 		this.resultFolder = resultFolder;
@@ -36,8 +36,29 @@ public class CompareAcceptanceTests {
 	
 	public void testAllFacit() {
 		for(String test: facitFiles) {
-			//ResultCompare c = new ResultCompare(new FileReader(facitFolder + test));
+			System.out.println("-----------------------");
+			System.out.println("NEW ACCEPTANCE TEST FILE");
+			System.out.println("file: " + test);
+			System.out.println("-----------------------");
+			try {
+				ResultCompare c = new ResultCompare(new BufferedInputStream(new FileInputStream(facitFolder + test)), new BufferedInputStream(new FileInputStream(resultFolder + test + ".result")));
+				c.compareLineWise(true);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
+	public static void main(String[] args) {
+		CompareAcceptanceTests tests = new CompareAcceptanceTests("acceptanceTest/facit", "acceptanceTest/result");
+		tests.testAllFacit();
+	}
+	
+}
+
+class FileFilter implements FilenameFilter {
+    public boolean accept(File dir, String name) {
+        return !(name.startsWith("."));
+    }
 }
