@@ -87,19 +87,44 @@ public class Sorter {
 	 * @throws IOException In case of an I/O error.
 	 */
 	public void createResultFile(String fileName) throws IOException {
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
-			out.println("StartNr; Namn; Totaltid; Starttid; Måltid");
-			Iterator<Integer> itr = timeData.getRunnerIterator();
-			while(itr.hasNext()){
-				int i = itr.next();
-				Time startTime = timeData.getStartTime(i).get(0);
-				Time finishTime = timeData.getFinishTime(i).get(0);
-				Time totalTime = startTime.getTotalTime(finishTime);
-				String name = personData.getName(i);
-				out.println(i +"; "+ name +"; " + totalTime.toString() +"; " + startTime + "; " + finishTime);
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+				fileName)));
+		out.println("StartNr; Namn; Totaltid; Starttid; Måltid");
+		Iterator<Integer> itr = timeData.getRunnerIterator();
+		while (itr.hasNext()) {
+			int i = itr.next();
+			String name = personData.getName(i);
+			String start = "Start?";
+			String finish = "Slut?";
+			String total = "--.--.--";
+			Time startTime = null;
+			Time finishTime = null;
+			try {
+				startTime = timeData.getStartTime(i).get(0);
+				start = startTime.toString();
+			} catch (NullPointerException e) {
 			}
-			out.close();
+
+			try {
+				finishTime = timeData.getFinishTime(i).get(0);
+				finish = finishTime.toString();
+			} catch (NullPointerException e) {
+			}
+
+			try {
+				Time totalTime = startTime.getTotalTime(finishTime);
+				total = totalTime.toString();
+			} catch (NullPointerException e) {}
+
+				
+				out.println(i +"; "+ name +"; " + total +"; " + start + "; " + finish);
+
+			}
+			
+		out.close();
 	}
+
+
 
 
 	/**
