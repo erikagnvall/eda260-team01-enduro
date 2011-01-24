@@ -58,7 +58,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				sb.deleteCharAt(sb.length() - 1);
 				registrationTextArea.update(sb.toString());
 			} catch (StringIndexOutOfBoundsException e) {
-				e.printStackTrace();
+
 			} finally {
 				setText("");
 				requestFocus();
@@ -70,10 +70,14 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			sb.append(';');
 			sb.append(' ');
 			sb.append(getTime());
-			saveToFile(Integer.parseInt(getText()), new Time(getTime()));
-			setText("");
-			registrationTextArea.update(sb.toString());
+			try {
+				saveToFile(Integer.parseInt(getText()), new Time(getTime()));
+				registrationTextArea.update(sb.toString());
+			} catch (NumberFormatException e) {
+
+			}
 		}
+		setText("");
 		requestFocus();
 	}
 
