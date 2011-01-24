@@ -40,7 +40,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 * where first is the first racer's number and last is the last racer's
 	 * number. Otherwise the racer is registered according to the input number.
 	 */
-	@Override
 	public void actionPerformed(ActionEvent ae) {
 		String[] text = getText().split("-");
 		if (text.length > 1) {
