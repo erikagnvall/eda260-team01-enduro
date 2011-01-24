@@ -43,4 +43,28 @@ private Sorter sorter;
 		}
 	}
 
+
+@Test public void testNoStartTime() {
+	
+	try {
+		sorter.readStartFile("fakeWrongStart.txt");
+		sorter.readFinishFile("fakeCorrectFinish.txt");
+		sorter.readNameFile("fakeName.txt");
+		sorter.createResultFile("fakeStartResult.txt");
+	} catch (Exception e) {
+		System.err.println(e);
+	}
+	
+	try {
+		BufferedReader in = new BufferedReader(new FileReader("fakeStartResult.txt"));//
+		assertEquals("StartNr; Namn; Totaltid; Starttid; Måltid", in.readLine());
+		assertEquals("1; Anders Asson; --.--.--; Start?; 12.30.00", in.readLine());
+		in.close();
+	} catch (FileNotFoundException e) {
+		System.err.println(e);
+	} catch (IOException e) {
+		System.err.println(e);
+	}
+}
+
 }
