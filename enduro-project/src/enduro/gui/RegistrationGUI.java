@@ -9,14 +9,19 @@ import javax.swing.*;
  */
 public class RegistrationGUI extends JFrame {
 
+	/**
+	 * Creates the GUI, magic, do not touch!
+	 */
 	public RegistrationGUI() {
 		super("Registration GUI");
 		Font font = new Font(null, Font.PLAIN, 120);
 		setLayout(new BorderLayout());
-		RegistrationTextArea registrationTextArea = new RegistrationTextArea(font);
+		RegistrationTextArea registrationTextArea = new RegistrationTextArea(
+				font);
 		add(BorderLayout.CENTER, registrationTextArea);
 		JPanel northPanel = new JPanel();
-		RegistrationField registrationField = new RegistrationField(font, registrationTextArea);
+		RegistrationTextField registrationField = new RegistrationTextField(
+				font, registrationTextArea);
 		registrationField.setFont(font);
 
 		northPanel.add(registrationField);
@@ -30,6 +35,11 @@ public class RegistrationGUI extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Makes the window maximized in a good way.
+	 * 
+	 * @return The Dimension for the maximized window.
+	 */
 	private Dimension getWorkspaceSize() {
 		Insets insets = Toolkit.getDefaultToolkit().getScreenInsets(
 				getGraphicsConfiguration());
@@ -37,9 +47,9 @@ public class RegistrationGUI extends JFrame {
 		int width = screenSize.width - insets.left - insets.right;
 		int height = screenSize.height - insets.top - insets.bottom;
 		return new Dimension(width, height);
-
 	}
 
+	/** Main method. */
 	public static void main(String[] args) {
 		new RegistrationGUI();
 	}

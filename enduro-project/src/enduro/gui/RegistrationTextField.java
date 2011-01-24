@@ -8,10 +8,20 @@ import java.util.Calendar;
 
 import javax.swing.JTextField;
 
-public class RegistrationField extends JTextField implements ActionListener {
+public class RegistrationTextField extends JTextField implements ActionListener {
 	private RegistrationTextArea registrationTextArea;
 
-	public RegistrationField(Font font, RegistrationTextArea registrationTextArea) {
+	/**
+	 * Creates a new RegistrationTextField with the specified Font and reference
+	 * to the RegistrationTextArea.
+	 * 
+	 * @param font
+	 *            The font to use in this text field.
+	 * @param registrationTextArea
+	 *            The RegistrationTextArea to add new stuff to.
+	 */
+	public RegistrationTextField(Font font,
+			RegistrationTextArea registrationTextArea) {
 		super(5);
 		setFont(font);
 		this.registrationTextArea = registrationTextArea;
@@ -19,7 +29,7 @@ public class RegistrationField extends JTextField implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ae) {
 		if (!getText().equals("")) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(getText() + "; ");
@@ -29,11 +39,16 @@ public class RegistrationField extends JTextField implements ActionListener {
 		}
 		requestFocus();
 	}
-	private String getTime(){
+
+	/**
+	 * Returns the current time as a String. Probably exists in the back end.
+	 * 
+	 * @return The current time as a String.
+	 */
+	private String getTime() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss");
 		return sdf.format(cal.getTime());
-		
 	}
 
 }
