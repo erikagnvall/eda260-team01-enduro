@@ -1,14 +1,11 @@
 package unittest;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import enduro.Sorter;
-import enduro.racedata.Time;
-import enduro.racedata.TimeData;
+
 
 import org.junit.*;
 import static org.junit.Assert.*;

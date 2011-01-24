@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * Provides a GUI for the Enduro time registration program.
  */
+@SuppressWarnings("serial")
 public class RegistrationGUI extends JFrame {
 
 	/**
@@ -31,7 +32,6 @@ public class RegistrationGUI extends JFrame {
 
 		RegistrationTextArea registrationTextArea = new RegistrationTextArea(
 				font);
-		add(BorderLayout.CENTER, registrationTextArea);
 
 		JPanel northPanel = new JPanel();
 		RegistrationTextField registrationTextField = new RegistrationTextField(
@@ -40,6 +40,8 @@ public class RegistrationGUI extends JFrame {
 		northPanel.add(new RegistrationButton("Register", font,
 				registrationTextField));
 		add(BorderLayout.NORTH, northPanel);
+
+		add(BorderLayout.CENTER, registrationTextArea);
 	}
 
 	/** Main method. */

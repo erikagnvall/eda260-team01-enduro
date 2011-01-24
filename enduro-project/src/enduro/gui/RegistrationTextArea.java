@@ -5,6 +5,7 @@ import java.awt.HeadlessException;
 
 import javax.swing.JTextArea;
 
+@SuppressWarnings("serial")
 public class RegistrationTextArea extends JTextArea {
 
 	/**

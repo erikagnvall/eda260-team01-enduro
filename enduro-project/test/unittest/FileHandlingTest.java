@@ -22,7 +22,6 @@ public class FileHandlingTest {
 			BufferedReader in = new BufferedReader(new FileReader(
 					"ResultFile.txt"));
 			in.readLine();
-			String out = in.readLine();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

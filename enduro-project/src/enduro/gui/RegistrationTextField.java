@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import enduro.Registration;
 import enduro.racedata.Time;
 
+@SuppressWarnings("serial")
 public class RegistrationTextField extends JTextField implements ActionListener {
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;

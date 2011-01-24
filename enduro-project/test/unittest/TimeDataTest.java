@@ -1,8 +1,6 @@
 package unittest;
 
-import java.util.ArrayList;
 import java.util.PriorityQueue;
-
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
 import org.junit.*;
