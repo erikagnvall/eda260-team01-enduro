@@ -96,17 +96,32 @@ public class Sorter {
 			String start = "Start?";
 			String finish = "Slut?";
 			String total = "--.--.--";
+			StringBuilder trail = new StringBuilder();
 			Time startTime = null;
 			Time finishTime = null;
 			try {
 				startTime = timeData.getStartTime(i).get(0);
 				start = startTime.toString();
+				if(timeData.getStartTime(i).size() > 1){
+					trail.append("; Flera starttider?");
+					for(int j = 1; j < timeData.getStartTime(i).size(); j++){
+						trail.append(' ');
+						trail.append(timeData.getStartTime(i).get(j));
+					}
+				}
 			} catch (NullPointerException e) {
 			}
 
 			try {
 				finishTime = timeData.getFinishTime(i).get(0);
 				finish = finishTime.toString();
+				if(timeData.getFinishTime(i).size() > 1){
+					trail.append("; Flera måltider?");
+					for(int j = 1; j < timeData.getFinishTime(i).size(); j++){
+						trail.append(' ');
+						trail.append(timeData.getFinishTime(i).get(j));
+					}
+				}
 			} catch (NullPointerException e) {
 			}
 
@@ -114,9 +129,10 @@ public class Sorter {
 				Time totalTime = startTime.getTotalTime(finishTime);
 				total = totalTime.toString();
 			} catch (NullPointerException e) {}
+			
 
 				
-				out.println(i +"; "+ name +"; " + total +"; " + start + "; " + finish);
+				out.println(i +"; "+ name +"; " + total +"; " + start + "; " + finish + trail.toString());
 
 			}
 			
