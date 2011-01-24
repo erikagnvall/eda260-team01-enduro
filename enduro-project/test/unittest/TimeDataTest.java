@@ -1,6 +1,7 @@
 package unittest;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
@@ -19,7 +20,7 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testGetStartTime() {
-		ArrayList<Time> times = timeData.getStartTime(1);
+		PriorityQueue<Time> times = timeData.getStartTime(1);
 		assertTrue(times.size()==1);
 		boolean exists = false;
 		for(Time t:times) {
@@ -31,7 +32,7 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testGetFinishTime() {
-		ArrayList<Time> times = timeData.getFinishTime(1);
+		PriorityQueue<Time> times = timeData.getFinishTime(1);
 		assertTrue(times.size()==1);
 		boolean exists = false;
 		for(Time t:times) {
