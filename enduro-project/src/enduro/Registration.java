@@ -20,7 +20,7 @@ public class Registration {
 	 * @throws IOException In case of an I/O error.
 	 */
 	public Registration(String fileName) throws IOException  {
-		out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+		out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
 	}
 	
 	/**
