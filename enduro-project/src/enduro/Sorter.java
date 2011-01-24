@@ -129,7 +129,7 @@ public class Sorter {
 				Time totalTime = startTime.getTotalTime(finishTime);
 				total = totalTime.toString();
 				Time fastTime = new Time(0, 15, 0);
-				if(fastTime.compareTo(totalTime) > 0) trail.append("; Omöjlig totaltid?");
+				if(fastTime.compareTo(totalTime) > 0) trail.append("; Omöjlig Totaltid?");
 			} catch (NullPointerException e) {}
 			
 
