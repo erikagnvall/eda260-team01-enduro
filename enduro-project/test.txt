@@ -1,1 +1,0 @@
-StartNr; Totaltid; Starttid; Måltid
