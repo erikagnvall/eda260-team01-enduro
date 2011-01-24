@@ -88,7 +88,7 @@ public class Sorter {
 	public void createResultFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
-		out.println("StartNr; Namn; Totaltid; Starttid; Måltid");
+		out.println("StartNr; Namn; TotalTid; StartTider; Måltider");
 		Iterator<Integer> itr = timeData.getRunnerIterator();
 		while (itr.hasNext()) {
 			int i = itr.next();
