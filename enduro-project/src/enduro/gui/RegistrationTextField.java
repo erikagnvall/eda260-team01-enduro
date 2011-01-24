@@ -56,10 +56,10 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			}
 			try {
 				sb.deleteCharAt(sb.length() - 1);
+				registrationTextArea.update(sb.toString());
 			} catch (StringIndexOutOfBoundsException e) {
 				e.printStackTrace();
 			} finally {
-				registrationTextArea.update(sb.toString());
 				setText("");
 				requestFocus();
 			}
