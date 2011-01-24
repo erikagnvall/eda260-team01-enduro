@@ -100,26 +100,26 @@ public class Sorter {
 			Time startTime = null;
 			Time finishTime = null;
 			try {
-				startTime = timeData.getStartTime(i).get(0);
+				startTime = timeData.getStartTime(i).poll();
 				start = startTime.toString();
-				if(timeData.getStartTime(i).size() > 1){
+				if(timeData.getStartTime(i).size() > 0){
 					trail.append("; Flera starttider?");
-					for(int j = 1; j < timeData.getStartTime(i).size(); j++){
+					while(timeData.getStartTime(i).size() > 0) {
 						trail.append(' ');
-						trail.append(timeData.getStartTime(i).get(j));
+						trail.append(timeData.getStartTime(i).poll());
 					}
 				}
 			} catch (NullPointerException e) {
 			}
 
 			try {
-				finishTime = timeData.getFinishTime(i).get(0);
+				finishTime = timeData.getFinishTime(i).poll();
 				finish = finishTime.toString();
-				if(timeData.getFinishTime(i).size() > 1){
+				if(timeData.getFinishTime(i).size() > 0){
 					trail.append("; Flera måltider?");
-					for(int j = 1; j < timeData.getFinishTime(i).size(); j++){
+					while(timeData.getFinishTime(i).size() > 0){
 						trail.append(' ');
-						trail.append(timeData.getFinishTime(i).get(j));
+						trail.append(timeData.getFinishTime(i).poll());
 					}
 				}
 			} catch (NullPointerException e) {
