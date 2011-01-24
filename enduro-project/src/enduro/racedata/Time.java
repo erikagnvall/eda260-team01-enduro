@@ -65,13 +65,26 @@ public class Time implements Comparable<Time> {
 		result %= 60;
 		return new Time(hours, minutes, (int) result);
 	}
-
+	/**
+	 * Compares this time with t.
+	 * 
+	 * @param t
+	 * 
+	 * @return If this time is greater than t, a positive integer is returned. If they are equal, 0 is returned.  
+	 * 		   If this time is smaller than t, a negative integer is returned.
+	 */
 	public int compareTo(Time t) {
 		long startSecs = this.sec + (this.min * 60) + (this.hour * 3600);
 		long endSecs = t.sec + (t.min * 60) + (t.hour * 3600);
 		return new Long(startSecs).compareTo(new Long(endSecs));
 	}
-
+	/**
+	 * Compares this object with the object o
+	 * 
+	 * @param o
+	 * 
+	 * @return if the objects are equal, true is returned. Else, false is returned. 
+	 */
 	public boolean equals(Object o) {
 		if(o instanceof Time){
 		return compareTo((Time)o)==0;
