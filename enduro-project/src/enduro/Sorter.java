@@ -38,7 +38,7 @@ public class Sorter {
 			ArrayList<String[]> startingTimes = readFile(fileName);
 			for (int i = 0; i < startingTimes.size(); i++) {
 				int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
-				timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1].substring(1)));
+				timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
 			}
 		} catch (FileNotFoundException e) {
 			throw e;
@@ -56,7 +56,7 @@ public class Sorter {
 			ArrayList<String[]> finishTimes = readFile(fileName);
 			for (int i = 0; i < finishTimes.size(); i++) {
 				int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
-				timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1].substring(1)));
+				timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
 			}
 		} catch (FileNotFoundException e) {
 			throw e;
@@ -76,7 +76,7 @@ public class Sorter {
 		try{
 			BufferedReader in = new BufferedReader(new FileReader(fileName));
 			while(in.ready()){
-				list.add(in.readLine().split(";"));
+				list.add(in.readLine().split("; "));
 			}
 		} catch (FileNotFoundException e) {
 			throw e;
