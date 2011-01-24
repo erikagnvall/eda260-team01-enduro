@@ -128,6 +128,8 @@ public class Sorter {
 			try {
 				Time totalTime = startTime.getTotalTime(finishTime);
 				total = totalTime.toString();
+				Time fastTime = new Time(0, 15, 0);
+				if(fastTime.compareTo(totalTime) > 0) trail.append("; Omöjlig totaltid?");
 			} catch (NullPointerException e) {}
 			
 

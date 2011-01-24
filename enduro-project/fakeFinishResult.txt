@@ -1,4 +1,4 @@
 StartNr; Namn; Totaltid; Starttid; Måltid
 1; Anders Asson; --.--.--; 12.00.00; Slut?
-2; Berit Bsson; 00.00.00; 12.34.00; 12.34.00
-3; Clas Csson; 00.00.00; 12.36.00; 12.36.00
+2; Berit Bsson; 00.00.00; 12.34.00; 12.34.00; Omöjlig totaltid?
+3; Clas Csson; 00.00.00; 12.36.00; 12.36.00; Omöjlig totaltid?

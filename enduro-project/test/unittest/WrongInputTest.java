@@ -111,5 +111,27 @@ private Sorter sorter;
 		System.err.println(e);
 	}
 }
+@Test public void testFastTime() {
+	
+	try {
+		sorter.readStartFile("fakeCorrectStart.txt");
+		sorter.readFinishFile("fakeFastFinish.txt");
+		sorter.readNameFile("fakeName.txt");
+		sorter.createResultFile("fakeStartResult.txt");
+	} catch (Exception e) {
+		System.err.println(e);
+	}
+	
+	try {
+		BufferedReader in = new BufferedReader(new FileReader("fakeStartResult.txt"));//
+		assertEquals("StartNr; Namn; Totaltid; Starttid; Måltid", in.readLine());
+		assertEquals("1; Anders Asson; 00.10.00; 12.00.00; 12.10.00; Omöjlig totaltid?", in.readLine());
+		in.close();
+	} catch (FileNotFoundException e) {
+		System.err.println(e);
+	} catch (IOException e) {
+		System.err.println(e);
+	}
+}
 
 }
