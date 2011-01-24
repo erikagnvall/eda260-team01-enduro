@@ -19,41 +19,6 @@ import enduro.Sorter;
  *
  */
 public class CompareAcceptanceTests {
-
-	String[] facitFiles;
-	String facitFolder, resultFolder;
-	
-	public CompareAcceptanceTests(String facitFolder, String resultFolder) {
-		File facit = new File(facitFolder);
-		
-		facitFiles = facit.list(new FileFilter());
-		
-		this.facitFolder = facitFolder;
-		this.resultFolder = resultFolder;
-		
-		if(!this.facitFolder.endsWith("/"))
-			this.facitFolder +="/";
-		if(!this.resultFolder.endsWith("/"))
-			this.resultFolder +="/";
-	}
-	
-	public void testAllFacit() {
-		for(String test: facitFiles) {
-			System.out.println("\n-----------------------");
-			System.out.println("NEW ACCEPTANCE TEST FILE");
-			System.out.println("file: " + test);
-			System.out.println("-----------------------");
-			try {
-				ResultCompare c = new ResultCompare(new BufferedInputStream(new FileInputStream(facitFolder + test)), new BufferedInputStream(new FileInputStream(resultFolder + test + ".result")));
-				c.compareLineWise(true);
-			} catch(FileNotFoundException e) {
-				System.out.println("result file not found");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	public static void main(String[] args) {
 		
