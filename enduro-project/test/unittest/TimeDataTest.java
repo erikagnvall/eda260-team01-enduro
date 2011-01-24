@@ -19,7 +19,6 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testGetStartTime() {
-		//System.out.println(timeData.getStartTime(1));
 		ArrayList<Time> times = timeData.getStartTime(1);
 		assertTrue(times.size()==1);
 		boolean exists = false;
