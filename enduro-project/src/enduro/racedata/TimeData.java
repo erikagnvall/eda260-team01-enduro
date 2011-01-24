@@ -2,6 +2,7 @@ package enduro.racedata;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -71,6 +72,10 @@ public class TimeData {
 	 */
 	public ArrayList<Time> getFinishTime(int startNbr) {
 		return finishTimes.get(startNbr);
+	}
+	
+	public Iterator<Integer> getRunnerIterator() {
+		return startNbrs.iterator();
 	}
 	
 }

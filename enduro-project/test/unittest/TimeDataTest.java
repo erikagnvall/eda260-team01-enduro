@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class TimeDataTest {
@@ -45,5 +46,8 @@ public class TimeDataTest {
 	@Test public void testWrongRunnerNumber() {
 		assertTrue(timeData.getFinishTime(-2) == null);
 	}
-
+	
+	@Test public void testOneRunnerList() {
+		assertEquals(new Integer(1), timeData.getRunnerIterator().next());
+	}
 }
