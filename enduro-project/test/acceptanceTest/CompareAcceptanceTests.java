@@ -62,7 +62,7 @@ public class CompareAcceptanceTests {
 			sort.readFinishFile("acceptanceTest/result/input_3/maltider.txt");
 			sort.readStartFile("acceptanceTest/result/input_3/starttider.txt");
 			sort.readNameFile("acceptanceTest/result/input_3/namnfil.txt");
-			sort.createResultFile("acceptanceTest/result/resultat_5.txt.result");
+			sort.createResultFile("acceptanceTest/result/resultat_6.txt.result");
 		} catch(Exception E) {
 			E.printStackTrace();
 		}
