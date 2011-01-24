@@ -36,11 +36,36 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if (!getText().equals("")) {
+		String[] text = getText().split("-");
+		if (text.length > 1) {
+			String time = getTime();
 			StringBuilder sb = new StringBuilder();
-			sb.append(getText() + "; ");
+			for (int i = Integer.parseInt(text[0]); i < Integer
+					.parseInt(text[1]) + 1; i++) {
+				sb.append(i);
+				sb.append(';');
+				sb.append(' ');
+				sb.append(time);
+				sb.append('\n');
+				saveToFile(i, new Time(time));
+			}
+			try {
+				sb.deleteCharAt(sb.length() - 1);
+			} catch (StringIndexOutOfBoundsException e) {
+				e.printStackTrace();
+			} finally {
+				registrationTextArea.update(sb.toString());
+				setText("");
+				requestFocus();
+			}
+
+		} else if (!getText().equals("")) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(getText());
+			sb.append(';');
+			sb.append(' ');
 			sb.append(getTime());
-			saveToFile();
+			saveToFile(Integer.parseInt(getText()), new Time(getTime()));
 			setText("");
 			registrationTextArea.update(sb.toString());
 		}
@@ -59,13 +84,18 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	}
 
 	/**
-	 * Saves the current time for the entered number to file.
+	 * Saves the input time for the entered number to file.
+	 * 
+	 * @param number
+	 *            the racer's number
+	 * @param t
+	 *            the time for the racer.
 	 */
-	private void saveToFile() {
+
+	private void saveToFile(int number, Time t) {
 		try {
 			registration = new Registration("times.txt");
-			registration.registerTime(Integer.parseInt(getText()), new Time(
-					getTime()));
+			registration.registerTime(number, t);
 			registration.close();
 		} catch (IOException e) {
 			e.printStackTrace();
