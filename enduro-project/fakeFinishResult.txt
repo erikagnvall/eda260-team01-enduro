@@ -1,4 +1,0 @@
-StartNr; Namn; TotalTid; StartTider; Måltider
-1; Anders Asson; --.--.--; 12.00.00; Slut?
-2; Berit Bsson; 00.00.00; 12.34.00; 12.34.00; Omöjlig Totaltid?
-3; Clas Csson; 00.00.00; 12.36.00; 12.36.00; Omöjlig Totaltid?
