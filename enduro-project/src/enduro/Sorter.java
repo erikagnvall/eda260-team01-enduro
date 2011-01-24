@@ -2,7 +2,6 @@ package enduro;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -122,27 +121,6 @@ public class Sorter {
 			}
 			
 		out.close();
-	}
-
-
-
-
-	/**
-	 * 
-	 * @param args The first argument is the startFile, and the second argument is the finishFile. 
-	 *             A new file, ResultFile, is created containing the total time for each runner.
-	 * @throws Exception In case of an I/O error.
-	 * 
-	 * Note: The names of the files startFile and finishFile should be changed according to
-	 *       the names that are defined in the GUI.
-	 */
-	public static void main (String [] args) throws Exception {
-		Sorter sorter = new Sorter();
-		String startFile = "fakeStart.txt";
-		String goalFile = "fakeFinish.txt";
-		sorter.readStartFile(startFile);
-		sorter.readFinishFile(goalFile);
-		sorter.createResultFile("ResultFile.txt");
 	}
 	
 }

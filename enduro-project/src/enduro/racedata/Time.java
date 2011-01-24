@@ -79,11 +79,11 @@ public class Time implements Comparable<Time> {
 		return new Long(startSecs).compareTo(new Long(endSecs));
 	}
 	/**
-	 * Compares this object with the object o
+	 * Compares this object with the Object o
 	 * 
 	 * @param o
 	 * 
-	 * @return if the objects are equal, true is returned. Else, false is returned. 
+	 * @return if the objects are equal, <code>true</code> is returned. Else, <code>false</code> is returned. 
 	 */
 	public boolean equals(Object o) {
 		if(o instanceof Time){
