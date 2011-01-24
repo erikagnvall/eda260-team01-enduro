@@ -1,9 +1,13 @@
 package enduro;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
@@ -28,18 +32,57 @@ public class Sorter {
 	 * Reads a file with start times and populates the data structure..
 	 * @param fileName The name of the file.
 	 */
-	public void readStartFile(String fileName) {
-		//TODO
-		timeData.addStartTime(1, new Time(12, 00, 00));
+	public void readStartFile(String fileName) throws Exception{
+		try{
+			ArrayList<String[]> startingTimes = readFile(fileName);
+			for (int i = 0; i < startingTimes.size(); i++) {
+				int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
+				timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1].substring(1)));
+			}
+		} catch (FileNotFoundException e) {
+			throw e;
+		} catch (IOException e) {
+			throw e;
+		}
 	}
 	
 	/**
 	 * Reads a file with finish times and populates the data structure.
 	 * @param fileName The name of the file.
 	 */
-	public void readFinishFile(String fileName) {
-		//TODO
-		timeData.addFinishTime(1, new Time(12, 30, 00));
+	public void readFinishFile(String fileName) throws Exception{
+		try{
+			ArrayList<String[]> finishTimes = readFile(fileName);
+			for (int i = 0; i < finishTimes.size(); i++) {
+				int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
+				timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1].substring(1)));
+			}
+		} catch (FileNotFoundException e) {
+			throw e;
+		} catch (IOException e) {
+			throw e;
+		}
+	}
+	/**
+	 * Reads a file with a start number and a time and returns and ArrayList containing
+	 * String arrays containing the start number and the time.
+	 * @param fileName The name of the file.
+	 * @return ArrayList<String[]> containing start numbers and time.
+	 * @throws Exception
+	 */
+	private ArrayList<String[]> readFile(String fileName) throws Exception {
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		try{
+			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			while(in.ready()){
+				list.add(in.readLine().split(";"));
+			}
+		} catch (FileNotFoundException e) {
+			throw e;
+		} catch (IOException e) {
+			throw e;
+		}
+		return list;
 	}
 	
 	/**

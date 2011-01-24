@@ -10,20 +10,37 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class SorterTest {
-	
 	private Sorter sorter;
 	
 	@Before public void setUp() {
 		sorter = new Sorter();
 	}
 	
+	@Test public void testReadStartTimeFile() {
+		try {
+			sorter.readStartFile("fakeStart.txt");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		
+		
+	}
+	
+	@Test public void testReadFinishTimeFile() {
+		try {
+			sorter.readFinishFile("fakeFinish.txt");
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+	}
+	
 	@Test public void testCreateResultFile() {
-		sorter.readStartFile("fake1.txt");
-		sorter.readFinishFile("fake2.txt");
 		
 		try {
+			sorter.readStartFile("fake1.txt");
+			sorter.readFinishFile("fake2.txt");
 			sorter.createResultFile("fakesortertestresult.txt");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.err.println(e);
 		}
 		
