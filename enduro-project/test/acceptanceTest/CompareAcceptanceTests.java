@@ -3,6 +3,7 @@ package acceptanceTest;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 
 /**
@@ -36,13 +37,15 @@ public class CompareAcceptanceTests {
 	
 	public void testAllFacit() {
 		for(String test: facitFiles) {
-			System.out.println("-----------------------");
+			System.out.println("\n-----------------------");
 			System.out.println("NEW ACCEPTANCE TEST FILE");
 			System.out.println("file: " + test);
 			System.out.println("-----------------------");
 			try {
 				ResultCompare c = new ResultCompare(new BufferedInputStream(new FileInputStream(facitFolder + test)), new BufferedInputStream(new FileInputStream(resultFolder + test + ".result")));
 				c.compareLineWise(true);
+			} catch(FileNotFoundException e) {
+				System.out.println("result file not found");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
