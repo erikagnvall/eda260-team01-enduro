@@ -39,18 +39,19 @@ public class ResultCompare {
 		}
 		return true;
 	}
+	
 	/**
 	 * Compares two streams line by line. If they are not equal they are both printed and marked "ERROR".
 	 * @param printOnlyErrors if true only the errors are printed, if false the correct lines are also printed.
 	 * @throws IOException
 	 */
-	public void compareLineWise(boolean printOnlyErrors) throws IOException {
+	public boolean compareLineWise(boolean printOnlyErrors) throws IOException {
 		facit.reset();
 		result.reset();
-		BufferedReader facitReader = new BufferedReader(new InputStreamReader(facit));
+		BufferedReader facitReader = new BufferedReader(new InputStreamReader(facit, "ISO-8859-1"));
 		BufferedReader resultReader = new BufferedReader(new InputStreamReader(result));
 		int line = 0;
-		
+		boolean error = true;
 		while(facitReader.ready()) {
 			line++;
 			String facitString = facitReader.readLine();
@@ -60,9 +61,12 @@ public class ResultCompare {
 				System.out.println("ERROR line " + line);
 				System.out.println("      facit:" + facitString);
 				System.out.println("     result:" + resultString);
+				error = false;
 			} else if(!printOnlyErrors)
 				System.out.println("line " + line + ":" + facitString);
 		}
+		
+		return error;
 	}
 	
 }
