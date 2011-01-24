@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import enduro.racedata.PersonData;
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
 
@@ -20,6 +21,7 @@ import enduro.racedata.TimeData;
 public class Sorter {
 	
 	private TimeData timeData;
+	private PersonData personData;
 	
 	/**
 	 * Creates a new Sorter object and
@@ -27,6 +29,7 @@ public class Sorter {
 	 */
 	public Sorter() {
 		timeData = new TimeData();
+		personData = new PersonData();
 	}
 	
 	/**
@@ -34,16 +37,10 @@ public class Sorter {
 	 * @param fileName The name of the file.
 	 */
 	public void readStartFile(String fileName) throws Exception{
-		try{
-			ArrayList<String[]> startingTimes = readFile(fileName);
-			for (int i = 0; i < startingTimes.size(); i++) {
-				int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
-				timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
-			}
-		} catch (FileNotFoundException e) {
-			throw e;
-		} catch (IOException e) {
-			throw e;
+		ArrayList<String[]> startingTimes = readFile(fileName);
+		for (int i = 0; i < startingTimes.size(); i++) {
+			int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
+			timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
 		}
 	}
 	
@@ -52,16 +49,10 @@ public class Sorter {
 	 * @param fileName The name of the file.
 	 */
 	public void readFinishFile(String fileName) throws Exception{
-		try{
-			ArrayList<String[]> finishTimes = readFile(fileName);
-			for (int i = 0; i < finishTimes.size(); i++) {
-				int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
-				timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
-			}
-		} catch (FileNotFoundException e) {
-			throw e;
-		} catch (IOException e) {
-			throw e;
+		ArrayList<String[]> finishTimes = readFile(fileName);
+		for (int i = 0; i < finishTimes.size(); i++) {
+			int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
+			timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
 		}
 	}
 	/**
@@ -73,17 +64,20 @@ public class Sorter {
 	 */
 	private ArrayList<String[]> readFile(String fileName) throws Exception {
 		ArrayList<String[]> list = new ArrayList<String[]>();
-		try{
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
-			while(in.ready()){
-				list.add(in.readLine().split("; "));
-			}
-		} catch (FileNotFoundException e) {
-			throw e;
-		} catch (IOException e) {
-			throw e;
+
+		BufferedReader in = new BufferedReader(new FileReader(fileName));
+		while(in.ready()){
+			list.add(in.readLine().split("; "));
 		}
 		return list;
+	}
+	
+	public void readNameFile(String fileName) throws Exception{
+		ArrayList<String[]> names = readFile(fileName);
+		for (int i = 0; i < names.size(); i++) {
+			int startNbr = Integer.parseInt(names.get(i)[0]);
+			personData.addName(startNbr, names.get(i)[1]);
+		}
 	}
 	
 	/**
@@ -94,14 +88,15 @@ public class Sorter {
 	 */
 	public void createResultFile(String fileName) throws IOException {
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
-			out.println("StartNr; Totaltid; Starttid; Måltid");
+			out.println("StartNr; Namn; Totaltid; Starttid; Måltid");
 			Iterator<Integer> itr = timeData.getRunnerIterator();
 			while(itr.hasNext()){
 				int i = itr.next();
 				Time startTime = timeData.getStartTime(i).get(0);
 				Time finishTime = timeData.getFinishTime(i).get(0);
 				Time totalTime = startTime.getTotalTime(finishTime);
-				out.println(i +"; " + totalTime.toString() +"; " + startTime + "; " + finishTime);
+				String name = personData.getName(i);
+				out.println(i +"; "+ name +"; " + totalTime.toString() +"; " + startTime + "; " + finishTime);
 			}
 			out.close();
 	}

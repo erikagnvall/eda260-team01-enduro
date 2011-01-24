@@ -1,4 +1,4 @@
-StartNr; Totaltid; Starttid; Måltid
-1; 00.30.00; 12.00.00; 12.30.00
-2; 00.33.00; 12.01.00; 12.34.00
-3; 00.34.00; 12.02.00; 12.36.00
+StartNr; Namn; Totaltid; Starttid; Måltid
+1; Anders Asson; 00.30.00; 12.00.00; 12.30.00
+2; Berit Bsson; 00.33.00; 12.01.00; 12.34.00
+3; Clas Csson; 00.34.00; 12.02.00; 12.36.00
