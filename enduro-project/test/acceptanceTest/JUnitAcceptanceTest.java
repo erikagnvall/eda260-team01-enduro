@@ -20,7 +20,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import enduro.Sorter;
 /**
- * An authomatic JUnit testclass.
+ * An automatic JUnit testclass.
  * It uses an alternative runner which allows for parameterized tests.
  * It searches for a specific pattern (result [identifying token] .txt
  * in the facit folder and loads all key files in result/[identifying token]/*
@@ -31,7 +31,7 @@ import enduro.Sorter;
  * @author alexander, mohamed m.fl.
  *
  */
-@RunWith(value = Parameterized.class)
+@RunWith(value = LabelledParameterized.class)
 public class JUnitAcceptanceTest {
 	
 	private String file;
