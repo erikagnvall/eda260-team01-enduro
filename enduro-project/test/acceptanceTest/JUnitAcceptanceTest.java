@@ -6,39 +6,126 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
-import java.util.Arrays;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import enduro.Sorter;
+/**
+ * An authomatic JUnit testclass.
+ * It uses an alternative runner which allows for parameterized tests.
+ * It searches for a specific pattern (result [identifying token] .txt
+ * in the facit folder and loads all key files in result/[identifying token]/*
+ * (non recursive).
+ * 
+ * currently only a result [identifying token] .txt.result is created in result
+ * this is then compared with the relevant acceptance test.
+ * @author alexander, mohamed m.fl.
+ *
+ */
 @RunWith(value = Parameterized.class)
 public class JUnitAcceptanceTest {
 	
 	private String file;
-	private String facitFolder = "acceptanceTest/facit/";
-	private String resultFolder = "acceptanceTest/result/";
+	private String testId;
+	private static String facitFolder = "acceptanceTest/facit/";
+	private static String resultFolder = "acceptanceTest/result/";
+	private String[] startTimes, endTimes, runners;
+	private String testPath;
 	
-	public JUnitAcceptanceTest(String num) {
-		this.file = num;
+	private boolean fileReadFail = false;
+	private boolean fileWriteFail = false;
+	private boolean fileLogWriteFail = false;
+	
+	public JUnitAcceptanceTest(String test) {
+		this.file = test;
+		testId = test.substring(9, test.length());
+		testId = testId.substring(0, testId.length()-4);
+		//System.out.println("id: " + testId);
+		try {
+			System.setOut(new PrintStream(new FileOutputStream(resultFolder + test + ".log"), true));
+		} catch (FileNotFoundException e1) {
+			fileLogWriteFail = true;
+		}
+		testPath = resultFolder + testId + "/";
+		
+		FileListGenerator gen = new FileListGenerator(new File(testPath));
+		startTimes = gen.getFilesThatContains("start");
+		endTimes = gen.getFilesThatContains("maltid");
+		runners = gen.getFilesThatContains("namn");
+		
+		Sorter sort = new Sorter();
+		try {
+			for(String startLoc: startTimes)
+				sort.readStartFile(testPath + startLoc);
+			for(String endLoc: endTimes)
+				sort.readFinishFile(testPath  + endLoc);
+			for(String runner: runners)
+				sort.readNameFile(testPath  + runner);
+		} catch(Exception E) {
+			fileReadFail = true;
+		}
+		
+		try {
+			sort.createResultFile(resultFolder + test + ".result");
+		} catch (IOException e) {
+			fileWriteFail = true;
+		}
+		
 	}
 	
 	@Parameters
 	public static Collection<Object[]> data() {
 		File facit = new File("acceptanceTest/facit");
 		String[] facitFiles = facit.list(new FileFilter());
-		Object[][] data = new Object[facitFiles.length][1];
-		for(int i = 0; i < facitFiles.length; i++) {
-			data[i][0] = facitFiles[i];
+		
+		
+		LinkedList<Object[]> tmp = new LinkedList<Object[]>();
+		
+		for(String test: facitFiles) {
+			if(test.startsWith("resultat_"))
+				tmp.add(new Object[]{test});
 		}
 		
-		return Arrays.asList(data);
+		//tmp.add(new Object[]{"resultat_6.txt"});
+		return tmp;
+		
+		//return Arrays.asList(data);
 
 	}
+
+	/**
+	 * fails if there were some errors with reading specified material
+	 */
+	@Test public void testIfReadTestFilesCorrectly() {
+		assertTrue(!this.fileReadFail);
+	}
 	
+	/**
+	 * fails if there were some errors with generating any of the result files.
+	 */
+	@Test public void testIfWriteToResultFileSuccess() {
+		assertTrue(!this.fileWriteFail);
+	}
+	
+	/**
+	 * fails if there were some errors with generating the log file
+	 */
+	@Test public void testIfWriteToLogSuccess() {
+		assertTrue(!this.fileLogWriteFail);
+	}
+	
+	/**
+	 * aceptance test. compares generated output with results.
+	 */
 	@Test public void testAcceptance() {
 		System.out.println(file);
 		ResultCompare c;
