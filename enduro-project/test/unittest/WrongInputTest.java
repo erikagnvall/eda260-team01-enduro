@@ -10,14 +10,14 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.Sorter;
+import enduro.MarathonSorter;
 
 
 public class WrongInputTest {
-private Sorter sorter;
+private MarathonSorter sorter;
 	
 	@Before public void setUp() {
-		sorter = new Sorter();
+		sorter = new MarathonSorter();
 	}
 	
 @Test public void testNoFinishTime() {

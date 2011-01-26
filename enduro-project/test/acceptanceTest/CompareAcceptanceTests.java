@@ -1,6 +1,6 @@
 package acceptanceTest;
 
-import enduro.Sorter;
+import enduro.MarathonSorter;
 
 /**
  * naming convention: 
@@ -16,7 +16,7 @@ public class CompareAcceptanceTests {
 	
 	public static void main(String[] args) {
 		
-		Sorter sort = new Sorter();
+		MarathonSorter sort = new MarathonSorter();
 		try {
 			sort.readFinishFile("acceptanceTest/result/input_3/maltider.txt");
 			sort.readStartFile("acceptanceTest/result/input_3/starttider.txt");

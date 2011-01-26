@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import enduro.Sorter;
+import enduro.MarathonSorter;
 /**
  * An automatic JUnit testclass.
  * It uses an alternative runner which allows for parameterized tests.
@@ -62,7 +62,7 @@ public class JUnitAcceptanceTest {
 		endTimes = gen.getFilesThatContains("maltid");
 		runners = gen.getFilesThatContains("namn");
 		
-		Sorter sort = new Sorter();
+		MarathonSorter sort = new MarathonSorter();
 		try {
 			for(String startLoc: startTimes)
 				sort.readStartFile(testPath + startLoc);

@@ -4,18 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import enduro.Sorter;
+import enduro.MarathonSorter;
 
 
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class SorterTest {
-	private Sorter sorter;
+	private MarathonSorter sorter;
 	
 	@Before 	
 	public void setUp() {
-		sorter = new Sorter();
+		sorter = new MarathonSorter();
 
 	}
 	
