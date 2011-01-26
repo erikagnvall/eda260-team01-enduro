@@ -17,9 +17,11 @@ public abstract class Sorter {
 	protected RacerData racerData;
 	protected Time startTime;
 	protected Time finishTime;
+	protected StringBuilder trail;
 
 	public Sorter() {
 		racerData = new RacerData();
+		trail = new StringBuilder();
 	}
 
 	/**
@@ -61,7 +63,7 @@ public abstract class Sorter {
 	 */
 	private ArrayList<String[]> readFile(String fileName) throws Exception {
 		ArrayList<String[]> list = new ArrayList<String[]>();
-	
+
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		while (in.ready()) {
 			list.add(in.readLine().split("; "));
@@ -76,20 +78,23 @@ public abstract class Sorter {
 			racerData.addName(startNbr, names.get(i)[1]);
 		}
 	}
-	
+
 	public void createResultFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		out.println(titleRow());
 		Iterator<Integer> itr = racerData.getRunnerIterator();
-		while(itr.hasNext()){
+		while (itr.hasNext()) {
 			int i = itr.next();
 			String name = racerData.getName(i);
 			String start;
-			StringBuilder trail = new StringBuilder();
-			startTime = racerData.getStartTime(i).poll();
-			finishTime = racerData.getFinishTime(i).poll();
+			String finish = null;
+			String total = null;
 			try {
+				if(fileName.contains("6")){
+					System.out.println();
+				}
+				startTime = racerData.getStartTime(i).poll();
 				start = startTime.toString();
 				if (racerData.getStartTime(i).size() > 0) {
 					trail.append("; Flera starttider?");
@@ -101,14 +106,30 @@ public abstract class Sorter {
 			} catch (NullPointerException e) {
 				start = "Start?";
 			}
-			out.println(i + "; " + name + "; " + totalTime(trail, i) + "; " + start + "; "
-					+ finishTime(trail, i) + trail.toString());
+			try {
+				finishTime = racerData.getFinishTime(i).poll();
+			} catch (NullPointerException e) {
+				finish = "Slut?";
+			}
+			if(finish == null || !finish.equals("Slut?")) {
+				finish = finishTime(i);
+			}
+			if(!finish.equals("Slut?") && !start.equals("Start?")){
+				total = totalTime(i);
+			} else {
+				total = "--.--.--";
+			}
+			out.println(i + "; " + name + "; " + total + "; " + start
+					+ "; " + finish + trail.toString());
+			trail.delete(0, trail.length());
 		}
 		out.close();
 	}
-	
+
 	protected abstract String titleRow();
-	protected abstract String totalTime(StringBuilder trail, int i);
-	protected abstract String finishTime(StringBuilder trail, int i);
+
+	protected abstract String totalTime(int i);
+
+	protected abstract String finishTime(int i);
 
 }

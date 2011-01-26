@@ -86,16 +86,16 @@ public class MarathonSorter extends Sorter {
 	}*/
 	
 	protected String titleRow(){
-		return "StartNr; Namn; Totaltid; Starttider; M√•ltider";
+		return "StartNr; Namn; TotalTid; StartTider; Måltider";
 	}
 
 	@Override
-	protected String finishTime(StringBuilder trail, int i) {
+	protected String finishTime(int i) {
 		String finish;
 		try {
 			finish = finishTime.toString();
 			if (racerData.getFinishTime(i).size() > 0) {
-				trail.append("; Flera m√•ltider?");
+				trail.append("; Flera måltider?");
 				while (racerData.getFinishTime(i).size() > 0) {
 					trail.append(' ');
 					trail.append(racerData.getFinishTime(i).poll());
@@ -108,14 +108,14 @@ public class MarathonSorter extends Sorter {
 	}
 
 	@Override
-	protected String totalTime(StringBuilder trail, int i) {
+	protected String totalTime(int i) {
 		String total;
 		try {
 			Time totalTime = startTime.getTotalTime(finishTime);
 			total = totalTime.toString();
 			Time fastTime = new Time(0, 15, 0);
 			if (fastTime.compareTo(totalTime) > 0)
-				trail.append("; Om√∂jlig Totaltid?");
+				trail.append("; Omöjlig Totaltid?");
 		} catch (NullPointerException e) {
 			total = "--.--.--";
 		}
