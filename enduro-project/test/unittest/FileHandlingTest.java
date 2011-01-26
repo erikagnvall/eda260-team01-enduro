@@ -6,7 +6,7 @@ import java.io.FileReader;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.FileHandler;
+import enduro.IOHandler;
 
 public class FileHandlingTest {
 
@@ -18,7 +18,7 @@ public class FileHandlingTest {
 	public void testSingleFinishFile() {
 		String[] args = { "fakeStart.txt", "fakeFinish.txt" };
 		try {
-			FileHandler.main(args);
+			IOHandler.main(args);
 			BufferedReader in = new BufferedReader(new FileReader(
 					"ResultFile.txt"));
 			in.readLine();
@@ -33,7 +33,7 @@ public class FileHandlingTest {
 	public void testMultipleFinishFiles() {
 		String[] args = { "fakeStart.txt", "-m", "fakeFinishList.txt" };
 		try {
-			FileHandler.main(args);
+			IOHandler.main(args);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

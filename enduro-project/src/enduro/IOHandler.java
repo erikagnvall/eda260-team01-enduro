@@ -2,16 +2,21 @@ package enduro;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-public class FileHandler {
+/**
+ * Handles I/O.
+ * @author Rick
+ *
+ */
+public class IOHandler {
 	/**
 	 * 
 	 * @param args
-	 *            The first argument is the startFile, and the second argument
-	 *            is the finishFile. A new file, ResultFile, is created
-	 *            containing the total time for each runner. Else if the second
-	 *            argument is -m the third argument will be a file containing a
-	 *            list of finish-files.
+	 *            Syntax is "startFile [finishFile] [-m listOfFinishFiles]". The first
+	 *            argument is the startFile, and the second argument is the
+	 *            finishFile. A new file, ResultFile, is created containing the
+	 *            total time for each runner. Else if the second argument is -m
+	 *            the third argument will be a file containing a list of
+	 *            finish-files.
 	 * @throws Exception
 	 *             In case of an I/O error.
 	 */
