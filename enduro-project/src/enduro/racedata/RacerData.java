@@ -1,5 +1,6 @@
 package enduro.racedata;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -8,19 +9,21 @@ import java.util.PriorityQueue;
  * Provides a data structure for start
  * and finish times.
  */
-public class TimeData {
+public class RacerData {
 	
 	private TreeSet<Integer> startNbrs;
 	private HashMap<Integer, PriorityQueue<Time>> startTimes;
 	private HashMap<Integer, PriorityQueue<Time>> finishTimes;
+	private HashMap<Integer, ArrayList<String>> names;
 	
 	/**
 	 * Creates a new TimeData object and initializes it.
 	 */
-	public TimeData() {
+	public RacerData() {
 		startNbrs = new TreeSet<Integer>();
 		startTimes = new HashMap<Integer, PriorityQueue<Time>>();
 		finishTimes = new HashMap<Integer, PriorityQueue<Time>>();
+		names = new HashMap<Integer, ArrayList<String>>();
 	}
 	
 	/**
@@ -77,6 +80,32 @@ public class TimeData {
 	 */
 	public Iterator<Integer> getRunnerIterator() {
 		return startNbrs.iterator();
+	}
+	
+	/**
+	 * Adds a name to a racer.
+	 * 
+	 * @param startNr
+	 *            the racer's number
+	 * @param name
+	 *            the racer's name
+	 */
+	public void addName(int startNr, String name) {
+		ArrayList<String> temp = new ArrayList<String>();
+		temp.add(name);
+		names.put(startNr, temp);
+	}
+
+	/**
+	 * Gets the racer's name.
+	 * 
+	 * @param startNr
+	 *            the racer number.
+	 * @return The racer's name.
+	 */
+	public String getName(int startNr) {
+		return names.get(startNr).get(0);
+
 	}
 	
 }

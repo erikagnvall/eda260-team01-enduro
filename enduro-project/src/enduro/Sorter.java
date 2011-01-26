@@ -9,20 +9,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import enduro.racedata.PersonData;
 import enduro.racedata.Time;
-import enduro.racedata.TimeData;
+import enduro.racedata.RacerData;
 
 public abstract class Sorter {
 
-	protected TimeData timeData;
-	protected PersonData personData;
+	protected RacerData racerData;
 	protected Time startTime;
 	protected Time finishTime;
 
 	public Sorter() {
-		timeData = new TimeData();
-		personData = new PersonData();
+		racerData = new RacerData();
 	}
 
 	/**
@@ -35,7 +32,7 @@ public abstract class Sorter {
 		ArrayList<String[]> startingTimes = readFile(fileName);
 		for (int i = 0; i < startingTimes.size(); i++) {
 			int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
-			timeData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
+			racerData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
 		}
 	}
 
@@ -49,7 +46,7 @@ public abstract class Sorter {
 		ArrayList<String[]> finishTimes = readFile(fileName);
 		for (int i = 0; i < finishTimes.size(); i++) {
 			int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
-			timeData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
+			racerData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
 		}
 	}
 
@@ -76,7 +73,7 @@ public abstract class Sorter {
 		ArrayList<String[]> names = readFile(fileName);
 		for (int i = 0; i < names.size(); i++) {
 			int startNbr = Integer.parseInt(names.get(i)[0]);
-			personData.addName(startNbr, names.get(i)[1]);
+			racerData.addName(startNbr, names.get(i)[1]);
 		}
 	}
 	
@@ -84,21 +81,21 @@ public abstract class Sorter {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		out.println(titleRow());
-		Iterator<Integer> itr = timeData.getRunnerIterator();
+		Iterator<Integer> itr = racerData.getRunnerIterator();
 		while(itr.hasNext()){
 			int i = itr.next();
-			String name = personData.getName(i);
+			String name = racerData.getName(i);
 			String start;
 			StringBuilder trail = new StringBuilder();
-			startTime = timeData.getStartTime(i).poll();
-			finishTime = timeData.getFinishTime(i).poll();
+			startTime = racerData.getStartTime(i).poll();
+			finishTime = racerData.getFinishTime(i).poll();
 			try {
 				start = startTime.toString();
-				if (timeData.getStartTime(i).size() > 0) {
+				if (racerData.getStartTime(i).size() > 0) {
 					trail.append("; Flera starttider?");
-					while (timeData.getStartTime(i).size() > 0) {
+					while (racerData.getStartTime(i).size() > 0) {
 						trail.append(' ');
-						trail.append(timeData.getStartTime(i).poll());
+						trail.append(racerData.getStartTime(i).poll());
 					}
 				}
 			} catch (NullPointerException e) {

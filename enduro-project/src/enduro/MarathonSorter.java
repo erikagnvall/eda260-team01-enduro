@@ -94,11 +94,11 @@ public class MarathonSorter extends Sorter {
 		String finish;
 		try {
 			finish = finishTime.toString();
-			if (timeData.getFinishTime(i).size() > 0) {
+			if (racerData.getFinishTime(i).size() > 0) {
 				trail.append("; Flera m√•ltider?");
-				while (timeData.getFinishTime(i).size() > 0) {
+				while (racerData.getFinishTime(i).size() > 0) {
 					trail.append(' ');
-					trail.append(timeData.getFinishTime(i).poll());
+					trail.append(racerData.getFinishTime(i).poll());
 				}
 			}
 		} catch (NullPointerException e) {
