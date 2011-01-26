@@ -74,7 +74,7 @@ public class MarathonSorterTest {
 		
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));//
-			assertEquals("StartNr; Namn; Totaltid; Starttider; MÃ¥ltider", in.readLine());
+			assertEquals("StartNr; Namn; TotalTid; StartTider; MŒltider", in.readLine());
 			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00", in.readLine());
 			in.close();
 		} catch (Exception e){
