@@ -12,6 +12,13 @@ import java.util.Iterator;
 import enduro.racedata.Time;
 import enduro.racedata.RacerData;
 
+/**
+ * Superclass for all sorters. Merges data from input files and ouputs them in a
+ * readable format according to the formatting rules (Subclass) used.
+ * 
+ * @author Rick
+ * 
+ */
 public abstract class Sorter {
 
 	protected RacerData racerData;
@@ -60,6 +67,7 @@ public abstract class Sorter {
 	 *            The name of the file.
 	 * @return ArrayList<String[]> containing start numbers and time.
 	 * @throws Exception
+	 *             when something goes wrong.
 	 */
 	private ArrayList<String[]> readFile(String fileName) throws Exception {
 		ArrayList<String[]> list = new ArrayList<String[]>();
@@ -71,6 +79,15 @@ public abstract class Sorter {
 		return list;
 	}
 
+	/**
+	 * Reads a file containing names of racers and adds them to the data
+	 * structure.
+	 * 
+	 * @param fileName
+	 *            the name of the file to be read.
+	 * @throws Exception
+	 *             when something goes wrong.
+	 */
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
 		for (int i = 0; i < names.size(); i++) {
@@ -79,6 +96,14 @@ public abstract class Sorter {
 		}
 	}
 
+	/**
+	 * Creates a readable results file from the gathered data.
+	 * 
+	 * @param fileName
+	 *            the name of the output file.
+	 * @throws IOException
+	 *             when something goes wrong.
+	 */
 	public void createResultFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
@@ -91,7 +116,7 @@ public abstract class Sorter {
 			String finish = null;
 			String total = null;
 			try {
-				if(fileName.contains("6")){
+				if (fileName.contains("6")) {
 					System.out.println();
 				}
 				startTime = racerData.getStartTime(i).poll();
@@ -111,25 +136,49 @@ public abstract class Sorter {
 			} catch (NullPointerException e) {
 				finish = "Slut?";
 			}
-			if(finish == null || !finish.equals("Slut?")) {
+			if (finish == null || !finish.equals("Slut?")) {
 				finish = finishTime(i);
 			}
-			if(!finish.equals("Slut?") && !start.equals("Start?")){
+			if (!finish.equals("Slut?") && !start.equals("Start?")) {
 				total = totalTime(i);
 			} else {
 				total = "--.--.--";
 			}
-			out.println(i + "; " + name + "; " + total + "; " + start
-					+ "; " + finish + trail.toString());
+			out.println(i + "; " + name + "; " + total + "; " + start + "; "
+					+ finish + trail.toString());
 			trail.delete(0, trail.length());
+
 		}
 		out.close();
 	}
 
+	/**
+	 * Returns the title row formatted according to the current race type.
+	 * 
+	 * @return the title row.
+	 */
 	protected abstract String titleRow();
 
+	/**
+	 * Calculates and returns the value for the total time column. How this is
+	 * calculated differs between race types.
+	 * 
+	 * @param i
+	 *            the racer's number.
+	 * @return a <code>String</code> containing the total time on the format
+	 *         "hh.mm.ss".
+	 */
 	protected abstract String totalTime(int i);
 
+	/**
+	 * Formats the finish time according to how it's supposed to be in the
+	 * current race type.
+	 * 
+	 * @param i
+	 *            the racer's number.
+	 * @return a <code>String</code> containing the racer's finish time on the
+	 *         format "hh.mm.ss".
+	 */
 	protected abstract String finishTime(int i);
 
 }

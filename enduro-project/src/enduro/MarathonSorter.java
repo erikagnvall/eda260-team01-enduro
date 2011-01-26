@@ -9,7 +9,9 @@ import java.util.Iterator;
 import enduro.racedata.Time;
 
 /**
- * Program for generating a result file in an Enduro race.
+ * Class for sorting the results of a marathon according to the formatting rules that apply.
+ * 
+ * 
  */
 public class MarathonSorter extends Sorter {
 
@@ -85,6 +87,7 @@ public class MarathonSorter extends Sorter {
 		out.close();
 	}*/
 	
+	@Override
 	protected String titleRow(){
 		return "StartNr; Namn; TotalTid; StartTider; Måltider";
 	}
@@ -106,7 +109,7 @@ public class MarathonSorter extends Sorter {
 		}
 		return finish;
 	}
-
+	
 	@Override
 	protected String totalTime(int i) {
 		String total;
