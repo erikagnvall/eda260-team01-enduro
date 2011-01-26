@@ -2,23 +2,23 @@ package unittest;
 
 import java.util.PriorityQueue;
 import enduro.racedata.Time;
-import enduro.racedata.TimeData;
+import enduro.racedata.RacerData;
 import org.junit.*;
 
 import static org.junit.Assert.*;
 
 public class TimeDataTest {
 	
-	private TimeData timeData;
+	private RacerData racerData;
 	
 	@Before public void setUp() {
-		timeData = new TimeData();
-		timeData.addStartTime(1, new Time(12, 00, 00));
-		timeData.addFinishTime(1, new Time(12, 30, 00));
+		racerData = new RacerData();
+		racerData.addStartTime(1, new Time(12, 00, 00));
+		racerData.addFinishTime(1, new Time(12, 30, 00));
 	}
 	
 	@Test public void testGetStartTime() {
-		PriorityQueue<Time> times = timeData.getStartTime(1);
+		PriorityQueue<Time> times = racerData.getStartTime(1);
 		assertTrue(times.size()==1);
 		boolean exists = false;
 		for(Time t:times) {
@@ -30,7 +30,7 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testGetFinishTime() {
-		PriorityQueue<Time> times = timeData.getFinishTime(1);
+		PriorityQueue<Time> times = racerData.getFinishTime(1);
 		assertTrue(times.size()==1);
 		boolean exists = false;
 		for(Time t:times) {
@@ -42,10 +42,10 @@ public class TimeDataTest {
 	}
 	
 	@Test public void testWrongRunnerNumber() {
-		assertTrue(timeData.getFinishTime(-2) == null);
+		assertTrue(racerData.getFinishTime(-2) == null);
 	}
 	
 	@Test public void testOneRunnerList() {
-		assertEquals(new Integer(1), timeData.getRunnerIterator().next());
+		assertEquals(new Integer(1), racerData.getRunnerIterator().next());
 	}
 }
