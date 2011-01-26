@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 import unittest.FileHandlingTest;
 import unittest.PersonDataTest;
 import unittest.RegistrationTest;
-import unittest.SorterTest;
+import unittest.MarathonSorterTest;
 import unittest.TimeDataTest;
 import unittest.TimeTest;
 import unittest.WrongInputTest;
@@ -15,7 +15,7 @@ import unittest.WrongInputTest;
 @Suite.SuiteClasses({FileHandlingTest.class,
 					PersonDataTest.class,
 					RegistrationTest.class,
-					SorterTest.class,
+					MarathonSorterTest.class,
 					TimeDataTest.class,
 					TimeTest.class,
 					WrongInputTest.class})

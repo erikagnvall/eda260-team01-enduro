@@ -1,17 +1,24 @@
 package enduro;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import enduro.racedata.PersonData;
 import enduro.racedata.Time;
 import enduro.racedata.TimeData;
 
-public class Sorter {
+public abstract class Sorter {
 
 	protected TimeData timeData;
 	protected PersonData personData;
+	protected Time startTime;
+	protected Time finishTime;
 
 	public Sorter() {
 		timeData = new TimeData();
@@ -72,5 +79,39 @@ public class Sorter {
 			personData.addName(startNbr, names.get(i)[1]);
 		}
 	}
+	
+	public void createResultFile(String fileName) throws IOException {
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+				fileName)));
+		out.println(titleRow());
+		Iterator<Integer> itr = timeData.getRunnerIterator();
+		while(itr.hasNext()){
+			int i = itr.next();
+			String name = personData.getName(i);
+			String start;
+			StringBuilder trail = new StringBuilder();
+			startTime = timeData.getStartTime(i).poll();
+			finishTime = timeData.getFinishTime(i).poll();
+			try {
+				start = startTime.toString();
+				if (timeData.getStartTime(i).size() > 0) {
+					trail.append("; Flera starttider?");
+					while (timeData.getStartTime(i).size() > 0) {
+						trail.append(' ');
+						trail.append(timeData.getStartTime(i).poll());
+					}
+				}
+			} catch (NullPointerException e) {
+				start = "Start?";
+			}
+			out.println(i + "; " + name + "; " + totalTime(trail, i) + "; " + start + "; "
+					+ finishTime(trail, i) + trail.toString());
+		}
+		out.close();
+	}
+	
+	protected abstract String titleRow();
+	protected abstract String totalTime(StringBuilder trail, int i);
+	protected abstract String finishTime(StringBuilder trail, int i);
 
 }

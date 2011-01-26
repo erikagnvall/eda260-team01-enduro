@@ -28,11 +28,11 @@ public class MarathonSorter extends Sorter {
 	 *            The name of the result file to be created.
 	 * @throws IOException
 	 *             In case of an I/O error.
-	 */
+	 *//*
 	public void createResultFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
-		out.println("StartNr; Namn; TotalTid; StartTider; Måltider");
+		out.println("StartNr; Namn; TotalTid; StartTider; M√•ltider");
 		Iterator<Integer> itr = timeData.getRunnerIterator();
 		while (itr.hasNext()) {
 			int i = itr.next();
@@ -60,7 +60,7 @@ public class MarathonSorter extends Sorter {
 				finishTime = timeData.getFinishTime(i).poll();
 				finish = finishTime.toString();
 				if (timeData.getFinishTime(i).size() > 0) {
-					trail.append("; Flera måltider?");
+					trail.append("; Flera m√•ltider?");
 					while (timeData.getFinishTime(i).size() > 0) {
 						trail.append(' ');
 						trail.append(timeData.getFinishTime(i).poll());
@@ -74,7 +74,7 @@ public class MarathonSorter extends Sorter {
 				total = totalTime.toString();
 				Time fastTime = new Time(0, 15, 0);
 				if (fastTime.compareTo(totalTime) > 0)
-					trail.append("; Omöjlig Totaltid?");
+					trail.append("; Om√∂jlig Totaltid?");
 			} catch (NullPointerException e) {
 				total = "--.--.--";
 			}
@@ -83,5 +83,42 @@ public class MarathonSorter extends Sorter {
 					+ finish + trail.toString());
 		}
 		out.close();
+	}*/
+	
+	protected String titleRow(){
+		return "StartNr; Namn; Totaltid; Starttider; M√•ltider";
+	}
+
+	@Override
+	protected String finishTime(StringBuilder trail, int i) {
+		String finish;
+		try {
+			finish = finishTime.toString();
+			if (timeData.getFinishTime(i).size() > 0) {
+				trail.append("; Flera m√•ltider?");
+				while (timeData.getFinishTime(i).size() > 0) {
+					trail.append(' ');
+					trail.append(timeData.getFinishTime(i).poll());
+				}
+			}
+		} catch (NullPointerException e) {
+			finish = "Slut?";
+		}
+		return finish;
+	}
+
+	@Override
+	protected String totalTime(StringBuilder trail, int i) {
+		String total;
+		try {
+			Time totalTime = startTime.getTotalTime(finishTime);
+			total = totalTime.toString();
+			Time fastTime = new Time(0, 15, 0);
+			if (fastTime.compareTo(totalTime) > 0)
+				trail.append("; Om√∂jlig Totaltid?");
+		} catch (NullPointerException e) {
+			total = "--.--.--";
+		}
+		return total;
 	}
 }

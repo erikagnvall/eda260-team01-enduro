@@ -1,7 +1,9 @@
 package unittest;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import enduro.MarathonSorter;
@@ -10,7 +12,7 @@ import enduro.MarathonSorter;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class SorterTest {
+public class MarathonSorterTest {
 	private MarathonSorter sorter;
 	
 	@Before 	
@@ -59,7 +61,7 @@ public class SorterTest {
 		}
 	}
 	
-	/*@Test public void testCreateResultFile() {
+	@Test public void testCreateResultFile() {
 		
 		try {
 			sorter.readStartFile("fakeStart.txt");
@@ -72,14 +74,12 @@ public class SorterTest {
 		
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));//
-			assertEquals("StartNr; Namn; Totaltid; Starttid; Måltid", in.readLine());
+			assertEquals("StartNr; Namn; Totaltid; Starttider; Måltider", in.readLine());
 			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00", in.readLine());
 			in.close();
-		} catch (FileNotFoundException e) {
-			System.err.println(e);
-		} catch (IOException e) {
-			System.err.println(e);
+		} catch (Exception e){
+			e.printStackTrace();
 		}
 	}
-	*/
+	
 }
