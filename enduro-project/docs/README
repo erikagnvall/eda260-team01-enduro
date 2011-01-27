@@ -1,0 +1,14 @@
+To add a new "section", use the following code:
+
+<div class="entry">
+	<a name="example"></a>
+	<h2>Example header</h2>
+	<p>
+		Example content. Put your info here.
+	</p>
+</div> <!-- end of .entry -->
+
+Put this below the last entry and before the line:
+</div> <!-- end of #content -->
+
+And don't forget to add you entry to the table of content.
