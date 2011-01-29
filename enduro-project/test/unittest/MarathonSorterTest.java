@@ -43,10 +43,10 @@ public class MarathonSorterTest {
 	public void testReadingFiles() {
 
 		try {
-			sorter.readStartFile("./unit-test-files/fakeStart.txt");
-			sorter.readFinishFile("./unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./unit-test-files/fakeName.txt");
-			sorter.createResultFile("./unit-test-files/fakesortertestresult.txt");
+			sorter.readStartFile("./test/unit-test-files/fakeStart.txt");
+			sorter.readFinishFile("./test/unit-test-files/fakeFinish.txt");
+			sorter.readNameFile("./test/unit-test-files/fakeName.txt");
+			sorter.createResultFile("./test/unit-test-files/fakesortertestresult.txt");
 
 			ArrayList<String[]> list = new ArrayList<String[]>();
 			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));
