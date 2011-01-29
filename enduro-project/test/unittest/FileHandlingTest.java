@@ -19,8 +19,7 @@ public class FileHandlingTest {
 		String[] args = { "fakeStart.txt", "fakeFinish.txt" };
 		try {
 			IOHandler.main(args);
-			BufferedReader in = new BufferedReader(new FileReader(
-					"ResultFile.txt"));
+			BufferedReader in = new BufferedReader(new FileReader("ResultFile.txt"));
 			in.readLine();
 
 		} catch (Exception e) {
