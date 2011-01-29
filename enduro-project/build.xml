@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pvg.makejar" default="makeGUI" basedir=".">
+	<target name ="makeRegistrator" description="Create a jar for the backend">
+		
+		<delete file = "Backend.jar"/>
+		<delete file = "MANIFEST.MF"/>
+		
+		<manifest file = "MANIFEST.MF">
+			<attribute name = "Main-Class" value = "enduro.FileHandler"/>
+			<attribute name = "Class-Path" value = "."/>
+		</manifest>
+		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
+		
+		<delete file = "MANIFEST.MF"/>
+		<delete dir = "Release/"/>
+		<delete dir = "META-INF/"/>
+	</target>
+	
+	<target name ="makeGUI" description="Create a jar for the GUI" depends="makeRegistrator">
+			
+			<delete file = "GUI.jar"/>
+			<delete file = "MANIFEST.MF"/>
+			
+			<manifest file = "MANIFEST.MF">
+				<attribute name = "Main-Class" value = "enduro.gui.RegistrationGUI"/>
+				<attribute name = "Class-Path" value = "."/>
+			</manifest>
+			<jar jarfile="GUI.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
+			
+			<delete file = "MANIFEST.MF"/>
+			<delete dir = "Release/"/>
+		</target>
+	
+	
+	
+</project>
