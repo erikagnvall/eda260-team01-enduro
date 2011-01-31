@@ -9,7 +9,7 @@ import enduro.racedata.Time;
 public class LapseSorter extends Sorter {
 
 	int lapses = 0;
-	ArrayList<Time> times = new ArrayList<Time>();
+	ArrayList<Time> times;
 	
 	@Override
 	protected String titleRow(){
@@ -71,6 +71,7 @@ public class LapseSorter extends Sorter {
 		for(Time t : racerData.getFinishTime(i)){
 			timeQueue.offer(t);
 		}
+		times = new ArrayList<Time>();
 		while(timeQueue.peek() != null){
 			times.add(timeQueue.poll());
 		}
