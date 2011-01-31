@@ -1,3 +1,4 @@
+./test/unittest/unit-test-files/fakeName.txt
 ./test/unittest/unit-test-files/fakeStart.txt
 ./test/unittest/unit-test-files/fakeFinish (copy).txt
 ./test/unittest/unit-test-files/fakeFinish (another copy).txt

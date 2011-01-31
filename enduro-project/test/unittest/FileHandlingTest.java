@@ -21,6 +21,7 @@ public class FileHandlingTest {
 		try {
 			out = new PrintWriter(new BufferedWriter(new FileWriter(
 					"list.txt")));
+			out.println("./test/unittest/unit-test-files/fakeName.txt");
 			out.println("./test/unittest/unit-test-files/fakeStart.txt");
 			out.println("./test/unittest/unit-test-files/fakeFinish.txt");
 			out.close();
@@ -45,6 +46,7 @@ public class FileHandlingTest {
 		try {
 			out = new PrintWriter(new BufferedWriter(new FileWriter(
 					"list.txt")));
+			out.println("./test/unittest/unit-test-files/fakeName.txt");
 			out.println("./test/unittest/unit-test-files/fakeStart.txt");
 			out.println("./test/unittest/unit-test-files/fakeFinish (copy).txt");
 			out.println("./test/unittest/unit-test-files/fakeFinish (another copy).txt");

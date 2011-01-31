@@ -26,11 +26,12 @@ public class IOHandler {
 		MarathonSorter sorter = new MarathonSorter();
 
 		BufferedReader in = new BufferedReader(new FileReader("list.txt"));
+		sorter.readNameFile(in.readLine());
 		sorter.readStartFile(in.readLine());
 		while (in.ready()) {
 			sorter.readFinishFile(in.readLine());
 		}
-		sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+		//sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 		sorter.createResultFile("./test/unittest/unit-test-files/ResultFile.txt");
 	}
 }
