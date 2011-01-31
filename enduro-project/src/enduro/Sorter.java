@@ -79,7 +79,6 @@ public abstract class Sorter {
 		}
 		return list;
 	}
-	
 
 	/**
 	 * Reads a file containing names of racers and adds them to the data
@@ -92,24 +91,29 @@ public abstract class Sorter {
 	 */
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
+		RaceClass currentClass = null;
 		for (int i = 0; i < names.size(); i++) {
-			RaceClass currentClass;
+
 			try {
 				int startNbr = Integer.parseInt(names.get(i)[0]);
 				racerData.addName(startNbr, names.get(i)[1]);
-			}catch(NumberFormatException e){
+				currentClass.registerContestant(startNbr);
+			} catch (NumberFormatException e) {
 				currentClass = new RaceClass(names.get(i)[0]);
-				System.out.println(currentClass.getName());
+
 				racerData.addClass(currentClass);
+
 			}
-			
+
 		}
 	}
-	/** Method used for testing
-	 * Returns an ArrayList of registered classes
+
+	/**
+	 * Method used for testing Returns an ArrayList of registered classes
+	 * 
 	 * @return
 	 */
-	public ArrayList<RaceClass> getClasses(){
+	public ArrayList<RaceClass> getClasses() {
 		return racerData.getClasses();
 	}
 
@@ -125,42 +129,47 @@ public abstract class Sorter {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		out.println(titleRow());
-		Iterator<Integer> itr = racerData.iterator();
+		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
-			int i = itr.next();
-			String name = racerData.getName(i);
-			String start;
-			String finish = null;
-			String total = null;
-			try {
-				startTime = racerData.getStartTime(i).poll();
-				start = startTime.toString();
-				if (racerData.getStartTime(i).size() > 0) {
-					trail.append("; Flera starttider?");
-					while (racerData.getStartTime(i).size() > 0) {
-						trail.append(' ');
-						trail.append(racerData.getStartTime(i).poll());
+			RaceClass currentClass = itr.next();
+			out.println(currentClass.getName());
+			Iterator<Integer> nbrItr = currentClass.iterator();
+			while (nbrItr.hasNext()) {
+				int i = nbrItr.next();
+				String name = racerData.getName(i);
+				String start;
+				String finish = null;
+				String total = null;
+				try {
+					startTime = racerData.getStartTime(i).poll();
+					start = startTime.toString();
+					if (racerData.getStartTime(i).size() > 0) {
+						trail.append("; Flera starttider?");
+						while (racerData.getStartTime(i).size() > 0) {
+							trail.append(' ');
+							trail.append(racerData.getStartTime(i).poll());
+						}
 					}
+				} catch (NullPointerException e) {
+					start = "Start?";
 				}
-			} catch (NullPointerException e) {
-				start = "Start?";
+				try {
+					finishTime = getFinishTime(i);
+				} catch (NullPointerException e) {
+					finish = "Slut?";
+				}
+				if (finish == null || !finish.equals("Slut?")) {
+					finish = finishTime(i);
+				}
+				if (!finish.equals("Slut?") && !start.equals("Start?")) {
+					total = totalTime(i);
+				} else {
+					total = "--.--.--";
+				}
+				out.println(i + "; " + name + "; " + total + "; " + start
+						+ "; " + finish + trail.toString());
+				trail.delete(0, trail.length());
 			}
-			try {
-				finishTime = getFinishTime(i);
-			} catch (NullPointerException e) {
-				finish = "Slut?";
-			}
-			if (finish == null || !finish.equals("Slut?")) {
-				finish = finishTime(i);
-			}
-			if (!finish.equals("Slut?") && !start.equals("Start?")) {
-				total = totalTime(i);
-			} else {
-				total = "--.--.--";
-			}
-			out.println(i + "; " + name + "; " + total + "; " + start + "; "
-					+ finish + trail.toString());
-			trail.delete(0, trail.length());
 		}
 		out.close();
 	}
@@ -168,7 +177,7 @@ public abstract class Sorter {
 	protected Time getFinishTime(int i) throws NullPointerException {
 		return racerData.getFinishTime(i).poll();
 	}
-	
+
 	/**
 	 * Returns the title row formatted according to the current race type.
 	 * 
