@@ -17,7 +17,6 @@ public class RegistrationGUI extends JFrame {
 		super("Registration GUI");
 		buildLayout();
 		setResizable(false);
-		pack();
 		setExtendedState(MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -34,11 +33,19 @@ public class RegistrationGUI extends JFrame {
 				font);
 
 		JPanel northPanel = new JPanel();
+		StoredTime storedTime = new StoredTime();
+		storedTime.setFont(new Font(null, Font.PLAIN, 80));
+
 		RegistrationTextField registrationTextField = new RegistrationTextField(
-				font, registrationTextArea);
+				font, registrationTextArea, storedTime);
+		RegretButton regret = new RegretButton("Ångra", storedTime,
+				registrationTextField);
+
+		northPanel.add(regret);
 		northPanel.add(registrationTextField);
 		northPanel.add(new RegistrationButton("Register", font,
 				registrationTextField));
+		northPanel.add(storedTime);
 		add(BorderLayout.NORTH, northPanel);
 
 		add(BorderLayout.CENTER, registrationTextArea);

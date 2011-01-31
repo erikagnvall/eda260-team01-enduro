@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import enduro.Registration;
@@ -16,6 +17,7 @@ import enduro.racedata.Time;
 public class RegistrationTextField extends JTextField implements ActionListener {
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;
+	private StoredTime storedTime;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -27,10 +29,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 *            The RegistrationTextArea to add new stuff to.
 	 */
 	public RegistrationTextField(Font font,
-			RegistrationTextArea registrationTextArea) {
+			RegistrationTextArea registrationTextArea, StoredTime storedTime) {
 		super(5);
 		setFont(font);
 		this.registrationTextArea = registrationTextArea;
+		this.storedTime = storedTime;
 		addActionListener(this);
 
 	}
@@ -59,23 +62,27 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				registrationTextArea.update(sb.toString());
 			} catch (StringIndexOutOfBoundsException e) {
 
-			} finally {
-				setText("");
-				requestFocus();
 			}
-
 		} else if (!getText().equals("")) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(getText());
 			sb.append(';');
 			sb.append(' ');
-			sb.append(getTime());
+			if (storedTime.isEmpty()) {
+				sb.append(getTime());
+			} else {
+				sb.append(storedTime.getText());
+				storedTime.empty();
+			}
+			
 			try {
 				saveToFile(Integer.parseInt(getText()), new Time(getTime()));
 				registrationTextArea.update(sb.toString());
 			} catch (NumberFormatException e) {
 
 			}
+		} else if (getText().equals(("")) && storedTime.isEmpty()) {
+			storedTime.setText(getTime());
 		}
 		setText("");
 		requestFocus();
