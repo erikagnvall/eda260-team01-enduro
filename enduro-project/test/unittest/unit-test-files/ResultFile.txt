@@ -1,1 +1,5 @@
 StartNr; Namn; TotalTid; StartTider; Måltider
+1; Anders Asson; 00.30.00; 12.00.00; 12.30.00
+2; Bosse Bsson; --.--.--; Start?; 12.34.00
+3; Citron Csson; --.--.--; Start?; 12.36.00
+5; Erik Esson; --.--.--; Start?; 12.38.00

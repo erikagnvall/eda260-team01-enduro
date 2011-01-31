@@ -128,12 +128,12 @@ public abstract class Sorter {
 	public void createResultFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
-		out.println(titleRow());
 		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			RaceClass currentClass = itr.next();
 			if(!currentClass.getName().equals(""))out.println(currentClass.getName());
 			Iterator<Integer> nbrItr = currentClass.iterator();
+			out.println(titleRow(currentClass.iterator()));
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
 				String name = racerData.getName(i);
@@ -177,7 +177,6 @@ public abstract class Sorter {
 	public void createTimeSortedResultsFile(String fileName) throws IOException{
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
-		out.println(titleRow());
 		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			RaceClass currentClass = itr.next();
@@ -233,7 +232,7 @@ public abstract class Sorter {
 	 * 
 	 * @return the title row.
 	 */
-	protected abstract String titleRow();
+	protected abstract String titleRow(Iterator<Integer> itr);
 
 	/**
 	 * Calculates and returns the value for the total time column. How this is
@@ -274,5 +273,10 @@ public abstract class Sorter {
 	 * @return an array of ints containing the racers' numbers in the order that they ranked.
 	 */
 	protected abstract int[] sortRacers();
+
+	protected String titleRow() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

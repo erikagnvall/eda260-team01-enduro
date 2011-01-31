@@ -6,16 +6,16 @@ import java.util.PriorityQueue;
 
 import enduro.racedata.Time;
 
-public class LapRaceSorter extends Sorter {
+public class LapseSorter extends Sorter {
 
 	int lapses = 0;
 	ArrayList<Time> times;
 	
 	@Override
-	protected String titleRow(){
+	protected String titleRow(Iterator<Integer> itr){
+		lapses = 0;
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
-		Iterator<Integer> itr = racerData.numberIterator();
 		while(itr.hasNext()) {
 			PriorityQueue<Time> times = racerData.getFinishTime(itr.next());
 			
@@ -96,12 +96,6 @@ public class LapRaceSorter extends Sorter {
 
 	@Override
 	protected int[] sortRacers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected String titleRow(Iterator<Integer> itr) {
 		// TODO Auto-generated method stub
 		return null;
 	}

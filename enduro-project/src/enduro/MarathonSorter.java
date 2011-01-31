@@ -1,4 +1,5 @@
 package enduro;
+import java.util.Iterator;
 
 /**
  * Class for sorting the results of a marathon according to the formatting rules that apply.
@@ -8,7 +9,7 @@ package enduro;
 public class MarathonSorter extends Sorter {
 
 	@Override
-	protected String titleRow(){
+	protected String titleRow(Iterator<Integer> itr){
 		return "StartNr; Namn; TotalTid; StartTider; Måltider";
 	}
 
