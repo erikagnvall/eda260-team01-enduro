@@ -48,30 +48,5 @@ public class ClassHandlingTest {
 		assertEquals(itr.next(), new Integer(100));
 	}
 
-	@Test
-	public void testResultfile() {
-		try {
-			sorter.readStartFile("./test/unittest/unit-test-files/fakeManyStart.txt");
-			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeClassName.txt");
-			sorter.createResultFile("./test/unittest/unit-test-files/fakeClassResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeStartResult.txt"));
-			assertEquals("StartNr; Namn; TotalTid; StartTider; Måltider", in
-					.readLine());
-			assertEquals(
-					"1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera starttider? 12.12.00",
-					in.readLine());
-			in.close();
-		} catch (FileNotFoundException e) {
-			System.err.println(e);
-		} catch (IOException e) {
-			System.err.println(e);
-		}
-	}
+	
 }

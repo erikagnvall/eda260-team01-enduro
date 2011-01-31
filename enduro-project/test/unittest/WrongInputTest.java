@@ -113,7 +113,7 @@ public class WrongInputTest {
 			assertEquals("StartNr; Namn; TotalTid; StartTider; Måltider", in
 					.readLine());
 			assertEquals(
-					"1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera måltider? 12.34.00",
+					"1; Anders Asson; 00.40.00; 12.00.00; 12.40.00; Flera måltider? 12.50.00",
 					in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {

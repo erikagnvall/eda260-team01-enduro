@@ -13,10 +13,10 @@ public class LapseSorter extends Sorter {
 	private boolean impossibleLapTime = false;
 
 	@Override
-	protected String titleRow() {
+	protected String titleRow(Iterator<Integer> itr) {
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
-		Iterator<Integer> itr = racerData.numberIterator();
+		lapses = 0;
 		while (itr.hasNext()) {
 			PriorityQueue<Time> times = racerData.getFinishTime(itr.next());
 
@@ -111,7 +111,7 @@ public class LapseSorter extends Sorter {
 	}
 
 	@Override
-	protected String titleRow(Iterator<Integer> itr) {
+	protected String titleRow() {
 		// TODO Auto-generated method stub
 		return null;
 	}

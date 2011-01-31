@@ -64,6 +64,11 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 		finishTimes.put(startNbr, list);
 	}
 
+	/**
+	 * 
+	 * @return iterator over the list of numbers registered in the RaceData
+	 *         class
+	 */
 	public Iterator<Integer> numberIterator() {
 		return startNbrs.iterator();
 	}
@@ -91,10 +96,8 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	}
 
 	/**
-	 * Returns a sorted iterator over the identification number related to the
-	 * runners
 	 * 
-	 * @return
+	 * @return iterator over the list of classes present in RacerData
 	 */
 	public Iterator<RaceClass> iterator() {
 		return classes.iterator();
@@ -165,17 +168,25 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	public void addClass(RaceClass currentClass) {
 		classes.add(currentClass);
 
-		/**
-		 * Method used for testing Returns an ArrayList of registered classes
-		 * 
-		 * @return
-		 */
 	}
 
+	/**
+	 * Method used for testing Returns an ArrayList of registered classes
+	 * 
+	 * @return
+	 */
 	public ArrayList<RaceClass> getClasses() {
 		return classes;
 	}
-	public boolean containsClass(RaceClass raceClass){
+
+	/**
+	 * Method to test if the specific class is present in the RacerData
+	 * 
+	 * @param raceClass
+	 *            class to be tested
+	 * @return true if present, else false
+	 */
+	public boolean containsClass(RaceClass raceClass) {
 		return classes.contains(raceClass);
 	}
 
