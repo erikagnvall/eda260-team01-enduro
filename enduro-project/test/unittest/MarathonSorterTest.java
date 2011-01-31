@@ -43,9 +43,10 @@ public class MarathonSorterTest {
 	public void testReadingFiles() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			
 			sorter.createResultFile("./test/unittest/unit-test-files/fakesortertestresult.txt");
 
 			ArrayList<String[]> list = new ArrayList<String[]>();
@@ -65,9 +66,10 @@ public class MarathonSorterTest {
 	public void testCreateResultFile() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			
 			sorter.createResultFile("./test/unittest/unit-test-files/fakesortertestresult.txt");
 		} catch (Exception e) {
 			System.err.println(e);

@@ -65,11 +65,12 @@ public class WrongInputTest {
 	public void testManyStartTime() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.readStartFile("./test/unittest/unit-test-files/fakeManyStart.txt");
 			sorter
 					.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			
 			sorter
 					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
 		} catch (Exception e) {
@@ -96,11 +97,12 @@ public class WrongInputTest {
 	public void testManyFinishTime() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter
 					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+		
 			sorter
 					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
 		} catch (Exception e) {
@@ -127,11 +129,11 @@ public class WrongInputTest {
 	public void testFastTime() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter
 					.readFinishFile("./test/unittest/unit-test-files/fakeFastFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
 		} catch (Exception e) {

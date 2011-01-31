@@ -45,6 +45,14 @@ public abstract class Sorter {
 		ArrayList<String[]> startingTimes = readFile(fileName);
 		for (int i = 0; i < startingTimes.size(); i++) {
 			int startNbr = Integer.parseInt(startingTimes.get(i)[0]);
+			if (!racerData.contestantIsRegistered(startNbr)) {
+				RaceClass raceClass = new RaceClass(
+						"Icke existerande startnummer");
+				if (!racerData.containsClass(raceClass))
+					racerData.addClass(raceClass);
+				racerData.addName(startNbr, "", raceClass);
+
+			}
 			racerData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
 		}
 	}
@@ -59,6 +67,14 @@ public abstract class Sorter {
 		ArrayList<String[]> finishTimes = readFile(fileName);
 		for (int i = 0; i < finishTimes.size(); i++) {
 			int startNbr = Integer.parseInt(finishTimes.get(i)[0]);
+			if (!racerData.contestantIsRegistered(startNbr)) {
+				RaceClass raceClass = new RaceClass(
+						"Icke existerande startnummer");
+				if (!racerData.containsClass(raceClass))
+					racerData.addClass(raceClass);
+				racerData.addName(startNbr, "", raceClass);
+
+			}
 			racerData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
 		}
 	}

@@ -73,12 +73,12 @@ public class JUnitAcceptanceTest {
 		}
 
 		try {
+			for (String runner : runners)
+				sort.readNameFile(testPath + runner);
 			for (String startLoc : startTimes)
 				sort.readStartFile(testPath + startLoc);
 			for (String endLoc : endTimes)
 				sort.readFinishFile(testPath + endLoc);
-			for (String runner : runners)
-				sort.readNameFile(testPath + runner);
 		} catch (Exception E) {
 			E.printStackTrace();
 			fileReadFail = true;

@@ -45,5 +45,10 @@ public class RaceClass {
 	public Iterator<Integer> iterator(){
 		return numbers.iterator();
 	}
+	public boolean equals(Object o){
+		if(o instanceof RaceClass){
+			return name.equals(((RaceClass)o).name);
+		}return false;
+	}
 
 }

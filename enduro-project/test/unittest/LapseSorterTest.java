@@ -44,11 +44,12 @@ public class LapseSorterTest {
 	public void testImpossibleLap() {
 
 		try {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter
 					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+		
 			sorter
 					.createResultFile("./test/unittest/unit-test-files/fakeImpossibleLap.txt");
 		} catch (Exception e) {

@@ -116,6 +116,12 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 		temp.add(name);
 		names.put(startNr, temp);
 	}
+	public void addName(int startNr, String name, RaceClass raceClass){
+		ArrayList<String> temp = new ArrayList<String>();
+		temp.add(name);
+		names.put(startNr, temp);
+		classes.get(classes.indexOf(raceClass)).registerContestant(startNr);
+	}
 
 	/**
 	 * Gets the racer's name.
@@ -188,6 +194,9 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 */
 	public boolean containsClass(RaceClass raceClass) {
 		return classes.contains(raceClass);
+	}
+	public boolean contestantIsRegistered(int startNbr){
+		return names.containsKey(startNbr);
 	}
 
 }
