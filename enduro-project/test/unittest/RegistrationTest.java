@@ -10,23 +10,28 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class RegistrationTest {
-	
+
 	private Registration reg;
-	
-	@Before public void setUp() {
+
+	@Before
+	public void setUp() {
 		try {
-			reg = new Registration("./test/unittest/unit-test-files/registrationtest.txt");
+			reg = new Registration(
+					"./test/unittest/unit-test-files/registrationtest.txt");
 		} catch (IOException ex) {
 			System.err.println(ex);
 		}
 	}
-	
-	@Test public void testWriteStartTime() {
+
+	@Test
+	public void testWriteStartTime() {
 		reg.registerTime(1, new Time(12, 00, 42));
 		reg.close();
-		
+
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("./test/unittest/unit-test-files/registrationtest.txt"));
+			BufferedReader in = new BufferedReader(
+					new FileReader("./test/unittest/unit-test-files/"
+							+ "registrationtest.txt"));
 			assertEquals("1; 12.00.42", in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
@@ -35,5 +40,5 @@ public class RegistrationTest {
 			System.err.println(e);
 		}
 	}
-	
+
 }
