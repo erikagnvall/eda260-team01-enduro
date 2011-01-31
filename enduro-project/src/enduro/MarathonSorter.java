@@ -29,4 +29,10 @@ public class MarathonSorter extends Sorter {
 		}
 		return finish;
 	}
+
+	@Override
+	protected int[] sortRacers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

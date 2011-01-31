@@ -173,6 +173,56 @@ public abstract class Sorter {
 		}
 		out.close();
 	}
+	
+	public void createTimeSortedResultsFile(String fileName) throws IOException{
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+				fileName)));
+		out.println(titleRow());
+		Iterator<RaceClass> itr = racerData.iterator();
+		while (itr.hasNext()) {
+			RaceClass currentClass = itr.next();
+			if(!currentClass.getName().equals(""))out.println(currentClass.getName());
+			Iterator<Integer> nbrItr = currentClass.iterator();
+			int[] positions = sortRacers();
+			while (nbrItr.hasNext()) {
+				int i = nbrItr.next();
+				String name = racerData.getName(i);
+				String start;
+				String finish = null;
+				String total = null;
+				try {
+					startTime = racerData.getStartTime(i).poll();
+					start = startTime.toString();
+					if (racerData.getStartTime(i).size() > 0) {
+						trail.append("; Flera starttider?");
+						while (racerData.getStartTime(i).size() > 0) {
+							trail.append(' ');
+							trail.append(racerData.getStartTime(i).poll());
+						}
+					}
+				} catch (NullPointerException e) {
+					start = "Start?";
+				}
+				try {
+					finishTime = getFinishTime(i);
+				} catch (NullPointerException e) {
+					finish = "Slut?";
+				}
+				if (finish == null || !finish.equals("Slut?")) {
+					finish = finishTime(i);
+				}
+				if (!finish.equals("Slut?") && !start.equals("Start?")) {
+					total = totalTime(i);
+				} else {
+					total = "--.--.--";
+				}
+				out.println(i + "; " + name + "; " + total + "; " + start
+						+ "; " + finish + trail.toString());
+				trail.delete(0, trail.length());
+			}
+		}
+		out.close();
+	}
 
 	protected Time getFinishTime(int i) throws NullPointerException {
 		return racerData.getFinishTime(i).poll();
@@ -218,5 +268,11 @@ public abstract class Sorter {
 	 *         format "hh.mm.ss".
 	 */
 	protected abstract String finishTime(int i);
+	
+	/**
+	 * Sorts racers in accordance with the type of race.
+	 * @return an array of ints containing the racers' numbers in the order that they ranked.
+	 */
+	protected abstract int[] sortRacers();
 
 }

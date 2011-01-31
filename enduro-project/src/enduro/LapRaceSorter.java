@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 import enduro.racedata.Time;
 
-public class LapseSorter extends Sorter {
+public class LapRaceSorter extends Sorter {
 
 	int lapses = 0;
 	ArrayList<Time> times;
@@ -92,5 +92,11 @@ public class LapseSorter extends Sorter {
 		}
 		
 		return out.toString();
+	}
+
+	@Override
+	protected int[] sortRacers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
