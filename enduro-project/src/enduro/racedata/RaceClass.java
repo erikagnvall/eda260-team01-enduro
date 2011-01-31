@@ -1,6 +1,8 @@
 package enduro.racedata;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
 
 /** Class representing the classes registered in a race
  * 
@@ -8,12 +10,12 @@ import java.util.ArrayList;
  *
  */
 public class RaceClass {
-	private ArrayList<Integer> numbers;
+	private TreeSet<Integer> numbers;
 	private String name;
 	
 	public RaceClass(String name){
 		this.name = name;
-		numbers = new ArrayList<Integer>();
+		numbers = new TreeSet<Integer>();
 	}
 	/** Register a start number to the specific class
 	 * 
@@ -24,6 +26,12 @@ public class RaceClass {
 	}
 	public String getName(){
 		return name;
+	}
+	public TreeSet<Integer> getList(){
+		return numbers;
+	}
+	public Iterator<Integer> iterator(){
+		return numbers.iterator();
 	}
 
 }
