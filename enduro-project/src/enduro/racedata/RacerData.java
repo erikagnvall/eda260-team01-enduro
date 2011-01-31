@@ -121,14 +121,32 @@ public class RacerData implements Comparable<RacerData>, Iterable<Integer>{
 		return names.get(startNr).get(0);
 	}
 
+	/**
+	 * Returns the number of laps for the specified runner.
+	 * 
+	 * @param startNr
+	 *            the runner's starting number.
+	 */
 	public int getNumberOfLaps(int startNr) {
 		return getFinishTime(startNr).size();
 	}
 
-	/*
-	 * public Time getTotalTime(int startNr) { PriorityQueue<Time> tempTimes =
-	 * getFinishTime(startNr); for (Time time : tempTimes) { // tempTimes } }
+	/**
+	 * Returns the total time for the specified runner.
+	 * 
+	 * @param startNr
+	 *            the runner's starting number.
+	 * @return
 	 */
+	public Time getTotalTime(int startNr) {
+		PriorityQueue<Time> tempFinishTimes = getFinishTime(startNr);
+		Time startTime = getStartTime(startNr).peek();
+		Time tempTime = null;
+		for (Time time : tempFinishTimes) {
+			tempTime = time;
+		}
+		return startTime.getTotalTime(tempTime);
+	}
 
 	public int compareTo(RacerData racer) {
 		return 0;

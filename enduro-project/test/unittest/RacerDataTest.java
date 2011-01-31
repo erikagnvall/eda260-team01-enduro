@@ -18,6 +18,9 @@ public class RacerDataTest {
 		racerData.addFinishTime(1, new Time(12, 30, 00));
 		racerData.addName(1, "test1");
 		racerData.addName(2, "test2");
+		racerData.addStartTime(2, new Time(12, 00, 00));
+		racerData.addFinishTime(2, new Time(12, 20, 00));
+		racerData.addFinishTime(2, new Time(13, 00, 00));
 	}
 
 	@Test
@@ -59,5 +62,15 @@ public class RacerDataTest {
 	@Test
 	public void testOneRunnerList() {
 		assertEquals(new Integer(1), racerData.iterator().next());
+	}
+
+	@Test
+	public void testGetTotalTime() {
+		assertEquals(new Time("1.00.00"), racerData.getTotalTime(2));
+	}
+
+	@Test
+	public void testGetNumberOfLaps() {
+		assertEquals(2, racerData.getNumberOfLaps(2));
 	}
 }
