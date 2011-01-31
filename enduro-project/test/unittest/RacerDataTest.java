@@ -61,7 +61,7 @@ public class RacerDataTest {
 
 	@Test
 	public void testOneRunnerList() {
-		assertEquals(new Integer(1), racerData.iterator().next());
+		assertEquals(new Integer(1), racerData.numberIterator().next());
 	}
 
 	@Test

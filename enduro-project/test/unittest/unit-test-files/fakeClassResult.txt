@@ -1,0 +1,7 @@
+StartNr; Namn; TotalTid; StartTider; Måltider
+Seniorer
+1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera starttider? 12.12.00
+2; B B; --.--.--; Start?; Slut?
+3; C C; --.--.--; Start?; Slut?
+Juniorer
+100; D D; --.--.--; Start?; Slut?

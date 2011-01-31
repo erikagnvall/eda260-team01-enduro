@@ -91,7 +91,7 @@ public abstract class Sorter {
 	 */
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
-		RaceClass currentClass = null;
+		RaceClass currentClass = new RaceClass("");
 		for (int i = 0; i < names.size(); i++) {
 
 			try {
@@ -132,7 +132,7 @@ public abstract class Sorter {
 		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			RaceClass currentClass = itr.next();
-			out.println(currentClass.getName());
+			if(!currentClass.getName().equals(""))out.println(currentClass.getName());
 			Iterator<Integer> nbrItr = currentClass.iterator();
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
