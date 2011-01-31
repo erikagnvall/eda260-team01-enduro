@@ -108,7 +108,7 @@ public abstract class Sorter {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		out.println(titleRow());
-		Iterator<Integer> itr = racerData.getRunnerIterator();
+		Iterator<Integer> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			int i = itr.next();
 			String name = racerData.getName(i);
@@ -116,9 +116,6 @@ public abstract class Sorter {
 			String finish = null;
 			String total = null;
 			try {
-				if (fileName.contains("6")) {
-					System.out.println();
-				}
 				startTime = racerData.getStartTime(i).poll();
 				start = startTime.toString();
 				if (racerData.getStartTime(i).size() > 0) {
@@ -132,7 +129,7 @@ public abstract class Sorter {
 				start = "Start?";
 			}
 			try {
-				finishTime = racerData.getFinishTime(i).poll();
+				finishTime = getFinishTime(i);
 			} catch (NullPointerException e) {
 				finish = "Slut?";
 			}
@@ -147,11 +144,14 @@ public abstract class Sorter {
 			out.println(i + "; " + name + "; " + total + "; " + start + "; "
 					+ finish + trail.toString());
 			trail.delete(0, trail.length());
-
 		}
 		out.close();
 	}
 
+	protected Time getFinishTime(int i) throws NullPointerException {
+		return racerData.getFinishTime(i).poll();
+	}
+	
 	/**
 	 * Returns the title row formatted according to the current race type.
 	 * 
@@ -168,7 +168,19 @@ public abstract class Sorter {
 	 * @return a <code>String</code> containing the total time on the format
 	 *         "hh.mm.ss".
 	 */
-	protected abstract String totalTime(int i);
+	protected String totalTime(int i) {
+		String total;
+		try {
+			Time totalTime = startTime.getTotalTime(finishTime);
+			total = totalTime.toString();
+			Time fastTime = new Time(0, 15, 0);
+			if (fastTime.compareTo(totalTime) > 0)
+				trail.append("; Omöjlig Totaltid?");
+		} catch (NullPointerException e) {
+			total = "--.--.--";
+		}
+		return total;
+	}
 
 	/**
 	 * Formats the finish time according to how it's supposed to be in the

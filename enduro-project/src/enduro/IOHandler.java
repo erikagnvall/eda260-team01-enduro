@@ -21,7 +21,7 @@ public class IOHandler {
 	 *             In case of an I/O error.
 	 */
 	public static void main(String[] args) throws Exception {
-		MarathonSorter sorter = new MarathonSorter();
+		LapseSorter sorter = new LapseSorter();
 		String startFile = args[0];
 		sorter.readStartFile(startFile);
 		if (args[1].equals("-m")) {

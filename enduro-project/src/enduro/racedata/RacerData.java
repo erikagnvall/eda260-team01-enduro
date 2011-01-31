@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 /**
  * Provides a data structure for storing racers and all data related to them.
  */
-public class RacerData implements Comparable<RacerData> {
+public class RacerData implements Comparable<RacerData>, Iterable<Integer>{
 
 	private TreeSet<Integer> startNbrs;
 	private HashMap<Integer, PriorityQueue<Time>> startTimes;
@@ -90,7 +90,7 @@ public class RacerData implements Comparable<RacerData> {
 	 * 
 	 * @return
 	 */
-	public Iterator<Integer> getRunnerIterator() {
+	public Iterator<Integer> iterator() {
 		return startNbrs.iterator();
 	}
 
@@ -128,7 +128,6 @@ public class RacerData implements Comparable<RacerData> {
 	 * getFinishTime(startNr); for (Time time : tempTimes) { // tempTimes } }
 	 */
 
-	@Override
 	public int compareTo(RacerData racer) {
 		return 0;
 	}
