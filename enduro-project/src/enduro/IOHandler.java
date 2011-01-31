@@ -32,6 +32,7 @@ public class IOHandler {
 			sorter.readFinishFile(in.readLine());
 		}
 		//sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-		sorter.createResultFile("./test/unittest/unit-test-files/ResultFile.txt");
+		sorter.createResultFile("ResultFile.txt");
+		sorter.createSortedResultsFile("SortedResultFile.txt");
 	}
 }

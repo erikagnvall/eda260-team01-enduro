@@ -14,14 +14,7 @@ public class LapRaceSorter extends Sorter {
 	protected String titleRow(Iterator<Integer> itr){
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
-		numLaps = 0;
-		//TODO: User getNumberOfLaps from RacerData.
-		while(itr.hasNext()) {
-			PriorityQueue<Time> times = racerData.getFinishTime(itr.next());
-			
-			if(times.size() > numLaps)
-				numLaps = times.size();
-		}
+		numLaps = racerData.getNumberOfLaps(itr.next());
 		for(int i = 1; i <= numLaps; i++) {
 			out.append("Varv");
 			out.append(i);

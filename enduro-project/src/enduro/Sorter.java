@@ -201,7 +201,7 @@ public abstract class Sorter {
 	 *            the name of the output file.
 	 * @throws IOException
 	 */
-	public void createTimeSortedResultsFile(String fileName) throws IOException {
+	public void createSortedResultsFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		Iterator<RaceClass> itr = racerData.iterator();
@@ -358,7 +358,9 @@ public abstract class Sorter {
 			int type = compareType();
 			switch (type) {
 			case LAP_COMPARE:
-				return numLaps - o.numLaps;
+				int out = numLaps - o.numLaps;
+				if(out != 0) return out;
+				return time.compareTo(o.time);
 			case TIME_COMPARE:
 				return time.compareTo(o.time);
 			default:
