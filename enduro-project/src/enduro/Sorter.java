@@ -93,18 +93,18 @@ public abstract class Sorter {
 		ArrayList<String[]> names = readFile(fileName);
 		RaceClass currentClass = new RaceClass("");
 		for (int i = 0; i < names.size(); i++) {
-
 			try {
 				int startNbr = Integer.parseInt(names.get(i)[0]);
 				racerData.addName(startNbr, names.get(i)[1]);
 				currentClass.registerContestant(startNbr);
 			} catch (NumberFormatException e) {
 				currentClass = new RaceClass(names.get(i)[0]);
-
 				racerData.addClass(currentClass);
-
 			}
 
+		}
+		if(!racerData.containsClass(currentClass)){
+			racerData.addClass(currentClass);
 		}
 	}
 

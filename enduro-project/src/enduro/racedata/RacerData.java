@@ -175,5 +175,8 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	public ArrayList<RaceClass> getClasses() {
 		return classes;
 	}
+	public boolean containsClass(RaceClass raceClass){
+		return classes.contains(raceClass);
+	}
 
 }
