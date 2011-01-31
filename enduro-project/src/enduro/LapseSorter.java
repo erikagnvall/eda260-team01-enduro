@@ -1,5 +1,6 @@
 package enduro;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
@@ -8,6 +9,7 @@ import enduro.racedata.Time;
 public class LapseSorter extends Sorter {
 
 	int lapses = 0;
+	ArrayList<Time> times = new ArrayList<Time>();
 	
 	@Override
 	protected String titleRow(){
@@ -37,7 +39,6 @@ public class LapseSorter extends Sorter {
 	
 	@Override
 	protected String totalTime(int i){
-		PriorityQueue<Time> times = racerData.getFinishTime(i);
 		for(Time t : times){
 			finishTime = t;
 		}
@@ -66,12 +67,18 @@ public class LapseSorter extends Sorter {
 
 	@Override
 	protected Time getFinishTime(int i) throws NullPointerException {
-		return racerData.getFinishTime(i).iterator().next();
+		PriorityQueue<Time> timeQueue = new PriorityQueue<Time>();
+		for(Time t : racerData.getFinishTime(i)){
+			timeQueue.offer(t);
+		}
+		while(timeQueue.peek() != null){
+			times.add(timeQueue.poll());
+		}
+		return racerData.getFinishTime(i).poll();
 	}
 	
 	@Override
 	protected String finishTime(int i) {
-		PriorityQueue<Time> times = racerData.getFinishTime(i);
 		StringBuilder out = new StringBuilder();
 		for(Time t : times){
 			out.append(t.toString());
