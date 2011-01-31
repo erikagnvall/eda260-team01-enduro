@@ -1,41 +1,60 @@
 package unittest;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import static org.junit.Assert.*;
 
-import org.junit.Before;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.junit.Test;
 
 import enduro.IOHandler;
 
 public class FileHandlingTest {
 
-	@Before
-	public void setUp() {
-	}
-
 	@Test
 	public void testSingleFinishFile() {
-		String[] args = { "./test/unittest/unit-test-files/fakeStart.txt",
-				"./test/unittest/unit-test-files/fakeFinish.txt" };
+		PrintWriter out = null;
 		try {
-			IOHandler.main(args);
+			out = new PrintWriter(new BufferedWriter(new FileWriter(
+					"list.txt")));
+			out.println("./test/unittest/unit-test-files/fakeStart.txt");
+			out.println("./test/unittest/unit-test-files/fakeFinish.txt");
+			out.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			IOHandler.main(null);
 			BufferedReader in = new BufferedReader(new FileReader(
 					"./test/unittest/unit-test-files/ResultFile.txt"));
 			in.readLine();
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			fail("Failed to write to file");
 			e.printStackTrace();
 		}
 	}
 
 	@Test
 	public void testMultipleFinishFiles() {
-		String[] args = { "./test/unittest/unit-test-files/fakeStart.txt",
-				"-m", "./test/unittest/unit-test-files/fakeFinishList.txt" };
+		PrintWriter out = null;
 		try {
-			IOHandler.main(args);
+			out = new PrintWriter(new BufferedWriter(new FileWriter(
+					"list.txt")));
+			out.println("./test/unittest/unit-test-files/fakeStart.txt");
+			out.println("./test/unittest/unit-test-files/fakeFinish (copy).txt");
+			out.println("./test/unittest/unit-test-files/fakeFinish (another copy).txt");
+			out.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			IOHandler.main(null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
