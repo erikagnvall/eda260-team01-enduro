@@ -1,6 +1,19 @@
 package acceptanceTest;
 
-import enduro.MarathonSorter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+import junit.framework.TestCase;
+
+import org.junit.runner.Description;
+import org.junit.runner.notification.Failure;
+import org.junit.runner.notification.RunListener;
+
+import org.junit.Test;
+import org.junit.runner.notification.RunNotifier;
+import org.junit.runners.Parameterized;
+
 
 /**
  * naming convention: 
@@ -12,25 +25,38 @@ import enduro.MarathonSorter;
  * * @author alexander, mohamed
  *
  */
-public class CompareAcceptanceTests {
-	
-	public static void main(String[] args) {
-		
-		MarathonSorter sort = new MarathonSorter();
-		try {
-			sort.readFinishFile("acceptanceTest/result/input_3/maltider.txt");
-			sort.readStartFile("acceptanceTest/result/input_3/starttider.txt");
-			sort.readNameFile("acceptanceTest/result/input_3/namnfil.txt");
-			sort.createResultFile("acceptanceTest/result/resultat_6.txt.result");
-		} catch(Exception E) {
-			E.printStackTrace();
-		}
-		/*
-		CompareAcceptanceTests tests = new CompareAcceptanceTests("acceptanceTest/facit", "acceptanceTest/result");
-		tests.testAllFacit();
-		*/
-		
-		
+public class CompareAcceptanceTests extends TestCase  {
+	private boolean success = true;
+	public static void main(String... args) {
+		junit.textui.TestRunner.run(CompareAcceptanceTests.class);
 	}
 	
+	@Test public void testJUnit() {
+		try {
+			//BlockJUnit4ClassRunner runner = new BlockJUnit4ClassRunner(JUnitAcceptanceTest.class);
+			Parameterized runner = new Parameterized(JUnitAcceptanceTest.class);
+			RunNotifier runnote = new RunNotifier();
+			Listener listen = new Listener();
+			runnote.addListener(listen);
+			runner.run(runnote);
+			assertTrue(!listen.failure);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			assertTrue(false);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			assertTrue(false);
+		}
+	}
+	
+}
+
+class Listener extends RunListener {
+	public boolean failure=false;
+	
+	public void testFailure(Failure failure) {
+		this.failure=true;
+	}
 }

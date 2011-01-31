@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pvg.makejar" default="makeGUI" basedir=".">
+<project name="pvg.makejar" default="makeRegistrator" basedir=".">
 	
 	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
 		
@@ -7,7 +7,7 @@
 		<delete file = "MANIFEST.MF"/>
 		
 		<manifest file = "MANIFEST.MF">
-			<attribute name = "Main-Class" value = "enduro.IOHandler"/>
+			<attribute name = "Main-Class" value = "enduro.FileHandler"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
@@ -33,18 +33,45 @@
 	</target>
 	
 
-	
+	<!--
 	<target name ="junit" description="Run JUnit tests">
-		<junit printsummary="yes" haltonfailure="yes" showoutput="yes" > 
+		<junit printsummary="yes" haltonfailure="no" showoutput="yes" > 
 		        <classpath> 
 		        	<pathelement location="acceptanceTest/junit.jar" />
 		        </classpath>                    
 
-		        <batchtest fork="yes" todir="."> 
-		                <fileset dir="acceptanceTest" includes='**/JUnitAcceptanceTest.class'/>  
+		        <batchtest todir="."> 
+		                <fileset dir="bin/acceptanceTest" includes='**/JUnit*.class'/>  
 		        </batchtest> 
 		</junit>
 			
 	</target>
+	-->
+	<target name="junitBuild">
+		
+		
+		<!--<jar jarfile="test.jar"> includes="**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />-->
+		<jar destfile="test.jar">
+			<fileset dir="bin/" includes="**/*.class"/>
+			<zipfileset includes="**/*.class" src="acceptanceTest/junit.jar"/>
+			<manifest>
+				<attribute name = "Main-Class" value = "acceptanceTest.CompareAcceptanceTests"/>
+				<attribute name = "Class-Path" value = "."/>
+			</manifest>
+		</jar>
+		</target>
 	
+	
+	<target name="junit" depends="junitBuild">
+		<junit printsummary="yes" haltonerror="yes">
+			<classpath>
+				<pathelement location="test.jar"/>
+			</classpath>
+			
+			<test name="acceptanceTest.CompareAcceptanceTests"/>
+		</junit>
+		
+		
+	</target>
 </project>
+
