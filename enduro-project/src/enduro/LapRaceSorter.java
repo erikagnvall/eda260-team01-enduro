@@ -1,14 +1,20 @@
 package enduro;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
+import enduro.Sorter.Racer;
 import enduro.racedata.Time;
 
 public class LapRaceSorter extends Sorter {
 
-	int lapses = 0;
+	int numLaps = 0;
 	ArrayList<Time> times;
 	
 	@Override
@@ -16,19 +22,20 @@ public class LapRaceSorter extends Sorter {
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
 		Iterator<Integer> itr = racerData.numberIterator();
+		//TODO: User getNumberOfLaps from RacerData.
 		while(itr.hasNext()) {
 			PriorityQueue<Time> times = racerData.getFinishTime(itr.next());
 			
-			if(times.size() > lapses)
-				lapses = times.size();
+			if(times.size() > numLaps)
+				numLaps = times.size();
 		}
-		for(int i = 1; i <= lapses; i++) {
+		for(int i = 1; i <= numLaps; i++) {
 			out.append("Varv");
 			out.append(i);
 			out.append("; ");
 		}
 		out.append("Start; ");
-		for(int i = 1; i < lapses; i++) {
+		for(int i = 1; i < numLaps; i++) {
 			out.append("Varvning");
 			out.append(i);
 			out.append("; ");
@@ -56,8 +63,8 @@ public class LapRaceSorter extends Sorter {
 			lastTime = t;
 			out.append("; ");
 		}
-		if(times.size() < lapses) {
-			for(int j = times.size(); j < lapses;j++) {
+		if(times.size() < numLaps) {
+			for(int j = times.size(); j < numLaps;j++) {
 				out.append("; ");
 			}
 		}
@@ -87,17 +94,15 @@ public class LapRaceSorter extends Sorter {
 		}
 		out.delete(out.length()-2, out.length());
 		
-		if(times.size() < lapses) {
+		if(times.size() < numLaps) {
 			out.append(";");
 		}
 		
 		return out.toString();
 	}
-
-	@Override
-	protected int[] sortRacers() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	protected  int compareType(){
+		return Racer.LAP_COMPARE;
 	}
 
 	@Override
