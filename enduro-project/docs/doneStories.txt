@@ -14,4 +14,5 @@ Stories done:
 10: Flera skall kunna registrera måltider 
 11: Enkel masstart 
 12: Målgång där nummerplåten inte kan läsas i förväg
+13: Hantera klasser
 18: Sorterad resultatlista
