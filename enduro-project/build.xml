@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="pvg.makejar" default="makeGUI" basedir=".">
-	<target name ="makeRegistrator" description="Create a jar for the backend">
+	
+	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
 		
 		<delete file = "Backend.jar"/>
 		<delete file = "MANIFEST.MF"/>
@@ -29,8 +30,21 @@
 			
 			<delete file = "MANIFEST.MF"/>
 			<delete dir = "Release/"/>
-		</target>
+	</target>
 	
+
 	
+	<target name ="junit" description="Run JUnit tests">
+		<junit printsummary="yes" haltonfailure="yes" showoutput="yes" > 
+		        <classpath> 
+		        	<pathelement location="acceptanceTest/junit.jar" />
+		        </classpath>                    
+
+		        <batchtest fork="yes" todir="."> 
+		                <fileset dir="acceptanceTest" includes='**/JUnitAcceptanceTest.class'/>  
+		        </batchtest> 
+		</junit>
+			
+	</target>
 	
 </project>
