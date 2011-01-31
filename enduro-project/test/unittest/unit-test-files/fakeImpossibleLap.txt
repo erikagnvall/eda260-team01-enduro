@@ -2,4 +2,4 @@ StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mål
 1; Anders Asson; 2; 00.50.00; 00.40.00; 00.10.00; 12.00.00; 12.40.00; 12.50.00
 2; Bosse Bsson; --.--.--; Start?; Slut?
 3; Citron Csson; --.--.--; Start?; Slut?
-5; Erik Esson; --.--.--; Start?; Slut?
+4; Erik Esson; --.--.--; Start?; Slut?

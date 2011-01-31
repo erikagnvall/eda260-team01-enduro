@@ -1,16 +1,19 @@
 package unittest;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import enduro.MarathonSorter;
+import enduro.racedata.RaceClass;
 
 public class IllegalStarNbrtest {
 	private MarathonSorter sorter;
@@ -21,7 +24,7 @@ public class IllegalStarNbrtest {
 	}
 
 	@Test
-	public void testManyStartTime() {
+	public void testNoticeIllegalStart() {
 
 		try {
 			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
@@ -35,20 +38,26 @@ public class IllegalStarNbrtest {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
+		assertTrue(sorter.getClasses().contains(new RaceClass("Icke existerande startnummer")));
+
+	}
+	@Test
+	public void testRightAmountIllegalStart() {
 
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeStartResult.txt"));//
-			assertEquals("StartNr; Namn; TotalTid; StartTider; Måltider", in
-					.readLine());
-			assertEquals(
-					"1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera starttider? 12.12.00",
-					in.readLine());
-			in.close();
-		} catch (FileNotFoundException e) {
-			System.err.println(e);
-		} catch (IOException e) {
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			sorter
+					.readStartFile("./test/unittest/unit-test-files/fakeExtraStart.txt");
+			sorter
+					.readFinishFile("./test/unittest/unit-test-files/fakeExtraFinish.txt");
+			
+			sorter
+					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
+		} catch (Exception e) {
 			System.err.println(e);
 		}
+		ArrayList<RaceClass> temp = sorter.getClasses();
+		assertEquals(3, temp.get(temp.indexOf(new RaceClass("Icke existerande startnummer"))).size());
+
 	}
 }

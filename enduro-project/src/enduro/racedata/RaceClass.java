@@ -50,5 +50,8 @@ public class RaceClass {
 			return name.equals(((RaceClass)o).name);
 		}return false;
 	}
+	public int size(){
+		return numbers.size();
+	}
 
 }

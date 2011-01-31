@@ -2,4 +2,4 @@ StartNr; Namn; TotalTid; StartTider; Måltider
 1; Anders Asson; 00.10.00; 12.00.00; 12.10.00; Omöjlig Totaltid?
 2; Bosse Bsson; --.--.--; Start?; Slut?
 3; Citron Csson; --.--.--; Start?; Slut?
-5; Erik Esson; --.--.--; Start?; Slut?
+4; Erik Esson; --.--.--; Start?; Slut?
