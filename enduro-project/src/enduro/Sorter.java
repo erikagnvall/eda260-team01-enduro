@@ -178,6 +178,13 @@ public abstract class Sorter {
 		out.close();
 	}
 
+	/**
+	 * Creates a list sorted based on the rules of the current competition.
+	 * 
+	 * @param fileName
+	 *            the name of the output file.
+	 * @throws IOException
+	 */
 	public void createTimeSortedResultsFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
@@ -186,10 +193,10 @@ public abstract class Sorter {
 			RaceClass currentClass = itr.next();
 			if (!currentClass.getName().equals(""))
 				out.println(currentClass.getName());
-			//Sorts racers according to abstract method
+			// Sorts racers according to abstract method
 			ArrayList<Racer> racers = sortRacers();
 			ArrayList<Integer> positions = new ArrayList<Integer>();
-			for(int i = 0; i < racers.size(); i++){
+			for (int i = 0; i < racers.size(); i++) {
 				positions.add(racers.get(i).number);
 			}
 			Iterator<Integer> nbrItr = positions.iterator();
@@ -288,13 +295,15 @@ public abstract class Sorter {
 		ArrayList<Racer> racers = new ArrayList<Racer>();
 		Iterator<Integer> itr = racerData.numberIterator();
 		int i = 0;
-		while(itr.hasNext()){
+		while (itr.hasNext()) {
 			i = itr.next();
-			racers.add(new Racer(i, racerData.getNumberOfLaps(i), racerData.getTotalTime(i)));
+			racers.add(new Racer(i, racerData.getNumberOfLaps(i), racerData
+					.getTotalTime(i)));
 		}
 		Collections.sort(racers);
 		return racers;
 	}
+
 	/**
 	 * Get the set of rules according to which racers should be compared (Time
 	 * or laps)
@@ -303,7 +312,7 @@ public abstract class Sorter {
 	 */
 	protected abstract int compareType();
 
-protected String titleRow() {
+	protected String titleRow() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -326,7 +335,9 @@ protected String titleRow() {
 			this.numLaps = numLaps;
 			this.time = time;
 		}
-
+		/**
+		 * Compares Racers
+		 */
 		public int compareTo(Racer o) {
 			int type = compareType();
 			switch (type) {
@@ -339,5 +350,5 @@ protected String titleRow() {
 			}
 		}
 	}
-	
+
 }
