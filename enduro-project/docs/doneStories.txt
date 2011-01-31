@@ -10,5 +10,7 @@ Stories done:
 6: Felaktiga registreringar
 7: GUI för registreringar
 8: Registrering av tider 
-9: Varvlopp 
+9: Varvlopp
+10: Flera skall kunna registrera måltider 
 11: Enkel masstart 
+18: Sorterad resultatlista
