@@ -3,7 +3,7 @@ package enduro.racedata;
 /**
  * Utility class for representing time.
  */
-public class Time implements Comparable<Time> {
+public class Time implements Comparable<Object> {
 
 	private int hour;
 	private int min;
@@ -73,10 +73,12 @@ public class Time implements Comparable<Time> {
 	 * @return If this time is greater than t, a positive integer is returned. If they are equal, 0 is returned.  
 	 * 		   If this time is smaller than t, a negative integer is returned.
 	 */
-	public int compareTo(Time t) {
+	public int compareTo(Object o) {
+		Time t = (Time) o;
 		long startSecs = this.sec + (this.min * 60) + (this.hour * 3600);
 		long endSecs = t.sec + (t.min * 60) + (t.hour * 3600);
-		return new Long(startSecs).compareTo(new Long(endSecs));
+		int compare = (int) (startSecs - endSecs);
+		return (int)(startSecs - endSecs);
 	}
 	/**
 	 * Compares this object with the Object o
