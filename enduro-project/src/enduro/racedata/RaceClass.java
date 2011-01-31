@@ -45,11 +45,18 @@ public class RaceClass {
 	public Iterator<Integer> iterator(){
 		return numbers.iterator();
 	}
+	/**
+	 * Return true if o has the same name and type as this class
+	 */
 	public boolean equals(Object o){
 		if(o instanceof RaceClass){
 			return name.equals(((RaceClass)o).name);
 		}return false;
 	}
+	/**
+	 * 
+	 * @return the size of the TreeSet in int
+	 */
 	public int size(){
 		return numbers.size();
 	}

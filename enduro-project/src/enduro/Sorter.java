@@ -37,7 +37,7 @@ public abstract class Sorter {
 
 	/**
 	 * Reads a file with start times and populates the data structure..
-	 * 
+	 * detects if any number isn't registered to a contestant and give them a specific non registered class
 	 * @param fileName
 	 *            The name of the file.
 	 */
@@ -59,7 +59,7 @@ public abstract class Sorter {
 
 	/**
 	 * Reads a file with finish times and populates the data structure.
-	 * 
+	 * detects if any number isn't registered to a contestant and give them a specific non registered class
 	 * @param fileName
 	 *            The name of the file.
 	 */
