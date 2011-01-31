@@ -1,15 +1,8 @@
 package enduro;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
-import java.util.TreeSet;
-
-import enduro.Sorter.Racer;
 import enduro.racedata.Time;
 
 public class LapRaceSorter extends Sorter {
@@ -18,7 +11,7 @@ public class LapRaceSorter extends Sorter {
 	ArrayList<Time> times;
 	
 	@Override
-	protected String titleRow(){
+	protected String titleRow(Iterator<Integer> itra){
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
 		Iterator<Integer> itr = racerData.numberIterator();
@@ -103,11 +96,5 @@ public class LapRaceSorter extends Sorter {
 	
 	protected  int compareType(){
 		return Racer.LAP_COMPARE;
-	}
-
-	@Override
-	protected String titleRow(Iterator<Integer> itr) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

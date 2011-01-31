@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import enduro.LapseSorter;
+import enduro.LapRaceSorter;
 import enduro.MarathonSorter;
 import enduro.Sorter;
 
@@ -69,7 +69,7 @@ public class JUnitAcceptanceTest {
 		if (testId.compareTo("6") == 0) {
 			sort = new MarathonSorter();
 		} else {
-			sort = new LapseSorter();
+			sort = new LapRaceSorter();
 		}
 
 		try {
