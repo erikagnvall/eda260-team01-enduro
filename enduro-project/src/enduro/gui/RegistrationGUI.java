@@ -17,7 +17,7 @@ public class RegistrationGUI extends JFrame {
 		super("Registration GUI");
 		buildLayout();
 		setResizable(false);
-		setExtendedState(MAXIMIZED_BOTH);
+		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -26,7 +26,7 @@ public class RegistrationGUI extends JFrame {
 	 * Adds all the components to the JFrame.
 	 */
 	private void buildLayout() {
-		Font font = new Font(null, Font.PLAIN, 120);
+		Font font = new Font(null, Font.PLAIN, 60);
 		setLayout(new BorderLayout());
 
 		RegistrationTextArea registrationTextArea = new RegistrationTextArea(
@@ -38,7 +38,7 @@ public class RegistrationGUI extends JFrame {
 
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
-		RegretButton regret = new RegretButton("Ångra", storedTime,
+		RegretButton regret = new RegretButton("Undo", storedTime,
 				registrationTextField);
 
 		northPanel.add(regret);
