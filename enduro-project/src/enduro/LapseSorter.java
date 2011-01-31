@@ -1,5 +1,6 @@
 package enduro;
 
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 import enduro.racedata.Time;
@@ -12,9 +13,9 @@ public class LapseSorter extends Sorter {
 	protected String titleRow(){
 		StringBuilder out = new StringBuilder();
 		out.append("StartNr; Namn; #Varv; TotalTid; ");
-		
-		for(Integer i: racerData) {
-			PriorityQueue<Time> times = racerData.getFinishTime(i);
+		Iterator<Integer> itr = racerData.numberIterator();
+		while(itr.hasNext()) {
+			PriorityQueue<Time> times = racerData.getFinishTime(itr.next());
 			
 			if(times.size() > lapses)
 				lapses = times.size();
