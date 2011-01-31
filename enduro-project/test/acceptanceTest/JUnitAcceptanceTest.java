@@ -21,137 +21,145 @@ import org.junit.runners.Parameterized.Parameters;
 import enduro.LapseSorter;
 import enduro.MarathonSorter;
 import enduro.Sorter;
+
 /**
- * An automatic JUnit testclass.
- * It uses an alternative runner which allows for parameterized tests.
- * It searches for a specific pattern (result [identifying token] .txt
- * in the facit folder and loads all key files in result/[identifying token]/*
- * (non recursive).
+ * An automatic JUnit testclass. It uses an alternative runner which allows for
+ * parameterized tests. It searches for a specific pattern (result [identifying
+ * token] .txt in the facit folder and loads all key files in
+ * result/[identifying token]/* (non recursive).
  * 
  * currently only a result [identifying token] .txt.result is created in result
  * this is then compared with the relevant acceptance test.
+ * 
  * @author alexander, mohamed m.fl.
- *
+ * 
  */
 @RunWith(value = LabelledParameterized.class)
 public class JUnitAcceptanceTest {
-	
+
 	private String file;
 	private String testId;
 	private static String facitFolder = "acceptanceTest/facit/";
 	private static String resultFolder = "acceptanceTest/result/";
 	private String[] startTimes, endTimes, runners;
 	private String testPath;
-	
+
 	private boolean fileReadFail = false;
 	private boolean fileWriteFail = false;
 	private boolean fileLogWriteFail = false;
-	
+
 	public JUnitAcceptanceTest(String test) {
 		this.file = test;
 		testId = test.substring(9, test.length());
-		testId = testId.substring(0, testId.length()-4);
-		//System.out.println("id: " + testId);
+		testId = testId.substring(0, testId.length() - 4);
+		// System.out.println("id: " + testId);
 		try {
-			System.setOut(new PrintStream(new FileOutputStream(resultFolder + test + ".log"), true));
+			System.setOut(new PrintStream(new FileOutputStream(resultFolder
+					+ test + ".log"), true));
 		} catch (FileNotFoundException e1) {
 			fileLogWriteFail = true;
 		}
 		testPath = resultFolder + testId + "/";
-		
+
 		FileListGenerator gen = new FileListGenerator(new File(testPath));
 		startTimes = gen.getFilesThatContains("start");
 		endTimes = gen.getFilesThatContains("maltid");
 		runners = gen.getFilesThatContains("namn");
 		Sorter sort;
-		if(testId.compareTo("6")==0) {
+		if (testId.compareTo("6") == 0) {
 			sort = new MarathonSorter();
 		} else {
 			sort = new LapseSorter();
 		}
-		
+
 		try {
-			for(String startLoc: startTimes)
+			for (String startLoc : startTimes)
 				sort.readStartFile(testPath + startLoc);
-			for(String endLoc: endTimes)
-				sort.readFinishFile(testPath  + endLoc);
-			for(String runner: runners)
-				sort.readNameFile(testPath  + runner);
-		} catch(Exception E) {
+			for (String endLoc : endTimes)
+				sort.readFinishFile(testPath + endLoc);
+			for (String runner : runners)
+				sort.readNameFile(testPath + runner);
+		} catch (Exception E) {
+			E.printStackTrace();
 			fileReadFail = true;
 		}
-		
+
 		try {
 			sort.createResultFile(resultFolder + test + ".result");
 		} catch (IOException e) {
 			fileWriteFail = true;
 		}
-		
+
 	}
-	
+
 	@Parameters
 	public static Collection<Object[]> data() {
 		File facit = new File("acceptanceTest/facit");
 		String[] facitFiles = facit.list(new FileFilter());
-		
-		
+
 		LinkedList<Object[]> tmp = new LinkedList<Object[]>();
-		
-		for(String test: facitFiles) {
-			if(test.startsWith("resultat_"))
-				tmp.add(new Object[]{test});
+
+		for (String test : facitFiles) {
+			if (test.startsWith("resultat_"))
+				tmp.add(new Object[] { test });
 		}
-		
-		//tmp.add(new Object[]{"resultat_6.txt"});
+
+		// tmp.add(new Object[]{"resultat_6.txt"});
 		return tmp;
-		
-		//return Arrays.asList(data);
+
+		// return Arrays.asList(data);
 
 	}
 
 	/**
 	 * fails if there were some errors with reading specified material
 	 */
-	@Test public void testIfReadTestFilesCorrectly() {
+	@Test
+	public void testIfReadTestFilesCorrectly() {
 		assertTrue(!this.fileReadFail);
 	}
-	
+
 	/**
 	 * fails if there were some errors with generating any of the result files.
 	 */
-	@Test public void testIfWriteToResultFileSuccess() {
+	@Test
+	public void testIfWriteToResultFileSuccess() {
 		assertTrue(!this.fileWriteFail);
 	}
-	
+
 	/**
 	 * fails if there were some errors with generating the log file
 	 */
-	@Test public void testIfWriteToLogSuccess() {
+	@Test
+	public void testIfWriteToLogSuccess() {
 		assertTrue(!this.fileLogWriteFail);
 	}
-	
+
 	/**
-	 * aceptance test. compares generated output with results.
+	 * acceptance test. compares generated output with results.
 	 */
-	@Test public void testAcceptance() {
+	@Test
+	public void testAcceptance() {
 		System.out.println(file);
 		ResultCompare c;
 		try {
-			c = new ResultCompare(new BufferedInputStream(new FileInputStream(facitFolder + file)), new BufferedInputStream(new FileInputStream(resultFolder + file + ".result")));
+			c = new ResultCompare(new BufferedInputStream(new FileInputStream(
+					facitFolder + file)), new BufferedInputStream(
+					new FileInputStream(resultFolder + file + ".result")));
 			assertTrue(c.compareLineWise(true));
-		} catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("result file not found");
 			assertTrue(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			assertTrue(false);
 		}
-		
+
 	}
 }
 
 class FileFilter implements FilenameFilter {
-    public boolean accept(File dir, String name) {
-        return !(name.startsWith(".") ||  name.startsWith("_"));
-    }
+	public boolean accept(File dir, String name) {
+		return !(name.startsWith(".") || name.startsWith("_"));
+	}
 }
