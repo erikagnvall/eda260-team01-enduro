@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import enduro.racedata.RaceClass;
 import enduro.racedata.Time;
 import enduro.racedata.RacerData;
 
@@ -78,6 +79,7 @@ public abstract class Sorter {
 		}
 		return list;
 	}
+	
 
 	/**
 	 * Reads a file containing names of racers and adds them to the data
@@ -91,9 +93,24 @@ public abstract class Sorter {
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
 		for (int i = 0; i < names.size(); i++) {
-			int startNbr = Integer.parseInt(names.get(i)[0]);
-			racerData.addName(startNbr, names.get(i)[1]);
+			RaceClass currentClass;
+			try {
+				int startNbr = Integer.parseInt(names.get(i)[0]);
+				racerData.addName(startNbr, names.get(i)[1]);
+			}catch(NumberFormatException e){
+				currentClass = new RaceClass(names.get(i)[0]);
+				System.out.println(currentClass.getName());
+				racerData.addClass(currentClass);
+			}
+			
 		}
+	}
+	/** Method used for testing
+	 * Returns an ArrayList of registered classes
+	 * @return
+	 */
+	public ArrayList<RaceClass> getClasses(){
+		return racerData.getClasses();
 	}
 
 	/**

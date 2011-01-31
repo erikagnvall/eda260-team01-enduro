@@ -15,6 +15,7 @@ public class RacerData implements Comparable<RacerData>, Iterable<Integer>{
 	private HashMap<Integer, PriorityQueue<Time>> startTimes;
 	private HashMap<Integer, PriorityQueue<Time>> finishTimes;
 	private HashMap<Integer, ArrayList<String>> names;
+	private ArrayList<RaceClass> classes;
 
 	/**
 	 * Creates a new RacerData object and initializes it.
@@ -24,6 +25,7 @@ public class RacerData implements Comparable<RacerData>, Iterable<Integer>{
 		startTimes = new HashMap<Integer, PriorityQueue<Time>>();
 		finishTimes = new HashMap<Integer, PriorityQueue<Time>>();
 		names = new HashMap<Integer, ArrayList<String>>();
+		classes = new ArrayList<RaceClass>();
 	}
 
 	/**
@@ -131,5 +133,21 @@ public class RacerData implements Comparable<RacerData>, Iterable<Integer>{
 	public int compareTo(RacerData racer) {
 		return 0;
 	}
+
+	/** Method to add a racing class to the RacerData
+	 * 
+	 * @param currentClass class to be added
+	 */
+	public void addClass(RaceClass currentClass) {
+		classes.add(currentClass);
+		
+		/** Method used for testing
+		 * Returns an ArrayList of registered classes
+		 * @return
+		 */
+	}
+		public ArrayList<RaceClass> getClasses(){
+			return classes;
+		}
 
 }

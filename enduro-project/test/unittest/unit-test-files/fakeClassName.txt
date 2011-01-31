@@ -1,0 +1,6 @@
+Seniorer
+1; Anders Asson
+2; B B
+3; C C
+Juniorer
+100; D D
