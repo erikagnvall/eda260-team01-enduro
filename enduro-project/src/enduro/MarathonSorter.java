@@ -1,17 +1,19 @@
 package enduro;
+
 import java.util.Iterator;
 
 import enduro.Sorter.Racer;
 
 /**
- * Class for sorting the results of a marathon according to the formatting rules that apply.
+ * Class for sorting the results of a marathon according to the formatting rules
+ * that apply.
  * 
  * 
  */
 public class MarathonSorter extends Sorter {
 
 	@Override
-	protected String titleRow(Iterator<Integer> itr){
+	protected String titleRow(Iterator<Integer> itr) {
 		return "StartNr; Namn; TotalTid; StartTider; Måltider";
 	}
 
@@ -33,9 +35,13 @@ public class MarathonSorter extends Sorter {
 		return finish;
 	}
 
+	@Override
+	protected int compareType() {
+		return Racer.TIME_COMPARE;
+	}
 
 	@Override
-	protected  int compareType(){
-		return Racer.TIME_COMPARE;
+	protected String noTotalTime() {
+		return "--.--.--";
 	}
 }

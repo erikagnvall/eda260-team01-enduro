@@ -184,7 +184,7 @@ public abstract class Sorter {
 				if (!finish.equals("Slut?") && !start.equals("Start?")) {
 					total = totalTime(i);
 				} else {
-					total = "--.--.--";
+					total = noTotalTime();
 				}
 				out.println(i + "; " + name + "; " + total + "; " + start
 						+ "; " + finish + trail.toString());
@@ -246,7 +246,8 @@ public abstract class Sorter {
 				if (!finish.equals("Slut?") && !start.equals("Start?")) {
 					total = totalTime(i);
 				} else {
-					total = "--.--.--";
+					total = noTotalTime();
+
 				}
 				out.println(i + "; " + name + "; " + total + "; " + start
 						+ "; " + finish + trail.toString());
@@ -255,6 +256,8 @@ public abstract class Sorter {
 		}
 		out.close();
 	}
+
+	protected abstract String noTotalTime();
 
 	protected Time getFinishTime(int i) throws NullPointerException {
 		return racerData.getFinishTime(i).poll();
@@ -328,11 +331,6 @@ public abstract class Sorter {
 	 */
 	protected abstract int compareType();
 
-	protected String titleRow() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	/**
 	 * Represents a racers.
 	 * 
@@ -351,6 +349,7 @@ public abstract class Sorter {
 			this.numLaps = numLaps;
 			this.time = time;
 		}
+
 		/**
 		 * Compares Racers
 		 */
@@ -359,7 +358,8 @@ public abstract class Sorter {
 			switch (type) {
 			case LAP_COMPARE:
 				int out = numLaps - o.numLaps;
-				if(out != 0) return out;
+				if (out != 0)
+					return out;
 				return time.compareTo(o.time);
 			case TIME_COMPARE:
 				return time.compareTo(o.time);

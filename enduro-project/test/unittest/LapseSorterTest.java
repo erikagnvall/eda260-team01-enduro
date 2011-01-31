@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.LapseSorter;
+import enduro.LapRaceSorter;
+import enduro.LapRaceSorter;
 
 public class LapseSorterTest {
-	private LapseSorter sorter;
+	private LapRaceSorter sorter;
 
 	@Before
 	public void setUp() {
-		sorter = new LapseSorter();
+		sorter = new LapRaceSorter();
 	}
 
 	@Test
@@ -44,12 +45,11 @@ public class LapseSorterTest {
 	public void testImpossibleLap() {
 
 		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 			sorter
 					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-		
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 			sorter
 					.createResultFile("./test/unittest/unit-test-files/fakeImpossibleLap.txt");
 		} catch (Exception e) {
@@ -58,12 +58,12 @@ public class LapseSorterTest {
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeImpossibleLap.txt"));//
+					"./test/unittest/unit-test-files/fakeImpossibleLap.txt"));
 			assertEquals(
 					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mål",
 					in.readLine());
 			assertEquals(
-					"1; Anders Asson; 2; 00.50.00; 00.40.00; 00.10.00; 12.00.00; 12.40.00; 12.50.00; Omöjlig varvtid?",
+					"1; Anders Asson; 2; 00.34.00; 00.30.00; 00.04.00; 12.00.00; 12.30.00; 12.34.00; Omöjlig varvtid?",
 					in.readLine());
 			in.close();
 		} catch (Exception e) {

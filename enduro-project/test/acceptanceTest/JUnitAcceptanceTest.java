@@ -71,7 +71,8 @@ public class JUnitAcceptanceTest {
 		} else {
 			sort = new LapRaceSorter();
 		}
-
+		System.out.println(startTimes[0]);
+		System.out.println(testPath);
 		try {
 			for (String runner : runners)
 				sort.readNameFile(testPath + runner);
