@@ -23,7 +23,7 @@ public class MarathonSorterTest {
 	@Test
 	public void testReadStartTimeFile() {
 		try {
-			sorter.readStartFile("fakeStart.txt");
+			sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -33,7 +33,7 @@ public class MarathonSorterTest {
 	@Test
 	public void testReadFinishTimeFile() {
 		try {
-			sorter.readFinishFile("fakeFinish.txt");
+			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -43,13 +43,13 @@ public class MarathonSorterTest {
 	public void testReadingFiles() {
 
 		try {
-			sorter.readStartFile("./test/unit-test-files/fakeStart.txt");
-			sorter.readFinishFile("./test/unit-test-files/fakeFinish.txt");
-			sorter.readNameFile("./test/unit-test-files/fakeName.txt");
-			sorter.createResultFile("./test/unit-test-files/fakesortertestresult.txt");
+			sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
+			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			sorter.createResultFile("./test/unittest/unit-test-files/fakesortertestresult.txt");
 
 			ArrayList<String[]> list = new ArrayList<String[]>();
-			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));
+			BufferedReader in = new BufferedReader(new FileReader("./test/unittest/unit-test-files/fakesortertestresult.txt"));
 			while (in.ready()) {
 				list.add(in.readLine().split("; "));
 			}
@@ -65,17 +65,17 @@ public class MarathonSorterTest {
 	public void testCreateResultFile() {
 
 		try {
-			sorter.readStartFile("fakeStart.txt");
-			sorter.readFinishFile("fakeFinish.txt");
-			sorter.readNameFile("fakeName.txt");
-			sorter.createResultFile("fakesortertestresult.txt");
+			sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
+			sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
+			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+			sorter.createResultFile("./test/unittest/unit-test-files/fakesortertestresult.txt");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
 
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("fakesortertestresult.txt"));//
-			assertEquals("StartNr; Namn; TotalTid; StartTider; MŒltider", in.readLine());
+			BufferedReader in = new BufferedReader(new FileReader("./test/unittest/unit-test-files/fakesortertestresult.txt"));//
+			assertEquals("StartNr; Namn; TotalTid; StartTider; MÃ¥ltider", in.readLine());
 			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00", in.readLine());
 			in.close();
 		} catch (Exception e) {

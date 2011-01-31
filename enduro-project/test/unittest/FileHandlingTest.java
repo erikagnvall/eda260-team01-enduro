@@ -16,10 +16,10 @@ public class FileHandlingTest {
 
 	@Test
 	public void testSingleFinishFile() {
-		String[] args = { "fakeStart.txt", "fakeFinish.txt" };
+		String[] args = { "./test/unittest/unit-test-files/fakeStart.txt", "./test/unittest/unit-test-files/fakeFinish.txt" };
 		try {
 			IOHandler.main(args);
-			BufferedReader in = new BufferedReader(new FileReader("ResultFile.txt"));
+			BufferedReader in = new BufferedReader(new FileReader("./test/unittest/unit-test-files/ResultFile.txt"));
 			in.readLine();
 
 		} catch (Exception e) {
@@ -30,7 +30,7 @@ public class FileHandlingTest {
 
 	@Test
 	public void testMultipleFinishFiles() {
-		String[] args = { "fakeStart.txt", "-m", "fakeFinishList.txt" };
+		String[] args = { "./test/unittest/unit-test-files/fakeStart.txt", "-m", "./test/unittest/unit-test-files/fakeFinish.txt" };
 		try {
 			IOHandler.main(args);
 		} catch (Exception e) {

@@ -33,7 +33,7 @@ public class IOHandler {
 			String goalFile = args[1];
 			sorter.readFinishFile(goalFile);
 		}
-		sorter.readNameFile("fakeName.txt");
-		sorter.createResultFile("ResultFile.txt");
+		sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
+		sorter.createResultFile("./test/unittest/unit-test-files/ResultFile.txt");
 	}
 }

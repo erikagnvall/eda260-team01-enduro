@@ -1,0 +1,2 @@
+StartNr; Namn; TotalTid; StartTider; Måltider
+1; Anders Asson; 00.30.00; 12.00.00; 12.30.00

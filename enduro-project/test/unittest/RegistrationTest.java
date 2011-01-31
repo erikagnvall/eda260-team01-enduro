@@ -15,7 +15,7 @@ public class RegistrationTest {
 	
 	@Before public void setUp() {
 		try {
-			reg = new Registration("registrationtest.txt");
+			reg = new Registration("./test/unittest/unit-test-files/registrationtest.txt");
 		} catch (IOException ex) {
 			System.err.println(ex);
 		}
@@ -26,7 +26,7 @@ public class RegistrationTest {
 		reg.close();
 		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("registrationtest.txt"));
+			BufferedReader in = new BufferedReader(new FileReader("./test/unittest/unit-test-files/registrationtest.txt"));
 			assertEquals("1; 12.00.42", in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
