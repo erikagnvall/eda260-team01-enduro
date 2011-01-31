@@ -19,7 +19,7 @@ public class RegretButton extends JButton implements ActionListener {
 		setFont(new Font(null, Font.PLAIN, 40));
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent arg0) {
 		storedTime.empty();
 		registrationTextField.requestFocus();

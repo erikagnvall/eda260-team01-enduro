@@ -7,7 +7,7 @@
 		<delete file = "MANIFEST.MF"/>
 		
 		<manifest file = "MANIFEST.MF">
-			<attribute name = "Main-Class" value = "enduro.FileHandler"/>
+			<attribute name = "Main-Class" value = "enduro.IOHandler"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />

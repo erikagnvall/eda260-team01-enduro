@@ -23,7 +23,7 @@ public class IOHandler {
 	 *             In case of an I/O error.
 	 */
 	public static void main(String[] args) throws Exception {
-		MarathonSorter sorter = new MarathonSorter();
+		LapRaceSorter sorter = new LapRaceSorter();
 
 		BufferedReader in = new BufferedReader(new FileReader("list.txt"));
 		sorter.readNameFile(in.readLine());
