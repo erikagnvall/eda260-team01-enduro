@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import enduro.racedata.RaceClass;
@@ -103,7 +106,7 @@ public abstract class Sorter {
 			}
 
 		}
-		if(!racerData.containsClass(currentClass)){
+		if (!racerData.containsClass(currentClass)) {
 			racerData.addClass(currentClass);
 		}
 	}
@@ -131,7 +134,8 @@ public abstract class Sorter {
 		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			RaceClass currentClass = itr.next();
-			if(!currentClass.getName().equals(""))out.println(currentClass.getName());
+			if (!currentClass.getName().equals(""))
+				out.println(currentClass.getName());
 			Iterator<Integer> nbrItr = currentClass.iterator();
 			out.println(titleRow(currentClass.iterator()));
 			while (nbrItr.hasNext()) {
@@ -173,16 +177,22 @@ public abstract class Sorter {
 		}
 		out.close();
 	}
-	
-	public void createTimeSortedResultsFile(String fileName) throws IOException{
+
+	public void createTimeSortedResultsFile(String fileName) throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				fileName)));
 		Iterator<RaceClass> itr = racerData.iterator();
 		while (itr.hasNext()) {
 			RaceClass currentClass = itr.next();
-			if(!currentClass.getName().equals(""))out.println(currentClass.getName());
-			Iterator<Integer> nbrItr = currentClass.iterator();
-			int[] positions = sortRacers();
+			if (!currentClass.getName().equals(""))
+				out.println(currentClass.getName());
+			//Sorts racers according to abstract method
+			ArrayList<Racer> racers = sortRacers();
+			ArrayList<Integer> positions = new ArrayList<Integer>();
+			for(int i = 0; i < racers.size(); i++){
+				positions.add(racers.get(i).number);
+			}
+			Iterator<Integer> nbrItr = positions.iterator();
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
 				String name = racerData.getName(i);
@@ -267,16 +277,67 @@ public abstract class Sorter {
 	 *         format "hh.mm.ss".
 	 */
 	protected abstract String finishTime(int i);
-	
+
 	/**
 	 * Sorts racers in accordance with the type of race.
-	 * @return an array of ints containing the racers' numbers in the order that they ranked.
+	 * 
+	 * @return an array of ints containing the racers' numbers in the order that
+	 *         they ranked.
 	 */
-	protected abstract int[] sortRacers();
+	protected ArrayList<Racer> sortRacers() {
+		ArrayList<Racer> racers = new ArrayList<Racer>();
+		Iterator<Integer> itr = racerData.numberIterator();
+		int i = 0;
+		while(itr.hasNext()){
+			i = itr.next();
+			racers.add(new Racer(i, racerData.getNumberOfLaps(i), racerData.getTotalTime(i)));
+		}
+		Collections.sort(racers);
+		return racers;
+	}
+	/**
+	 * Get the set of rules according to which racers should be compared (Time
+	 * or laps)
+	 * 
+	 * @return See Racer constants.
+	 */
+	protected abstract int compareType();
 
-	protected String titleRow() {
+protected String titleRow() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Represents a racers.
+	 * 
+	 * @author et05aw7
+	 * 
+	 */
+	protected class Racer implements Comparable<Racer> {
+		int number;
+		int numLaps;
+		Time time;
+		public static final int LAP_COMPARE = 0;
+		public static final int TIME_COMPARE = 1;
+
+		protected Racer(int number, int numLaps, Time time) {
+			this.number = number;
+			this.numLaps = numLaps;
+			this.time = time;
+		}
+
+		public int compareTo(Racer o) {
+			int type = compareType();
+			switch (type) {
+			case LAP_COMPARE:
+				return numLaps - o.numLaps;
+			case TIME_COMPARE:
+				return time.compareTo(o.time);
+			default:
+				return 0;
+			}
+		}
+	}
+	
 }
