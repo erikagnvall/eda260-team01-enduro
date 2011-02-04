@@ -23,7 +23,7 @@ public class TxtToHtml {
 				+ txtFile + "</title><center><table>");
 		while (in.ready())
 			pW.println(makeRow(in, pW));
-		pW.println("</table></font></html>");
+		pW.println("</table></font></body></html>");
 		pW.close();
 	}
 
@@ -36,14 +36,8 @@ public class TxtToHtml {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (int i = 0; i < inputStr.length(); i++) {
-			if (inputStr.charAt(i) == ';') {
-				output.append("</td><td>");
-			} else {
-				output.append(inputStr.charAt(i));
-			}
-		}
+		output.append(inputStr.replaceAll(";", "</td><td>"));
 		output.append(" </td></tr>");
-		return output.toString().replaceAll("<td> </td>", "<td> ??? </td>");
+		return output.toString().replaceAll("<td> </td>", "<td> - </td>");
 	}
 }
