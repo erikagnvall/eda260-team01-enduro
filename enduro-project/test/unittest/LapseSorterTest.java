@@ -1,72 +1,49 @@
 package unittest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import regressiontest.ListTest;
+import regressiontest.PVGRunner;
 
 import enduro.LapRaceSorter;
 import enduro.LapRaceSorter;
 
+@ListTest(sorter=ListTest.Sorter.lap)
+@RunWith(PVGRunner.class)
 public class LapseSorterTest {
-	private LapRaceSorter sorter;
-
-	@Before
-	public void setUp() {
-		sorter = new LapRaceSorter();
-	}
 
 	@Test
-	public void testReadStartTimeFile() {
+	public void testReadWriteTimeFile() {
 		try {
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
+			assertTrue(PVGRunner.testSuccess);
 		} catch (Exception e) {
 			System.err.println(e);
 		}
 
-	}
-
-	@Test
-	public void testReadFinishTimeFile() {
-		try {
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
 	}
 
 	@Test
 	public void testImpossibleLap() {
-
 		try {
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeImpossibleLap.txt");
+			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			assertEquals("2; Bengt Bsson; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omöjlig varvtid?", in.readLine());
+			
 		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeImpossibleLap.txt"));
-			assertEquals(
-					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mål",
-					in.readLine());
-			assertEquals(
-					"1; Anders Asson; 2; 00.34.00; 00.30.00; 00.04.00; 12.00.00; 12.30.00; 12.34.00; Omöjlig varvtid?",
-					in.readLine());
-			in.close();
-		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

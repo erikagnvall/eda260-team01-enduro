@@ -9,86 +9,35 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import regressiontest.ListTest;
+import regressiontest.PVGRunner;
 
 import enduro.MarathonSorter;
 
+@ListTest(sorter=ListTest.Sorter.marathon)
+@RunWith(PVGRunner.class)
 public class WrongInputTest {
-	private MarathonSorter sorter;
-
-	@Before
-	public void setUp() {
-		sorter = new MarathonSorter();
-	}
-
-	/*
-	 * @Test public void testNoFinishTime() {
-	 * 
-	 * try {
-	 * sorter.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-	 * sorter
-	 * .readFinishFile("./test/unittest/unit-test-files/fakeWrongFinish.txt");
-	 * sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-	 * sorter
-	 * .createResultFile("./test/unittest/unit-test-files/fakeFinishResult.txt"
-	 * ); } catch (Exception e) { System.err.println(e); }
-	 * 
-	 * try { BufferedReader in = new BufferedReader(new FileReader(
-	 * "./test/unittest/unit-test-files/fakeFinishResult.txt"));
-	 * assertEquals("StartNr; Namn; TotalTid; StartTider; M책ltider",
-	 * in.readLine());
-	 * assertEquals("1; Anders Asson; --.--.--; 12.00.00; Slut?",
-	 * in.readLine()); in.close(); } catch (FileNotFoundException e) {
-	 * System.err.println(e); } catch (IOException e) { System.err.println(e); }
-	 * }
-	 * 
-	 * @Test public void testNoStartTime() {
-	 * 
-	 * try {
-	 * sorter.readStartFile("./test/unittest/unit-test-files/fakeWrongStart.txt"
-	 * );
-	 * sorter.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-	 * sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-	 * sorter
-	 * .createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-	 * } catch (Exception e) { System.err.println(e); }
-	 * 
-	 * try { BufferedReader in = new BufferedReader(new FileReader(
-	 * "./test/unittest/unit-test-files/fakeStartResult.txt"));//
-	 * assertEquals("StartNr; Namn; TotalTid; StartTider; M책ltider",
-	 * in.readLine());
-	 * assertEquals("1; Anders Asson; --.--.--; Start?; 12.30.00",
-	 * in.readLine()); in.close(); } catch (FileNotFoundException e) {
-	 * System.err.println(e); } catch (IOException e) { System.err.println(e); }
-	 * }
-	 */
+	
 	@Test
 	public void testManyStartTime() {
 
 		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeManyStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-			
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
 			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeStartResult.txt"));//
-			assertEquals("StartNr; Namn; TotalTid; StartTider; M책ltider", in
-					.readLine());
+					"result.temp"));//
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			in.readLine();
 			assertEquals(
-					"1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera starttider? 12.12.00",
-					in.readLine());
+					"103; Erik Esson; 00.24.00; 12.00.00; 12.24.00; Flera starttider? 12.15.00; Flera m똪tider? 12.44.00 13.16.07",in.readLine());
 			in.close();
-		} catch (FileNotFoundException e) {
-			System.err.println(e);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.err.println(e);
 		}
 	}
@@ -97,26 +46,10 @@ public class WrongInputTest {
 	public void testManyFinishTime() {
 
 		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-		
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeStartResult.txt"));//
-			assertEquals("StartNr; Namn; TotalTid; StartTider; M책ltider", in
-					.readLine());
-			assertEquals(
-					"1; Anders Asson; 00.40.00; 12.00.00; 12.40.00; Flera m책ltider? 12.50.00",
-					in.readLine());
+			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			in.readLine();
+			in.readLine();
+			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera m똪tider? 13.00.00 13.23.34",in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e);
@@ -129,25 +62,11 @@ public class WrongInputTest {
 	public void testFastTime() {
 
 		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeFastFinish.txt");
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeStartResult.txt"));//
-			assertEquals("StartNr; Namn; TotalTid; StartTider; M책ltider", in
-					.readLine());
-			assertEquals(
-					"1; Anders Asson; 00.10.00; 12.00.00; 12.10.00; Om철jlig Totaltid?",
-					in.readLine());
+			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			in.readLine();
+			in.readLine();
+			in.readLine();
+			assertEquals("2; Bengt Bsson; 00.14.00; 12.00.00; 12.14.00; Flera m똪tider? 12.41.00 13.15.16; Om쉒lig Totaltid?",in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e);
@@ -155,5 +74,4 @@ public class WrongInputTest {
 			System.err.println(e);
 		}
 	}
-
 }
