@@ -13,6 +13,10 @@
 			<fileset dir="acceptanceTest/result/17_unit"/>
 		</copy>
 		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
+		
+		<zip destfile="release.zip" basedir="release"/>
+			
+			
 	</target>
 	
 	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
