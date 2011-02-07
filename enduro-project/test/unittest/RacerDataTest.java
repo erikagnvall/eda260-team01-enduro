@@ -16,8 +16,8 @@ public class RacerDataTest {
 		racerData = new RacerData();
 		racerData.addStartTime(1, new Time(12, 00, 00));
 		racerData.addFinishTime(1, new Time(12, 30, 00));
-		racerData.addName(1, "test1");
-		racerData.addName(2, "test2");
+		racerData.addName(new String[]{"1","test1"});
+		racerData.addName(new String[]{"2","test2"});
 		racerData.addStartTime(2, new Time(12, 00, 00));
 		racerData.addFinishTime(2, new Time(12, 20, 00));
 		racerData.addFinishTime(2, new Time(13, 00, 00));

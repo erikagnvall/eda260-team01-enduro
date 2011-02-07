@@ -115,10 +115,13 @@ public abstract class Sorter {
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
 		RaceClass currentClass = new RaceClass("");
-		for (int i = 0; i < names.size(); i++) {
+		
+		String[] information = names.get(0);
+		
+		for (int i = 1; i < names.size(); i++) {
 			try {
 				int startNbr = Integer.parseInt(names.get(i)[0]);
-				racerData.addName(startNbr, names.get(i)[1]);
+				racerData.addName(names.get(i));
 				currentClass.registerContestant(startNbr);
 			} catch (NumberFormatException e) {
 				currentClass = new RaceClass(names.get(i)[0]);

@@ -111,10 +111,13 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 * @param name
 	 *            the racer's name
 	 */
-	public void addName(int startNr, String name) {
+	public void addName(String[] racerdata) {
 		ArrayList<String> temp = new ArrayList<String>();
-		temp.add(name);
-		names.put(startNr, temp);
+		for(int i = 1; i < racerdata.length; i++) {
+			temp.add(racerdata[i]);
+		}
+		
+		names.put(Integer.parseInt(racerdata[0]), temp);
 	}
 	public void addName(int startNr, String name, RaceClass raceClass){
 		ArrayList<String> temp = new ArrayList<String>();
