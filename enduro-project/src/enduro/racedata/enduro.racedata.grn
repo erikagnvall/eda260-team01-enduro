@@ -1,0 +1,44 @@
+<uml>
+   <greenVersion="30500"/>
+   <type>
+      <name="=enduro-project/src<enduro.racedata{Time.java[Time"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="53"/>
+      <y="46"/>
+   </type>
+   <type>
+      <name="=enduro-project/src<enduro.racedata{RaceClass.java[RaceClass"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="54"/>
+      <y="281"/>
+   </type>
+   <type>
+      <name="=enduro-project/src<enduro.racedata{RacerData.java[RacerData"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="422"/>
+      <y="43"/>
+   </type>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=enduro-project/src<enduro.racedata{Time.java[Time"/>
+      <targetType="=enduro-project/src<enduro.racedata{Time.java[Time"/>
+      <bendpoints>
+         <bendpoint>
+            <x="40"/>
+            <y="0"/>
+         </bendpoint>
+         <bendpoint>
+            <x="40"/>
+            <y="-40"/>
+         </bendpoint>
+         <bendpoint>
+            <x="0"/>
+            <y="-40"/>
+         </bendpoint>
+      </bendpoints>
+   </relationship>
+</uml>
+
