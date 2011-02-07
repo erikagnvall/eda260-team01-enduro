@@ -10,6 +10,7 @@ import unittest.*;
 					FileHandlingTest.class,
 					IllegalStarNbrtest.class,
 					LapRaceSorterTest.class,
+					LapseSorterTest.class,
 					MarathonSorterTest.class,
 					RacerDataTest.class,
 					RegistrationTest.class,
