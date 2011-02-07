@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pvg.makejar" default="makeRegistrator" basedir=".">
+<project name="pvg.makejar" default="makeGUI" basedir=".">
 	
 	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
 		
@@ -7,7 +7,7 @@
 		<delete file = "MANIFEST.MF"/>
 		
 		<manifest file = "MANIFEST.MF">
-			<attribute name = "Main-Class" value = "enduro.FileHandler"/>
+			<attribute name = "Main-Class" value = "enduro.IOHandler"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
@@ -59,7 +59,7 @@
 				<attribute name = "Class-Path" value = "."/>
 			</manifest>
 		</jar>
-		</target>
+	</target>
 	
 	
 	<target name="junit" depends="junitBuild">
@@ -70,8 +70,8 @@
 			
 			<test name="acceptanceTest.CompareAcceptanceTests"/>
 		</junit>
-		
-		
 	</target>
+	
+	
 </project>
 
