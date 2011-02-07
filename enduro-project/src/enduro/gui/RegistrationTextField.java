@@ -3,7 +3,14 @@ package enduro.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -46,6 +53,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	public void actionPerformed(ActionEvent ae) {
 		String[] text = getText().split("-");
 		if (text.length > 1) {
+			deleteStoredTimeFile();
 			String time = getTime();
 			StringBuilder sb = new StringBuilder();
 			for (int i = Integer.parseInt(text[0]); i < Integer
@@ -64,6 +72,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 			}
 		} else if (!getText().equals("")) {
+			deleteStoredTimeFile();
 			StringBuilder sb = new StringBuilder();
 			sb.append(getText());
 			sb.append(';');
@@ -82,10 +91,40 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 			}
 		} else if (getText().equals(("")) && storedTime.isEmpty()) {
-			storedTime.setText(getTime());
+			storeTime();
 		}
 		setText("");
 		requestFocus();
+	}
+	
+	
+	private void storeTime(){
+		String time = getTime();
+		try {
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("storedTimeOfUnknownDriver.txt")));
+			out.println(time);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		storedTime.setText(time);
+	}
+	
+	public void deleteStoredTimeFile() {
+		File f = new File("storedTimeOfUnknownDriver.txt");
+		f.delete();
+	}
+	
+	public void checkForSavedTimeFile(){
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader("storedTimeOfUnknownDriver.txt"));
+			storedTime.setText(in.readLine());
+		} catch (FileNotFoundException e1) {
+		
+		}catch(IOException e){
+			
+		}
 	}
 
 	/**

@@ -38,6 +38,9 @@ public class RegistrationGUI extends JFrame {
 
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
+		registrationTextField.checkForSavedTimeFile();
+		
+		
 		RegretButton regret = new RegretButton("Avbryt", storedTime,
 				registrationTextField);
 
@@ -50,6 +53,8 @@ public class RegistrationGUI extends JFrame {
 
 		add(BorderLayout.CENTER, registrationTextArea);
 	}
+	
+	
 
 	/** Main method. */
 	public static void main(String[] args) {
