@@ -86,7 +86,12 @@ public class JUnitAcceptanceTest {
 		}
 
 		try {
-			sort.createResultFile(resultFolder + test + ".result");
+			
+			if (test.contains("sorted")) {
+				sort.createSortedResultsFile(resultFolder + test + ".result");
+			} else {
+				sort.createResultFile(resultFolder + test + ".result");
+			}
 		} catch (IOException e) {
 			fileWriteFail = true;
 		}
