@@ -28,7 +28,7 @@ public class LapRaceSorterTest {
 	public void testImpossibleLap() {
 
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			BufferedReader in = new BufferedReader(new FileReader("result.temp.lap"));
 			in.readLine();
 			assertEquals(
 					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
