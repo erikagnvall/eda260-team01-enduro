@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class TxtToHtml {
-
 	public void makeHtmlFile(String txtFile, String htmlFile) throws Exception {
 		PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(
 				htmlFile)));

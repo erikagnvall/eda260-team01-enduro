@@ -33,7 +33,9 @@ public abstract class Sorter {
 	protected Time finishTime;
 	protected StringBuilder trail;
 	protected String nameInformation = "";
-	protected int extrainformationNum = 0; //defined as: namefile semi colons minus 1 (due to racer number is handled separately
+	protected int extrainformationNum = 0; // defined as: namefile semi colons
+											// minus 1 (due to racer number is
+											// handled separately
 
 	public Sorter() {
 		racerData = new RacerData();
@@ -120,16 +122,17 @@ public abstract class Sorter {
 	public void readNameFile(String fileName) throws Exception {
 		ArrayList<String[]> names = readFile(fileName);
 		RaceClass currentClass = new RaceClass("");
-		
-		//TODO will need more handling if/when we should be able to read multiple name files.
+
+		// TODO will need more handling if/when we should be able to read
+		// multiple name files.
 		String[] information = names.get(0);
 		StringBuilder namePart = new StringBuilder();
-		for(int i = 0; i < information.length; i++) {
+		for (int i = 0; i < information.length; i++) {
 			namePart.append(information[i] + "; ");
 		}
 		this.nameInformation = namePart.toString();
-		this.extrainformationNum = information.length -1;
-		
+		this.extrainformationNum = information.length - 1;
+
 		for (int i = 1; i < names.size(); i++) {
 			try {
 				int startNbr = Integer.parseInt(names.get(i)[0]);
@@ -181,6 +184,12 @@ public abstract class Sorter {
 			}
 		}
 		out.close();
+		TxtToHtml txtHtml = new TxtToHtml();
+		try {
+			txtHtml.makeHtmlFile(fileName, fileName + ".html");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -214,6 +223,12 @@ public abstract class Sorter {
 			}
 		}
 		out.close();
+		TxtToHtml txtHtml = new TxtToHtml();
+		try {
+			txtHtml.makeHtmlFile(fileName, fileName + ".html");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
