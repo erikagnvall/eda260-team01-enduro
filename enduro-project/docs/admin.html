@@ -40,6 +40,18 @@
 				<p> Den tid som bedöms som en omöjlig tid är fördefinierad till under en timme</p>
 				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit registrerade sparas i en fil som heter storedTimeOfUnknownDriver.txt, denna skall ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax som tidigare tidregistreringar använder.</p>
 				<p> Samtliga filer som skall läsas in skall ligga i samma mapp som backend.jar och vara sparade i formatet .txt </p>
+				<div class="entry">
+					<a name="format_namefile"></a>
+					<h3>Format av namnfil</h3>
+					<p>Formatet på namnfilen är StartNr; Namn; Extra1; Extra2 ...</p>
+					<p>Extra innebär att man själv kan välja vad det är för något.</p>
+					<p><b>Exempel:</b><br /> SENIOR<br />
+1; Anders Asson; FMCK Astad; ATM<br />
+2; Bengt Bsson; FMCK Bstad; BTM<br />
+JUNIOR<br />
+101; Chris Csson; Cstad MCK; CTM<br />
+102; David Dsson; Dstad MCK; DTM<br />
+					</p>
 		</div> <!-- end of .subsection -->
 	</div> <!-- end of #content -->
 	

@@ -15,7 +15,11 @@ Stories done:
 11: Enkel masstart 
 12: Målgång där nummerplåten inte kan läsas i förväg
 13: Hantera klasser
+14: Manual
 16: Hantera registreringar med otillåtna startnummer
-18: Sorterad resultatlista
+
+Nya stories:
+24: Masstart
+
 
 Manualer ligger i samma mapp som denna readmefil, user.html avser manual för GUI, admin.html avser manual för backend
