@@ -13,6 +13,11 @@ import enduro.racedata.Time;
  */
 public class MarathonSorter extends Sorter {
 
+	public MarathonSorter() {
+		//Parameter should be comparator for Maratonsorter.
+		super(null);
+	}
+	
 	@Override
 	protected String titleRow(Iterator<Integer> itr) {
 		return this.nameInformation + "TotalTid; StartTider; Måltider";
