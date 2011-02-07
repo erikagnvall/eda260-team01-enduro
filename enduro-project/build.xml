@@ -19,7 +19,7 @@
 			
 	</target>
 	
-	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
+	<target name ="makeRegistrator" description="Create a jar for the backend">
 		
 		<delete file = "Backend.jar"/>
 		<delete file = "MANIFEST.MF"/>
