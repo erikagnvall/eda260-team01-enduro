@@ -1,6 +1,8 @@
-#Mon Feb 07 14:30:35 CET 2011
+#Mon Feb 07 16:04:16 CET 2011
 eclipse.preferences.version=1
 encoding//acceptanceTest/facit/resultat_15.txt=ISO-8859-1
 encoding//acceptanceTest/facit/resultat_17_unit.txt=ISO-8859-1
+encoding//acceptanceTest/facit/resultat_18.txt=ISO-8859-1
 encoding//src/enduro/MarathonSorter.java=UTF-8
 encoding//src/enduro/Sorter.java=UTF-8
+encoding//src/enduro/TxtToHtml.java=ISO-8859-1
