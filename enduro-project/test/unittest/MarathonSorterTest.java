@@ -29,14 +29,15 @@ public class MarathonSorterTest {
 			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
 			in.readLine();
 			in.readLine();
-			assertEquals(in.readLine(), "1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera mŒltider? 13.00.00 13.23.34");
-			assertEquals(in.readLine(), "2; Bengt Bsson; 00.14.00; 12.00.00; 12.14.00; Flera mŒltider? 12.41.00 13.15.16; Omšjlig Totaltid?");
+			assertEquals(in.readLine(), "1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera mÃ¥ltider? 13.00.00 13.23.34");
+			assertEquals(in.readLine(), "2; Bengt Bsson; 00.14.00; 12.00.00; 12.14.00; Flera mÃ¥ltider? 12.41.00 13.15.16; OmÃ¶jlig Totaltid?");
 			in.readLine();
 			in.readLine();
 			
-			assertEquals(in.readLine(), "101; Chris Csson; 00.22.00; 12.00.00; 12.22.00; Flera mŒltider? 12.42.00 13.05.06");
-			assertEquals(in.readLine(), "102; David Dsson; 00.23.00; 12.00.00; 12.23.00; Flera mŒltider? 12.43.00 13.12.07");
-			assertEquals(in.readLine(), "103; Erik Esson; 00.24.00; 12.00.00; 12.24.00; Flera starttider? 12.15.00; Flera mŒltider? 12.44.00 13.16.07");
+			
+			assertEquals(in.readLine(), "101; Chris Csson; 00.22.00; 12.00.00; 12.22.00; Flera mÃ¥ltider? 12.42.00 13.05.06");
+			assertEquals(in.readLine(), "102; David Dsson; 00.23.00; 12.00.00; 12.23.00; Flera mÃ¥ltider? 12.43.00 13.12.07");
+			assertEquals(in.readLine(), "103; Erik Esson; 00.24.00; 12.00.00; 12.24.00; Flera starttider? 12.15.00; Flera mÃ¥ltider? 12.44.00 13.16.07");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
