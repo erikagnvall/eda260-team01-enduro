@@ -32,12 +32,12 @@ public class IOHandler {
 		ConfigParser handler = new ConfigParser();
 		Sorter sorter;
 		
-		if(handler.getStringConf("race").compareTo("lap")==0) {
+		/*if(handler.getStringConf("race").compareTo("lap")==0) {*/
 			sorter = new LapRaceSorter();
-		} else {
+		/*} else {
 			//marathonsorter (key==marathon)
 			sorter = new MarathonSorter();
-		}
+		}*/
 		
 		BufferedReader in = new BufferedReader(new FileReader(handler.getStringConf("input")));
 		sorter.readNameFile(in.readLine());
@@ -46,12 +46,12 @@ public class IOHandler {
 			sorter.readFinishFile(in.readLine());
 		}
 		
-		if(handler.getStringConf("sorting").compareTo("number")==0) {
-			//sort by number
+		/*if(handler.getStringConf("sorting").compareTo("number")==0) {
+			//sort by number */
 			sorter.createResultFile(handler.getStringConf("output"));
-		} else {
+		/*} else {
 			sorter.createSortedResultsFile(handler.getStringConf("output"));
-		}
+		}*/
 		
 		JOptionPane.showMessageDialog(null, "Sortering klar");
 		/*
