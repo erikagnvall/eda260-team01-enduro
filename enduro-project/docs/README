@@ -17,3 +17,5 @@ Stories done:
 13: Hantera klasser
 16: Hantera registreringar med otillåtna startnummer
 18: Sorterad resultatlista
+
+Manualer ligger i samma mapp som denna readmefil, user.html avser manual för GUI, admin.html avser manual för backend
