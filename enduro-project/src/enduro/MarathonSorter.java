@@ -18,7 +18,6 @@ public class MarathonSorter extends Sorter {
 		return this.nameInformation + "TotalTid; StartTider; Måltider";
 	}
 
-	@Override
 	protected String finishTime(int i) {
 		String finish;
 		try {
@@ -42,11 +41,6 @@ public class MarathonSorter extends Sorter {
 	}
 
 	@Override
-	protected String noTotalTime() {
-		return "--.--.--";
-	}
-
-	@Override
 	protected String totalTime(int i) {
 
 		String total;
@@ -60,5 +54,11 @@ public class MarathonSorter extends Sorter {
 			total = "--.--.--";
 		}
 		return total;
+	}
+
+	@Override
+	protected String getData(int racerNumber) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

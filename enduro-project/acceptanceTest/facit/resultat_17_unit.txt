@@ -9,4 +9,4 @@ StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1
 103; Erik Esson; Estad MCK; ETM; 3; 01.16.07; 00.24.00; 00.20.00; 00.32.07; 12.00.00; 12.24.00; 12.44.00; 13.16.07; Flera starttider? 12.15.00
 Icke existerande startnummer
 StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Start; Mål
-210; ; ; ; 0; --.--.--; Start?; 13.16.07
+210; ; ; ; 0; --.--.--; ; Start?; 13.16.07

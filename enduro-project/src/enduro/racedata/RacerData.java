@@ -85,7 +85,7 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	}
 
 	/**
-	 * Returns the finish time for the specified racer.
+	 * /** Returns the finish time for the specified racer.
 	 * 
 	 * @param startNbr
 	 *            The racer's start number.
@@ -113,15 +113,16 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 */
 	public void addName(String[] racerdata) {
 		ArrayList<String> temp = new ArrayList<String>();
-		for(int i = 1; i < racerdata.length; i++) {
+		for (int i = 1; i < racerdata.length; i++) {
 			temp.add(racerdata[i]);
 		}
-		
+
 		names.put(Integer.parseInt(racerdata[0]), temp);
 	}
-	public void addName(int startNr, int outputSemis, RaceClass raceClass){
+
+	public void addName(int startNr, int outputSemis, RaceClass raceClass) {
 		ArrayList<String> temp = new ArrayList<String>();
-		for(int i = 0; i < outputSemis; i++) {
+		for (int i = 0; i < outputSemis; i++) {
 			temp.add("");
 		}
 		names.put(startNr, temp);
@@ -138,8 +139,7 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	public String getName(int startNr) {
 		return names.get(startNr).get(0);
 	}
-	
-	
+
 	/**
 	 * Gets all racer information.
 	 * 
@@ -149,7 +149,7 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 */
 	public String getRacerInfo(int startNr) {
 		StringBuilder temp = new StringBuilder();
-		for(String info:names.get(startNr))
+		for (String info : names.get(startNr))
 			temp.append(info + "; ");
 		return temp.toString();
 	}
@@ -161,7 +161,11 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 *            the runner's starting number.
 	 */
 	public int getNumberOfLaps(int startNr) {
-		return getFinishTime(startNr).size();
+		try {
+			return getFinishTime(startNr).size();
+		} catch (NullPointerException e) {
+			return 0;
+		}
 	}
 
 	/**
@@ -215,7 +219,8 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	public boolean containsClass(RaceClass raceClass) {
 		return classes.contains(raceClass);
 	}
-	public boolean contestantIsRegistered(int startNbr){
+
+	public boolean contestantIsRegistered(int startNbr) {
 		return names.containsKey(startNbr);
 	}
 

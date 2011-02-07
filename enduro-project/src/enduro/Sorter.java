@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
 import enduro.racedata.RaceClass;
 import enduro.racedata.Time;
@@ -26,6 +27,8 @@ import enduro.racedata.RacerData;
 public abstract class Sorter {
 
 	protected RacerData racerData;
+	protected PriorityQueue<Time> startTimes;
+	protected PriorityQueue<Time> finishTimes;
 	protected Time startTime;
 	protected Time finishTime;
 	protected StringBuilder trail;
@@ -172,39 +175,9 @@ public abstract class Sorter {
 			out.println(titleRow(currentClass.iterator()));
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
-				String racerInformation = racerData.getRacerInfo(i);
-				String start;
-				String finish = null;
-				String total = null;
-				try {
-					startTime = racerData.getStartTime(i).poll();
-					start = startTime.toString();
-					if (racerData.getStartTime(i).size() > 0) {
-						trail.append("; Flera starttider?");
-						while (racerData.getStartTime(i).size() > 0) {
-							trail.append(' ');
-							trail.append(racerData.getStartTime(i).poll());
-						}
-					}
-				} catch (NullPointerException e) {
-					start = "Start?";
-				}
-				try {
-					finishTime = getFinishTime(i);
-				} catch (NullPointerException e) {
-					finish = "Slut?";
-				}
-				if (finish == null || !finish.equals("Slut?")) {
-					finish = finishTime(i);
-				}
-				if (!finish.equals("Slut?") && !start.equals("Start?")) {
-					total = totalTime(i);
-				} else {
-					total = noTotalTime();
-				}
-				out.println(i + "; " + racerInformation + total + "; " + start
-						+ "; " + finish + trail.toString());
-				trail.delete(0, trail.length());
+				startTimes = racerData.getStartTime(i);
+				finishTimes = racerData.getFinishTime(i);
+				out.println(linePrint(i));
 			}
 		}
 		out.close();
@@ -232,52 +205,38 @@ public abstract class Sorter {
 				positions.add(racers.get(i).number);
 			}
 			Iterator<Integer> nbrItr = positions.iterator();
+			out.println(titleRow(currentClass.iterator()));
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
-				String racerInformation = racerData.getRacerInfo(i);
-				String start;
-				String finish = null;
-				String total = null;
-				try {
-					startTime = racerData.getStartTime(i).poll();
-					start = startTime.toString();
-					if (racerData.getStartTime(i).size() > 0) {
-						trail.append("; Flera starttider?");
-						while (racerData.getStartTime(i).size() > 0) {
-							trail.append(' ');
-							trail.append(racerData.getStartTime(i).poll());
-						}
-					}
-				} catch (NullPointerException e) {
-					start = "Start?";
-				}
-				try {
-					finishTime = getFinishTime(i);
-				} catch (NullPointerException e) {
-					finish = "Slut?";
-				}
-				if (finish == null || !finish.equals("Slut?")) {
-					finish = finishTime(i);
-				}
-				if (!finish.equals("Slut?") && !start.equals("Start?")) {
-					total = totalTime(i);
-				} else {
-					total = noTotalTime();
-
-				}
-				out.println(i + "; " + racerInformation + total + "; " + start
-						+ "; " + finish + trail.toString());
-				trail.delete(0, trail.length());
+				startTimes = racerData.getStartTime(i);
+				finishTimes = racerData.getFinishTime(i);
+				out.println(linePrint(i));
 			}
 		}
 		out.close();
 	}
 
-	protected abstract String noTotalTime();
-
-	protected Time getFinishTime(int i) throws NullPointerException {
-		return racerData.getFinishTime(i).poll();
+	/**
+	 * Prints a line with data from a race.
+	 * 
+	 * @param racerNumber
+	 * @return
+	 */
+	private String linePrint(int racerNumber) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(racerNumber);
+		sb.append("; ");
+		sb.append(racerData.getRacerInfo(racerNumber));
+		sb.append(getData(racerNumber));
+		return sb.toString();
 	}
+
+	/**
+	 * Gets the data for the specified racer number
+	 * 
+	 * @param racerNumber
+	 */
+	protected abstract String getData(int racerNumber);
 
 	/**
 	 * Returns the title row formatted according to the current race type.
@@ -296,17 +255,6 @@ public abstract class Sorter {
 	 *         "hh.mm.ss".
 	 */
 	protected abstract String totalTime(int i);
-
-	/**
-	 * Formats the finish time according to how it's supposed to be in the
-	 * current race type.
-	 * 
-	 * @param i
-	 *            the racer's number.
-	 * @return a <code>String</code> containing the racer's finish time on the
-	 *         format "hh.mm.ss".
-	 */
-	protected abstract String finishTime(int i);
 
 	/**
 	 * Sorts racers in accordance with the type of race.
