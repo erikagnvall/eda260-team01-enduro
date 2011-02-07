@@ -179,6 +179,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			in = new BufferedReader(new FileReader(
 					"storedTimeOfUnknownDriver.txt"));
 			storedTime.setText(in.readLine());
+			if (!storedTime.isEmpty()) {
+				regret.setVisible(true);
+			}
 		} catch (FileNotFoundException e1) {
 
 		} catch (IOException e) {
