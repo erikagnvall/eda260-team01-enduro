@@ -1,68 +1,41 @@
 package unittest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import regressiontest.ListTest;
+import regressiontest.PVGRunner;
 
 import enduro.LapRaceSorter;
 
+@ListTest()
+@RunWith(PVGRunner.class)
 public class LapRaceSorterTest {
-	private LapRaceSorter sorter;
-
-	@Before
-	public void setUp() {
-		sorter = new LapRaceSorter();
-	}
 
 	@Test
-	public void testReadStartTimeFile() {
-		try {
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-	}
-
-	@Test
-	public void testReadFinishTimeFile() {
-		try {
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeFinish.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
+	public void testReadWriteStartTimeFile() {
+		assertTrue(PVGRunner.testSuccess);
 	}
 
 	@Test
 	public void testImpossibleLap() {
 
 		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeManyFinish.txt");
-		
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeImpossibleLap.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/fakeImpossibleLap.txt"));//
+			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			in.readLine();
 			assertEquals(
-					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Start; Varvning1; Mål",
+					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 					in.readLine());
+			in.readLine();
 			assertEquals(
-					"1; Anders Asson; 2; 00.50.00; 00.40.00; 00.10.00; 12.00.00; 12.40.00; 12.50.00; Omöjlig varvtid?",
+					"2; Bengt Bsson; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omöjlig varvtid?",
 					in.readLine());
 			in.close();
 		} catch (Exception e) {
