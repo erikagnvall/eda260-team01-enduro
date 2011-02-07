@@ -90,6 +90,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 					}
 
 					try {
+						deleteStoredTimeFile();
 						if (storedTime.isEmpty()) {
 							saveToFile(Integer.parseInt(raceNbr), new Time(currentTime));
 						} else {
@@ -129,6 +130,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			}
 
 			try {
+				deleteStoredTimeFile();
 				if (storedTime.isEmpty()) {
 					saveToFile(Integer.parseInt(getText()), new Time(currentTime));
 				} else {
