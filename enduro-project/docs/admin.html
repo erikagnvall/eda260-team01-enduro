@@ -29,7 +29,11 @@
 		
 		<div class="subsection">
 			<h2>Anv&auml;ndning</h2>
-				<p>Backend kallas den jar-fil som används för att skapa resultatsfilen utifrån de registreingsfiler man har. Programmet behöver en fil som heter list.txt i samma mapp som programmet finns. Denna fil ska innehålla en lista på filer enligt följande mönster:</p>
+				<p>Backend kallas den jar-fil som används för att skapa resultatsfilen utifrån de registreringsfiler man har.</p>
+				<p>Programmet kan konfigureras med hjälp av en konfigfil som ska ligga i samma mapp med namnet "config.conf". Finns ingen config fil sorteras 					programmet enligt ett maratonrace med utgång från indatafilen "list.txt", samma sak gäller om indata saknas i konfigfilen</p>
+				<p>Inställningsalternativen förklaras i konfigfilen men är till största del på enklare engelska av tekniska skäl.</p>
+				
+				<p>Programmet behöver en listfil som behöver innehålla följande information i samma ordning som den visas.</p>
 				"namnfil.txt"<br />
 				"starttidsFil.txt"<br />
 				"målfil1.txt"<br />
