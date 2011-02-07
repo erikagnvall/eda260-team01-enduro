@@ -35,11 +35,11 @@ public class RegistrationGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
-
+		
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
 		
-		
+		registrationTextField.checkForSavedTimeFile();
 		
 		RegretButton regret = new RegretButton("Avbryt", storedTime,
 				registrationTextField);
