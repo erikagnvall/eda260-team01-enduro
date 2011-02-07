@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class TxtToHtml {
+	/**
+	 * Converts a result file from excel-format to an html-table.
+	 * 
+	 * @param txtFile
+	 * @param htmlFile
+	 * @throws Exception
+	 */
 	public void makeHtmlFile(String txtFile, String htmlFile) throws Exception {
 		PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(
 				htmlFile)));
@@ -21,6 +28,13 @@ public class TxtToHtml {
 		pW.close();
 	}
 
+	/**
+	 * Parses a row to html-format from excel-format.
+	 * 
+	 * @param in
+	 * @param out
+	 * @return
+	 */
 	private String makeRow(BufferedReader in, PrintWriter out) {
 		String inputStr = new String();
 		StringBuilder output = new StringBuilder();

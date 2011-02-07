@@ -34,8 +34,9 @@ public abstract class Sorter {
 	protected StringBuilder trail;
 	protected String nameInformation = "";
 	protected int extrainformationNum = 0; // defined as: namefile semi colons
-											// minus 1 (due to racer number is
-											// handled separately
+
+	// minus 1 (due to racer number is
+	// handled separately
 
 	public Sorter() {
 		racerData = new RacerData();
@@ -184,6 +185,11 @@ public abstract class Sorter {
 			}
 		}
 		out.close();
+		// Prints the results in an html-file
+		printToHtml(fileName);
+	}
+
+	private void printToHtml(String fileName) {
 		TxtToHtml txtHtml = new TxtToHtml();
 		try {
 			txtHtml.makeHtmlFile(fileName, fileName + ".html");
@@ -223,12 +229,7 @@ public abstract class Sorter {
 			}
 		}
 		out.close();
-		TxtToHtml txtHtml = new TxtToHtml();
-		try {
-			txtHtml.makeHtmlFile(fileName, fileName + ".html");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		printToHtml(fileName);
 	}
 
 	/**
