@@ -15,7 +15,7 @@ public class MarathonSorter extends Sorter {
 
 	@Override
 	protected String titleRow(Iterator<Integer> itr) {
-		return "StartNr; Namn; TotalTid; StartTider; Måltider";
+		return this.nameInformation + "TotalTid; StartTider; Måltider";
 	}
 
 	@Override

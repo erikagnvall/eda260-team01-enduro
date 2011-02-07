@@ -31,7 +31,7 @@ public class LapRaceSorterTest {
 			BufferedReader in = new BufferedReader(new FileReader("result.temp.lap"));
 			in.readLine();
 			assertEquals(
-					"StartNr; Namn; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
+					"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 					in.readLine());
 			in.readLine();
 			assertEquals(

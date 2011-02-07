@@ -29,6 +29,7 @@ public abstract class Sorter {
 	protected Time startTime;
 	protected Time finishTime;
 	protected StringBuilder trail;
+	protected String nameInformation = "";
 
 	public Sorter() {
 		racerData = new RacerData();
@@ -116,7 +117,13 @@ public abstract class Sorter {
 		ArrayList<String[]> names = readFile(fileName);
 		RaceClass currentClass = new RaceClass("");
 		
+		//TODO will need more handling if/when we should be able to read multiple name files.
 		String[] information = names.get(0);
+		StringBuilder namePart = new StringBuilder();
+		for(int i = 0; i < information.length; i++) {
+			namePart.append(information[i] + "; ");
+		}
+		this.nameInformation = namePart.toString();
 		
 		for (int i = 1; i < names.size(); i++) {
 			try {

@@ -14,7 +14,7 @@ public class LapRaceSorter extends Sorter {
 	@Override
 	protected String titleRow(Iterator<Integer> itr) {
 		StringBuilder out = new StringBuilder();
-		out.append("StartNr; Namn; #Varv; TotalTid; ");
+		out.append(this.nameInformation + "#Varv; TotalTid; ");
 		numLaps = racerData.getNumberOfLaps(itr.next());
 		for (int i = 1; i <= numLaps; i++) {
 			out.append("Varv");
