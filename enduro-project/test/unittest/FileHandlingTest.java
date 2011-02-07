@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,42 +15,41 @@ import org.junit.Test;
 import enduro.IOHandler;
 
 public class FileHandlingTest {
-
+/*
 	@Test
 	public void testSingleFinishFile() {
 		PrintWriter out = null;
 		try {
+			new File("list.txt").delete();
 			out = new PrintWriter(new BufferedWriter(new FileWriter(
 					"list.txt")));
-			out.println("./test/unittest/unit-test-files/fakeName.txt");
-			out.println("./test/unittest/unit-test-files/fakeStart.txt");
-			out.println("./test/unittest/unit-test-files/fakeFinish.txt");
+			out.println("acceptanceTest/result/17_unit/namnfil.txt");
+			out.println("acceptanceTest/result/17_unit/starttider.txt");
+			out.println("acceptanceTest/result/17_unit/maltider1.txt");
+			out.println("acceptanceTest/result/17_unit/maltider2.txt");
 			out.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		try {
 			IOHandler.main(null);
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./test/unittest/unit-test-files/ResultFile.txt"));
-			in.readLine();
 
 		} catch (Exception e) {
 			fail("Failed to write to file");
 			e.printStackTrace();
 		}
 	}
-
+*/
 	@Test
 	public void testMultipleFinishFiles() {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(new BufferedWriter(new FileWriter(
 					"list.txt")));
-			out.println("./test/unittest/unit-test-files/fakeName.txt");
-			out.println("./test/unittest/unit-test-files/fakeStart.txt");
-			out.println("./test/unittest/unit-test-files/fakeFinish (copy).txt");
-			out.println("./test/unittest/unit-test-files/fakeFinish (another copy).txt");
+			out.println("acceptanceTest/result/17_unit/namnfil.txt");
+			out.println("acceptanceTest/result/17_unit/starttider.txt");
+			out.println("acceptanceTest/result/17_unit/maltider1.txt");
+			out.println("acceptanceTest/result/17_unit/maltider2.txt");
 			out.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -62,4 +62,5 @@ public class FileHandlingTest {
 			e.printStackTrace();
 		}
 	}
+	
 }

@@ -33,6 +33,6 @@ public class IOHandler {
 		}
 		//sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 		sorter.createResultFile("ResultFile.txt");
-		sorter.createSortedResultsFile("SortedResultFile.txt");
+		//sorter.createSortedResultsFile("SortedResultFile.txt");
 	}
 }
