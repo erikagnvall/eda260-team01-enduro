@@ -5,6 +5,8 @@ import java.io.FileReader;
 
 import javax.swing.JOptionPane;
 
+import InputHandling.ConfigParser;
+
 /**
  * Handles I/O.
  * 
@@ -25,8 +27,36 @@ public class IOHandler {
 	 *             In case of an I/O error.
 	 */
 	public static void main(String[] args) throws Exception {
+		
+		ConfigParser handler = new ConfigParser();
+		Sorter sorter;
+		
+		if(handler.getStringConf("race").compareTo("lap")==0) {
+			sorter = new LapRaceSorter();
+		} else {
+			//marathonsorter (key==marathon)
+			sorter = new MarathonSorter();
+		}
+		
+		BufferedReader in = new BufferedReader(new FileReader(handler.getStringConf("input")));
+		sorter.readNameFile(in.readLine());
+		sorter.readStartFile(in.readLine());
+		while (in.ready()) {
+			sorter.readFinishFile(in.readLine());
+		}
+		
+		if(handler.getStringConf("sorting").compareTo("number")==0) {
+			//sort by number
+			sorter.createResultFile(handler.getStringConf("output"));
+		} else {
+			sorter.createSortedResultsFile(handler.getStringConf("output"));
+		}
+		
+		JOptionPane.showMessageDialog(null, "Sortering klar");
+		/*
+		 * (the old version with only lapracesorter
+		 * 
 		LapRaceSorter sorter = new LapRaceSorter();
-
 		BufferedReader in = new BufferedReader(new FileReader("list.txt"));
 		sorter.readNameFile(in.readLine());
 		sorter.readStartFile(in.readLine());
@@ -37,5 +67,6 @@ public class IOHandler {
 		sorter.createResultFile("ResultFile.txt");
 		//sorter.createSortedResultsFile("SortedResultFile.txt");
 		JOptionPane.showMessageDialog(null, "Sortering klar");
+		*/
 	}
 }
