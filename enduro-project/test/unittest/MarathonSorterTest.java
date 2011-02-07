@@ -26,7 +26,7 @@ public class MarathonSorterTest {
 
 		try {
 
-			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			BufferedReader in = new BufferedReader(new FileReader("result.temp.mar"));
 			in.readLine();
 			in.readLine();
 			assertEquals(in.readLine(), "1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera måltider? 13.00.00 13.23.34");

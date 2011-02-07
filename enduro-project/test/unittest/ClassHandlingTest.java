@@ -15,16 +15,16 @@ public class ClassHandlingTest {
 
 	@Test
 	public void testClassRegistration() {
-		assertEquals(PVGRunner.testSorter.getClasses().get(0).getName(), "SENIOR");
-		assertEquals(PVGRunner.testSorter.getClasses().get(1).getName(), "JUNIOR");
+		assertEquals(PVGRunner.lapSorter.getClasses().get(0).getName(), "SENIOR");
+		assertEquals(PVGRunner.lapSorter.getClasses().get(1).getName(), "JUNIOR");
 	}
 
 	@Test
 	public void testClassRegContestant() {
-		Iterator itr = PVGRunner.testSorter.getClasses().get(0).getList().iterator();
+		Iterator itr = PVGRunner.lapSorter.getClasses().get(0).getList().iterator();
 		assertEquals(itr.next(), new Integer(1));
 		assertEquals(itr.next(), new Integer(2));
-		itr = PVGRunner.testSorter.getClasses().get(1).getList().iterator();
+		itr = PVGRunner.lapSorter.getClasses().get(1).getList().iterator();
 		assertEquals(itr.next(), new Integer(101));
 	}
 	

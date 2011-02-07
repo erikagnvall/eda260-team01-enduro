@@ -8,7 +8,8 @@ import enduro.Sorter;
 
 public class PVGRunner extends org.junit.runners.BlockJUnit4ClassRunner {
 
-	public static Sorter testSorter;
+	public static Sorter lapSorter;
+	public static Sorter marathonSorter;
 	public static boolean testSuccess = true;
 	
 	public PVGRunner(Class<?> klass) throws InitializationError {
@@ -21,26 +22,25 @@ public class PVGRunner extends org.junit.runners.BlockJUnit4ClassRunner {
 			String[] runners = t.nameList();
 			String[] startTimes = t.startList();
 			String[] finishTimes = t.finishList();
-			switch(t.sorter()) {
-			case lap:
-				testSorter = new LapRaceSorter();
-				break;
-			case marathon:
-				testSorter = new MarathonSorter();
-				break;
-			}
+			lapSorter = new LapRaceSorter();
+			marathonSorter = new MarathonSorter();
+			
 			try {
 				for(String runner: runners) {
-					testSorter.readNameFile(ListTest.testLocation + runner);
+					marathonSorter.readNameFile(ListTest.testLocation + runner);
+					lapSorter.readNameFile(ListTest.testLocation + runner);
 				}
 				for(String start: startTimes) {
-					testSorter.readStartFile(ListTest.testLocation + start);
+					marathonSorter.readStartFile(ListTest.testLocation + start);
+					lapSorter.readStartFile(ListTest.testLocation + start);
 				}
 				for(String end: finishTimes) {
-					testSorter.readFinishFile(ListTest.testLocation + end);
+					marathonSorter.readFinishFile(ListTest.testLocation + end);
+					lapSorter.readFinishFile(ListTest.testLocation + end);
 				}
 				
-				testSorter.createResultFile(t.resultLocation());
+				lapSorter.createResultFile(t.resultLocation() + ".lap");
+				marathonSorter.createResultFile(t.resultLocation() + ".mar");
 			} catch(Exception E) {
 				testSuccess = false;
 			}

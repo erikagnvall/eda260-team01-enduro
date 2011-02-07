@@ -25,7 +25,7 @@ public class WrongInputTest {
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(
-					"result.temp"));//
+					"result.temp.mar"));//
 			in.readLine();
 			in.readLine();
 			in.readLine();
@@ -46,7 +46,7 @@ public class WrongInputTest {
 	public void testManyFinishTime() {
 
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			BufferedReader in = new BufferedReader(new FileReader("result.temp.mar"));
 			in.readLine();
 			in.readLine();
 			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera måltider? 13.00.00 13.23.34",in.readLine());
@@ -62,7 +62,7 @@ public class WrongInputTest {
 	public void testFastTime() {
 
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("result.temp"));
+			BufferedReader in = new BufferedReader(new FileReader("result.temp.mar"));
 			in.readLine();
 			in.readLine();
 			in.readLine();

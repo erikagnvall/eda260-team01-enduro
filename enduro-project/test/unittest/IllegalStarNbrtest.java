@@ -26,14 +26,14 @@ public class IllegalStarNbrtest {
 	@Test
 	public void testNoticeIllegalStart() {
 
-		assertTrue(PVGRunner.testSorter.getClasses().contains(new RaceClass("Icke existerande startnummer")));
+		assertTrue(PVGRunner.lapSorter.getClasses().contains(new RaceClass("Icke existerande startnummer")));
 
 	}
 	
 	@Test
 	public void testRightAmountIllegalStart() {
 
-		assertEquals(1, PVGRunner.testSorter.getClasses().get(PVGRunner.testSorter.getClasses().indexOf(new RaceClass("Icke existerande startnummer"))).size());
+		assertEquals(1, PVGRunner.lapSorter.getClasses().get(PVGRunner.lapSorter.getClasses().indexOf(new RaceClass("Icke existerande startnummer"))).size());
 
 	}
 	
