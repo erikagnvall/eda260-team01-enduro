@@ -1,4 +1,4 @@
-package InputHandling;
+package enduro.InputHandler;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

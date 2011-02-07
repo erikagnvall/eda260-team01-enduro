@@ -5,7 +5,8 @@ import java.io.FileReader;
 
 import javax.swing.JOptionPane;
 
-import InputHandling.ConfigParser;
+import enduro.InputHandler.ConfigParser;
+
 
 /**
  * Handles I/O.
