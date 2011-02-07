@@ -34,11 +34,13 @@ public abstract class Sorter {
 	protected StringBuilder trail;
 	protected String nameInformation = "";
 	protected int extrainformationNum = 0; // defined as: namefile semi colons
+	protected Comparator<Racer> comparer;
 
 	// minus 1 (due to racer number is
 	// handled separately
 
-	public Sorter() {
+	public Sorter(Comparator<Racer> comparer) {
+		this.comparer = comparer;
 		racerData = new RacerData();
 		trail = new StringBuilder();
 	}
