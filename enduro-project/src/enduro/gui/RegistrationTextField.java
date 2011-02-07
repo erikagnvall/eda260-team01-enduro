@@ -143,6 +143,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		requestFocus();
 	}
 
+	/**
+	 * Saved the pre-registered time.
+	 */
 	private void storeTime(){
 		String time = getTime();
 		try {
@@ -156,11 +159,17 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		storedTime.setText(time);
 	}
 
+	/**
+	 * Removes the saved time file.
+	 */
 	public void deleteStoredTimeFile() {
 		File f = new File("storedTimeOfUnknownDriver.txt");
 		f.delete();
 	}
 
+	/**
+	 * Checks if a saved time file exists and reads the time from it.
+	 */
 	public void checkForSavedTimeFile(){
 		BufferedReader in;
 		try {
@@ -204,6 +213,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		}
 	}
 
+	/**
+	 * Returns a default number document.
+	 */
 	protected Document createDefaultModel() {
 		return new numberDocument();
 	}	
