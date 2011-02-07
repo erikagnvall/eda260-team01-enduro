@@ -1,14 +1,19 @@
-To add a new "section", use the following code:
-
-<div class="entry">
-	<a name="example"></a>
-	<h2>Example header</h2>
-	<p>
-		Example content. Put your info here.
-	</p>
-</div> <!-- end of .entry -->
-
-Put this below the last entry and before the line:
-</div> <!-- end of #content -->
-
-And don't forget to add you entry to the table of content.
+Stories done:
+3: Enkel resultatlista
+3.1: Datastrukturer
+3.2: Läs in filer
+3.3: Skriv ut
+3.4: Anpassa huvudprogram
+3.5: Acceptanstesta
+4: Personuppgifter
+5: Totaltid
+6: Felaktiga registreringar
+7: GUI för registreringar
+8: Registrering av tider 
+9: Varvlopp
+10: Flera skall kunna registrera måltider 
+11: Enkel masstart 
+12: Målgång där nummerplåten inte kan läsas i förväg
+13: Hantera klasser
+16: Hantera registreringar med otillåtna startnummer
+18: Sorterad resultatlista
