@@ -38,7 +38,7 @@ public class RegistrationGUI extends JFrame {
 
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
-		registrationTextField.checkForSavedTimeFile();
+		
 		
 		
 		RegretButton regret = new RegretButton("Avbryt", storedTime,

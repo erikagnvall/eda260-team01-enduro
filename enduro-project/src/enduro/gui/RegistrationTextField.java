@@ -16,6 +16,10 @@ import java.util.Calendar;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 
 import enduro.Registration;
 import enduro.racedata.Time;
@@ -57,7 +61,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			String time = getTime();
 			StringBuilder sb = new StringBuilder();
 			for (int i = Integer.parseInt(text[0]); i < Integer
-					.parseInt(text[1]) + 1; i++) {
+			.parseInt(text[1]) + 1; i++) {
 				sb.append(i);
 				sb.append(';');
 				sb.append(' ');
@@ -83,7 +87,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				sb.append(storedTime.getText());
 				storedTime.empty();
 			}
-			
+
 			try {
 				saveToFile(Integer.parseInt(getText()), new Time(getTime()));
 				registrationTextArea.update(sb.toString());
@@ -96,8 +100,8 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		setText("");
 		requestFocus();
 	}
-	
-	
+
+
 	private void storeTime(){
 		String time = getTime();
 		try {
@@ -109,21 +113,21 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		}
 		storedTime.setText(time);
 	}
-	
+
 	public void deleteStoredTimeFile() {
 		File f = new File("storedTimeOfUnknownDriver.txt");
 		f.delete();
 	}
-	
+
 	public void checkForSavedTimeFile(){
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader("storedTimeOfUnknownDriver.txt"));
 			storedTime.setText(in.readLine());
 		} catch (FileNotFoundException e1) {
-		
+
 		}catch(IOException e){
-			
+
 		}
 	}
 
@@ -154,6 +158,35 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			registration.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	protected Document createDefaultModel() {
+		return new numberDocument();
+	}	
+	
+	/**
+	 * A class that contains a method that is called every time a new character
+	 * is entered in the text field. Checks if the character is a digit or "," or "-".s
+	 * 
+	 *
+	 */
+	private class numberDocument extends PlainDocument {
+
+		public void insertString(int offs, String str, AttributeSet a) 
+		throws BadLocationException {
+
+			if (str == null) {
+				return;
+			}
+			char[] number = str.toCharArray();
+			for (int i = 0; i < number.length; i++) {
+				if(!Character.isDigit(number[i]) && number[i] != ',' && number[i] != '-')
+					return;
+	
+			}
+			
+			super.insertString(offs, new String(number), a);
 		}
 	}
 
