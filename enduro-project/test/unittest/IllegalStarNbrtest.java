@@ -11,53 +11,30 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import regressiontest.ListTest;
+import regressiontest.PVGRunner;
 
 import enduro.MarathonSorter;
 import enduro.racedata.RaceClass;
 
+@ListTest(sorter=ListTest.Sorter.marathon)
+@RunWith(PVGRunner.class)
 public class IllegalStarNbrtest {
-	private MarathonSorter sorter;
-
-	@Before
-	public void setUp() {
-		sorter = new MarathonSorter();
-	}
 
 	@Test
 	public void testNoticeIllegalStart() {
 
-		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeExtraStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeExtraFinish.txt");
-			
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-		assertTrue(sorter.getClasses().contains(new RaceClass("Icke existerande startnummer")));
+		assertTrue(PVGRunner.testSorter.getClasses().contains(new RaceClass("Icke existerande startnummer")));
 
 	}
+	
 	@Test
 	public void testRightAmountIllegalStart() {
 
-		try {
-			sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
-			sorter
-					.readStartFile("./test/unittest/unit-test-files/fakeExtraStart.txt");
-			sorter
-					.readFinishFile("./test/unittest/unit-test-files/fakeExtraFinish.txt");
-			
-			sorter
-					.createResultFile("./test/unittest/unit-test-files/fakeStartResult.txt");
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-		ArrayList<RaceClass> temp = sorter.getClasses();
-		assertEquals(3, temp.get(temp.indexOf(new RaceClass("Icke existerande startnummer"))).size());
+		assertEquals(1, PVGRunner.testSorter.getClasses().get(PVGRunner.testSorter.getClasses().indexOf(new RaceClass("Icke existerande startnummer"))).size());
 
 	}
+	
 }
