@@ -11,6 +11,11 @@ public class LapRaceSorter extends Sorter {
 	ArrayList<Time> sortedTimeList = new ArrayList<Time>();
 	boolean impossibleLapTime = false;
 
+	public LapRaceSorter() {
+		//Parameter should be comparator for lap race
+		super(null);
+	}
+	
 	// Used in sortedList
 	protected int compareType() {
 		return Racer.LAP_COMPARE;
