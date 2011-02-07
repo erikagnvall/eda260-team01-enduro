@@ -41,7 +41,7 @@ public class RegistrationGUI extends JFrame {
 
 		RegretButton regret = new RegretButton("Avbryt", storedTime,
 				registrationTextField);
-		registrationTextField.setRegretButton(regret);
+		//registrationTextField.setRegretButton(regret);
 		regret.setVisible(false);
 
 		registrationTextField.checkForSavedTimeFile();

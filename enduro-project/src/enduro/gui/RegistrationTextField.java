@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
@@ -28,7 +30,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;
 	private StoredTime storedTime;
-	private RegretButton regret;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -56,23 +57,19 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		String currentTime = getTime();
+		Pattern p = Pattern.compile("((\\d+)|(\\d+-\\d+))((,\\d+((,\\d+)|(-\\d+))?))*");
+		Matcher m = p.matcher(getText());
+		boolean invalid = !m.matches();
 		String[] commaSeparated = getText().split(",");
 		boolean isCommaSeparated = false;
-		if (commaSeparated.length > 1) {
+		//commaseperated handling
+		if (commaSeparated.length > 1 && !invalid && !getText().equals("")) {
 			isCommaSeparated = true;
-			for (String s : commaSeparated) {
-				String[] dashSeparated = s.split("-");
+			for (String raceNbr : commaSeparated) {
+				String[] dashSeparated = raceNbr.split("-");
 				if (dashSeparated.length > 1) {
 					StringBuilder sb = new StringBuilder();
-					for (int i = Integer.parseInt(dashSeparated[0]); i < Integer
-							.parseInt(dashSeparated[1]) + 1; i++) {
-						sb.append(i);
-						sb.append(';');
-						sb.append(' ');
-						sb.append(currentTime);
-						sb.append('\n');
-						saveToFile(i, new Time(currentTime));
-					}
+					makeRow(currentTime, dashSeparated, sb);
 					try {
 						sb.deleteCharAt(sb.length() - 1);
 						registrationTextArea.update(sb.toString());
@@ -81,45 +78,42 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 					}
 				} else {
 					StringBuilder sb = new StringBuilder();
-					sb.append(s);
+					sb.append(raceNbr);
 					sb.append(';');
 					sb.append(' ');
 					if (storedTime.isEmpty()) {
 						sb.append(currentTime);
 					} else {
-						sb.append(storedTime.getText());
-						storedTime.empty();
+						sb.append(getStoredTime().toString());
 					}
 
 					try {
-						saveToFile(Integer.parseInt(s), new Time(currentTime));
+						if (storedTime.isEmpty()) {
+							saveToFile(Integer.parseInt(raceNbr), new Time(currentTime));
+						} else {
+							saveToFile(Integer.parseInt(raceNbr), getStoredTime());
+						}
 						registrationTextArea.update(sb.toString());
 					} catch (NumberFormatException e) {
 
 					}
 				}
 			}
+			storedTime.empty();
 		}
+		//Dashseperated handling
 		String[] dashSeparated = getText().split("-");
-		if (dashSeparated.length > 1 && !isCommaSeparated) {
+		if (dashSeparated.length > 1 && !isCommaSeparated && !invalid && !getText().equals("")) {
 			StringBuilder sb = new StringBuilder();
-			for (int i = Integer.parseInt(dashSeparated[0]); i < Integer
-					.parseInt(dashSeparated[1]) + 1; i++) {
-				sb.append(i);
-				sb.append(';');
-				sb.append(' ');
-				sb.append(currentTime);
-				sb.append('\n');
-				saveToFile(i, new Time(currentTime));
-			}
+			makeRow(currentTime, dashSeparated, sb);
 			try {
 				sb.deleteCharAt(sb.length() - 1);
 				registrationTextArea.update(sb.toString());
 			} catch (StringIndexOutOfBoundsException e) {
 
 			}
-		} else if (!getText().equals("")) {
-			deleteStoredTimeFile();
+			storedTime.empty();
+		} else if (!getText().equals("") && !invalid) {
 			StringBuilder sb = new StringBuilder();
 			sb.append(getText());
 			sb.append(';');
@@ -127,27 +121,58 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			if (storedTime.isEmpty()) {
 				sb.append(currentTime);
 			} else {
-				sb.append(storedTime.getText());
-				storedTime.empty();
-				regret.setVisible(false);
+				sb.append(getStoredTime().toString());
 			}
 
 			try {
-				saveToFile(Integer.parseInt(getText()), new Time(currentTime));
+				if (storedTime.isEmpty()) {
+					saveToFile(Integer.parseInt(getText()), new Time(currentTime));
+				} else {
+					saveToFile(Integer.parseInt(getText()), getStoredTime());
+				}
 				registrationTextArea.update(sb.toString());
 			} catch (NumberFormatException e) {
 
 			}
-		} else if (getText().equals(("")) && storedTime.isEmpty()) {
-			regret.setVisible(true);
-			storeTime();
+			storedTime.empty();
+		} else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
+			if(storedTime.isEmpty())
+				storeTime();
 		}
 		setText("");
 		requestFocus();
 	}
-
 	/**
-	 * Saved the pre-registered time.
+	 * Creates a new row in sb.
+	 * @param currentTime
+	 * @param dashSeparated
+	 * @param sb
+	 */
+	private void makeRow(String currentTime, String[] dashSeparated,
+			StringBuilder sb) {
+		for (int i = Integer.parseInt(dashSeparated[0]); i < Integer
+				.parseInt(dashSeparated[1]) + 1; i++) {
+			sb.append(i);
+			sb.append(';');
+			sb.append(' ');
+			if(storedTime.isEmpty()){
+				sb.append(currentTime);
+			}
+			else{
+				sb.append(getStoredTime().toString());
+			}
+			sb.append('\n');
+			if (storedTime.isEmpty()) {
+				saveToFile(i, new Time(currentTime));
+			}else{
+				saveToFile(i, getStoredTime());
+			}
+		}
+		
+	}
+	
+	/**
+	 * Saves the current time to a text file.
 	 */
 	private void storeTime(){
 		String time = getTime();
@@ -161,17 +186,17 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		}
 		storedTime.setText(time);
 	}
-
+	
 	/**
-	 * Removes the saved time file.
+	 * Deletes the file storedTimeOfUnknownDriver.txt.
 	 */
 	public void deleteStoredTimeFile() {
 		File f = new File("storedTimeOfUnknownDriver.txt");
 		f.delete();
 	}
-
+	
 	/**
-	 * Checks if a saved time file exists and reads the time from it.
+	 * Checks if storedTimeOfUnknownDriver.txt file exists.
 	 */
 	public void checkForSavedTimeFile(){
 		BufferedReader in;
@@ -179,14 +204,28 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			in = new BufferedReader(new FileReader(
 					"storedTimeOfUnknownDriver.txt"));
 			storedTime.setText(in.readLine());
-			if (!storedTime.isEmpty()) {
-				regret.setVisible(true);
-			}
 		} catch (FileNotFoundException e1) {
 
 		} catch (IOException e) {
 
 		}
+	}
+	/**
+	 * Reads the temporary stored file, containing the last entered unknown-driver time.
+	 * @return
+	 */
+	public Time getStoredTime(){
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader(
+					"storedTimeOfUnknownDriver.txt"));
+			return new Time(in.readLine());
+		} catch (FileNotFoundException e1) {
+
+		} catch (IOException e) {
+
+		}
+		return null;
 	}
 
 	/**
@@ -218,9 +257,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Returns a default number document.
+	 * Used by JTextField and creates a new numberDocument object.
 	 */
 	protected Document createDefaultModel() {
 		return new numberDocument();
@@ -229,8 +268,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	/**
 	 * A class that contains a method that is called every time a new character
 	 * is entered in the text field. Checks if the character is a digit or "," or "-".s
-	 * 
-	 *
 	 */
 	private class numberDocument extends PlainDocument {
 
@@ -243,15 +280,12 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			char[] number = str.toCharArray();
 			for (int i = 0; i < number.length; i++) {
 				if(!Character.isDigit(number[i]) && number[i] != ',' && number[i] != '-')
-					return;
-	
+				return;
 			}
 			
 			super.insertString(offs, new String(number), a);
 		}
-	}
-	public void setRegretButton(RegretButton regret){
-		this.regret = regret;
+		
 	}
 
 }
