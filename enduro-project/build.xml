@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pvg.makejar" default="makeGUI" basedir=".">
+<project name="pvg.makejar" default="release" basedir=".">
+	
+	<target name="release" depends="makeGUI">
+		<delete dir="release" />
+		<mkdir dir="release" />
+		<move file="Backend.jar" todir="release" />
+		<move file="GUI.jar" todir="release" />
+		<copy todir="release/docs">
+			<fileset dir="docs"/>
+		</copy>
+		<copy todir="release/testfiles">
+			<fileset dir="acceptanceTest/result/17_unit"/>
+		</copy>
+		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
+	</target>
 	
 	<target name ="makeRegistrator" description="Create a jar for the backend" depends="junit">
 		
