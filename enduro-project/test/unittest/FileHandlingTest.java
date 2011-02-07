@@ -57,6 +57,8 @@ public class FileHandlingTest {
 
 		try {
 			IOHandler.main(null);
+			File f = new File("list.txt");
+			f.delete();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
