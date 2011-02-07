@@ -23,31 +23,12 @@
 			<div class="entry">
 				<a name="installation"></a>
 				<h3 style="display:none;">Installation</h3>
-				<p>För att köra programmet, ladda ner de två JAR-filerna, Backend.jar samt GUI.jar, och spara i en mapp med valfritt namn.</p>
+				<p>För att köra programmet, ladda ner JAR-filen Backend.jar och spara den i den mapp tidsfilerna ligger i.</p>
 			</div> <!-- end of .entry -->
 		</div> <!-- end of .subsection -->
 		
 		<div class="subsection">
 			<h2>Anv&auml;ndning</h2>
-			<div class="entry">
-				<a name="GUI_usage"></a>
-				<h3>Användning av grafiskt gränssnitt.</h3>
-				<h4>Uppstart av det grafiska gränssnittet</h4>
-				<p>Starta det grafiska gränssnittet genom att dubbelklicka på filen GUI.jar. Då öppnas ett fönster som ser ut som på bilden nedan.</p>
-				<img src="http://img833.imageshack.us/img833/1593/screenshotpbz.png" width="600" alt="" />
-				<h4>Singelregistrering</h4>
-				<p>För att registrera en förare, skriv in förarnummer i registreringsrutan och tryck på Registrera-knappen eller Enter-tangenten på ditt tangentbord. Nu dyker förarnummer med tillhörande tid upp i utdatarutan.</p>
-				<h4>Masstart</h4>
-				<p>För att registrera flera förare samtidigt, så kallad masstart, skriv in första förarens nummer, följt av bindestreck och sedan sista förarens nummer. Exempelvis '1-15' startar förarna med nummer mellan 1 och 15 när Registreringsknappen trycks ned.</p>
-				<h4>Förregistrerings av tid</h4>
-				<p>Vid förregistrering, trycks registreringsknappen ned och aktuell tid visas till höger om Registreringsknappen. För att sedan associera den sparade tiden med ett förarnummer, skrivs förarnumret in i registreringsrutan och Registreringsknappen trycks ned. Då dyker förarnumret och tiden upp i utdatarutan. Om man råkat förregistrera av misstag, trycker man helt enkelt på Undo-knappen och den förregistrerade tiden försvinner.</p>
-				<h4>Avstängning av gränssnittet</h4>
-				<p>Programmet avslutas enkelt genom att trycka på krysset i hörnet av fönstret. Tiderna sparas kontinuerligt medan programmet kör och ligger nu i en fil med namn times.txt i samma mapp som programmet.</p>
-			</div> <!-- end of .entry -->
-			
-			<div class="entry">
-				<a name="backend_usage"></a>
-				<h3>Användning av backend</h3> <!-- Borde kanske döpa om backend? -->
 				<p>Backend kallas den jar-fil som används för att skapa resultatsfilen utifrån de registreingsfiler man har. Programmet behöver en fil som heter list.txt i samma mapp som programmet finns. Denna fil ska innehålla en lista på filer enligt följande mönster:</p>
 				"namnfil.txt"<br />
 				"starttidsFil.txt"<br />
@@ -55,7 +36,9 @@
 				"målfil2.txt"<br />
 				...
 				<p>På första raden återfinns filen med namn på förarna, på rad två återfinns filen för starttider följt av en eller flera målfiler på separata rader. Dessa slås sedan ihop till en resultatsfil som läggs i samma mapp som programmet med namnet "ResultFile.txt".</p>
-			</div> <!-- end of .entry -->
+				<p>Antalet lopp under ett varvlopp kommer automatiskt sättas till det antal lopp den förare med flest genomförda lopp i sin klass genomfört.</p>
+				<p> Den tid som bedöms som en omöjlig tid är fördefinierad till under en timme</p>
+				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit registrerade sparas i en fil som heter storedTimeOfUnknownDriver.txt, denna skall ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax som tidigare tidregistreringar använder.</p>
 		</div> <!-- end of .subsection -->
 	</div> <!-- end of #content -->
 	
