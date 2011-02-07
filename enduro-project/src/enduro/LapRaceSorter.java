@@ -77,7 +77,7 @@ public class LapRaceSorter extends Sorter {
 
 	@Override
 	protected String finishTime(int i) {
-		StringBuilder out = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		Time tempTime;
 		if (startTime == null) {
 			tempTime = times.get(0);
@@ -87,23 +87,25 @@ public class LapRaceSorter extends Sorter {
 		}
 		impossibleLapTime = false;
 		for (Time t : times) {
-			out.append(t.toString());
-			out.append("; ");
+			stringBuilder.append(t.toString());
+			stringBuilder.append("; ");
+
 			if (tempTime.getTotalTime(t).compareTo(new Time("00.15.00")) < 0) {
 				impossibleLapTime = true;
 			}
 			tempTime = t;
 		}
-		out.delete(out.length() - 2, out.length());
+		stringBuilder
+				.delete(stringBuilder.length() - 2, stringBuilder.length());
 
 		if (times.size() < numLaps) {
-			out.append(";");
+			stringBuilder.append(";");
 		}
 		if (impossibleLapTime) {
-			out.append("; ");
-			out.append("Omöjlig varvtid?");
+			stringBuilder.append("; ");
+			stringBuilder.append("Omöjlig varvtid?");
 		}
-		return out.toString();
+		return stringBuilder.toString();
 	}
 
 	protected String noTotalTime() {

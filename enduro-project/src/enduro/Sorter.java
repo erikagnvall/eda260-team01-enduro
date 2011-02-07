@@ -36,8 +36,10 @@ public abstract class Sorter {
 	}
 
 	/**
-	 * Reads a file with start times and populates the data structure..
-	 * detects if any number isn't registered to a contestant and give them a specific non registered class
+	 * Reads a file with start times and populates the data structure.. detects
+	 * if any number isn't registered to a contestant and give them a specific
+	 * non registered class
+	 * 
 	 * @param fileName
 	 *            The name of the file.
 	 */
@@ -58,8 +60,10 @@ public abstract class Sorter {
 	}
 
 	/**
-	 * Reads a file with finish times and populates the data structure.
-	 * detects if any number isn't registered to a contestant and give them a specific non registered class
+	 * Reads a file with finish times and populates the data structure. detects
+	 * if any number isn't registered to a contestant and give them a specific
+	 * non registered class
+	 * 
 	 * @param fileName
 	 *            The name of the file.
 	 */
@@ -279,19 +283,7 @@ public abstract class Sorter {
 	 * @return a <code>String</code> containing the total time on the format
 	 *         "hh.mm.ss".
 	 */
-	protected String totalTime(int i) {
-		String total;
-		try {
-			Time totalTime = startTime.getTotalTime(finishTime);
-			total = totalTime.toString();
-			Time fastTime = new Time(0, 15, 0);
-			if (fastTime.compareTo(totalTime) > 0)
-				trail.append("; Omöjlig Totaltid?");
-		} catch (NullPointerException e) {
-			total = "--.--.--";
-		}
-		return total;
-	}
+	protected abstract String totalTime(int i);
 
 	/**
 	 * Formats the finish time according to how it's supposed to be in the
