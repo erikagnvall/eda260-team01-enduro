@@ -1,3 +1,4 @@
+StartNr; Namn; Klubb; MC
 SENIOR
 1; Anders Asson; FMCK Astad; ATM
 2; Bengt Bsson; FMCK Bstad; BTM
