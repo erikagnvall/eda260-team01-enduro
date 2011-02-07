@@ -3,6 +3,8 @@ package enduro;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+import javax.swing.JOptionPane;
+
 /**
  * Handles I/O.
  * 
@@ -34,5 +36,6 @@ public class IOHandler {
 		//sorter.readNameFile("./test/unittest/unit-test-files/fakeName.txt");
 		sorter.createResultFile("ResultFile.txt");
 		//sorter.createSortedResultsFile("SortedResultFile.txt");
+		JOptionPane.showMessageDialog(null, "Sortering klar");
 	}
 }
