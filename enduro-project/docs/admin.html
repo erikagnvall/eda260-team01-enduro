@@ -30,7 +30,7 @@
 		<div class="subsection">
 			<h2>Anv&auml;ndning</h2>
 				<p>Backend kallas den jar-fil som används för att skapa resultatsfilen utifrån de registreringsfiler man har.</p>
-				<p>Programmet kan konfigureras med hjälp av en konfigfil som ska ligga i samma mapp med namnet "config.conf". Finns ingen config fil sorteras 					programmet enligt ett maratonrace med utgång från indatafilen "list.txt", samma sak gäller om indata saknas i konfigfilen</p>
+				<p>Programmet kan konfigureras med hjälp av en konfigfil som ska ligga i samma mapp med namnet "config.conf". Finns ingen config fil sorteras 					programmet med utgång från indatafilen "list.txt", samma sak gäller om indatainformation saknas i konfigfilen</p>
 				<p>Inställningsalternativen förklaras i konfigfilen men är till största del på enklare engelska av tekniska skäl.</p>
 				
 				<p>Programmet behöver en listfil som behöver innehålla följande information i samma ordning som den visas.</p>
@@ -43,7 +43,7 @@
 				<p>Antalet lopp under ett varvlopp kommer automatiskt sättas till det antal lopp den förare med flest genomförda lopp i sin klass genomfört.</p>
 				<p> Den tid som bedöms som en omöjlig tid är fördefinierad till under en timme</p>
 				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit registrerade sparas i en fil som heter storedTimeOfUnknownDriver.txt, denna skall ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax som tidigare tidregistreringar använder.</p>
-				<p> Samtliga filer som skall läsas in skall ligga i samma mapp som backend.jar och vara sparade i formatet .txt </p>
+				<p> Samtliga filer som skall läsas in skall beskrivas i listfilen med relativ länkning.</p>
 				<div class="entry">
 					<a name="format_namefile"></a>
 					<h3>Format av namnfil</h3>
