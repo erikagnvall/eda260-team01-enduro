@@ -28,6 +28,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;
 	private StoredTime storedTime;
+	private RegretButton regret;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -128,6 +129,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			} else {
 				sb.append(storedTime.getText());
 				storedTime.empty();
+				regret.setVisible(false);
 			}
 
 			try {
@@ -137,6 +139,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 			}
 		} else if (getText().equals(("")) && storedTime.isEmpty()) {
+			regret.setVisible(true);
 			storeTime();
 		}
 		setText("");
@@ -243,6 +246,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			
 			super.insertString(offs, new String(number), a);
 		}
+	}
+	public void setRegretButton(RegretButton regret){
+		this.regret = regret;
 	}
 
 }

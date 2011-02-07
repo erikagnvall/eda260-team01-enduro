@@ -31,6 +31,7 @@ public class RegretButton extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		setVisible(false);
 		storedTime.empty();
 		registrationTextField.requestFocus();
 		registrationTextField.deleteStoredTimeFile();
