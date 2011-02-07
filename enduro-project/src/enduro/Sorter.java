@@ -189,7 +189,7 @@ public abstract class Sorter {
 		printToHtml(fileName);
 	}
 
-	private void printToHtml(String fileName) {
+	public void printToHtml(String fileName) {
 		TxtToHtml txtHtml = new TxtToHtml();
 		try {
 			txtHtml.makeHtmlFile(fileName, fileName + ".html");

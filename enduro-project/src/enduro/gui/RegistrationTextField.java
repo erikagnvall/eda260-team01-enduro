@@ -23,6 +23,7 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 import enduro.Registration;
+import enduro.TxtToHtml;
 import enduro.racedata.Time;
 
 @SuppressWarnings("serial")
@@ -58,12 +59,13 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 */
 	public void actionPerformed(ActionEvent ae) {
 		String currentTime = getTime();
-		Pattern p = Pattern.compile("((\\d+)|(\\d+-\\d+))((,\\d+((,\\d+)|(-\\d+))?))*");
+		Pattern p = Pattern
+				.compile("((\\d+)|(\\d+-\\d+))((,\\d+((,\\d+)|(-\\d+))?))*");
 		Matcher m = p.matcher(getText());
 		boolean invalid = !m.matches();
 		String[] commaSeparated = getText().split(",");
 		boolean isCommaSeparated = false;
-		//commaseperated handling
+		// commaseperated handling
 		if (commaSeparated.length > 1 && !invalid && !getText().equals("")) {
 			isCommaSeparated = true;
 			for (String raceNbr : commaSeparated) {
@@ -92,9 +94,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 					try {
 						deleteStoredTimeFile();
 						if (storedTime.isEmpty()) {
-							saveToFile(Integer.parseInt(raceNbr), new Time(currentTime));
+							saveToFile(Integer.parseInt(raceNbr), new Time(
+									currentTime));
 						} else {
-							saveToFile(Integer.parseInt(raceNbr), getStoredTime());
+							saveToFile(Integer.parseInt(raceNbr),
+									getStoredTime());
 						}
 						registrationTextArea.update(sb.toString());
 					} catch (NumberFormatException e) {
@@ -104,9 +108,10 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			}
 			storedTime.empty();
 		}
-		//Dashseperated handling
+		// Dashseperated handling
 		String[] dashSeparated = getText().split("-");
-		if (dashSeparated.length > 1 && !isCommaSeparated && !invalid && !getText().equals("")) {
+		if (dashSeparated.length > 1 && !isCommaSeparated && !invalid
+				&& !getText().equals("")) {
 			StringBuilder sb = new StringBuilder();
 			makeRow(currentTime, dashSeparated, sb);
 			try {
@@ -125,14 +130,15 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				sb.append(currentTime);
 			} else {
 				sb.append(getStoredTime().toString());
-				
+
 				regret.setVisible(false);
 			}
 
 			try {
 				deleteStoredTimeFile();
 				if (storedTime.isEmpty()) {
-					saveToFile(Integer.parseInt(getText()), new Time(currentTime));
+					saveToFile(Integer.parseInt(getText()), new Time(
+							currentTime));
 				} else {
 					saveToFile(Integer.parseInt(getText()), getStoredTime());
 				}
@@ -142,7 +148,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			}
 			storedTime.empty();
 		} else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
-			if(storedTime.isEmpty()) {
+			if (storedTime.isEmpty()) {
 				storeTime();
 				regret.setVisible(true);
 			}
@@ -150,8 +156,10 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		setText("");
 		requestFocus();
 	}
+
 	/**
 	 * Creates a new row in sb.
+	 * 
 	 * @param currentTime
 	 * @param dashSeparated
 	 * @param sb
@@ -163,26 +171,25 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			sb.append(i);
 			sb.append(';');
 			sb.append(' ');
-			if(storedTime.isEmpty()){
+			if (storedTime.isEmpty()) {
 				sb.append(currentTime);
-			}
-			else{
+			} else {
 				sb.append(getStoredTime().toString());
 			}
 			sb.append('\n');
 			if (storedTime.isEmpty()) {
 				saveToFile(i, new Time(currentTime));
-			}else{
+			} else {
 				saveToFile(i, getStoredTime());
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * Saves the current time to a text file.
 	 */
-	private void storeTime(){
+	private void storeTime() {
 		String time = getTime();
 		try {
 			PrintWriter out = new PrintWriter(new BufferedWriter(
@@ -194,7 +201,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		}
 		storedTime.setText(time);
 	}
-	
+
 	/**
 	 * Deletes the file storedTimeOfUnknownDriver.txt.
 	 */
@@ -202,11 +209,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		File f = new File("storedTimeOfUnknownDriver.txt");
 		f.delete();
 	}
-	
+
 	/**
 	 * Checks if storedTimeOfUnknownDriver.txt file exists.
 	 */
-	public void checkForSavedTimeFile(){
+	public void checkForSavedTimeFile() {
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader(
@@ -219,11 +226,14 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 		}
 	}
+
 	/**
-	 * Reads the temporary stored file, containing the last entered unknown-driver time.
+	 * Reads the temporary stored file, containing the last entered
+	 * unknown-driver time.
+	 * 
 	 * @return
 	 */
-	public Time getStoredTime(){
+	public Time getStoredTime() {
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader(
@@ -262,44 +272,50 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			registration = new Registration("times.txt");
 			registration.registerTime(number, t);
 			registration.close();
+			TxtToHtml txtHt = new TxtToHtml();
+			txtHt.makeHtmlFile("times.txt", "times.html");
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Used by JTextField and creates a new numberDocument object.
 	 */
 	protected Document createDefaultModel() {
 		return new numberDocument();
-	}	
-	
+	}
+
 	/**
 	 * A class that contains a method that is called every time a new character
-	 * is entered in the text field. Checks if the character is a digit or "," or "-".s
+	 * is entered in the text field. Checks if the character is a digit or ","
+	 * or "-".s
 	 */
 	private class numberDocument extends PlainDocument {
 
-		public void insertString(int offs, String str, AttributeSet a) 
-		throws BadLocationException {
+		public void insertString(int offs, String str, AttributeSet a)
+				throws BadLocationException {
 
 			if (str == null) {
 				return;
 			}
 			char[] number = str.toCharArray();
 			for (int i = 0; i < number.length; i++) {
-				if(!Character.isDigit(number[i]) && number[i] != ',' && number[i] != '-')
-				return;
+				if (!Character.isDigit(number[i]) && number[i] != ','
+						&& number[i] != '-')
+					return;
 			}
-			
+
 			super.insertString(offs, new String(number), a);
 		}
-		
+
 	}
 
 	public void setRegretButton(RegretButton regret) {
-		this.regret= regret;
-		
+		this.regret = regret;
+
 	}
 
 }
