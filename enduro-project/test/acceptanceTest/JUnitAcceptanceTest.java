@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -72,14 +73,35 @@ public class JUnitAcceptanceTest {
 			sort = new LapRaceSorter();
 		}
 		// System.out.println(startTimes[0]);
-		// System.out.println(testPath);
+		/*try {
+			FileWriter temp = new FileWriter("log.txt");
+			temp.append("startTimes:\n");
+			for(String t: startTimes)
+				if(!t.contains("~"))
+					temp.append(t + "\n");
+			temp.append("names:\n");
+			for(String t: runners)
+				if(!t.contains("~"))
+					temp.append(t + "\n");
+			temp.append("endtimes:\n");
+			for(String t: endTimes)
+				if(!t.contains("~"))
+					temp.append(t + "\n");
+			temp.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
 		try {
 			for (String runner : runners)
-				sort.readNameFile(testPath + runner);
+				if(!runner.contains("~"))
+					sort.readNameFile(testPath + runner);
 			for (String startLoc : startTimes)
-				sort.readStartFile(testPath + startLoc);
+				if(!startLoc.contains("~"))
+					sort.readStartFile(testPath + startLoc);
 			for (String endLoc : endTimes)
-				sort.readFinishFile(testPath + endLoc);
+				if(!endLoc.contains("~"))
+					sort.readFinishFile(testPath + endLoc);
 		} catch (Exception E) {
 			E.printStackTrace();
 			fileReadFail = true;
@@ -107,7 +129,8 @@ public class JUnitAcceptanceTest {
 
 		for (String test : facitFiles) {
 			if (test.startsWith("resultat_"))
-				tmp.add(new Object[] { test });
+				if(!test.contains("~"))
+					tmp.add(new Object[] { test });
 		}
 
 		// tmp.add(new Object[]{"resultat_6.txt"});
