@@ -119,9 +119,11 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 		
 		names.put(Integer.parseInt(racerdata[0]), temp);
 	}
-	public void addName(int startNr, String name, RaceClass raceClass){
+	public void addName(int startNr, int outputSemis, RaceClass raceClass){
 		ArrayList<String> temp = new ArrayList<String>();
-		temp.add(name);
+		for(int i = 0; i < outputSemis; i++) {
+			temp.add("");
+		}
 		names.put(startNr, temp);
 		classes.get(classes.indexOf(raceClass)).registerContestant(startNr);
 	}
@@ -135,6 +137,21 @@ public class RacerData implements Comparable<RacerData>, Iterable<RaceClass> {
 	 */
 	public String getName(int startNr) {
 		return names.get(startNr).get(0);
+	}
+	
+	
+	/**
+	 * Gets all racer information.
+	 * 
+	 * @param startNr
+	 *            the racer number.
+	 * @return The racer's name.
+	 */
+	public String getRacerInfo(int startNr) {
+		StringBuilder temp = new StringBuilder();
+		for(String info:names.get(startNr))
+			temp.append(info + "; ");
+		return temp.toString();
 	}
 
 	/**

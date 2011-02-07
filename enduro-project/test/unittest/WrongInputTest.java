@@ -35,7 +35,7 @@ public class WrongInputTest {
 			in.readLine();
 			in.readLine();
 			assertEquals(
-					"103; Erik Esson; 00.24.00; 12.00.00; 12.24.00; Flera starttider? 12.15.00; Flera måltider? 12.44.00 13.16.07",in.readLine());
+					"103; Erik Esson; Estad MCK; ETM; 00.24.00; 12.00.00; 12.24.00; Flera starttider? 12.15.00; Flera måltider? 12.44.00 13.16.07",in.readLine());
 			in.close();
 		} catch (Exception e) {
 			System.err.println(e);
@@ -49,7 +49,7 @@ public class WrongInputTest {
 			BufferedReader in = new BufferedReader(new FileReader("result.temp.mar"));
 			in.readLine();
 			in.readLine();
-			assertEquals("1; Anders Asson; 00.30.00; 12.00.00; 12.30.00; Flera måltider? 13.00.00 13.23.34",in.readLine());
+			assertEquals("1; Anders Asson; FMCK Astad; ATM; 00.30.00; 12.00.00; 12.30.00; Flera måltider? 13.00.00 13.23.34",in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e);
@@ -67,7 +67,7 @@ public class WrongInputTest {
 			in.readLine();
 			in.readLine();
 			
-			assertEquals("2; Bengt Bsson; 00.14.00; 12.00.00; 12.14.00; Flera måltider? 12.41.00 13.15.16; Omöjlig Totaltid?",in.readLine());
+			assertEquals("2; Bengt Bsson; FMCK Bstad; BTM; 00.14.00; 12.00.00; 12.14.00; Flera måltider? 12.41.00 13.15.16; Omöjlig Totaltid?",in.readLine());
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.err.println(e);

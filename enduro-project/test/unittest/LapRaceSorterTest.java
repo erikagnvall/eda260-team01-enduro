@@ -35,7 +35,7 @@ public class LapRaceSorterTest {
 					in.readLine());
 			in.readLine();
 			assertEquals(
-					"2; Bengt Bsson; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omöjlig varvtid?",
+					"2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omöjlig varvtid?",
 					in.readLine());
 			in.close();
 		} catch (Exception e) {

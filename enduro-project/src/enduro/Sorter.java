@@ -30,6 +30,7 @@ public abstract class Sorter {
 	protected Time finishTime;
 	protected StringBuilder trail;
 	protected String nameInformation = "";
+	protected int extrainformationNum = 0; //defined as: namefile semi colons minus 1 (due to racer number is handled separately
 
 	public Sorter() {
 		racerData = new RacerData();
@@ -53,7 +54,7 @@ public abstract class Sorter {
 						"Icke existerande startnummer");
 				if (!racerData.containsClass(raceClass))
 					racerData.addClass(raceClass);
-				racerData.addName(startNbr, "", raceClass);
+				racerData.addName(startNbr, extrainformationNum, raceClass);
 
 			}
 			racerData.addStartTime(startNbr, new Time(startingTimes.get(i)[1]));
@@ -77,7 +78,7 @@ public abstract class Sorter {
 						"Icke existerande startnummer");
 				if (!racerData.containsClass(raceClass))
 					racerData.addClass(raceClass);
-				racerData.addName(startNbr, "", raceClass);
+				racerData.addName(startNbr, extrainformationNum, raceClass);
 
 			}
 			racerData.addFinishTime(startNbr, new Time(finishTimes.get(i)[1]));
@@ -124,6 +125,7 @@ public abstract class Sorter {
 			namePart.append(information[i] + "; ");
 		}
 		this.nameInformation = namePart.toString();
+		this.extrainformationNum = information.length -1;
 		
 		for (int i = 1; i < names.size(); i++) {
 			try {
@@ -170,7 +172,7 @@ public abstract class Sorter {
 			out.println(titleRow(currentClass.iterator()));
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
-				String name = racerData.getName(i);
+				String racerInformation = racerData.getRacerInfo(i);
 				String start;
 				String finish = null;
 				String total = null;
@@ -200,7 +202,7 @@ public abstract class Sorter {
 				} else {
 					total = noTotalTime();
 				}
-				out.println(i + "; " + name + "; " + total + "; " + start
+				out.println(i + "; " + racerInformation + total + "; " + start
 						+ "; " + finish + trail.toString());
 				trail.delete(0, trail.length());
 			}
@@ -232,7 +234,7 @@ public abstract class Sorter {
 			Iterator<Integer> nbrItr = positions.iterator();
 			while (nbrItr.hasNext()) {
 				int i = nbrItr.next();
-				String name = racerData.getName(i);
+				String racerInformation = racerData.getRacerInfo(i);
 				String start;
 				String finish = null;
 				String total = null;
@@ -263,7 +265,7 @@ public abstract class Sorter {
 					total = noTotalTime();
 
 				}
-				out.println(i + "; " + name + "; " + total + "; " + start
+				out.println(i + "; " + racerInformation + total + "; " + start
 						+ "; " + finish + trail.toString());
 				trail.delete(0, trail.length());
 			}
