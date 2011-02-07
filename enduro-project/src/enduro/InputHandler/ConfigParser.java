@@ -28,7 +28,7 @@ public class ConfigParser {
 	}
 	
 	private void handleInput(String fileLocation) {
-		tmp.put("race", "lap");
+		tmp.put("race", "marathon");
 		tmp.put("sorting", "name");
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
