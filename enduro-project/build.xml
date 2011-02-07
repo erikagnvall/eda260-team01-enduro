@@ -13,7 +13,7 @@
 			<fileset dir="acceptanceTest/result/17_unit"/>
 		</copy>
 		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
-		
+		<copy file="config.conf" todir="release"/>
 		<zip destfile="release.zip" basedir="release"/>
 			
 			
