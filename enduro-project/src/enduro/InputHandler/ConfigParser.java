@@ -19,12 +19,35 @@ public class ConfigParser {
 	private HashMap<String, String> tmp = new HashMap<String, String>();
 	private StringBuilder errors = new StringBuilder();
 
-	public ConfigParser(){
+	private static ConfigParser parser = null;
+	
+	private ConfigParser(){
 		this.handleInput("config.conf");
 	}
 	
-	public ConfigParser(String fileLocation){
+	private ConfigParser(String fileLocation){
 		this.handleInput(fileLocation);
+	}
+	
+	/**
+	 * if the configparser singleton does not exists generates another one, otherwise return previously defined singleton.
+	 * @return the singleton configparser
+	 */
+	public static ConfigParser getInstance() {
+		if(parser == null)
+			parser = new ConfigParser();
+		return parser;
+	}
+
+	/**
+	 * unconditionally creates a new singleton instance
+	 * 
+	 * @param fileLocation where the config file is
+	 * @return
+	 */
+	public static ConfigParser getInstance(String fileLocation) {
+		parser = new ConfigParser(fileLocation);
+		return parser;
 	}
 	
 	private void handleInput(String fileLocation) {
@@ -64,6 +87,10 @@ public class ConfigParser {
 		return tmp.toString();
 	}
 	
+	/**
+	 * a string containing all errors generated while parsing.
+	 * @return
+	 */
 	public String getError() {
 		return this.errors.toString();
 	}

@@ -29,7 +29,7 @@ public class IOHandler {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		ConfigParser handler = new ConfigParser();
+		ConfigParser handler = ConfigParser.getInstance();
 		Sorter sorter;
 		
 		/*if(handler.getStringConf("race").compareTo("lap")==0) {*/
