@@ -48,7 +48,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	public RegistrationTextField(Font font,
 			RegistrationTextArea registrationTextArea, StoredTime storedTime) {
 		super(5);
-		setName("TextField");
+		setName("Input");
 		setFont(font);
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;

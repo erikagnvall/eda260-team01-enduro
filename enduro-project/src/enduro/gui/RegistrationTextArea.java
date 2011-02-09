@@ -21,7 +21,7 @@ public class RegistrationTextArea extends JTextArea {
 	 */
 	public RegistrationTextArea(Font font) throws HeadlessException {
 		super();
-		setName("TextArea");
+		setName("Output");
 		setFont(font);
 		setEditable(false);
 		setAutoscrolls(false);
