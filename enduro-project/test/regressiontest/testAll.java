@@ -4,6 +4,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import unittest.*;
+import unittest.sorter.LapRaceSorterTest;
+import unittest.sorter.MarathonSorterTest;
+import unittest.sorter.WrongInputTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ClassHandlingTest.class,
