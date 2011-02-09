@@ -6,6 +6,10 @@ import java.awt.HeadlessException;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
+
+/**
+ * An area displaying the output of the registration GUI.
+ */
 public class RegistrationTextArea extends JTextArea {
 
 	/**
