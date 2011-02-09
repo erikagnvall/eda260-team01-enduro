@@ -5,6 +5,10 @@
 	<classpathentry kind="src" path="spike"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JVM 1.6"/>
-	<classpathentry kind="lib" path="uispec4j-2.4-jdk16.jar"/>
+	<classpathentry kind="lib" path="UISpec4J/uispec4j-2.4-jdk16.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/enduro-project/UISpec4J/uispec4j-2.4-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
