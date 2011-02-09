@@ -17,10 +17,11 @@ public class RegistrationTextArea extends JTextArea {
 	 * @param font
 	 *            The font to use in this text area.
 	 * @throws HeadlessException
-	 *             Don't know why
+	 *             Don't know why. Maybe when the user gets beheaded? =S
 	 */
 	public RegistrationTextArea(Font font) throws HeadlessException {
 		super();
+		setName("TextArea");
 		setFont(font);
 		setEditable(false);
 		setAutoscrolls(false);
