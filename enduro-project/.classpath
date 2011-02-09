@@ -5,5 +5,6 @@
 	<classpathentry kind="src" path="spike"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/JVM 1.6"/>
+	<classpathentry kind="lib" path="uispec4j-2.4-jdk16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
