@@ -25,7 +25,10 @@ import javax.swing.text.PlainDocument;
 import enduro.Registration;
 import enduro.TxtToHtml;
 import enduro.racedata.Time;
-
+/**
+ * The text field in which the user enters text.
+ *
+ */
 @SuppressWarnings("serial")
 public class RegistrationTextField extends JTextField implements ActionListener {
 	private RegistrationTextArea registrationTextArea;
