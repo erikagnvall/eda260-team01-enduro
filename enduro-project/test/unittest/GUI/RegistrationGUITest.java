@@ -163,4 +163,12 @@ public class RegistrationGUITest extends UISpecTestCase {
 		File f = new File("./StoredTimeOfUnknownDriver.txt");
 		assertTrue(f.exists());
 	}
+	
+	@Test
+	public void testEnterButton(){
+		input.appendText("1");
+		input.pressKey(Key.ENTER);
+		getTime();
+		assertEquals("1; " + time + '\n', output.getText());	
+	}
 }
