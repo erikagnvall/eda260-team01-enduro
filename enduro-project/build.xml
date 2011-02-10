@@ -82,7 +82,7 @@
 	</target>
 	
 	
-	<target name="junit" >
+	<target name="junit" depends="junitBuild">
 		<junit printsummary="yes" haltonerror="yes">
 			<classpath>
 				<pathelement location="test.jar"/>
