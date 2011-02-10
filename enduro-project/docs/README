@@ -1,4 +1,4 @@
-Stories done:
+-=!STORIES DONE!=-
 3: Enkel resultatlista
 3.1: Datastrukturer
 3.2: Läs in filer
@@ -20,8 +20,27 @@ Stories done:
 17: Variabelt antal uppgifter om förarna
 
 
-Nya stories:
+-=!WHAT'S NEW!=-
 24: Masstart
 25: stöd för konfiguration
 
-Manualer ligger i samma mapp som denna readmefil, user.html avser manual för GUI, admin.html avser manual för backend
+
+-=!PROGRAMMENS PLACERING!=-
+Programmet är uppdelat i två delar, ett användargränssnitt där man registrerar tider
+och ett sorteringsprogram som genererar resultatslistan. De båda programmen finns i
+två jar-filer, GUI.jar respektive Backend.jar, som ligger direkt i mappen där
+zip-filen packas upp.
+
+
+-=!KONFIGURATIONSFIL!=-
+Inställningarna till sorteringsprogrammet görs i filen config.conf (syntaxen
+förklaras i filen). Konfigurationsfilen finns i samma mapp som Backend.jar och måste
+även vara kvar i samma mapp för att kunna läsas av sorteringsprogrammet.
+
+
+-=!MANUAL!=-
+Manualer ligger i mappen som heter "docs", user.html avser manual
+för GUI, admin.html avser manual för sorteringsprogrammet.
+
+
+

@@ -23,39 +23,87 @@
 			<div class="entry">
 				<a name="installation"></a>
 				<h3 style="display:none;">Installation</h3>
-				<p>För att köra programmet, ladda ner JAR-filen Backend.jar och spara den i den mapp tidsfilerna ligger i.</p>
+				<p>För att köra programmet, ladda ner JAR-filen <code>Backend.jar</code> och
+				spara den i den mapp tidsfilerna ligger i.</p>
 			</div> <!-- end of .entry -->
 		</div> <!-- end of .subsection -->
 		
 		<div class="subsection">
 			<h2>Anv&auml;ndning</h2>
-				<p>Backend kallas den jar-fil som används för att skapa resultatsfilen utifrån de registreringsfiler man har.</p>
-				<p>Programmet kan konfigureras med hjälp av en konfigfil som ska ligga i samma mapp med namnet "config.conf". Finns ingen config fil sorteras 					programmet med utgång från indatafilen "list.txt", samma sak gäller om indatainformation saknas i konfigfilen</p>
-				<p>Inställningsalternativen förklaras i konfigfilen men är till största del på enklare engelska av tekniska skäl.</p>
+			<div class="entry">
+				<a name="inledning"></a>
+				<h3>Inledning</h3>
+				<p><code>Backend.jar</code> kallas den JAR-fil som används för att skapa resultatsfilen utifrån
+				de registreringsfiler man har.</p>
+			</div>
+
+			<div class="entry">
+				<a name="konfiguration"></a>
+				<h3>Konfiguration</h3>
+				<p>Programmet kan konfigureras med hjälp av en konfigurationsfil som ska ligga i samma
+				mapp som programmet med namnet <code>config.conf</code>. Finns ingen konfigurationsfil
+				sorteras programmet med utgång från indatafilen <code>list.txt</code>, samma sak gäller
+				om indatainformation saknas i konfigurationsfilen.</p>
+
+				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
+				enklare engelska av tekniska skäl.</p>
+			</div>
+
+			<div class="entry">
+				<a name="listfil"></a>
+				<h3>Listfil</h3>
+				<p>Programmet behöver en listfil som behöver innehålla följande information i
+				samma ordning som den visas.</p>
+
+				<b>Exempel:</b><br />
+				<code>namnfil.txt<br />
+				starttidsFil.txt<br />
+				målfil1.txt<br />
+				målfil2.txt<br />
+				...</code>
+				<p>På första raden återfinns filen med namn på förarna, på rad två återfinns filen för
+				starttider följt av  en eller flera målfiler på separata rader. Dessa slås sedan
+				ihop till en resultatsfil som läggs i samma mapp som programmet med namnet <code>ResultFile.txt</code>.</p>
 				
-				<p>Programmet behöver en listfil som behöver innehålla följande information i samma ordning som den visas.</p>
-				"namnfil.txt"<br />
-				"starttidsFil.txt"<br />
-				"målfil1.txt"<br />
-				"målfil2.txt"<br />
-				...
-				<p>På första raden återfinns filen med namn på förarna, på rad två återfinns filen för starttider följt av en eller flera målfiler på separata rader. Dessa slås sedan ihop till en resultatsfil som läggs i samma mapp som programmet med namnet "ResultFile.txt".</p>
-				<p>Antalet lopp under ett varvlopp kommer automatiskt sättas till det antal lopp den förare med flest genomförda lopp i sin klass genomfört.</p>
-				<p> Den tid som bedöms som en omöjlig tid är fördefinierad till under en timme</p>
-				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit registrerade sparas i en fil som heter storedTimeOfUnknownDriver.txt, denna skall ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax som tidigare tidregistreringar använder.</p>
-				<p> Samtliga filer som skall läsas in skall beskrivas i listfilen med relativ länkning.</p>
-				<div class="entry">
-					<a name="format_namefile"></a>
-					<h3>Format av namnfil</h3>
-					<p>Formatet på namnfilen är StartNr; Namn; Extra1; Extra2 ...</p>
-					<p>Extra innebär att man själv kan välja vad det är för något.</p>
-					<p><b>Exempel:</b><br /> SENIOR<br />
-1; Anders Asson; FMCK Astad; ATM<br />
-2; Bengt Bsson; FMCK Bstad; BTM<br />
-JUNIOR<br />
-101; Chris Csson; Cstad MCK; CTM<br />
-102; David Dsson; Dstad MCK; DTM<br />
-					</p>
+				<p>Samtliga filer som skall läsas in skall beskrivas i listfilen med relativ länkning.</p>
+			</div>
+			
+			<div class="entry">
+				<a name="def_other"></a>
+				<h3>Definitioner och övrigt</h3>
+				<p>Antalet lopp under ett varvlopp kommer automatiskt sättas till det antal lopp den
+				förare med flest genomförda lopp i sin klass genomfört.</p>
+
+				<p>Den tid som bedöms som en omöjlig tid är fördefinierad till 15 minuter.</p>
+
+				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit
+				registrerade sparas i en fil som heter <code>storedTimeOfUnknownDriver.txt</code>, denna skall
+				ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan
+				eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax
+				som tidigare tidregistreringar använder.</p>
+				
+				<p>När programmet startas igen kontrolleras det om det finns en <code>storedTimeOfUnknownDriver.txt</code>
+				i samma mapp som programmet och om det gör det läses den tiden in och man kan registrera en förare på
+				den tiden genom att följa instruktionerna i manualen för registreringsprogrammet under Smutsig nummerplåt.</p>
+			</div>
+
+			<div class="entry">
+				<a name="format_namefile"></a>
+				<h3>Format av namnfil</h3>
+				<p>Formatet på namnfilen är <code>StartNr; Namn; Extra1; Extra2 ...</code></p>
+
+				<p>Extra innebär att man själv kan välja vad det är för något. För att dela in
+					namnen i klasser skrivs klassnamnet ensamt på en rad och därefter de namnen som
+					ska vara i den klassen.</p>
+					<b>Exempel:</b><br />
+					<code>SENIOR<br />
+					1; Anders Asson; FMCK Astad; ATM<br />
+					2; Bengt Bsson; FMCK Bstad; BTM<br />
+					JUNIOR<br />
+					101; Chris Csson; Cstad MCK; CTM<br />
+					102; David Dsson; Dstad MCK; DTM<br /></code>
+					<br /><br />
+			</div>
 		</div> <!-- end of .subsection -->
 	</div> <!-- end of #content -->
 	
@@ -77,6 +125,7 @@ JUNIOR<br />
 				} else {
 					$toc.animate({'height' : 0});
 				}
+				e.preventDefault();
 			});
 		})();
 		
