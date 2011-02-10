@@ -13,9 +13,10 @@ public class TxtToHtml {
 	 * 
 	 * @param txtFile
 	 * @param htmlFile
+	 * @throws IOException 
 	 * @throws Exception
 	 */
-	public void makeHtmlFile(String txtFile, String htmlFile) throws Exception {
+	public void makeHtmlFile(String txtFile, String htmlFile) throws IOException  {
 		PrintWriter pW = new PrintWriter(new BufferedWriter(new FileWriter(
 				htmlFile)));
 		BufferedReader in = new BufferedReader(new FileReader(txtFile));
