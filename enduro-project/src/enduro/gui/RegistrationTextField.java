@@ -53,7 +53,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;
 		addActionListener(this);
-
 	}
 
 	/**
