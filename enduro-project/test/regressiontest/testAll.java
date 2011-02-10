@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import unittest.*;
+import unittest.GUI.RegistrationGUITest;
 import unittest.dataStructure.RacerDataTest;
 import unittest.sorter.ClassHandlingTest;
 import unittest.sorter.IllegalStarNbrtest;
@@ -20,7 +21,7 @@ import unittest.sorter.WrongInputTest;
 					RacerDataTest.class,
 					RegistrationTest.class,
 					TimeTest.class,
-					WrongInputTest.class})
+					WrongInputTest.class, RegistrationGUITest.class})
 public class testAll {
 
 	

@@ -14,7 +14,7 @@ import org.uispec4j.interception.MainClassAdapter;
 
 import enduro.gui.RegistrationGUI;
 
-public class RegistrationTest extends UISpecTestCase {
+public class RegistrationGUITest extends UISpecTestCase {
 
 	Window window;
 	TextBox input;
