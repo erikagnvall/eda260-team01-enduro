@@ -279,8 +279,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			txtHt.makeHtmlFile("times.txt", "times.html");
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -300,10 +298,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 		public void insertString(int offs, String str, AttributeSet a)
 				throws BadLocationException {
-
-			if (str == null) {
-				return;
-			}
 			char[] number = str.toCharArray();
 			for (int i = 0; i < number.length; i++) {
 				if (!Character.isDigit(number[i]) && number[i] != ','
@@ -318,7 +312,6 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 	public void setRegretButton(RegretButton regret) {
 		this.regret = regret;
-
 	}
 
 }
