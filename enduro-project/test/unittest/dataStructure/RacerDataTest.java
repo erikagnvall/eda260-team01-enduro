@@ -1,4 +1,4 @@
-package unittest;
+package unittest.dataStructure;
 
 import java.util.PriorityQueue;
 import enduro.racedata.Time;
