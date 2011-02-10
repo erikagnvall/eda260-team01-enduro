@@ -66,16 +66,12 @@ public class RegistrationTest extends UISpecTestCase {
 		assertEquals("1; " + time + '\n', output.getText());
 	}
 
-	@Test(expected = FileNotFoundException.class)
-	public void testUndoEmptyTime() {
+	public void testUndoUnknownDriverTime() {
 		registerButton.click();
 		undoButton.click();
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./StoredTimeOfUnknownDriver.txt"));
-		} catch (FileNotFoundException e) {
-			// Should fail
-		}
+		File f = new File("./StoredTimeOfUnknownDriver.txt");
+		assertFalse(f.exists());
+		assertFalse(undoButton.isVisible());
 	}
 
 	@Test
@@ -92,25 +88,79 @@ public class RegistrationTest extends UISpecTestCase {
 		input.appendText("1,15,223");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Swtich when it fails.
+		// Alternate test until GUI is fixed. Switch when it fails.
 		assertEquals("223; " + time + '\n' + "15; " + time + '\n' + "1; "
 				+ time + '\n', output.getText());
 		// End of alternate test
-		// Begin regular tets
+		// Begin regular tests
 		// assertEquals("1; " + time + '\n' + "15; " + time + '\n' + "223; " +
 		// time + '\n', output.getText());
 	}
 
+	@Test
 	public void testRegisterSeveralTimesWithBothCases() {
 		input.appendText("1-3,15");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Swtich when it fails.
+		// Alternate test until GUI is fixed. Switch when it fails.
 		assertEquals("15; " + time + '\n' + "1; " + time + '\n' + "2; " + time
 				+ '\n' + "3; " + time + '\n', output.getText());
 		// End of alternate test
-		// Begin regular tets
+		// Begin regular tests
 //		 assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
 //		 + '\n' + "15; " + time + '\n', output.getText());
+	}
+	
+	@Test
+	public void testRegisterSeveralTimesInSuccessionWithStoredTime() {
+		registerButton.click();
+		getTime();
+		input.appendText("1-3");
+		registerButton.click();
+		getTime();
+		assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
+				+ '\n', output.getText());
+	}
+
+	@Test
+	public void testRegisterSeveralTimesNotInSuccessionWithStoredTime() {
+		registerButton.click();
+		getTime();
+		input.appendText("1,15,223");
+		registerButton.click();
+		getTime();
+		// Alternate test until GUI is fixed. Switch when it fails.
+		assertEquals("223; " + time + '\n' + "15; " + time + '\n' + "1; "
+				+ time + '\n', output.getText());
+		// End of alternate test
+		// Begin regular tests
+		// assertEquals("1; " + time + '\n' + "15; " + time + '\n' + "223; " +
+		// time + '\n', output.getText());
+	}
+	
+	@Test
+	public void testRegisterSeveralTimesWithBothCasesWithStoredTime() {
+		registerButton.click();
+		getTime();
+		input.appendText("1-3,15");
+		registerButton.click();
+		getTime();
+		// Alternate test until GUI is fixed. Switch when it fails.
+		assertEquals("15; " + time + '\n' + "1; " + time + '\n' + "2; " + time
+				+ '\n' + "3; " + time + '\n', output.getText());
+		// End of alternate test
+		// Begin regular tests
+//		 assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
+//		 + '\n' + "15; " + time + '\n', output.getText());
+	}
+	
+	@Test
+	//Does only test a couple of chars
+	public void testEnterInvalidCharacter(){
+		input.appendText("abcdefghijklmnopqrstuvwqyz.:,;_!\"#€%&/()=?");
+		registerButton.click();
+		assertEquals("", output.getText());
+		File f = new File("./StoredTimeOfUnknownDriver.txt");
+		assertTrue(f.exists());
 	}
 }
