@@ -1,4 +1,4 @@
-package unittest;
+package unittest.misc;
 
 import enduro.racedata.Time;
 import org.junit.*;

@@ -1,4 +1,4 @@
-package unittest;
+package unittest.misc;
 
 import enduro.Registration;
 import enduro.racedata.Time;

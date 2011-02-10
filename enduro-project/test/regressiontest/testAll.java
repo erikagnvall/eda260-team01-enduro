@@ -3,9 +3,9 @@ package regressiontest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import unittest.*;
 import unittest.GUI.RegistrationGUITest;
 import unittest.dataStructure.RacerDataTest;
+import unittest.misc.*;
 import unittest.sorter.ClassHandlingTest;
 import unittest.sorter.IllegalStarNbrtest;
 import unittest.sorter.LapRaceSorterTest;
