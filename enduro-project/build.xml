@@ -6,9 +6,11 @@
 		<mkdir dir="release" />
 		<move file="Backend.jar" todir="release" />
 		<move file="GUI.jar" todir="release" />
+		<copy file="docs/README" todir="release" />
 		<copy todir="release/docs">
 			<fileset dir="docs"/>
 		</copy>
+		<delete file="release/docs/README" />
 		<copy todir="release/testfiles">
 			<fileset dir="acceptanceTest/result/17_unit"/>
 		</copy>
@@ -80,7 +82,7 @@
 	</target>
 	
 	
-	<target name="junit" depends="junitBuild">
+	<target name="junit" >
 		<junit printsummary="yes" haltonerror="yes">
 			<classpath>
 				<pathelement location="test.jar"/>
