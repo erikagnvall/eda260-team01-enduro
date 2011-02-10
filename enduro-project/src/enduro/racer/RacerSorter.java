@@ -10,7 +10,8 @@ import enduro.racer.printer.RacerPrinter;
 
 public class RacerSorter {
 	
-	private TreeSet<Racer> racers;
+	private TreeSet<Racer> racers = new TreeSet<Racer>();
+	private Comparator<Racer> comp;
 	private RacerPrinter printer;
 
 	private Time minTotalTime;
@@ -23,7 +24,7 @@ public class RacerSorter {
 	 * @param minTotalTime PLACEHOLDER INFORMATION. WILL BE CHANGED FOR SOMETHING BETTER
 	 */
 	public RacerSorter(Comparator<Racer> comp, RacerPrinter printer, Time minTotalTime) {
-		racers = new TreeSet<Racer>(comp);
+		this.comp = comp;
 		this.printer = printer;
 		this.minTotalTime = minTotalTime;
 	}
@@ -40,10 +41,6 @@ public class RacerSorter {
 	 * Returns the Racer connected with the runner id.
 	 * If the racer does not exist null is returned instead.
 	 * 
-	 * This runs in linear time (comparable used is not guaranteed to be logical, so better iterate over all)
-	 * 
-	 * WARNING. this function removes the racer from the list as it is presumed you are adding values to it, which may or may not change to comparator values for this class.
-	 * TreeSet; the underlying structure requires removal and readding under those circumstances.
 	 * @param runnerNum the runner id
 	 * @return the racer if available, otherwise null.
 	 */
@@ -64,6 +61,9 @@ public class RacerSorter {
 	 * @return all relevant information.
 	 */
 	public String print() {
+		TreeSet<Racer> sortedRacers = new TreeSet<Racer>(this.comp);
+		sortedRacers.addAll(this.racers);
+		
 		StringBuilder out = new StringBuilder();
 		int position = 1;
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
@@ -71,7 +71,7 @@ public class RacerSorter {
 		out.append(this.printer.printTopInformation());
 		out.append("\n");
 		
-		for(Racer racer: racers) {
+		for(Racer racer: sortedRacers) {
 			//clearing hashmap to save the need for constructing a new one for each racer (==yawn)
 			extraInformation.clear();
 			
