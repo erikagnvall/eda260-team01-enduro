@@ -34,7 +34,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;
 	private StoredTime storedTime;
-	private UndoButton regret;
+	private UndoButton undo;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -91,7 +91,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 						sb.append(currentTime);
 					} else {
 						sb.append(getStoredTime().toString());
-						regret.setVisible(false);
+						undo.setVisible(false);
 					}
 
 					try {
@@ -134,7 +134,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			} else {
 				sb.append(getStoredTime().toString());
 
-				regret.setVisible(false);
+				undo.setVisible(false);
 			}
 
 			try {
@@ -153,7 +153,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		} else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
 			if (storedTime.isEmpty()) {
 				storeTime();
-				regret.setVisible(true);
+				undo.setVisible(true);
 			}
 		}
 		setText("");
@@ -222,7 +222,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			in = new BufferedReader(new FileReader(
 					"storedTimeOfUnknownDriver.txt"));
 			storedTime.setText(in.readLine());
-			regret.setVisible(true);
+			undo.setVisible(true);
 		} catch (FileNotFoundException e1) {
 
 		} catch (IOException e) {
@@ -311,7 +311,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	}
 
 	public void setRegretButton(UndoButton regret) {
-		this.regret = regret;
+		this.undo = regret;
 	}
 
 }

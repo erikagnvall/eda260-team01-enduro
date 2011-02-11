@@ -39,14 +39,14 @@ public class RegistrationGUI extends JFrame {
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
 
-		UndoButton regret = new UndoButton("Avbryt", storedTime,
+		UndoButton undo = new UndoButton("Avbryt", storedTime,
 				registrationTextField);
-		registrationTextField.setRegretButton(regret);
-		regret.setVisible(false);
+		registrationTextField.setRegretButton(undo);
+		undo.setVisible(false);
 
 		registrationTextField.checkForSavedTimeFile();
 		
-		northPanel.add(regret);
+		northPanel.add(undo);
 		northPanel.add(registrationTextField);
 		northPanel.add(new RegistrationButton("Registrera", font,
 				registrationTextField));
