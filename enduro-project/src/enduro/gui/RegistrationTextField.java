@@ -34,7 +34,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private RegistrationTextArea registrationTextArea;
 	private Registration registration;
 	private StoredTime storedTime;
-	private RegretButton regret;
+	private UndoButton regret;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -310,7 +310,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 	}
 
-	public void setRegretButton(RegretButton regret) {
+	public void setRegretButton(UndoButton regret) {
 		this.regret = regret;
 	}
 

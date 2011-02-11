@@ -10,7 +10,7 @@ import javax.swing.JButton;
  * Button for undo in GUI
  * 
  */
-public class RegretButton extends JButton implements ActionListener {
+public class UndoButton extends JButton implements ActionListener {
 	private StoredTime storedTime;
 	private RegistrationTextField registrationTextField;
 		/**
@@ -21,7 +21,7 @@ public class RegretButton extends JButton implements ActionListener {
 		 * 
 		 * 
 		 */
-	public RegretButton(String text, StoredTime storedTime, RegistrationTextField registrationTextField) {
+	public UndoButton(String text, StoredTime storedTime, RegistrationTextField registrationTextField) {
 		super(text);
 		this.storedTime = storedTime;
 		this.registrationTextField = registrationTextField;

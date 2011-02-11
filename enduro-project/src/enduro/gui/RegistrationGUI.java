@@ -39,7 +39,7 @@ public class RegistrationGUI extends JFrame {
 		RegistrationTextField registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
 
-		RegretButton regret = new RegretButton("Avbryt", storedTime,
+		UndoButton regret = new UndoButton("Avbryt", storedTime,
 				registrationTextField);
 		registrationTextField.setRegretButton(regret);
 		regret.setVisible(false);
