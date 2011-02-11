@@ -1,12 +1,7 @@
 package acceptanceTest;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-
 import junit.framework.TestCase;
 
-import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
@@ -26,7 +21,6 @@ import org.junit.runners.Parameterized;
  *
  */
 public class CompareAcceptanceTests extends TestCase  {
-	private boolean success = true;
 	public static void main(String... args) {
 		junit.textui.TestRunner.run(CompareAcceptanceTests.class);
 	}

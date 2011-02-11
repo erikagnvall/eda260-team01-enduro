@@ -77,7 +77,6 @@ public class Time implements Comparable<Object> {
 		Time t = (Time) o;
 		long startSecs = this.sec + (this.min * 60) + (this.hour * 3600);
 		long endSecs = t.sec + (t.min * 60) + (t.hour * 3600);
-		int compare = (int) (startSecs - endSecs);
 		return (int)(startSecs - endSecs);
 	}
 	/**

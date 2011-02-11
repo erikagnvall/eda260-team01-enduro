@@ -7,14 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import regressiontest.ListTest;
 import regressiontest.PVGRunner;
 
-import enduro.MarathonSorter;
 
 @ListTest(sorter=ListTest.Sorter.marathon)
 @RunWith(PVGRunner.class)

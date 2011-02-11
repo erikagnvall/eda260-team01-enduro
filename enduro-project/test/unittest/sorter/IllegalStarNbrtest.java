@@ -1,22 +1,13 @@
 package unittest.sorter;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import regressiontest.ListTest;
 import regressiontest.PVGRunner;
 
-import enduro.MarathonSorter;
 import enduro.racedata.RaceClass;
 
 @ListTest(sorter=ListTest.Sorter.marathon)

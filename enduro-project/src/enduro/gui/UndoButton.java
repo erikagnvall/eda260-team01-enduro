@@ -10,6 +10,7 @@ import javax.swing.JButton;
  * Button for undo in GUI
  * 
  */
+@SuppressWarnings("serial")
 public class UndoButton extends JButton implements ActionListener {
 	private StoredTime storedTime;
 	private RegistrationTextField registrationTextField;

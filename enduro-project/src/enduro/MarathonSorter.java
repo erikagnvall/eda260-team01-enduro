@@ -2,7 +2,6 @@ package enduro;
 
 import java.util.Iterator;
 
-import enduro.Sorter.Racer;
 import enduro.racedata.Time;
 
 /**

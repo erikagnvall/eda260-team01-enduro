@@ -6,14 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import regressiontest.ListTest;
 import regressiontest.PVGRunner;
-
-import enduro.LapRaceSorter;
 
 @ListTest()
 @RunWith(PVGRunner.class)

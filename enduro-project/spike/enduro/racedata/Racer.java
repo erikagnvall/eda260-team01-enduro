@@ -2,11 +2,8 @@
 
 package enduro.racedata;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.PriorityQueue;
-import java.util.TreeSet;
 
 public class Racer {
 	private HashMap<String, String> racerInfo;
