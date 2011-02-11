@@ -160,11 +160,13 @@ public class RegistrationGUITest extends UISpecTestCase {
 		File f = new File("./StoredTimeOfUnknownDriver.txt");
 		assertTrue(f.exists());
 	}
-	
+
+	//Used to work but now I can't get it working again >_<
 	@Test
 	public void testEnterButton(){
 		input.appendText("1");
 		input.pressKey(Key.ENTER);
+		System.out.println(input.getText());
 		getTime();
 		assertEquals("1; " + time + '\n', output.getText());	
 	}
