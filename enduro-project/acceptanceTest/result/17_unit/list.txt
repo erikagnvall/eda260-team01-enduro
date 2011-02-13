@@ -1,0 +1,4 @@
+acceptanceTest/result/17_unit/namnfil.txt
+acceptanceTest/result/17_unit/starttider.txt
+acceptanceTest/result/17_unit/maltider1.txt
+acceptanceTest/result/17_unit/maltider2.txt
