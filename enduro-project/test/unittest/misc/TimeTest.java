@@ -22,18 +22,27 @@ public class TimeTest {
 	@Test public void testStringRepresentation2() {
 		assertEquals("01.02.09", t2.toString());
 	}
+	
 	@Test public void testtotalTime() {
 		Time t3 =t2.getTotalTime(t1);
 		assertEquals("11.21.47",t3.toString());
-		
 	}
+	
 	@Test public void testComparTo() {
-		assertTrue(0 < t1.compareTo(t2));
-		assertTrue(0 > t2.compareTo(t1));
-		assertTrue(0 == (new Time(12,23,56)).compareTo(t1));
+		Time t3 = new Time(12, 23, 57);
+		Time t4 = new Time(12, 23, 55);
+		assertEquals(-1, t1.compareTo(t3));
+		assertEquals(1, t1.compareTo(t4));
+		assertEquals(0, (new Time(12,23,56)).compareTo(t1));
 	}
+	
 	@Test public void testStringParse() {
 		assertEquals(t1, new Time("12.23.56"));
 	}
 	
+	@Test public void testEquals() {
+		assertEquals(true, t1.equals(new Time(12, 23, 56)));
+		assertEquals(false, t1.equals(t2));
+		assertEquals(false, t1.equals(new Integer(1)));
+	}
 }
