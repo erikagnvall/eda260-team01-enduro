@@ -1,5 +1,6 @@
 package unittest.racer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -67,5 +68,27 @@ public class RacerTest {
 		
 		assertTrue(r.finishTimes.first().compareTo(new Time("00.00.12"))==0);
 		assertTrue(r.finishTimes.last().compareTo(new Time("00.12.12"))==0);
+	}
+	
+	@Test
+	public void testGetStartNbr() {
+		Racer r = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
+		assertEquals(1, r.getStartNbr());
+	}
+	
+	@Test
+	public void testCompareTo() {
+		Racer r1 = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
+		Racer r2 = new Racer(new String("2; Bertil Bsson; FMCK Astad; ATM").split("; "));
+		assertEquals(0, r1.compareTo(new Racer(new String[]{"1", "Anders Asson"})));
+		assertEquals(1, r2.compareTo(new Racer(new String[]{"1", "Anders Asson"})));
+	}
+	
+	@Test
+	public void testEquals() {
+		Racer r1 = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
+		Racer r2 = new Racer(new String("2; Bertil Bsson; FMCK Astad; ATM").split("; "));
+		assertEquals(true, r1.equals(new Racer(new String[]{"1", "Anders Asson"})));
+		assertEquals(false, r2.equals(new Racer(new String[]{"1", "Anders Asson"})));
 	}
 }
