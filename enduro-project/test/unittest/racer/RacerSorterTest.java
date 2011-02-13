@@ -1,5 +1,6 @@
 package unittest.racer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -66,6 +67,15 @@ public class RacerSorterTest {
 		assertTrue(lines[2].startsWith("1"));
 		assertTrue(lines[3].startsWith("2"));
 		assertTrue(lines[4].startsWith("103"));
+	}
+	
+	@Test
+	public void testGetRacer() {
+		sorter.addRacer(racer1);
+		sorter.addRacer(racer2);
+		sorter.addRacer(racer103);
+		assertEquals(103, sorter.getRacer(103).getStartNbr());
+		assertEquals(null, sorter.getRacer(50));
 	}
 	
 }
