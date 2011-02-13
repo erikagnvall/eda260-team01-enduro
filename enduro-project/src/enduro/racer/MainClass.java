@@ -54,11 +54,12 @@ public class MainClass {
 				FileWriter writer = new FileWriter(output);
 				writer.append(handler.print());
 				writer.close();
-				
+				/*
 				if(html.length() > 0) {
 					TxtToHtml htmlWriter = new TxtToHtml();
 					htmlWriter.makeHtmlFile(input, html);
 				}
+				*/
 			} catch (IOException e) {
 				System.out.println("unable to write to output file");
 			}

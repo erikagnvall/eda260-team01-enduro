@@ -20,6 +20,8 @@ import org.junit.runners.Parameterized.Parameters;
 import enduro.LapRaceSorter;
 import enduro.MarathonSorter;
 import enduro.Sorter;
+import enduro.racer.MainClass;
+import enduro.racer.Configuration.ConfigParser;
 
 /**
  * An automatic JUnit testclass. It uses an alternative runner which allows for
@@ -40,7 +42,6 @@ public class JUnitAcceptanceTest {
 	private String testId;
 	private static String facitFolder = "acceptanceTest/facit/";
 	private static String resultFolder = "acceptanceTest/result/";
-	private String[] startTimes, endTimes, runners;
 	private String testPath;
 
 	private boolean fileReadFail = false;
@@ -61,60 +62,20 @@ public class JUnitAcceptanceTest {
 		testPath = resultFolder + testId + "/";
 
 		FileListGenerator gen = new FileListGenerator(new File(testPath));
-		startTimes = gen.getFilesThatContains("start");
-		endTimes = gen.getFilesThatContains("maltid");
-		runners = gen.getFilesThatContains("namn");
-		Sorter sort;
-		if (testId.compareTo("6") == 0) {
-			sort = new MarathonSorter();
-		} else {
-			sort = new LapRaceSorter();
-		}
-		// System.out.println(startTimes[0]);
-		/*try {
-			FileWriter temp = new FileWriter("log.txt");
-			temp.append("startTimes:\n");
-			for(String t: startTimes)
-				if(!t.contains("~"))
-					temp.append(t + "\n");
-			temp.append("names:\n");
-			for(String t: runners)
-				if(!t.contains("~"))
-					temp.append(t + "\n");
-			temp.append("endtimes:\n");
-			for(String t: endTimes)
-				if(!t.contains("~"))
-					temp.append(t + "\n");
-			temp.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		try {
-			for (String runner : runners)
-				if(!runner.contains("~"))
-					sort.readNameFile(testPath + runner);
-			for (String startLoc : startTimes)
-				if(!startLoc.contains("~"))
-					sort.readStartFile(testPath + startLoc);
-			for (String endLoc : endTimes)
-				if(!endLoc.contains("~"))
-					sort.readFinishFile(testPath + endLoc);
-		} catch (Exception E) {
-			E.printStackTrace();
-			fileReadFail = true;
-		}
-
-		try {
+		
+		String listLoc = "list.txt";
+		
+		String[] list = gen.getFilesThatContains("list");
+		if(list.length == 1)
+			listLoc =  testPath + list[0];
 			
-			if (test.contains("sorted")) {
-				sort.createSortedResultsFile(resultFolder + test + ".result");
-			} else {
-				sort.createResultFile(resultFolder + test + ".result");
-			}
-		} catch (IOException e) {
-			fileWriteFail = true;
-		}
+		String configLoc = "config.conf";
+		String[] configFileLoc = gen.getFilesThatContains("config");
+		if(configFileLoc.length == 1)
+			configLoc = testPath + configFileLoc[0];
+		
+		System.out.println("conf: " + configLoc + " list " + listLoc);
+		MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result"});
 
 	}
 
