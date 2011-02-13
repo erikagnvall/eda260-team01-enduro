@@ -13,7 +13,7 @@ public class RacerSorter {
 	private TreeSet<Racer> racers = new TreeSet<Racer>();
 	private Comparator<Racer> comp;
 	private RacerPrinter printer;
-
+	private String groupName;
 	private Time minTotalTime;
 	
 	/**
@@ -23,10 +23,11 @@ public class RacerSorter {
 	 * @param printer the output printer
 	 * @param minTotalTime PLACEHOLDER INFORMATION. WILL BE CHANGED FOR SOMETHING BETTER
 	 */
-	public RacerSorter(Comparator<Racer> comp, RacerPrinter printer, Time minTotalTime) {
+	public RacerSorter(String groupName, Comparator<Racer> comp, RacerPrinter printer, Time minTotalTime) {
 		this.comp = comp;
 		this.printer = printer;
 		this.minTotalTime = minTotalTime;
+		this.groupName = groupName;
 	}
 	
 	/**
@@ -67,6 +68,9 @@ public class RacerSorter {
 		StringBuilder out = new StringBuilder();
 		int position = 1;
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
+		
+		out.append(this.groupName);
+		out.append("\n");
 		
 		out.append(this.printer.printTopInformation());
 		out.append("\n");

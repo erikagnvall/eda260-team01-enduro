@@ -37,7 +37,7 @@ public class RacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter(new runnerNumberComparator(), new LapRacePrinter(new String[]{"startNr", "Namn", "Klubb", "annat"}), new Time("01.00.00"));
+		sorter = new RacerSorter("", new runnerNumberComparator(), new LapRacePrinter(new String[]{"startNr", "Namn", "Klubb", "annat"}), new Time("01.00.00"));
 	}
 	
 	@Test public void testConstructionAddRacer() {
@@ -52,7 +52,7 @@ public class RacerSorterTest {
 	@Test public void testPrintOneRunner() {
 		sorter.addRacer(racer1);
 		String[] lines = sorter.print().split("\n");
-		assertTrue(lines.length == 2);
+		assertTrue(lines.length == 3);
 	}
 	
 	@Test public void testPrintInCorrectOrder() {
@@ -61,11 +61,11 @@ public class RacerSorterTest {
 		sorter.addRacer(racer103);
 		String[] lines = sorter.print().split("\n");
 		
-		assertTrue(lines.length == 4);
+		assertTrue(lines.length == 5);
 		
-		assertTrue(lines[1].startsWith("1"));
-		assertTrue(lines[2].startsWith("2"));
-		assertTrue(lines[3].startsWith("103"));
+		assertTrue(lines[2].startsWith("1"));
+		assertTrue(lines[3].startsWith("2"));
+		assertTrue(lines[4].startsWith("103"));
 	}
 	
 }
