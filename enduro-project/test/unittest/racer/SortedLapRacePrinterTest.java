@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import org.junit.Test;
 
-import enduro.InputHandler.ConfigParser;
 import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.printer.SortedLapRacePrinter;
 
 public class SortedLapRacePrinterTest {

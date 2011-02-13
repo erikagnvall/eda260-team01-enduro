@@ -59,9 +59,12 @@ public class RacerSorter {
 	
 	/**
 	 * prints the overlaying text line as well as all related runners.
+	 * If there are NO runners nothing gets printed!
 	 * @return all relevant information.
 	 */
 	public String print() {
+		if(this.racers.size() == 0)
+			return "";
 		TreeSet<Racer> sortedRacers = new TreeSet<Racer>(this.comp);
 		sortedRacers.addAll(this.racers);
 		

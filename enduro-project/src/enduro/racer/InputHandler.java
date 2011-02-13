@@ -42,8 +42,9 @@ public class InputHandler {
 		for(RacerSorter sorter : groups) {
 			out.append(sorter.print());
 		}
-		
-		return out.append("\n\n\nerror: \n").append(error).toString();
+		if(error.length() > 0)
+			out.append("\n\n\nerror: \n");
+		return out.toString();
 	}
 	
 	/**
@@ -56,23 +57,29 @@ public class InputHandler {
 		
 		groups = new ArrayList<RacerSorter>();
 		RacerSorter currentGroup = null;
-		RacerSorter unnamedGroup = new RacerSorter("ungrouped people", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
-		RacerSorter unregisteredRacers = new RacerSorter("UNREGISTERED", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
+		RacerSorter unnamedGroup;
+		RacerSorter unregisteredRacers;
 		racerList = new HashMap<Integer, Racer>();
 		
-		if(nameFileLocations.size() == 0 || finishFileLocations.size() == 0 || startFileLocations.size() == 0)
-			return "input data files missing. check your input, a name, start and finish file must all be supplanted for this function to work.";
+		//if(nameFileLocations.size() == 0 || finishFileLocations.size() == 0 || startFileLocations.size() == 0)
+		//	return "input data files missing. check your input, a name, start and finish file must all be supplanted for this function to work.";
 		
 		//assumes there is only one name file at this time. customer has not requested anything else
 		try {
 			String[] names = this.getLines(nameFileLocations.get(0));
 			this.headerInformation = names[0].split("; ");
 			
+			unnamedGroup = new RacerSorter("ungrouped people", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
+			unregisteredRacers = new RacerSorter("Icke existerande startnummer", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
+			
 			for(int i = 1; i < names.length; i++) {
 				String[] lineSplit = names[i].split("; ");
 				
 				if(lineSplit.length == 1) {
 					//new group
+					if(currentGroup != null)
+						this.groups.add(currentGroup);
+					
 					currentGroup = new RacerSorter(lineSplit[0], new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
 				} else {
 					Racer temp = new Racer(lineSplit);
@@ -87,7 +94,8 @@ public class InputHandler {
 				}
 			}
 		} catch (IOException e) {
-			error.append("error reading the name file: " + nameFileLocations.get(0) + "\n");
+			error.append("FATAL ERROR: error reading the name file: " + nameFileLocations.get(0) + "\n");
+			return error.toString();
 		}
 		
 		try {
@@ -159,7 +167,7 @@ public class InputHandler {
 		} catch(IOException e) {
 			error.append("error reading a finish time file"  + "\n");
 		}
-		
+		this.groups.add(currentGroup);
 		this.groups.add(unnamedGroup);
 		this.groups.add(unregisteredRacers);
 		return error.toString();

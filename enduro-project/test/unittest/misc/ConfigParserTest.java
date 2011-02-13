@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import enduro.InputHandler.ConfigParser;
+import enduro.racer.Configuration.*;
 
 
 public class ConfigParserTest {

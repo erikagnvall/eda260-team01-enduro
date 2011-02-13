@@ -9,7 +9,7 @@ import enduro.racer.Racer;
 public class LapRacePrinter implements RacerPrinter {
 
 	private int numLapse, extraRunnerInformation;
-	private String extraInformation;
+	private String extraInformation = "";
 	
 	public LapRacePrinter(String[] extraInformation) {
 		numLapse = 3;
@@ -32,10 +32,10 @@ public class LapRacePrinter implements RacerPrinter {
 		}
 		out.append("; Start");
 		for(int i = 1; i < numLapse; i++) {
-			out.append("; Varvning);");
+			out.append("; Varvning");
 			out.append(i);
 		}
-		out.append("; MÃ¥l");
+		out.append("; MŒl");
 		return out.toString();
 	}
 	
@@ -78,7 +78,7 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printGoal(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.finishTimes.size() > 0)
+		if(r.finishTimes.size() > 0 && r.startTimes.size() > 0)
 			out.append(r.finishTimes.last());
 		out.append("; ");
 	}
@@ -101,6 +101,7 @@ public class LapRacePrinter implements RacerPrinter {
 			out.append(itr.next());
 			out.append("; ");
 		}
+		
 		
 		if(i < numLapse)
 			for(; i < numLapse-1; i++) {
@@ -130,7 +131,7 @@ public class LapRacePrinter implements RacerPrinter {
 			}
 		} else {
 			out.append("--:--:--; ");
-			errorTrail.append("saknar starttid ");
+			errorTrail.append("Start? ");
 		}
 	}
 
@@ -158,13 +159,13 @@ public class LapRacePrinter implements RacerPrinter {
 				out.append(diff);
 				
 				if(diff.compareTo(new Time("00.15.00")) < 0)
-					errorTrail.append("Omojlig varvtid? ");
+					errorTrail.append("Omšjlig varvtid? ");
 				
 				out.append("; ");
 				before = next;
 			}
 			if(numLapse < r.finishTimes.size()) {
-				errorTrail.append("fï¿½r mï¿½nga varv ");
+				errorTrail.append("fšr mŒnga varv ");
 				for(; i < r.finishTimes.size(); i++) {
 					errorTrail.append(itr.next());
 					errorTrail.append(" ");
@@ -229,7 +230,10 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printNumLapses(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		out.append(r.finishTimes.size());
+		if(r.startTimes.size() > 0)
+			out.append(r.finishTimes.size());
+		else
+			out.append("0");
 		out.append("; ");
 	}
 	

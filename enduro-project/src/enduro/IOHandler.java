@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 import javax.swing.JOptionPane;
 
-import enduro.InputHandler.ConfigParser;
+import enduro.racer.Configuration.ConfigParser;
 
 
 /**

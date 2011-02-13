@@ -30,7 +30,7 @@ public class LapRacePrinterTest {
 		racer.addFinishTime(new Time("13.15.16"));
 		racer.addStartTime(new Time("12.00.00"));
 		
-		assertEquals("2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omojlig varvtid?", printer.print(racer, null));
+		assertEquals("2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omšjlig varvtid?", printer.print(racer, null));
 	}
 	
 	@Test public void testManyStarts() {
