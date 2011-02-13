@@ -73,48 +73,33 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			isCommaSeparated = true;
 			for (String raceNbr : commaSeparated) {
 				String[] dashSeparated = raceNbr.split("-");
-				if (dashSeparated.length > 1) {
-					StringBuilder sb = new StringBuilder();
-					makeRow(currentTime, dashSeparated, sb);
-					try {
-						sb.deleteCharAt(sb.length() - 1);
-						registrationTextArea.update(sb.toString());
-					} catch (StringIndexOutOfBoundsException e) {
-
-					}
-				} else {
-					StringBuilder sb = new StringBuilder();
-					sb.append(raceNbr);
-					sb.append(';');
-					sb.append(' ');
-					if (storedTime.isEmpty()) {
-						sb.append(currentTime);
-					} else {
-						sb.append(getStoredTime().toString());
-						undo.setVisible(false);
-					}
-
-					try {
-						deleteStoredTimeFile();
-						if (storedTime.isEmpty()) {
-							saveToFile(Integer.parseInt(raceNbr), new Time(
-									currentTime));
-						} else {
-							saveToFile(Integer.parseInt(raceNbr),
-									getStoredTime());
-						}
-						registrationTextArea.update(sb.toString());
-					} catch (NumberFormatException e) {
-
-					}
-				}
+				numHandler(currentTime, invalid, isCommaSeparated, dashSeparated);
 			}
 			storedTime.empty();
-		}
+		}else if(commaSeparated.length == 1 && !invalid && !getText().equals("")){
 		// Dashseperated handling
 		String[] dashSeparated = getText().split("-");
-		if (dashSeparated.length > 1 && !isCommaSeparated && !invalid
-				&& !getText().equals("")) {
+		numHandler(currentTime, invalid, isCommaSeparated, dashSeparated);
+		}else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
+			if (storedTime.isEmpty()) {
+				storeTime();
+				undo.setVisible(true);
+			}
+		}
+		setText("");
+		requestFocus();
+	}
+	/**
+	 *  takes a String[] of expressions and handles them 
+	 * @param currentTime
+	 * @param invalid
+	 * @param isCommaSeparated
+	 * @param dashSeparated
+	 */
+	private void numHandler(String currentTime, boolean invalid,
+			boolean isCommaSeparated, String[] dashSeparated) {
+		if (dashSeparated.length > 1 && !invalid
+				&& !dashSeparated[0].equals("")) {
 			StringBuilder sb = new StringBuilder();
 			makeRow(currentTime, dashSeparated, sb);
 			try {
@@ -124,9 +109,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 			}
 			storedTime.empty();
-		} else if (!getText().equals("") && !invalid) {
+		} else if (!dashSeparated[0].equals("") && !invalid) {
 			StringBuilder sb = new StringBuilder();
-			sb.append(getText());
+			sb.append(dashSeparated[0]);
 			sb.append(';');
 			sb.append(' ');
 			if (storedTime.isEmpty()) {
@@ -137,27 +122,28 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				undo.setVisible(false);
 			}
 
-			try {
-				deleteStoredTimeFile();
-				if (storedTime.isEmpty()) {
-					saveToFile(Integer.parseInt(getText()), new Time(
-							currentTime));
-				} else {
-					saveToFile(Integer.parseInt(getText()), getStoredTime());
-				}
-				registrationTextArea.update(sb.toString());
-			} catch (NumberFormatException e) {
-
-			}
+			writeTime(currentTime, sb,dashSeparated);
 			storedTime.empty();
-		} else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
-			if (storedTime.isEmpty()) {
-				storeTime();
-				undo.setVisible(true);
-			}
 		}
-		setText("");
-		requestFocus();
+	}
+	/**
+	 * Writes time to file
+	 * 
+	 * @param currentTime
+	 * @param sb
+	 */
+	private void writeTime(String currentTime, StringBuilder sb, String[] dashSeparated) {
+		try {
+			deleteStoredTimeFile();
+			if (storedTime.isEmpty()) {
+				saveToFile(Integer.parseInt(dashSeparated[0]), new Time(currentTime));
+			} else {
+				saveToFile(Integer.parseInt(getText()), getStoredTime());
+			}
+			registrationTextArea.update(sb.toString());
+		} catch (NumberFormatException e) {
+
+		}
 	}
 
 	/**
@@ -211,6 +197,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	public void deleteStoredTimeFile() {
 		File f = new File("storedTimeOfUnknownDriver.txt");
 		f.delete();
+		storedTime.empty();
 	}
 
 	/**
