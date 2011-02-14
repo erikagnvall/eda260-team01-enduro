@@ -18,6 +18,7 @@ import java.util.HashMap;
 public class ConfigParser {
 	private HashMap<String, String> tmp = new HashMap<String, String>();
 	private StringBuilder errors = new StringBuilder();
+	private boolean fileNotFound = false;
 
 	private static ConfigParser parser = null;
 
@@ -79,13 +80,30 @@ public class ConfigParser {
 				line++;
 			}
 		} catch (Exception e) {
+			fileNotFound = true;
 		}
 	}
 
+	/**
+	 * Returns the configuration value corresponding to a given key as an integer.
+	 * 
+	 * @param key
+	 *            The key which the value is mapped to
+	 * @return the value the key is mapped to as an integer, or <code>null</code> if there was
+	 *         no mapping for this key
+	 */
 	public int getIntConf(String key) {
 		return Integer.parseInt(tmp.get(key));
 	}
 
+	/**
+	 * Returns the configuration value corresponding to a given key as a String.
+	 * 
+	 * @param key
+	 *            The key which the value is mapped to
+	 * @return the value the key is mapped to as a String, or <code>null</code> if there was
+	 *         no mapping for this key
+	 */
 	public String getStringConf(String key) {
 		return tmp.get(key);
 	}
@@ -103,7 +121,14 @@ public class ConfigParser {
 		return this.errors.toString();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(new ConfigParser());
+	/**
+	 * Returns <code>true</code> if the file given to the constructor wasn't
+	 * found.
+	 * 
+	 * @return <code>true</code> if the file given to the constructor wasn't
+	 *         found
+	 */
+	public boolean fileNotFound() {
+		return fileNotFound;
 	}
 }
