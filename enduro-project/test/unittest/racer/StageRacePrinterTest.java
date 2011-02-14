@@ -53,14 +53,12 @@ public class StageRacePrinterTest {
 				.split("; "));
 		racer.addStartTime(new Time("12.00.00"), 1);
 		racer.addFinishTime(new Time("12.30.00"), 1);
-		racer.addStartTime(new Time("12.00.01"), 1);
-		racer.addFinishTime(new Time("13.00.00"), 1);
-		racer.addStartTime(new Time("12.00.02"), 1);
-		racer.addFinishTime(new Time("13.23.34"), 1);
+		racer.addStartTime(new Time("12.00.00"), 2);
+		racer.addFinishTime(new Time("13.00.00"), 2);
 		
 		
                                         
-		assertEquals("1; Anders Asson; FMCK Astad; ATM; 02.53.31; 3; 00.30.00; 00.59.59; 01.23.32; 12.00.00; 12.30.00; 12.00.01; 13.00.00; 12.00.02; 13.23.34",printer.print(racer, null));
+		assertEquals("1; Anders Asson; FMCK Astad; ATM; 01.30.00; 2; 00.30.00; 01.00.00; 12.00.00; 12.30.00; 12.00.00; 13.00.00",printer.print(racer, null));
 	}
 
 }

@@ -39,6 +39,8 @@ public class Racer implements Comparable<Racer> {
 	 * @param stage TODO
 	 */
 	public void addStartTime(Time startTime, int stage) {
+		if(this.startTimes.get(stage)== null)
+			this.startTimes.put(stage, new TreeSet<Time>());
 		this.startTimes.get(stage).add(startTime);
 	}
 	
@@ -48,6 +50,8 @@ public class Racer implements Comparable<Racer> {
 	 * @param stage TODO
 	 */
 	public void addFinishTime(Time finishTime, int stage) {
+		if(this.finishTimes.get(stage)== null)
+			this.finishTimes.put(stage, new TreeSet<Time>());
 		this.finishTimes.get(stage).add(finishTime);
 	}
 

@@ -3,6 +3,9 @@ package enduro.racer.printer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
 import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
@@ -19,25 +22,37 @@ public class StageRacePrinter implements RacerPrinter {
 	 * returns a string that contains stage race info. 
 	 */
 	public String print(Racer r, HashMap<String, String> extraInformation) {
+		
+		System.out.println(r.finishTimes.toString());
+		System.out.println(r.startTimes.toString());
 		StringBuilder out = new StringBuilder();
+		
+		TreeMap<Integer, Time> stages = this.getStages(r);
+		
 		StringBuilder errorTrail = new StringBuilder();
-		printRunnerInformation(r, out, errorTrail);
-		printTotalTime(r, out, errorTrail);
-		printNbrOfStages(r, out, errorTrail);
-		printStages(r, out, errorTrail);
-		printStartAndFinish(r, out, errorTrail);
+		
+		printRunnerInformation(r, out, stages, errorTrail);
+		
+		printTotalTime(r, out, stages, errorTrail);
+		
+		printNbrOfStages(r, out, stages, errorTrail);
+		
+		printStages(r, out, stages, errorTrail);
+		
+		printStartAndFinish(r, out, stages, errorTrail);
+		
 		out.append(errorTrail.toString());
+		
 		return out.toString();
 	}
 
-	private void printNbrOfStages(Racer r, StringBuilder out,
+	private void printNbrOfStages(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		ArrayList<Time> times = getStages(r);
-		out.append(times.size());
+		out.append(stages.size());
 		out.append("; ");
 	}
 
-	private void printRunnerInformation(Racer r, StringBuilder out,
+	private void printRunnerInformation(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		int i = 0;
 		for (; i < r.racerInformation.size(); i++) {
@@ -50,19 +65,18 @@ public class StageRacePrinter implements RacerPrinter {
 
 	}
 
-	private void printStartAndFinish(Racer r, StringBuilder out,
+	private void printStartAndFinish(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		Object[] fTimes = r.finishTimes.get(1).toArray();
-		Object[] sTimes = r.startTimes.get(1).toArray();
-		int maxLength = Math.max(fTimes.length, sTimes.length);
-		for (int i = 0; i < maxLength; i++) {
-			out.append(((Time) sTimes[i]).toString());
+		
+		for(int stage:stages.keySet()) {
+			if(r.startTimes.get(stage)!=null)
+				out.append(r.startTimes.get(stage).first());
 			out.append("; ");
-			out.append(((Time) fTimes[i]).toString());
-			if (i != maxLength - 1) {
-				out.append("; ");
-			}
+			if(r.finishTimes.get(stage)!=null)
+				out.append(r.finishTimes.get(stage).first());
+			out.append("; ");
 		}
+		out.delete(out.length()-2, out.length());
 	}
 
 	public String printTopInformation() {
@@ -90,35 +104,40 @@ public class StageRacePrinter implements RacerPrinter {
 		}
 	}
 
-	private void printStages(Racer r, StringBuilder out,
+	private void printStages(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		if (r.startTimes.size() > 0) {
-			ArrayList<Time> stages = getStages(r);
-			for (int i = 0; i < stages.size(); i++) {
-				out.append(stages.get(i).toString());
-				out.append("; ");
-			}
+		for(int stage:stages.keySet()) {
+			if(stages.get(stage) != null)
+				out.append(stages.get(stage));
+			out.append("; ");
 		}
 	}
 
-	private void printTotalTime(Racer r, StringBuilder out,
+	private void printTotalTime(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		ArrayList<Time> times = getStages(r);
 		Time totalTime = new Time(0, 0, 0);
-		for (int i = 0; i < times.size(); i++) {
-			totalTime.increment(times.get(i));
+		for(int stage:stages.keySet()) {
+			if(stages.get(stage) != null)
+				totalTime.increment(stages.get(stage));
 		}
 		out.append(totalTime.toString());
 		out.append("; ");
 	}
 
-	private ArrayList<Time> getStages(Racer r) {
-		Iterator<Time> startItr = r.startTimes.get(1).iterator();
-		Iterator<Time> finishItr = r.finishTimes.get(1).iterator();
-		ArrayList<Time> stages = new ArrayList<Time>();
-		while (startItr.hasNext() && finishItr.hasNext()) {
-			stages.add(startItr.next().getTotalTime(finishItr.next()));
+	private TreeMap<Integer, Time> getStages(Racer r) {
+		TreeSet<Integer> stagesList = new TreeSet<Integer>();
+		stagesList.addAll(r.startTimes.keySet());
+		stagesList.addAll(r.finishTimes.keySet());
+		
+		TreeMap<Integer, Time> res = new TreeMap<Integer, Time>();
+		
+		for(int stage: stagesList) {
+			if(r.startTimes.containsKey(stage) && r.finishTimes.containsKey(stage)) {
+				res.put(stage, r.startTimes.get(stage).first().getTotalTime(r.finishTimes.get(stage).last()));
+			} else {
+				res.put(stage, null);
+			}
 		}
-		return stages;
+		return res;
 	}
 }

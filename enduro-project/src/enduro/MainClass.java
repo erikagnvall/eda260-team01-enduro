@@ -32,6 +32,14 @@ public class MainClass {
 			return Integer.parseInt(temp[0]);
 	}
 	
+	private static String getLocation(String preliminaryLocation) {
+		String[] temp = preliminaryLocation.split(":");
+		
+		if(temp.length != 2)
+			return preliminaryLocation;
+		return temp[1];
+	}
+	
 	public static void main(String[] args) {
 		for(String arg: args)
 			System.out.println(arg);
@@ -71,17 +79,17 @@ public class MainClass {
 						temp = temp.substring(5);
 						int stage = getStage(temp);
 						System.out.println("namefile: " + temp);
-						handler.addNameFile(temp, stage);
+						handler.addNameFile(getLocation(temp), stage);
 					} else if(line.startsWith("start:")) {
 						temp = temp.substring(6);
 						System.out.println("startfile: " + temp);
 						int stage = getStage(temp);
-						handler.addStartFile(temp, stage);
+						handler.addStartFile(getLocation(temp), stage);
 					} else if(line.startsWith("finish:")) {
 						temp = temp.substring(7);
 						int stage = getStage(temp);
 						System.out.println("finishfile: " + temp);
-						handler.addFinishFile(temp, stage);
+						handler.addFinishFile(getLocation(temp), stage);
 					} else {
 						if(!line.startsWith("@Advanced"))
 							System.out.println("ERROR: line in list file is unparsable: " + line);

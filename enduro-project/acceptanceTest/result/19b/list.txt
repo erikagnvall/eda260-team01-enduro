@@ -1,6 +1,6 @@
 @Advanced
 name:acceptanceTest/result/19b/namnfil.txt
-start:acceptanceTest/result/19b/starttider1.txt
-start:acceptanceTest/result/19b/starttider2.txt
-finish:acceptanceTest/result/19b/maltider1.txt
-finish:acceptanceTest/result/19b/maltider2.txt
+start:1:acceptanceTest/result/19b/starttider1.txt
+start:2:acceptanceTest/result/19b/starttider2.txt
+finish:1:acceptanceTest/result/19b/maltider1.txt
+finish:2:acceptanceTest/result/19b/maltider2.txt
