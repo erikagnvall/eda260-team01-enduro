@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import enduro.racedata.Time;
@@ -14,7 +16,9 @@ import enduro.racer.printer.StageRacePrinter;
 public class StageRacePrinterTest {
 	private Racer racer;
 	private StageRacePrinter printer = new StageRacePrinter();
-
+	@Before public void doBefore() {
+		printer.setHeaderInformation(new String[]{"StartNr", "Namn", "Klubb", "MC"});
+	}
 	@Test
 	public void assertTestStageAreCorrect() {
 		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 3);

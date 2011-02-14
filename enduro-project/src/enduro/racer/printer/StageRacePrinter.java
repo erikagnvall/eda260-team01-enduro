@@ -9,17 +9,19 @@ public class StageRacePrinter implements RacerPrinter {
 	private String extraInformation = "";
 	private int stages = ConfigParser.getInstance().getIntConf("stages");
 	private int extraRunnerInformation;
-	@Override
+	
 	public String print(Racer r, HashMap<String, String> extraInformation) {
+		StringBuilder out = new StringBuilder();
+		StringBuilder errorTrail = new StringBuilder();
+		printTotalTime(r, out, errorTrail);
+		
 		return null;
 	}
 
-	@Override
 	public String printTopInformation() {
 		StringBuilder out = new StringBuilder();
 		out.append(extraInformation);
-
-		out.append("StartNr; Namn; Klubb; MC; Totaltid; #Etapper");
+		out.append("Totaltid; #Etapper");
 
 		for (int i = 1; i <= stages; i++) {
 			out.append("; Etapp");
@@ -35,11 +37,23 @@ public class StageRacePrinter implements RacerPrinter {
 		return out.toString();
 	}
 
-	@Override
 	public void setHeaderInformation(String[] extraInformation) {
 		extraRunnerInformation = extraInformation.length;
 		for(int i = 0; i < extraRunnerInformation; i++) {
 			this.extraInformation += extraInformation[i] + "; ";
+		}
+	}
+	
+	private void printTotalTime(Racer r, StringBuilder out, StringBuilder errorTrail) {
+		if(r.startTimes.size() > 0) {
+			if(r.finishTimes.size() > 0) {
+				out.append(r.startTimes.first().getTotalTime(r.finishTimes.last()));
+				out.append("; ");
+			} else {
+				out.append("--:--:--; ");
+			}
+		} else {
+			out.append("--:--:--; ");
 		}
 	}
 }
