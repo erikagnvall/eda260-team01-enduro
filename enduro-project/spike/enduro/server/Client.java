@@ -3,6 +3,7 @@ package enduro.server;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 /**
  * A Java client, mostly self-written.
  * @author Rick
@@ -10,6 +11,7 @@ import java.net.Socket;
  */
 public class Client {
 	public static void main(String[] args) throws InterruptedException, IOException {
+		Scanner scan = new Scanner(System.in);
 		Socket clientSocket = null;
 		PrintWriter out = null;
 		//Creates a socket for connecting to a server
@@ -21,12 +23,13 @@ public class Client {
 			System.exit(-1);
 		}
 		//Outputs strings and then sleeps for 1 second to allow server to process data.
-		out.println("Nu kommer konden!");
-		Thread.sleep(100);
-		out.println("Nu ser det ut som skit i repositoryt!");
-		Thread.sleep(100);
-		out.println("Bendix");
-		//Close it up
+		System.out.println("client");
+		while(true){
+			String s = scan.nextLine();
+			out.println(s);
+			if(s.equals("quit")) break;
+			System.out.println("client:" + s);
+		}
 		out.close();
 		clientSocket.close();
 	}

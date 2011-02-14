@@ -28,38 +28,10 @@ public class Server {
 			System.exit(-1);
 		}
 		// Creates a new socket for outgoing connections
-		Socket clientSocket = null;
-		try {
-			clientSocket = serverSocket.accept();
-		} catch (IOException e) {
-			System.out.println("Accept failed: 44444");
-			System.exit(-1);
-		}
-		// Creates new writers and readers for sockets
-		PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-		BufferedReader in = new BufferedReader(new InputStreamReader(
-				clientSocket.getInputStream()));
-		// Ugly hack deluxe, only accepts specific strings in specifik
-		// orders.
-		if (in.readLine().equals("Nu kommer konden!")) {
-			System.out.println("Client: Nu kommer kunden!");
-			out.println("Har ni frågor, har ni problem?");
-			System.out.println("Server: Har ni frågor, har ni problem?");
-		}
-		if (in.readLine().equals("Nu ser det ut som skit i repositoryt!")) {
-			System.out.println("Client: Nu ser det ut som skit i repositoryt!");
-			out.println("Vem körde inte update innan commit?");
-			System.out.println("Server: Vem körde inte update innan commit?");
-		}
-		if (in.readLine().equals("Bendix")) {
-			System.out.println("Client: Bendix");
-			out.println("=O");
-			System.out.println("Server: =O");
-		}
-		// Close it all up
-		out.close();
-		in.close();
-		clientSocket.close();
-		serverSocket.close();
+	
+		while (true)
+		    new EnduroServerThread(serverSocket.accept(), 1).start();
+
+	//        serverSocket.close();
 	}
 }
