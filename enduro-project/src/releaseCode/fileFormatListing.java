@@ -56,7 +56,7 @@ public class fileFormatListing {
 	
 	public static String printFileJDoc(String fileLocation, String before) {
 		StringBuilder out = new StringBuilder();
-		
+		out.append("\n");
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(fileLocation));
 			
@@ -84,6 +84,7 @@ public class fileFormatListing {
 					out.append("\n");
 				}
 			}
+			out.append("\n");
 		} catch (Exception e) {}
 		
 		return out.toString();
