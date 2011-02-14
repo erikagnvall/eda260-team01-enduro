@@ -61,6 +61,7 @@ public class ConfigParser {
 		tmp.put("laps", "3");
 		tmp.put("stages", "3");
 		tmp.put("mintime", "01.00.00");
+		tmp.put("timelimit", "00.15.00");
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(fileLocation));

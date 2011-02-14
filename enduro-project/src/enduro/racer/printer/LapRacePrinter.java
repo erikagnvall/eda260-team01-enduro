@@ -163,7 +163,7 @@ public class LapRacePrinter implements RacerPrinter {
 				
 				out.append(diff);
 				
-				if(diff.compareTo(new Time("00.15.00")) < 0)
+				if(diff.compareTo(new Time(ConfigParser.getInstance().getStringConf("timelimit"))) < 0)
 					errorTrail.append("Omöjlig varvtid? ");
 				
 				out.append("; ");
