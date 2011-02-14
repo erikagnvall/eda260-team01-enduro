@@ -41,6 +41,11 @@ public class ConfigParser {
 			parser = new ConfigParser();
 		return parser;
 	}
+	
+	public void overLoadValue(String key, String value) {
+		tmp.remove(key);
+		tmp.put(key, value);
+	}
 
 	/**
 	 * unconditionally creates a new singleton instance

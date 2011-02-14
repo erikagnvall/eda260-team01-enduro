@@ -32,6 +32,7 @@ public class InputHandlerTest {
 	 */
 	@Test public void testRealInput() {
 		ConfigParser.getInstance("config.conf");
+		ConfigParser.getInstance().overLoadValue("sorted", "false");
 		InputHandler handler = new InputHandler();
 		handler.addNameFile("acceptanceTest/result/17_unit/namnfil.txt");
 		handler.addFinishFile("acceptanceTest/result/17_unit/maltider1.txt");

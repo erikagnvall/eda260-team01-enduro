@@ -53,12 +53,37 @@ public class MainClass {
 		
 		String[] files = getLines(input);
 		if(files.length >= 3) {
+			
 			//there is a name, start and finish file
-			handler.addNameFile(files[0]);
-			handler.addStartFile(files[1]);
-			for(int i = 2; i < files.length; i++) {
-				handler.addFinishFile(files[i]);
+			if(files[0].startsWith("@Advanced")) {
+				
+				System.out.println("advanced list parsing activated");
+				for(String line: files) {
+					String temp = line;
+					if(line.startsWith("name:")) {
+						temp = temp.substring(5);
+						System.out.println("namefile: " + temp);
+						handler.addNameFile(temp);
+					} else if(line.startsWith("start:")) {
+						temp = temp.substring(6);
+						System.out.println("startfile: " + temp);
+						handler.addStartFile(temp);
+					} else if(line.startsWith("finish:")) {
+						temp = temp.substring(7);
+						System.out.println("finishfile: " + temp);
+						handler.addFinishFile(temp);
+					} else {
+						System.out.println("ERROR: line in list file is unparsable: " + line);
+					}
+				}
+			} else {
+				handler.addNameFile(files[0]);
+				handler.addStartFile(files[1]);
+				for(int i = 2; i < files.length; i++) {
+					handler.addFinishFile(files[i]);
+				}
 			}
+			
 			
 			try {
 				FileWriter writer = new FileWriter(output);
