@@ -1,4 +1,4 @@
-package enduro.racer;
+package enduro;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import enduro.TxtToHtml;
+import enduro.racer.InputHandler;
 import enduro.racer.Configuration.ConfigParser;
 
 /**
