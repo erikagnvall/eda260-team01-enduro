@@ -52,7 +52,7 @@ public class MainClass {
 		InputHandler handler = new InputHandler();
 		
 		String[] files = getLines(input);
-		if(files.length > 3) {
+		if(files.length >= 3) {
 			//there is a name, start and finish file
 			handler.addNameFile(files[0]);
 			handler.addStartFile(files[1]);

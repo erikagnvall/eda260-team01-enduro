@@ -59,7 +59,7 @@ public class ConfigParser {
 		tmp.put("sorting", "number");
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
-		tmp.put("stages", "3");
+		tmp.put("stages", "1");
 		tmp.put("mintime", "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");

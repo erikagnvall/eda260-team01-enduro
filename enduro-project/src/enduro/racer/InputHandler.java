@@ -16,8 +16,8 @@ import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.RacerPrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
-import enduro.racer.printer.SortedStageRacePrinter;
 import enduro.racer.printer.StageRacePrinter;
+import enduro.racer.printer.SortedStageRacePrinter;
 
 /**
  * This class has a number of public void functions that adds name files, finish time files and start time files
