@@ -3,14 +3,18 @@ Denna fil innehåller beskrivning av hur paketen är uppdelade i src-mappen
 Följande paket finns
 
 enduro:
-Innehåller huvudprogrammet som initiererar inläsningen av filer för backend (administratörsdelen av systemet) . 
+Innehåller backendets main-klass.
 Inehåller klasser för att skriva till fil samt att konvertera text till html.
 
 enduro.gui:
 Innehåller GUIdelen av programmet och har klasser för att bygga ett GUI.
 
 enduro.racer:
-Innehåller klasser för att hantera input, sortering och utskrift av resultat samt en intern tidshanterarklass.
+Innehåller nyckelklassen InputHandler som hanterar parametrar från konfigfilen samt inläsning av alla indatafilen (namn, starttider och sluttider).
+Denna klass har nyckelfunktionen print som ger hela utdatan som en sträng, kombinerad av all relevant data.
+Racer är en enklare klass som representerar en tävlande, med alla start och måltider och annan relevant information.
+RacerSorter representerar en klass av tävlande. använder sig av TreeSet<Racer> med specifika komperatorer som sorterar tävlande baserat på olika paramterar.
+RacerSorter hanterar sedan, med hjälp av enduro.racer.printer-subpaketet all utskrift relevant för klassen.
  
 enduro.racer.comparators:
 Innehåller flera olika klasser som jämför Racer-klassen.
@@ -22,6 +26,6 @@ Innehåller en parser för att läsa in konfigurationsfilen. Klassen är en sing
 
 enduro.racer.printer:
 Klasser för att producera resultatsträngar. Inehåller ett interface RacerPrinter som implementeras av de olika printerklasserna
-där varje printer är unik för en specifik typ av utdata.
+där varje printer är unik för en specifik typ av utdata (ex. sorterade varv enl. story 18 eller vanliga varvlopp).
 
 

@@ -3,27 +3,27 @@
     <target name="technicalDoc" depends="release">
         <delete dir="SourceCodeRelease" />
         <delete file="SourceCodeRelease.zip" />
-       
+       <!--
         <mkdir dir="SourceCodeRelease" />
         <copy todir="SourceCodeRelease/source">
             <fileset dir="src/enduro/" includes="**/*.java"/>
       	 </copy>
-       
+       -->
         <copy todir="SourceCodeRelease/technicalDoc">
             <fileset dir="technicalDoc" includes="**/*.*"/>
         </copy>
     	
     	<move file="SourceCodeRelease/technicalDoc/readme.txt" todir="SourceCodeRelease" />
-    	<copy file="build.xml" todir="SourceCodeRelease/" />
+    	<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
+
     	<!--
-    		Kopierar alla tester. Kanske ej behövs..?
-    	-->
     	<copy todir="SourceCodeRelease/tests">
-    	            <fileset dir="test/" includes="**/*.*"/>
-    	        </copy>
-    	
-        <copy file="release.zip" todir="SourceCodeRelease" />
-       
+			<fileset dir="test/" includes="**/*.*"/>
+		</copy>
+    	-->
+        <!--
+    	<copy file="release.zip" todir="SourceCodeRelease" />
+		-->
         <zip destfile="SourceCodeRelease.zip" basedir="SourceCodeRelease"/>
     </target>
 	
