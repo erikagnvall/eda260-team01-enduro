@@ -68,9 +68,6 @@ public class ComparatorTest {
 		runner6.addStartTime(new Time("12.00.00"));
 		runner6.addFinishTime(new Time("12.30.00"));
 		
-		/*runner7 = new Racer(new String("107; Ivan Isson; IMCK Istad; ITM").split("; "));
-		runner7.addStartTime(new Time("12.00.00"));
-		runner7.addFinishTime(new Time("12.30.00"));*/
 	}
 	
 	/*
