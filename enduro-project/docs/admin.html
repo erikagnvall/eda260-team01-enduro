@@ -68,6 +68,23 @@
 					.<br />
 					.<br />
 				</code>
+				
+				<p>Det finns ett alternativt sätt att skriva den fil om man behöver ett variabelt antal filer<br />
+				(och inte bara en variabel mängd målfiler).</p>
+				<p>Då börjar man en listfil med @Advanced följt av name:FIL, start:FIL alt. finish:FIL</p>
+				<b>Exempel:</b><br />
+				<code>
+					@Advanced<br />
+					name:namnfil.txt<br />
+					start:starttidsFil1.txt<br />
+					finish:målfil1.txt<br />
+					finish:målfil2.txt<br />
+					start:starttidsFil2.txt<br />
+					.<br />
+					.<br />
+					.<br />
+				</code>
+
 				<p>På första raden återfinns filen med namn på förarna, på rad två återfinns filen för
 				starttider följt av  en eller flera målfiler på separata rader. Dessa slås sedan
 				ihop till en resultatsfil som läggs i samma mapp som programmet. Namnet på filen kan
