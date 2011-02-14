@@ -52,7 +52,7 @@ public class ConfigParser {
 	
 	private void handleInput(String fileLocation) {
 		tmp.put("race", "marathon");
-		tmp.put("sorting", "name");
+		tmp.put("sorting", "number");
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
 		tmp.put("minimumTime", "900");

@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import javax.security.auth.login.Configuration;
+
 import enduro.racedata.Time;
+import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.comparators.runnerLapseComparator;
 import enduro.racer.comparators.runnerNumberComparator;
+import enduro.racer.comparators.runnerTotalTimeComparator;
 import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.RacerPrinter;
+import enduro.racer.printer.SortedLapRacePrinter;
 
 /**
  * this parses all files.
@@ -39,7 +44,33 @@ public class InputHandler {
 	}
 	
 	public String print() {
-		String error =  this.preparePrint(new LapRacePrinter(), new runnerNumberComparator());
+		
+		RacerPrinter printer;
+		Comparator<Racer> comp;
+		
+		String compare = ConfigParser.getInstance().getStringConf("sorting");
+		
+		if(compare.equals("number")) {
+			comp = new runnerNumberComparator();
+		} else if(compare.equals("sorted")){
+			comp = new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator()));
+		} else {
+			comp = new runnerNumberComparator();
+		}
+		
+		String printerType = ConfigParser.getInstance().getStringConf("race");
+		
+		if(printerType.equals("laps")) {
+			if(compare.equals("sorted"))
+				printer = new SortedLapRacePrinter();
+			else
+				printer = new LapRacePrinter();
+		} else {
+			printer = new LapRacePrinter();
+		}
+		
+		
+		String error =  this.preparePrint(printer, comp);
 		StringBuilder out = new StringBuilder();
 		
 		for(RacerSorter sorter : groups) {
