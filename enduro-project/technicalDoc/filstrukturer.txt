@@ -1,0 +1,31 @@
+De filer som systemet använder är de filer som GUI producerar samt en resultatfil, en deltagarfil och en configfil
+
+Datatyper:
+int - vanlig int
+String - en sträng
+Time - timeobjekt, skrivs (int.int.int)
+
+START-/MÅLFIL:
+Dessa filer produceras av GUIt och har en struktur som ser ut som följande
+startNr(int); tid (Time) \n
+exempel på en rad:
+4; 12.32.45
+
+DELTAGARFIL:
+Denna fil läses in av backend och skrivs manuellt av användaren
+Formateringen följer detta mönster
+Denna fil kan innehålla klassindelningar, en klass nämns med en enkel sträng följt av \n
+Nästa rad deklarerar vad de olika kolumnerna innehåller, där första kolumnen alltid är startNr och andra Namn
+Sedan följer ett variabelt antal rader med data på formen:
+startNr(int); Namn(String); Övrig information (String följt av ;)
+exempel på del av en fil:
+
+SENIOR
+startNr; Namn; Klubb; MC;
+3; Anders Andersson; Lund; KTM;
+12; Bengt Bengtsson; Malmö; KTM;
+
+RESULTATFIL:
+Denna fil produceras av backendprogrammet och kan variera beroende på vilken typ av race som körs
+Den generella strukturen är:
+startNr(int); Namn(String); StartTid(Time); MålTid(Time); TotalTid(Time);
