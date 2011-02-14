@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 
 public class RacerTest {
 

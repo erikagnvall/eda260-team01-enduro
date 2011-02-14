@@ -1,7 +1,7 @@
 package enduro.racer.comparators;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 import enduro.racer.Configuration.ConfigParser;
 
 public class runnerCheckTotalTimeMax extends DecorationCompare {

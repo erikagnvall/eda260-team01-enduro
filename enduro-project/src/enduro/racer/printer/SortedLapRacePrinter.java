@@ -2,8 +2,8 @@ package enduro.racer.printer;
 
 import java.util.HashMap;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 import enduro.racer.Configuration.ConfigParser;
 
 public class SortedLapRacePrinter implements RacerPrinter {

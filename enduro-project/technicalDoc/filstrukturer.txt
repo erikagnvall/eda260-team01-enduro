@@ -26,6 +26,13 @@ startNr; Namn; Klubb; MC;
 12; Bengt Bengtsson; Malmö; KTM;
 
 RESULTATFIL:
-Denna fil produceras av backendprogrammet och kan variera beroende på vilken typ av race som körs
+Denna fil produceras av backendprogrammet och kan variera beroende på vilken typ av race som körs.
+Detta styrs av configfilen
 Den generella strukturen är:
 startNr(int); Namn(String); StartTid(Time); MålTid(Time); TotalTid(Time);
+
+CONFIGFIL:
+Denna fil definerar hur backendprogrammet skall köras. Denna fil är enkelt uppbyggd med en A:B strategi där A och B är
+av typen string. A anger vad B anger.
+Kommentarstecken av typen // anger en kommentarsrad som inte skall läsas in.
+exempel:

@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 import enduro.racer.comparators.runnerLapseComparator;
 import enduro.racer.comparators.runnerNumberComparator;
 import enduro.racer.comparators.runnerTotalTimeComparator;

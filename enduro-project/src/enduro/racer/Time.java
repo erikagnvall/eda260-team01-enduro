@@ -1,4 +1,4 @@
-package enduro.racedata;
+package enduro.racer;
 
 /**
  * Utility class for representing time.

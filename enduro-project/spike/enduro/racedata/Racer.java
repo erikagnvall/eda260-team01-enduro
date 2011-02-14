@@ -5,6 +5,8 @@ package enduro.racedata;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+import enduro.racer.Time;
+
 public class Racer {
 	private HashMap<String, String> racerInfo;
 	private int startNbr;

@@ -3,7 +3,6 @@ package enduro.racer;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import enduro.racedata.Time;
 
 /**
  * A basic class that represents all information about the racer - number, extra information and lapse times.

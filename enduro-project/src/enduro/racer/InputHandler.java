@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import javax.security.auth.login.Configuration;
 
-import enduro.racedata.Time;
 import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.comparators.runnerCheckTotalTimeMax;
 import enduro.racer.comparators.runnerLapseComparator;

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import enduro.racedata.Time;
 import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.printer.RacerPrinter;
 

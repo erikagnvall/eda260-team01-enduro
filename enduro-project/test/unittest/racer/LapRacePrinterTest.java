@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 import enduro.racer.printer.LapRacePrinter;
 
 public class LapRacePrinterTest {

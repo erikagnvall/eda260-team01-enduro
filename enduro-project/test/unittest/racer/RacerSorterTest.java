@@ -7,9 +7,9 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
+import enduro.racer.Time;
 import enduro.racer.comparators.runnerNumberComparator;
 import enduro.racer.printer.LapRacePrinter;
 

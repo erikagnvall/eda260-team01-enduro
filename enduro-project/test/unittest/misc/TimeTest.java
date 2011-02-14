@@ -1,6 +1,7 @@
 package unittest.misc;
 
-import enduro.racedata.Time;
+import enduro.racer.Time;
+
 import org.junit.*;
 
 import static org.junit.Assert.*;

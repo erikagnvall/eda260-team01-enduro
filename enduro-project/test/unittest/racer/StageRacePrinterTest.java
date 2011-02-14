@@ -8,8 +8,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Time;
 import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.printer.StageRacePrinter;
 

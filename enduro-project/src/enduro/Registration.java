@@ -4,7 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import enduro.racedata.Time;
+
+import enduro.racer.Time;
 
 /**
  * Program for registering start and finish
