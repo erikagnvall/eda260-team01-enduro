@@ -80,6 +80,11 @@ public class SortedLapRacePrinter implements RacerPrinter {
 		out.append(position);
 		out.append("; ");	
 	}
+
+	public void setHeaderInformation(String[] extraInformation) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

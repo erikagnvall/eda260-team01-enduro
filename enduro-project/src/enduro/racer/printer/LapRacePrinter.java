@@ -11,8 +11,12 @@ public class LapRacePrinter implements RacerPrinter {
 	private int numLapse, extraRunnerInformation;
 	private String extraInformation = "";
 	
-	public LapRacePrinter(String[] extraInformation) {
+	public LapRacePrinter() {
 		numLapse = 3;
+		
+	}
+	
+	public void setHeaderInformation(String[] extraInformation) {
 		extraRunnerInformation = extraInformation.length;
 		
 		for(int i = 0; i < extraRunnerInformation; i++) {

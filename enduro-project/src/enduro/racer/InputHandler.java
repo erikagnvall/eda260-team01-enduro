@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import enduro.racedata.Time;
+import enduro.racer.comparators.runnerLapseComparator;
 import enduro.racer.comparators.runnerNumberComparator;
 import enduro.racer.printer.LapRacePrinter;
+import enduro.racer.printer.RacerPrinter;
 
 /**
  * this parses all files.
@@ -36,7 +39,7 @@ public class InputHandler {
 	}
 	
 	public String print() {
-		String error =  this.preparePrint();
+		String error =  this.preparePrint(new LapRacePrinter(), new runnerNumberComparator());
 		StringBuilder out = new StringBuilder();
 		
 		for(RacerSorter sorter : groups) {
@@ -52,7 +55,7 @@ public class InputHandler {
 	 * this function is relatively huge and should be broken up into more logical pieces. alas not at this moment.
 	 * @return a trail of errors.
 	 */
-	private String preparePrint() {
+	private String preparePrint(RacerPrinter rp, Comparator<Racer> rc) {
 		StringBuilder error = new StringBuilder();
 		
 		groups = new ArrayList<RacerSorter>();
@@ -69,8 +72,9 @@ public class InputHandler {
 			String[] names = this.getLines(nameFileLocations.get(0));
 			this.headerInformation = names[0].split("; ");
 			
-			unnamedGroup = new RacerSorter("ungrouped people", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
-			unregisteredRacers = new RacerSorter("Icke existerande startnummer", new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
+			rp.setHeaderInformation(this.headerInformation);
+			unnamedGroup = new RacerSorter("ungrouped people", rc, rp, new Time("01.00.00"));
+			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp, new Time("01.00.00"));
 			
 			for(int i = 1; i < names.length; i++) {
 				String[] lineSplit = names[i].split("; ");
@@ -80,7 +84,7 @@ public class InputHandler {
 					if(currentGroup != null)
 						this.groups.add(currentGroup);
 					
-					currentGroup = new RacerSorter(lineSplit[0], new runnerNumberComparator(), new LapRacePrinter(this.headerInformation), new Time("01.00.00"));
+					currentGroup = new RacerSorter(lineSplit[0], rc, rp, new Time("01.00.00"));
 				} else {
 					Racer temp = new Racer(lineSplit);
 					racerList.put(temp.startNbr, temp);

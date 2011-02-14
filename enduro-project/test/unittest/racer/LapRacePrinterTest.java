@@ -2,6 +2,7 @@ package unittest.racer;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import enduro.racedata.Time;
@@ -11,7 +12,11 @@ import enduro.racer.printer.LapRacePrinter;
 public class LapRacePrinterTest {
 
 	private Racer racer;
-	private LapRacePrinter printer = new LapRacePrinter(new String[]{"startNr", "Namn", "Klubb", "annat"});
+	private LapRacePrinter printer = new LapRacePrinter();
+	
+	@Before public void doBefore() {
+		printer.setHeaderInformation(new String[]{"startNr", "Namn", "Klubb", "annat"});
+	}
 	
 	@Test public void testNoErrors() {
 		racer = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
@@ -30,7 +35,7 @@ public class LapRacePrinterTest {
 		racer.addFinishTime(new Time("13.15.16"));
 		racer.addStartTime(new Time("12.00.00"));
 		
-		assertEquals("2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Omöjlig varvtid?", printer.print(racer, null));
+		assertEquals("2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16; 12.00.00; 12.14.00; 12.41.00; 13.15.16; Om√∂jlig varvtid?", printer.print(racer, null));
 	}
 	
 	@Test public void testManyStarts() {

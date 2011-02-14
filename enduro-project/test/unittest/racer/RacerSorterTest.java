@@ -19,6 +19,10 @@ public class RacerSorterTest {
 	private RacerSorter sorter;
 	
 	@Before public void bef() {
+		
+		LapRacePrinter printer = new LapRacePrinter();
+		printer.setHeaderInformation(new String[]{"startNr", "Namn", "Klubb", "annat"});
+		
 		racer1 = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
 		racer1.addFinishTime(new Time("12.30.00"));
 		racer1.addFinishTime(new Time("13.23.34"));
@@ -38,7 +42,7 @@ public class RacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("", new runnerNumberComparator(), new LapRacePrinter(new String[]{"startNr", "Namn", "Klubb", "annat"}), new Time("01.00.00"));
+		sorter = new RacerSorter("", new runnerNumberComparator(), printer, new Time("01.00.00"));
 	}
 	
 	@Test public void testConstructionAddRacer() {

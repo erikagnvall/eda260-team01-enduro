@@ -11,6 +11,8 @@ import enduro.racer.Racer;
  */
 public interface RacerPrinter {
 	
+	public void setHeaderInformation(String[] extraInformation);
+	
 	/**
 	 * prints the racer's text line with all information and errors.
 	 * 
