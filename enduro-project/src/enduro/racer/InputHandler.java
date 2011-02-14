@@ -177,12 +177,12 @@ public class InputHandler {
 							if(relevantRacer == null) {
 								//racer does not exist
 								Racer r = new Racer(new String[]{lineInfo[0]});
-								r.addStartTime(new Time(lineInfo[1]));
+								r.addStartTime(new Time(lineInfo[1]), 1);
 								unregisteredRacers.addRacer(r);
 								racerList.put(Integer.parseInt(lineInfo[0]), r);
 							} else {
 								//racer exists
-								relevantRacer.addStartTime(new Time(lineInfo[1]));
+								relevantRacer.addStartTime(new Time(lineInfo[1]), 1);
 							}
 						} catch(Exception E) {
 							error.append("integer parse error in start file: " + file + " line reads:: " + line + "\n");
@@ -216,12 +216,12 @@ public class InputHandler {
 							if(relevantRacer == null) {
 								//racer does not exist
 								Racer r = new Racer(new String[]{lineInfo[0]});
-								r.addFinishTime(new Time(lineInfo[1]));
+								r.addFinishTime(new Time(lineInfo[1]), 1);
 								unregisteredRacers.addRacer(r);
 								racerList.put(Integer.parseInt(lineInfo[0]), r);
 							} else {
 								//racer exists
-								relevantRacer.addFinishTime(new Time(lineInfo[1]));
+								relevantRacer.addFinishTime(new Time(lineInfo[1]), 1);
 							}
 						} catch(Exception E) {
 							error.append("integer parse error in finish file: " + file + " line reads:: " + line + "\n");

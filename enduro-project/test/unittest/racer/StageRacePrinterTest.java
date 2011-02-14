@@ -51,12 +51,12 @@ public class StageRacePrinterTest {
 	public void testPrint() {
 		racer = new Racer(new String("1; Anders Asson; FMCK Astad; ATM")
 				.split("; "));
-		racer.addStartTime(new Time("12.00.00"));
-		racer.addFinishTime(new Time("12.30.00"));
-		racer.addStartTime(new Time("12.00.01"));
-		racer.addFinishTime(new Time("13.00.00"));
-		racer.addStartTime(new Time("12.00.02"));
-		racer.addFinishTime(new Time("13.23.34"));
+		racer.addStartTime(new Time("12.00.00"), 1);
+		racer.addFinishTime(new Time("12.30.00"), 1);
+		racer.addStartTime(new Time("12.00.01"), 1);
+		racer.addFinishTime(new Time("13.00.00"), 1);
+		racer.addStartTime(new Time("12.00.02"), 1);
+		racer.addFinishTime(new Time("13.23.34"), 1);
 		
 		
                                         

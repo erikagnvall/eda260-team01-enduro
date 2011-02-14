@@ -43,10 +43,10 @@ public class SortedStageRacePrinterTest {
 	
 	@Test public void testPrintWithoutPlace() {
 		racer = new Racer(new String("2; Bengt Bsson; Bklobb; BTM").split("; "));
-		racer.addFinishTime(new Time("12.43.02"));
-		racer.addStartTime(new Time("12.31.00"));
-		racer.addFinishTime(new Time("12.11.00"));
-		racer.addStartTime(new Time("11.01.00"));
+		racer.addFinishTime(new Time("12.43.02"), 1);
+		racer.addStartTime(new Time("12.31.00"), 1);
+		racer.addFinishTime(new Time("12.11.00"), 1);
+		racer.addStartTime(new Time("11.01.00"), 1);
 
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
 		
@@ -55,10 +55,10 @@ public class SortedStageRacePrinterTest {
 	
 	@Test public void testPrintWithPlace() {
 		racer = new Racer(new String("2; Bengt Bsson; Bklobb; BTM").split("; "));
-		racer.addFinishTime(new Time("12.43.02"));
-		racer.addStartTime(new Time("12.31.00"));
-		racer.addFinishTime(new Time("12.11.00"));
-		racer.addStartTime(new Time("11.01.00"));
+		racer.addFinishTime(new Time("12.43.02"), 1);
+		racer.addStartTime(new Time("12.31.00"), 1);
+		racer.addFinishTime(new Time("12.11.00"), 1);
+		racer.addStartTime(new Time("11.01.00"), 1);
 
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
 		

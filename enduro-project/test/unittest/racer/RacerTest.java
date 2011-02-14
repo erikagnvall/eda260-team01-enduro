@@ -41,10 +41,10 @@ public class RacerTest {
 	@Test public void addTimeInformation() {
 		try {
 			Racer r = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
-			r.addFinishTime(new Time("00.00.12"));
+			r.addFinishTime(new Time("00.00.12"), 1);
 			assertTrue(r.startTimes.get(1).size()==0);
 			assertTrue(r.finishTimes.get(1).size()==1);
-			r.addStartTime(new Time("00.00.00"));
+			r.addStartTime(new Time("00.00.00"), 1);
 			assertTrue(r.startTimes.get(1).size()==1);
 			assertTrue(r.finishTimes.get(1).size()==1);
 		} catch(Exception E) {}
@@ -53,17 +53,17 @@ public class RacerTest {
 	
 	@Test public void getTimeInformation() {
 		Racer r = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
-		r.addFinishTime(new Time("00.00.12"));
-		r.addStartTime(new Time("00.00.00"));
+		r.addFinishTime(new Time("00.00.12"), 1);
+		r.addStartTime(new Time("00.00.00"), 1);
 		assertTrue(r.finishTimes.get(1).first().compareTo(new Time("00.00.12"))==0);
 		assertTrue(r.startTimes.get(1).first().compareTo(new Time("00.00.00"))==0);
 	}
 	
 	@Test public void getSortedTimeInformation() {
 		Racer r = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
-		r.addFinishTime(new Time("00.12.12"));
-		r.addFinishTime(new Time("00.00.12"));
-		r.addFinishTime(new Time("00.06.12"));
+		r.addFinishTime(new Time("00.12.12"), 1);
+		r.addFinishTime(new Time("00.00.12"), 1);
+		r.addFinishTime(new Time("00.06.12"), 1);
 		assertTrue(r.finishTimes.get(1).size()==3);
 		
 		assertTrue(r.finishTimes.get(1).first().compareTo(new Time("00.00.12"))==0);

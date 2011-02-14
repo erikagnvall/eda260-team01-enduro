@@ -35,38 +35,38 @@ public class ComparatorTest {
 	
 	@Before public void setup() {
 		runner1 = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
-		runner1.addFinishTime(new Time("12.30.00"));
-		runner1.addFinishTime(new Time("13.23.34"));
-		runner1.addStartTime(new Time("12.00.00"));
+		runner1.addFinishTime(new Time("12.30.00"), 1);
+		runner1.addFinishTime(new Time("13.23.34"), 1);
+		runner1.addStartTime(new Time("12.00.00"), 1);
 		
 		runner2 = new Racer(new String("2; Bengt Bsson; FMCK Bstad; BTM").split("; "));
-		runner2.addFinishTime(new Time("12.14.00"));
-		runner2.addFinishTime(new Time("12.41.00"));
-		runner2.addFinishTime(new Time("13.15.16"));
-		runner2.addStartTime(new Time("12.00.00"));
+		runner2.addFinishTime(new Time("12.14.00"), 1);
+		runner2.addFinishTime(new Time("12.41.00"), 1);
+		runner2.addFinishTime(new Time("13.15.16"), 1);
+		runner2.addStartTime(new Time("12.00.00"), 1);
 		
 		runner2copy = new Racer(new String("2; Bengt Bsson; FMCK Bstad; BTM").split("; "));
-		runner2copy.addFinishTime(new Time("12.14.00"));
-		runner2copy.addFinishTime(new Time("12.41.00"));
-		runner2copy.addFinishTime(new Time("13.00.00"));
-		runner2copy.addStartTime(new Time("12.00.00"));
+		runner2copy.addFinishTime(new Time("12.14.00"), 1);
+		runner2copy.addFinishTime(new Time("12.41.00"), 1);
+		runner2copy.addFinishTime(new Time("13.00.00"), 1);
+		runner2copy.addStartTime(new Time("12.00.00"), 1);
 		
 		runner103 = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
-		runner103.addFinishTime(new Time("12.44.00"));
-		runner103.addFinishTime(new Time("12.24.00"));
-		runner103.addFinishTime(new Time("13.16.07"));
-		runner103.addStartTime(new Time("12.00.00"));
-		runner103.addStartTime(new Time("12.15.00"));
+		runner103.addFinishTime(new Time("12.44.00"), 1);
+		runner103.addFinishTime(new Time("12.24.00"), 1);
+		runner103.addFinishTime(new Time("13.16.07"), 1);
+		runner103.addStartTime(new Time("12.00.00"), 1);
+		runner103.addStartTime(new Time("12.15.00"), 1);
 		
 		runner4 = new Racer(new String("104; Fredrik Fsson; FMCK Fstad; FTM").split("; "));
-		runner4.addStartTime(new Time("12.00.00"));
+		runner4.addStartTime(new Time("12.00.00"), 1);
 		
 		runner5 = new Racer(new String("105; Göran Gsson; GMCK Gstad; GTM").split("; "));
-		runner5.addFinishTime(new Time("13.30.00"));
+		runner5.addFinishTime(new Time("13.30.00"), 1);
 		
 		runner6 = new Racer(new String("106; Håkan Hsson; HGMCK Hstad; HTM").split("; "));
-		runner6.addStartTime(new Time("12.00.00"));
-		runner6.addFinishTime(new Time("12.30.00"));
+		runner6.addStartTime(new Time("12.00.00"), 1);
+		runner6.addFinishTime(new Time("12.30.00"), 1);
 		
 	}
 	

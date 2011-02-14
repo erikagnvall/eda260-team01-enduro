@@ -36,17 +36,19 @@ public class Racer implements Comparable<Racer> {
 	/**
 	 * Adds a start time described by a Time element
 	 * @param startTime the time described as a Time class
+	 * @param stage TODO
 	 */
-	public void addStartTime(Time startTime) {
-		this.startTimes.get(1).add(startTime);
+	public void addStartTime(Time startTime, int stage) {
+		this.startTimes.get(stage).add(startTime);
 	}
 	
 	/**
 	 * Adds a finish time described by a Time element
 	 * @param finishTime the time described as a Time class
+	 * @param stage TODO
 	 */
-	public void addFinishTime(Time finishTime) {
-		this.finishTimes.get(1).add(finishTime);
+	public void addFinishTime(Time finishTime, int stage) {
+		this.finishTimes.get(stage).add(finishTime);
 	}
 
 	/**
