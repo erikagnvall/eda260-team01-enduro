@@ -4,7 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import unittest.GUI.RegistrationGUITest;
-import unittest.dataStructure.RacerDataTest;
 import unittest.misc.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
