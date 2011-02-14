@@ -86,8 +86,8 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printGoal(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.finishTimes.size() > 0 && r.startTimes.size() > 0)
-			out.append(r.finishTimes.last());
+		if(r.finishTimes.get(1).size() > 0 && r.startTimes.get(1).size() > 0)
+			out.append(r.finishTimes.get(1).last());
 		out.append("; ");
 	}
 
@@ -104,8 +104,8 @@ public class LapRacePrinter implements RacerPrinter {
 	 */
 	private void printVarvning(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		int i = 0;
-		Iterator<Time> itr = r.finishTimes.iterator();
-		for(; i < Math.min(numLapse-1, r.finishTimes.size());i++) {
+		Iterator<Time> itr = r.finishTimes.get(1).iterator();
+		for(; i < Math.min(numLapse-1, r.finishTimes.get(1).size());i++) {
 			out.append(itr.next());
 			out.append("; ");
 		}
@@ -127,12 +127,12 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printStart(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.startTimes.size() > 0) {
-			out.append(r.startTimes.first());
+		if(r.startTimes.get(1).size() > 0) {
+			out.append(r.startTimes.get(1).first());
 			out.append("; ");
-			if(r.startTimes.size()!=1) {
+			if(r.startTimes.get(1).size()!=1) {
 				errorTrail.append("Flera starttider? " );
-				Iterator<Time> itr = r.startTimes.iterator();
+				Iterator<Time> itr = r.startTimes.get(1).iterator();
 				itr.next();
 				while(itr.hasNext())
 					errorTrail.append(itr.next() + " ");
@@ -155,11 +155,11 @@ public class LapRacePrinter implements RacerPrinter {
 	 */
 	private void printLapses(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		int i = 0;
-		if(r.startTimes.size() > 0) {
-			Time before = r.startTimes.first();
-			Iterator<Time> itr = r.finishTimes.iterator();
+		if(r.startTimes.get(1).size() > 0) {
+			Time before = r.startTimes.get(1).first();
+			Iterator<Time> itr = r.finishTimes.get(1).iterator();
 			
-			for(; i < Math.min(r.finishTimes.size(), numLapse); i++) {
+			for(; i < Math.min(r.finishTimes.get(1).size(), numLapse); i++) {
 				Time next = itr.next();
 				
 				Time diff = before.getTotalTime(next);
@@ -172,13 +172,13 @@ public class LapRacePrinter implements RacerPrinter {
 				out.append("; ");
 				before = next;
 			}
-			if(numLapse < r.finishTimes.size()) {
+			if(numLapse < r.finishTimes.get(1).size()) {
 				errorTrail.append("för många varv ");
-				for(; i < r.finishTimes.size(); i++) {
+				for(; i < r.finishTimes.get(1).size(); i++) {
 					errorTrail.append(itr.next());
 					errorTrail.append(" ");
 				}
-			} else if(numLapse > r.finishTimes.size()) {
+			} else if(numLapse > r.finishTimes.get(1).size()) {
 				for(; i < numLapse; i++)
 					out.append("; ");
 			}
@@ -198,9 +198,9 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printTotalTime(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.startTimes.size() > 0) {
-			if(r.finishTimes.size() > 0) {
-				out.append(r.startTimes.first().getTotalTime(r.finishTimes.last()));
+		if(r.startTimes.get(1).size() > 0) {
+			if(r.finishTimes.get(1).size() > 0) {
+				out.append(r.startTimes.get(1).first().getTotalTime(r.finishTimes.get(1).last()));
 				out.append("; ");
 			} else {
 				out.append("--:--:--; ");
@@ -238,8 +238,8 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printNumLapses(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.startTimes.size() > 0)
-			out.append(r.finishTimes.size());
+		if(r.startTimes.get(1).size() > 0)
+			out.append(r.finishTimes.get(1).size());
 		else
 			out.append("0");
 		out.append("; ");

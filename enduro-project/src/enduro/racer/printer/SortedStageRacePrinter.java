@@ -48,9 +48,9 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printStages(Racer r, StringBuilder out) {
-		Iterator<Time> itr = r.startTimes.iterator();
+		Iterator<Time> itr = r.startTimes.get(1).iterator();
 		Time before;
-		for (Time next : r.finishTimes) {
+		for (Time next : r.finishTimes.get(1)) {
 			before = itr.next();
 			out.append(before.getTotalTime(next));
 			out.append("; ");
@@ -58,7 +58,7 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printNumStages(Racer r, StringBuilder out) {
-		out.append(r.finishTimes.size());
+		out.append(r.finishTimes.get(1).size());
 		out.append("; ");
 	}
 
@@ -75,10 +75,10 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printTotalTime(Racer r, StringBuilder out) {
-		Iterator<Time> itr = r.startTimes.iterator();
+		Iterator<Time> itr = r.startTimes.get(1).iterator();
 		Time total = new Time("00.00.00");
 		Time before;
-		for (Time next : r.finishTimes) {
+		for (Time next : r.finishTimes.get(1)) {
 			before = itr.next();
 			total.increment(before.getTotalTime(next));
 		}

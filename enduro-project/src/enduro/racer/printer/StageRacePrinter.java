@@ -52,8 +52,8 @@ public class StageRacePrinter implements RacerPrinter {
 
 	private void printStartAndFinish(Racer r, StringBuilder out,
 			StringBuilder errorTrail) {
-		Object[] fTimes = r.finishTimes.toArray();
-		Object[] sTimes = r.startTimes.toArray();
+		Object[] fTimes = r.finishTimes.get(1).toArray();
+		Object[] sTimes = r.startTimes.get(1).toArray();
 		int maxLength = Math.max(fTimes.length, sTimes.length);
 		for (int i = 0; i < maxLength; i++) {
 			out.append(((Time) sTimes[i]).toString());
@@ -113,8 +113,8 @@ public class StageRacePrinter implements RacerPrinter {
 	}
 
 	private ArrayList<Time> getStages(Racer r) {
-		Iterator<Time> startItr = r.startTimes.iterator();
-		Iterator<Time> finishItr = r.finishTimes.iterator();
+		Iterator<Time> startItr = r.startTimes.get(1).iterator();
+		Iterator<Time> finishItr = r.finishTimes.get(1).iterator();
 		ArrayList<Time> stages = new ArrayList<Time>();
 		while (startItr.hasNext() && finishItr.hasNext()) {
 			stages.add(startItr.next().getTotalTime(finishItr.next()));

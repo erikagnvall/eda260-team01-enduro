@@ -35,7 +35,7 @@ public class SortedLapRacePrinter implements RacerPrinter {
 	}
 	
 	private void printTotalTime(Racer r, StringBuilder out) {
-		out.append(r.startTimes.first().getTotalTime(r.finishTimes.last()));
+		out.append(r.startTimes.get(1).first().getTotalTime(r.finishTimes.get(1).last()));
 		out.append("; ");
 	}
 
@@ -52,14 +52,14 @@ public class SortedLapRacePrinter implements RacerPrinter {
 	}
 
 	private void printNumLapses(Racer r, StringBuilder out) {
-		out.append(r.finishTimes.size());
+		out.append(r.finishTimes.get(1).size());
 		out.append("; ");
 	}
 
 	private void printLapses(Racer r, StringBuilder out) {
-		Time before = r.startTimes.first();
+		Time before = r.startTimes.get(1).first();
 		
-		for(Time next: r.finishTimes) {
+		for(Time next: r.finishTimes.get(1)) {
 			out.append(before.getTotalTime(next));
 			out.append("; ");
 			before = next;

@@ -88,9 +88,10 @@ public class RacerSorter {
 			/*
 			 * from here all possible extra information for printing is added, independent if a printer needs it or not. it does not get printed unless polled.
 			 */
+			
 			try {
 				//tests if the total time running is larger than the minimum time, if that is the case the position attribute is added
-				if(racer.startTimes.first().getTotalTime(racer.finishTimes.last()).compareTo(minTotalTime) > 0) {
+				if(racer.startTimes.get(1).first().getTotalTime(racer.finishTimes.get(1).last()).compareTo(minTotalTime) > 0) {
 					extraInformation.put("position", position + "");
 					
 					//position increased

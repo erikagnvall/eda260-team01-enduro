@@ -16,8 +16,8 @@ public class RunnerStageComparator extends DecorationCompare {
 
 	@Override
 	protected int compareRacers(Racer arg0, Racer arg1) {
-			int racer0Stages = arg0.finishTimes.size();
-			int racer1Stages = arg1.finishTimes.size();
+			int racer0Stages = arg0.finishTimes.get(1).size();
+			int racer1Stages = arg1.finishTimes.get(1).size();
 			if(racer0Stages < numStages){
 				if(racer1Stages > numStages)
 					return -1;

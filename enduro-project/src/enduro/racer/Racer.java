@@ -1,6 +1,7 @@
 package enduro.racer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 
@@ -16,14 +17,16 @@ public class Racer implements Comparable<Racer> {
 	
 	public ArrayList<String> racerInformation = new ArrayList<String>();
 	
-	public TreeSet<Time> startTimes = new TreeSet<Time>();
-	public TreeSet<Time> finishTimes = new TreeSet<Time>();
+	public HashMap<Integer,TreeSet<Time>> startTimes = new HashMap<Integer,TreeSet<Time>>();
+	public HashMap<Integer,TreeSet<Time>> finishTimes = new HashMap<Integer,TreeSet<Time>>();
 	
 	/**
 	 * Takes a string of information that is then treated as information about this racer.
 	 * @param racerInformation An array of strings, the first one must be the start number.
 	 */
 	public Racer(String[] racerInformation) {
+		startTimes.put(1, new TreeSet<Time>());
+		finishTimes.put(1, new TreeSet<Time>());
 		startNbr = Integer.parseInt(racerInformation[0]);
 		for(int i = 0; i < racerInformation.length; i++) {
 			this.racerInformation.add(racerInformation[i]);
@@ -35,7 +38,7 @@ public class Racer implements Comparable<Racer> {
 	 * @param startTime the time described as a Time class
 	 */
 	public void addStartTime(Time startTime) {
-		this.startTimes.add(startTime);
+		this.startTimes.get(1).add(startTime);
 	}
 	
 	/**
@@ -43,7 +46,7 @@ public class Racer implements Comparable<Racer> {
 	 * @param finishTime the time described as a Time class
 	 */
 	public void addFinishTime(Time finishTime) {
-		this.finishTimes.add(finishTime);
+		this.finishTimes.get(1).add(finishTime);
 	}
 
 	/**

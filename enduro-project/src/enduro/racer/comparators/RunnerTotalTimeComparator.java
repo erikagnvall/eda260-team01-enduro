@@ -19,13 +19,13 @@ public class RunnerTotalTimeComparator extends DecorationCompare {
 	
 	
 	public int compareRacers(Racer arg0, Racer arg1) {
-		if(arg0.startTimes.size() > 0 && arg1.startTimes.size() > 0) {
-			if(arg0.finishTimes.size() > 0 && arg1.finishTimes.size() > 0) {
-				return arg0.startTimes.first().getTotalTime(arg0.finishTimes.last()).compareTo(arg1.startTimes.first().getTotalTime(arg1.finishTimes.last()));
-			} else if(arg0.finishTimes.size() == 0 && arg1.finishTimes.size() == 0) {
+		if(arg0.startTimes.get(1).size() > 0 && arg1.startTimes.get(1).size() > 0) {
+			if(arg0.finishTimes.get(1).size() > 0 && arg1.finishTimes.get(1).size() > 0) {
+				return arg0.startTimes.get(1).first().getTotalTime(arg0.finishTimes.get(1).last()).compareTo(arg1.startTimes.get(1).first().getTotalTime(arg1.finishTimes.get(1).last()));
+			} else if(arg0.finishTimes.get(1).size() == 0 && arg1.finishTimes.get(1).size() == 0) {
 				//there is no total time due to both lacking finish times
 				return 0;
-			} else if(arg0.finishTimes.size() != 0) {
+			} else if(arg0.finishTimes.get(1).size() != 0) {
 				//arg0 has a finish time, arg1 doesn't
 				return -1;
 			} else {

@@ -17,7 +17,7 @@ public class RunnerLapseComparator extends DecorationCompare {
 	}
 	
 	protected int compareRacers(Racer arg0, Racer arg1) {
-		return arg0.finishTimes.size() - arg1.finishTimes.size();
+		return arg0.finishTimes.get(1).size() - arg1.finishTimes.get(1).size();
 	}
 
 }

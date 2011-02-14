@@ -16,8 +16,8 @@ public class RunnerCheckTotalTimeMax extends DecorationCompare {
 
 	@Override
 	protected int compareRacers(Racer arg0, Racer arg1) {
-		boolean arg0Check = arg0.startTimes.first().getTotalTime(arg0.finishTimes.last()).compareTo(maxTime) > 0;
-		boolean arg1Check = arg1.startTimes.first().getTotalTime(arg1.finishTimes.last()).compareTo(maxTime) > 0;
+		boolean arg0Check = arg0.startTimes.get(1).first().getTotalTime(arg0.finishTimes.get(1).last()).compareTo(maxTime) > 0;
+		boolean arg1Check = arg1.startTimes.get(1).first().getTotalTime(arg1.finishTimes.get(1).last()).compareTo(maxTime) > 0;
 		
 		if(arg0Check)
 			if(arg1Check)
