@@ -11,7 +11,7 @@ public class runnerCheckTotalTimeMax extends DecorationCompare {
 	public runnerCheckTotalTimeMax(DecorationCompare fallback) {
 		super(fallback);
 		
-		this.maxTime = new Time(ConfigParser.getInstance().getStringConf("maxtime"));
+		this.maxTime = new Time(ConfigParser.getInstance().getStringConf("mintime"));
 	}
 
 	@Override

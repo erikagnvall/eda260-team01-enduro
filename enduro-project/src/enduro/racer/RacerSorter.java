@@ -25,7 +25,7 @@ public class RacerSorter {
 	public RacerSorter(String groupName, Comparator<Racer> comp, RacerPrinter printer) {
 		this.comp = comp;
 		this.printer = printer;
-		this.minTotalTime = new Time(ConfigParser.getInstance().getStringConf("maxtime"));
+		this.minTotalTime = new Time(ConfigParser.getInstance().getStringConf("mintime"));
 		this.groupName = groupName;
 	}
 	

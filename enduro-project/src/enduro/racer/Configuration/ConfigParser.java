@@ -55,13 +55,12 @@ public class ConfigParser {
 	}
 
 	private void handleInput(String fileLocation) {
-		tmp.put("race", "marathon");
+		tmp.put("race", "laps");
 		tmp.put("sorting", "number");
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
 		tmp.put("stages", "3");
-		tmp.put("minimumTime", "900");
-		tmp.put("maxtime", "01.00.00");
+		tmp.put("mintime", "01.00.00");
 
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(fileLocation));
