@@ -69,16 +69,19 @@ public class MainClass {
 					String temp = line;
 					if(line.startsWith("name:")) {
 						temp = temp.substring(5);
+						int stage = getStage(temp);
 						System.out.println("namefile: " + temp);
-						handler.addNameFile(temp, 1);
+						handler.addNameFile(temp, stage);
 					} else if(line.startsWith("start:")) {
 						temp = temp.substring(6);
 						System.out.println("startfile: " + temp);
-						handler.addStartFile(temp, 1);
+						int stage = getStage(temp);
+						handler.addStartFile(temp, stage);
 					} else if(line.startsWith("finish:")) {
 						temp = temp.substring(7);
+						int stage = getStage(temp);
 						System.out.println("finishfile: " + temp);
-						handler.addFinishFile(temp, 1);
+						handler.addFinishFile(temp, stage);
 					} else {
 						if(!line.startsWith("@Advanced"))
 							System.out.println("ERROR: line in list file is unparsable: " + line);
