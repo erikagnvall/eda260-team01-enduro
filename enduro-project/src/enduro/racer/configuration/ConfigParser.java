@@ -1,4 +1,4 @@
-package enduro.racer.Configuration;
+package enduro.racer.configuration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

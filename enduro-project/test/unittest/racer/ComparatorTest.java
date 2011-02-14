@@ -8,9 +8,10 @@ import org.junit.Test;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
-import enduro.racer.comparators.runnerLapseComparator;
-import enduro.racer.comparators.runnerNumberComparator;
-import enduro.racer.comparators.runnerTotalTimeComparator;
+import enduro.racer.comparators.RunnerCheckTotalTimeMax;
+import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerNumberComparator;
+import enduro.racer.comparators.RunnerTotalTimeComparator;
 
 /**
  * this class tests all subclasses of DecorationCompare as well as combination thereof.
@@ -18,9 +19,10 @@ import enduro.racer.comparators.runnerTotalTimeComparator;
 public class ComparatorTest {
 
 	
-	runnerLapseComparator lapse = new runnerLapseComparator();
-	runnerNumberComparator number = new runnerNumberComparator();
-	runnerTotalTimeComparator time = new runnerTotalTimeComparator();
+	RunnerLapseComparator lapse = new RunnerLapseComparator();
+	RunnerNumberComparator number = new RunnerNumberComparator();
+	RunnerTotalTimeComparator time = new RunnerTotalTimeComparator();
+	RunnerCheckTotalTimeMax timeMax = new RunnerCheckTotalTimeMax(null);
 	
 	Racer runner1; //2 finish times
 	Racer runner2; //3 finish times
@@ -28,6 +30,7 @@ public class ComparatorTest {
 	Racer runner103; // 3 finish times
 	Racer runner4; // no finish time
 	Racer runner5; // no start time
+	Racer runner6; // total time < one hour
 	
 	
 	@Before public void setup() {
@@ -59,7 +62,15 @@ public class ComparatorTest {
 		runner4.addStartTime(new Time("12.00.00"));
 		
 		runner5 = new Racer(new String("105; Göran Gsson; GMCK Gstad; GTM").split("; "));
-		runner5.addFinishTime(new Time("12.00.00"));
+		runner5.addFinishTime(new Time("13.30.00"));
+		
+		runner6 = new Racer(new String("106; Håkan Hsson; HGMCK Hstad; HTM").split("; "));
+		runner6.addStartTime(new Time("12.00.00"));
+		runner6.addFinishTime(new Time("12.30.00"));
+		
+		/*runner7 = new Racer(new String("107; Ivan Isson; IMCK Istad; ITM").split("; "));
+		runner7.addStartTime(new Time("12.00.00"));
+		runner7.addFinishTime(new Time("12.30.00"));*/
 	}
 	
 	/*
@@ -120,17 +131,30 @@ public class ComparatorTest {
 	}
 
 	/*
+	 * test time max comparator
+	 */
+	@Test
+	public void testWithSmallTotalTime() {
+		assertTrue(timeMax.compare(runner6, runner6) == 0);
+	}
+	
+	@Test
+	public void testWithSmallTotalTime2() {
+		assertTrue(timeMax.compare(runner2, runner6) == -1);
+	}
+
+	/*
 	 * test combinations
 	 */
 	@Test public void testBasicCombination() {
-		runnerLapseComparator lapseplustime = new runnerLapseComparator(new runnerTotalTimeComparator());
+		RunnerLapseComparator lapseplustime = new RunnerLapseComparator(new RunnerTotalTimeComparator());
 		
 		assertTrue(lapse.compare(runner2, runner2copy)==0);
 		assertTrue(lapseplustime.compare(runner2, runner2copy)==time.compare(runner2, runner2copy));
 	}
 	
 	@Test public void testMaximumCombination() {
-		runnerLapseComparator lapseplusnumberplustime = new runnerLapseComparator(new runnerNumberComparator(new runnerTotalTimeComparator()));
+		RunnerLapseComparator lapseplusnumberplustime = new RunnerLapseComparator(new RunnerNumberComparator(new RunnerTotalTimeComparator()));
 		assertTrue(lapse.compare(runner2, runner2copy)==0);
 		assertTrue(number.compare(runner2, runner2copy)==0);
 		assertTrue(lapseplusnumberplustime.compare(runner2, runner2copy)==time.compare(runner2, runner2copy));

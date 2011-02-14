@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.SortedLapRacePrinter;
 
 public class SortedLapRacePrinterTest {

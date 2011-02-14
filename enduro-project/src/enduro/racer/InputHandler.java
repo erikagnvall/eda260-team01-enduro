@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import enduro.racer.Configuration.ConfigParser;
-import enduro.racer.comparators.runnerCheckTotalTimeMax;
-import enduro.racer.comparators.runnerLapseComparator;
-import enduro.racer.comparators.runnerNumberComparator;
-import enduro.racer.comparators.runnerTotalTimeComparator;
+import enduro.racer.comparators.RunnerCheckTotalTimeMax;
+import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerNumberComparator;
+import enduro.racer.comparators.RunnerTotalTimeComparator;
+import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.RacerPrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
@@ -49,13 +49,13 @@ public class InputHandler {
 		
 		if(compare.equals("number")) {
 			System.out.println("sorting based on number");
-			comp = new runnerNumberComparator();
+			comp = new RunnerNumberComparator();
 		} else if(compare.equals("sorted")){
 			System.out.println("sorting based on position");
-			comp = new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())));
+			comp = new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
 		} else {
 			System.out.println("sorting based on number");
-			comp = new runnerNumberComparator();
+			comp = new RunnerNumberComparator();
 		}
 		
 		String printerType = ConfigParser.getInstance().getStringConf("race");

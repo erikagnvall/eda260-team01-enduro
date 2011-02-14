@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import enduro.racer.InputHandler;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 public class InputHandlerTest {
 	

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.RacerPrinter;
 
 public class RacerSorter {

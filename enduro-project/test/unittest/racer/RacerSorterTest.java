@@ -10,7 +10,7 @@ import org.junit.Test;
 import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
 import enduro.racer.Time;
-import enduro.racer.comparators.runnerNumberComparator;
+import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.printer.LapRacePrinter;
 
 public class RacerSorterTest {
@@ -42,7 +42,7 @@ public class RacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("", new runnerNumberComparator(), printer);
+		sorter = new RacerSorter("", new RunnerNumberComparator(), printer);
 	}
 	
 	@Test public void testConstructionAddRacer() {

@@ -3,7 +3,7 @@ package enduro.racer.printer;
 import java.util.HashMap;
 
 import enduro.racer.Racer;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 public class StageRacePrinter implements RacerPrinter {
 	private String extraInformation = "";

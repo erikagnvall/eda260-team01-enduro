@@ -6,13 +6,13 @@ import enduro.racer.Racer;
  * a naive comparison class that compares the size of finishtime, presumed to be how many lapses completed.
  * Ignores error in output and all other unrelated stuff.
  */
-public class runnerLapseComparator extends DecorationCompare {
+public class RunnerLapseComparator extends DecorationCompare {
 
-	public runnerLapseComparator() {
+	public RunnerLapseComparator() {
 		super(null);
 	}
 	
-	public runnerLapseComparator(DecorationCompare comp) {
+	public RunnerLapseComparator(DecorationCompare comp) {
 		super(comp);
 	}
 	

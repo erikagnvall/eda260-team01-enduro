@@ -8,10 +8,10 @@ import org.junit.Test;
 import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
 import enduro.racer.Time;
-import enduro.racer.comparators.runnerCheckTotalTimeMax;
-import enduro.racer.comparators.runnerLapseComparator;
-import enduro.racer.comparators.runnerNumberComparator;
-import enduro.racer.comparators.runnerTotalTimeComparator;
+import enduro.racer.comparators.RunnerCheckTotalTimeMax;
+import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerNumberComparator;
+import enduro.racer.comparators.RunnerTotalTimeComparator;
 import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
 
@@ -44,7 +44,7 @@ public class SortedLapseRacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("random group", new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator()))), printer);
+		sorter = new RacerSorter("random group", new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator()))), printer);
 	}
 	
 	@Test public void testAll() {

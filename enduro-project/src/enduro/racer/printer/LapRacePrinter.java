@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 public class LapRacePrinter implements RacerPrinter {
 

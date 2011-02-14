@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
 import enduro.MainClass;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 /**
  * An automatic JUnit testclass. It uses an alternative runner which allows for

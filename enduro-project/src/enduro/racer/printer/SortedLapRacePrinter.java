@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 public class SortedLapRacePrinter implements RacerPrinter {
 

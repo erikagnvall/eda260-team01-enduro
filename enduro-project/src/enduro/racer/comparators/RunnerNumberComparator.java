@@ -3,13 +3,13 @@ package enduro.racer.comparators;
 import enduro.racer.Racer;
 
 
-public class runnerNumberComparator extends DecorationCompare {
+public class RunnerNumberComparator extends DecorationCompare {
 
-	public runnerNumberComparator() {
+	public RunnerNumberComparator() {
 		super(null);
 	}
 	
-	public runnerNumberComparator(DecorationCompare comp) {
+	public RunnerNumberComparator(DecorationCompare comp) {
 		super(comp);
 	}
 	

@@ -7,13 +7,13 @@ import enduro.racer.Racer;
  * this class is able to handle if finishtime / starttime doesn't exist in either or both and the comparison reflects the result.
  * 
  */
-public class runnerTotalTimeComparator extends DecorationCompare {
+public class RunnerTotalTimeComparator extends DecorationCompare {
 
-	public runnerTotalTimeComparator() {
+	public RunnerTotalTimeComparator() {
 		super(null);
 	}
 	
-	public runnerTotalTimeComparator(DecorationCompare comp) {
+	public RunnerTotalTimeComparator(DecorationCompare comp) {
 		super(comp);
 	}
 	

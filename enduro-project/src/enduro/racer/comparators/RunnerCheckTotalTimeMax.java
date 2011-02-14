@@ -2,13 +2,13 @@ package enduro.racer.comparators;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
-public class runnerCheckTotalTimeMax extends DecorationCompare {
+public class RunnerCheckTotalTimeMax extends DecorationCompare {
 
 	private Time maxTime;
 	
-	public runnerCheckTotalTimeMax(DecorationCompare fallback) {
+	public RunnerCheckTotalTimeMax(DecorationCompare fallback) {
 		super(fallback);
 		
 		this.maxTime = new Time(ConfigParser.getInstance().getStringConf("mintime"));

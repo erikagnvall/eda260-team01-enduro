@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import enduro.racer.InputHandler;
-import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.configuration.ConfigParser;
 
 /**
  * this is the main class. it parses a command line of the type -COMMAND KEY
