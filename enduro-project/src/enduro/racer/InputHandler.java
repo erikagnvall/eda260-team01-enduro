@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
 import enduro.racer.comparators.RunnerLapseComparator;
@@ -26,22 +29,37 @@ import enduro.racer.printer.SortedStageRacePrinter;
 public class InputHandler {
 
 	String[] headerInformation;
-	private ArrayList<String> nameFileLocations = new ArrayList<String>();
-	private ArrayList<String> finishFileLocations = new ArrayList<String>();
-	private ArrayList<String> startFileLocations = new ArrayList<String>();
+	private TreeMap<Integer, ArrayList<String>> nameFileLocations = new TreeMap<Integer, ArrayList<String>>();
+	private TreeMap<Integer, ArrayList<String>> finishFileLocations = new TreeMap<Integer, ArrayList<String>>();
+	private TreeMap<Integer, ArrayList<String>> startFileLocations = new TreeMap<Integer, ArrayList<String>>();
 	HashMap<Integer, Racer> racerList;
 	ArrayList<RacerSorter> groups;
 	
-	public void addNameFile(String location) {
-		nameFileLocations.add(location);
+	public void addNameFile(String location, int stage) {
+		ArrayList<String> nameList = nameFileLocations.get(stage);
+		if(nameList == null) {
+			nameList = new ArrayList<String>();
+			nameFileLocations.put(stage, nameList);
+		}
+		nameList.add(location);
 	}
 	
-	public void addFinishFile(String location) {
-		finishFileLocations.add(location);
+	public void addFinishFile(String location, int stage) {
+		ArrayList<String> finishList = finishFileLocations.get(stage);
+		if(finishList == null) {
+			finishList = new ArrayList<String>();
+			finishFileLocations.put(stage, finishList);
+		}
+		finishList.add(location);
 	}
 	
-	public void addStartFile(String location) {
-		startFileLocations.add(location);
+	public void addStartFile(String location, int stage) {
+		ArrayList<String> startList = startFileLocations.get(stage);
+		if(startList == null) {
+			startList = new ArrayList<String>();
+			startFileLocations.put(stage, startList);
+		}
+		startList.add(location);
 	}
 	
 	public String print() {
@@ -119,7 +137,7 @@ public class InputHandler {
 		
 		//assumes there is only one name file at this time. customer has not requested anything else
 		try {
-			String[] names = this.getLines(nameFileLocations.get(0));
+			String[] names = this.getLines(nameFileLocations.get(1).get(0));
 			this.headerInformation = names[0].split("; ");
 			
 			rp.setHeaderInformation(this.headerInformation);
@@ -164,34 +182,38 @@ public class InputHandler {
 	private void readStartFile(StringBuilder error,
 			RacerSorter unregisteredRacers) {
 		try {
-			for(String file: startFileLocations) {
-				String[] lineSplit = this.getLines(file);
-				
-				for(String line: lineSplit) {
-					String[] lineInfo = line.split("; ");
+			Set<Integer> stages = this.startFileLocations.keySet();
+
+			for(int stage: stages) {
+				for(String file: startFileLocations.get(stage)) {
+					String[] lineSplit = this.getLines(file);
 					
-					if(lineInfo.length == 2) {
-						try {
-							Racer relevantRacer = this.racerList.get(Integer.parseInt(lineInfo[0]));
-							
-							if(relevantRacer == null) {
-								//racer does not exist
-								Racer r = new Racer(new String[]{lineInfo[0]});
-								r.addStartTime(new Time(lineInfo[1]), 1);
-								unregisteredRacers.addRacer(r);
-								racerList.put(Integer.parseInt(lineInfo[0]), r);
-							} else {
-								//racer exists
-								relevantRacer.addStartTime(new Time(lineInfo[1]), 1);
+					for(String line: lineSplit) {
+						String[] lineInfo = line.split("; ");
+						
+						if(lineInfo.length == 2) {
+							try {
+								Racer relevantRacer = this.racerList.get(Integer.parseInt(lineInfo[0]));
+								
+								if(relevantRacer == null) {
+									//racer does not exist
+									Racer r = new Racer(new String[]{lineInfo[0]});
+									r.addStartTime(new Time(lineInfo[1]), stage);
+									unregisteredRacers.addRacer(r);
+									racerList.put(Integer.parseInt(lineInfo[0]), r);
+								} else {
+									//racer exists
+									relevantRacer.addStartTime(new Time(lineInfo[1]), stage);
+								}
+							} catch(Exception E) {
+								error.append("integer parse error in start file: " + file + " line reads:: " + line + "\n");
 							}
-						} catch(Exception E) {
-							error.append("integer parse error in start file: " + file + " line reads:: " + line + "\n");
+							
+							
+						} else {
+							if(line.length() != 0)
+								error.append("error reading in a start file: " + file + " line reads:: " + line + "\n");
 						}
-						
-						
-					} else {
-						if(line.length() != 0)
-							error.append("error reading in a start file: " + file + " line reads:: " + line + "\n");
 					}
 				}
 			}
@@ -203,34 +225,37 @@ public class InputHandler {
 	private void readFinishFile(StringBuilder error,
 			RacerSorter unregisteredRacers) {
 		try {
-			for(String file: finishFileLocations) {
-				String[] lineSplit = this.getLines(file);
-				
-				for(String line: lineSplit) {
-					String[] lineInfo = line.split("; ");
+			Set<Integer> stages = this.startFileLocations.keySet();
+			for(int stage: stages) {
+				for(String file: finishFileLocations.get(stage)) {
+					String[] lineSplit = this.getLines(file);
 					
-					if(lineInfo.length == 2) {
-						try {
-							Racer relevantRacer = this.racerList.get(Integer.parseInt(lineInfo[0]));
-							
-							if(relevantRacer == null) {
-								//racer does not exist
-								Racer r = new Racer(new String[]{lineInfo[0]});
-								r.addFinishTime(new Time(lineInfo[1]), 1);
-								unregisteredRacers.addRacer(r);
-								racerList.put(Integer.parseInt(lineInfo[0]), r);
-							} else {
-								//racer exists
-								relevantRacer.addFinishTime(new Time(lineInfo[1]), 1);
+					for(String line: lineSplit) {
+						String[] lineInfo = line.split("; ");
+						
+						if(lineInfo.length == 2) {
+							try {
+								Racer relevantRacer = this.racerList.get(Integer.parseInt(lineInfo[0]));
+								
+								if(relevantRacer == null) {
+									//racer does not exist
+									Racer r = new Racer(new String[]{lineInfo[0]});
+									r.addFinishTime(new Time(lineInfo[1]), stage);
+									unregisteredRacers.addRacer(r);
+									racerList.put(Integer.parseInt(lineInfo[0]), r);
+								} else {
+									//racer exists
+									relevantRacer.addFinishTime(new Time(lineInfo[1]), stage);
+								}
+							} catch(Exception E) {
+								error.append("integer parse error in finish file: " + file + " line reads:: " + line + "\n");
 							}
-						} catch(Exception E) {
-							error.append("integer parse error in finish file: " + file + " line reads:: " + line + "\n");
+							
+							
+						} else {
+							if(line.length() != 0)
+								error.append("error reading in a finish file: " + file + " line reads:: " + line + "\n");
 						}
-						
-						
-					} else {
-						if(line.length() != 0)
-							error.append("error reading in a finish file: " + file + " line reads:: " + line + "\n");
 					}
 				}
 			}

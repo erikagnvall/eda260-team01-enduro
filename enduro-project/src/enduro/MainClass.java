@@ -23,6 +23,15 @@ public class MainClass {
 	
 	public static boolean debug = false;
 	
+	private static int getStage(String str) {
+		String[] temp = str.split(":");
+		
+		if(temp.length == 1)
+			return 1;
+		else
+			return Integer.parseInt(temp[0]);
+	}
+	
 	public static void main(String[] args) {
 		for(String arg: args)
 			System.out.println(arg);
@@ -61,25 +70,25 @@ public class MainClass {
 					if(line.startsWith("name:")) {
 						temp = temp.substring(5);
 						System.out.println("namefile: " + temp);
-						handler.addNameFile(temp);
+						handler.addNameFile(temp, 1);
 					} else if(line.startsWith("start:")) {
 						temp = temp.substring(6);
 						System.out.println("startfile: " + temp);
-						handler.addStartFile(temp);
+						handler.addStartFile(temp, 1);
 					} else if(line.startsWith("finish:")) {
 						temp = temp.substring(7);
 						System.out.println("finishfile: " + temp);
-						handler.addFinishFile(temp);
+						handler.addFinishFile(temp, 1);
 					} else {
 						if(!line.startsWith("@Advanced"))
 							System.out.println("ERROR: line in list file is unparsable: " + line);
 					}
 				}
 			} else {
-				handler.addNameFile(files[0]);
-				handler.addStartFile(files[1]);
+				handler.addNameFile(files[0], 1);
+				handler.addStartFile(files[1], 1);
 				for(int i = 2; i < files.length; i++) {
-					handler.addFinishFile(files[i]);
+					handler.addFinishFile(files[i], 1);
 				}
 			}
 			
