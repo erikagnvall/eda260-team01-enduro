@@ -61,5 +61,8 @@ public class Racer implements Comparable<Racer> {
 	public boolean equals(Racer arg0) {
 		return compareTo(arg0)==0;
 	}
+	public int getLength(){
+		return Math.max(startTimes.size(), finishTimes.size());
+	}
 	
 }

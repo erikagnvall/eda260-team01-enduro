@@ -16,9 +16,13 @@ import enduro.racer.printer.StageRacePrinter;
 public class StageRacePrinterTest {
 	private Racer racer;
 	private StageRacePrinter printer = new StageRacePrinter();
-	@Before public void doBefore() {
-		printer.setHeaderInformation(new String[]{"StartNr", "Namn", "Klubb", "MC"});
+
+	@Before
+	public void doBefore() {
+		printer.setHeaderInformation(new String[] { "StartNr", "Namn", "Klubb",
+				"MC" });
 	}
+
 	@Test
 	public void assertTestStageAreCorrect() {
 		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 3);
@@ -42,4 +46,21 @@ public class StageRacePrinterTest {
 
 		assertEquals(out.toString(), printer.printTopInformation());
 	}
+
+	@Test
+	public void testPrint() {
+		racer = new Racer(new String("1; Anders Asson; FMCK Astad; ATM")
+				.split("; "));
+		racer.addStartTime(new Time("12.00.00"));
+		racer.addFinishTime(new Time("12.30.00"));
+		racer.addStartTime(new Time("12.00.01"));
+		racer.addFinishTime(new Time("13.00.00"));
+		racer.addStartTime(new Time("12.00.02"));
+		racer.addFinishTime(new Time("13.23.34"));
+		
+		
+                                        
+		assertEquals("1; Anders Asson; FMCK Astad; ATM; 02.53.31; 3; 00.30.00; 00.59.59; 01.23.32; 12.00.00; 12.30.00; 12.00.01; 13.00.00; 12.00.02; 13.23.34",printer.print(racer, null));
+	}
+
 }
