@@ -24,12 +24,15 @@
 23: Sorterad resultatlista
 24: Masstart
 25: stöd för konfiguration
+28: Integrera html-baserad resultatlista
+29: Html-resultat
 
 
 
 -=!PROGRAMMENS PLACERING!=-
 Programmet är uppdelat i två delar, ett användargränssnitt där man registrerar tider
-och ett sorteringsprogram som genererar resultatslistan. De båda programmen finns i
+och ett sorteringsprogram som genererar resultatslistan. Resultatlistan genereras som
+default både som en text- och htmlfil. De båda programmen finns i
 två jar-filer, GUI.jar respektive Backend.jar, som ligger direkt i mappen där
 zip-filen packas upp.
 

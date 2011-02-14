@@ -72,8 +72,13 @@ public class JUnitAcceptanceTest {
 			configLoc = testPath + configFileLoc[0];
 		
 		System.out.println("conf: " + configLoc + " list " + listLoc);
-		MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
+		if(testId.compareTo("29")==0) {
+			MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result"});
+		} else {
+			MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
 
+		}
+		
 	}
 
 	@Parameters

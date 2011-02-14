@@ -18,7 +18,6 @@ import enduro.racer.configuration.ConfigParser;
  * The input file is the file which the program reads from, which previous consistency
  * (first file: name file, second file: start file and the following lines finish time files)
  * The output is where the output should be written
- * The result files listed in list.txt are outputted as html files 
  */
 public class MainClass {
 	
@@ -29,7 +28,7 @@ public class MainClass {
 			System.out.println(arg);
 		String input = "list.txt";
 		String output = "result.txt";
-		// String html = "";
+		String html = "result.html";
 		for(int i = 0; i < args.length; i++) {
 			if(i+1 < args.length) {
 				if(args[i].compareTo("-config")==0) {
@@ -38,9 +37,8 @@ public class MainClass {
 					input = args[i+1];
 				} else if(args[i].compareTo("-output")==0) {
 					output = args[i+1];
-				/*
 				} else if(args[i].compareTo("-html")==0) {
-					html = args[i+1];*/
+					html = args[i+1];
 				} else if(args[i].equals("-debug")) {
 					if(args[i+1].equals("true")) {
 						debug = true;
@@ -90,13 +88,8 @@ public class MainClass {
 				FileWriter writer = new FileWriter(output);
 				writer.append(handler.print());
 				writer.close();
-				for (int i = 0; i < files.length; i++) {
-					String[] filesNames = files[i].split("/");
-					String fileName = filesNames[filesNames.length-1];
-					TxtToHtml htmlWriter = new TxtToHtml();
-					System.out.println(fileName);
-					htmlWriter.makeHtmlFile(files[i], fileName+".html");
-				}
+				TxtToHtml htmlWriter = new TxtToHtml();
+				htmlWriter.makeHtmlFile(output, html);
 							
 			} catch (IOException e) {
 				System.out.println("unable to write to output file");

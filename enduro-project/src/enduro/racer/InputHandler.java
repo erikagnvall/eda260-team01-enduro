@@ -229,7 +229,8 @@ public class InputHandler {
 						
 						
 					} else {
-						error.append("error reading in a finish file: " + file + " line reads:: " + line + "\n");
+						if(line.length() != 0)
+							error.append("error reading in a finish file: " + file + " line reads:: " + line + "\n");
 					}
 				}
 			}
