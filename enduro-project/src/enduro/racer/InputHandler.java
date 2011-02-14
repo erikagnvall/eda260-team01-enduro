@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import javax.security.auth.login.Configuration;
-
 import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.comparators.runnerCheckTotalTimeMax;
 import enduro.racer.comparators.runnerLapseComparator;
@@ -139,6 +137,17 @@ public class InputHandler {
 			return error.toString();
 		}
 		
+		readStartFile(error, unregisteredRacers);
+		readFinishFile(error, unregisteredRacers);
+
+		this.groups.add(currentGroup);
+		this.groups.add(unnamedGroup);
+		this.groups.add(unregisteredRacers);
+		return error.toString();
+	}
+
+	private void readStartFile(StringBuilder error,
+			RacerSorter unregisteredRacers) {
 		try {
 			for(String file: startFileLocations) {
 				String[] lineSplit = this.getLines(file);
@@ -173,7 +182,10 @@ public class InputHandler {
 		} catch(IOException e) {
 			error.append("error reading a start time file"  + "\n");
 		}
-		
+	}
+
+	private void readFinishFile(StringBuilder error,
+			RacerSorter unregisteredRacers) {
 		try {
 			for(String file: finishFileLocations) {
 				String[] lineSplit = this.getLines(file);
@@ -208,10 +220,6 @@ public class InputHandler {
 		} catch(IOException e) {
 			error.append("error reading a finish time file"  + "\n");
 		}
-		this.groups.add(currentGroup);
-		this.groups.add(unnamedGroup);
-		this.groups.add(unregisteredRacers);
-		return error.toString();
 	}
 	
 	/**
