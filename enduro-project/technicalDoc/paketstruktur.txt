@@ -1,0 +1,17 @@
+Denna fil innehåller beskrivning av hur paketen är uppdelade i src-mappen
+
+Följande paket finns
+
+enduro:
+Innehåller huvudprogrammet som initirerar inläsningen av filer för backend (administratörsdelen av systemet) . 
+Inehåller klasser för att skriva till fil samt att konvertera text till html.
+
+enduro.gui:
+Innehåller GUIdelen av programmet och har klasser för att bygga ett GUI. Använder sig av enduro.racedata och enduro för att
+producera filer för start- och måltider
+
+enduro.racedata:
+Innehåller klassen Time som hanterar tider och genomför jämförning och beräkningar på dem
+
+enduro.racer
+
