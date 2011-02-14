@@ -73,7 +73,8 @@ public class MainClass {
 						System.out.println("finishfile: " + temp);
 						handler.addFinishFile(temp);
 					} else {
-						System.out.println("ERROR: line in list file is unparsable: " + line);
+						if(!line.startsWith("@Advanced"))
+							System.out.println("ERROR: line in list file is unparsable: " + line);
 					}
 				}
 			} else {

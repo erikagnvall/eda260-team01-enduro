@@ -94,6 +94,7 @@ public class InputHandler {
 		for(RacerSorter sorter : groups) {
 			out.append(sorter.print());
 		}
+		
 		if(error.length() > 0)
 			out.append("\n\n\nerror: \n");
 		return out.toString();
@@ -189,7 +190,8 @@ public class InputHandler {
 						
 						
 					} else {
-						error.append("error reading in a start file: " + file + " line reads:: " + line + "\n");
+						if(line.length() != 0)
+							error.append("error reading in a start file: " + file + " line reads:: " + line + "\n");
 					}
 				}
 			}
