@@ -15,7 +15,7 @@ import enduro.racer.comparators.runnerTotalTimeComparator;
 /**
  * this class tests all subclasses of DecorationCompare as well as combination thereof.
  */
-public class comparatorTest {
+public class ComparatorTest {
 
 	
 	runnerLapseComparator lapse = new runnerLapseComparator();
