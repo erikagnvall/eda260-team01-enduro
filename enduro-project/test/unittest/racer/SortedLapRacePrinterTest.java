@@ -29,7 +29,7 @@ public class SortedLapRacePrinterTest {
 	
 	@Test public void testPrintTopPart() {
 		StringBuilder out = new StringBuilder();
-		out.append("Plac; StartNr; Namn; Klubb; MC; #Varv; TotalTid");
+		out.append("Plac; StartNr; Namn; Klubb; MC; #Varv; Totaltid");
 		
 		for(int i = 1; i <= ConfigParser.getInstance().getIntConf("laps"); i++) {
 			out.append("; Varv");

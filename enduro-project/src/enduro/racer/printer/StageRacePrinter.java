@@ -15,6 +15,9 @@ public class StageRacePrinter implements RacerPrinter {
 	private int stages = ConfigParser.getInstance().getIntConf("stages");
 	private int extraRunnerInformation;
 
+	/**
+	 * returns a string that contains stage race info. 
+	 */
 	public String print(Racer r, HashMap<String, String> extraInformation) {
 		StringBuilder out = new StringBuilder();
 		StringBuilder errorTrail = new StringBuilder();
