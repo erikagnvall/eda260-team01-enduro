@@ -12,6 +12,9 @@
         <copy todir="SourceCodeRelease/technicalDoc">
             <fileset dir="technicalDoc" includes="**/*.*"/>
         </copy>
+    	
+    	<move file="SourceCodeRelease/technicalDoc/readme.txt" todir="SourceCodeRelease" />
+    	<copy file="build.xml" todir="SourceCodeRelease/" />
     	<!--
     		Kopierar alla tester. Kanske ej behövs..?
     	-->
