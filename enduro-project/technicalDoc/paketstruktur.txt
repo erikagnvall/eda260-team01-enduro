@@ -13,5 +13,17 @@ producera filer för start- och måltider
 enduro.racedata:
 Innehåller klassen Time som hanterar tider och genomför jämförning och beräkningar på dem
 
-enduro.racer
+enduro.racer:
+Innehåller klasser för att hantera input, sortering och utskrift av resultat.
+ 
+enduro.racer.comprators:
+Innehåller comparatorer för att sortera olika typer av race.
+
+enduro.racer.Configuration:
+Innehåller en parser för att läsa in konfigurationsfilen.
+
+enduro.racer.printer:
+Klasser för att producera resultatsträngar. Inehåller ett interface RacerPrinter som implementeras av de olika printerklasserna
+där varje printer är unik för en specifik typ av lopp.
+
 
