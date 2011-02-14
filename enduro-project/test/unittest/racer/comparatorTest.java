@@ -26,6 +26,8 @@ public class comparatorTest {
 	Racer runner2; //3 finish times
 	Racer runner2copy; // equal to 2 in number and lapses, but not total time
 	Racer runner103; // 3 finish times
+	Racer runner4; // no finish time
+	Racer runner5; // no start time
 	
 	
 	@Before public void setup() {
@@ -52,6 +54,12 @@ public class comparatorTest {
 		runner103.addFinishTime(new Time("13.16.07"));
 		runner103.addStartTime(new Time("12.00.00"));
 		runner103.addStartTime(new Time("12.15.00"));
+		
+		runner4 = new Racer(new String("104; Fredrik Fsson; FMCK Fstad; FTM").split("; "));
+		runner4.addStartTime(new Time("12.00.00"));
+		
+		runner5 = new Racer(new String("105; Göran Gsson; GMCK Gstad; GTM").split("; "));
+		runner5.addFinishTime(new Time("12.00.00"));
 	}
 	
 	/*
@@ -90,6 +98,26 @@ public class comparatorTest {
 		assertTrue(time.compare(runner1, runner2) > 0);
 		assertTrue(time.compare(runner2, runner1) < 0);
 	}
+	
+	@Test
+	public void testNoFinishTime() {
+		assertTrue(time.compare(runner4, runner4) == 0);
+	}
+	
+	@Test
+	public void testOneWithFinishTimeAndOneWithout() {
+		assertTrue(time.compare(runner1, runner4) == -1);
+	}
+	
+	@Test
+	public void testOneWithoutFinishTimeAndOneWith() {
+		assertTrue(time.compare(runner4, runner1) == 1);
+	}
+	
+	@Test
+	public void testBothWithoutStartTime() {
+		assertTrue(time.compare(runner5, runner5) == 0);
+	}
 
 	/*
 	 * test combinations
@@ -107,4 +135,5 @@ public class comparatorTest {
 		assertTrue(number.compare(runner2, runner2copy)==0);
 		assertTrue(lapseplusnumberplustime.compare(runner2, runner2copy)==time.compare(runner2, runner2copy));
 	}
+
 }
