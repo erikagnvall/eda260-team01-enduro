@@ -145,6 +145,6 @@ public class JUnitAcceptanceTest {
 
 class FileFilter implements FilenameFilter {
 	public boolean accept(File dir, String name) {
-		return !(name.startsWith(".") || name.startsWith("_"));
+		return !(name.startsWith(".") || name.startsWith("_") || name.contains("~"));
 	}
 }
