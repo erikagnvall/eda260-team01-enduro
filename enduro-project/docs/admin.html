@@ -44,7 +44,10 @@
 				mapp som programmet med namnet <code>config.conf</code>. Finns ingen konfigurationsfil
 				sorteras programmet med utgång från indatafilen <code>list.txt</code>, samma sak gäller
 				om indatainformation saknas i konfigurationsfilen.</p>
-
+				<p>Den tid som bedöms som en omöjlig tid är fördefinierad till 15 minuter, men kan ändras i konfigfilen.</p>
+				<p>I konfigfilen anges bland annat tidsgränsen för en tävling samt antal varv som en förare förväntas uppnå.</p>
+				<p>Om en förare har för många varv anges att han har för många måltider. Om en förare har för kort tid anses han inte ha fullföljt tävlingen och får därmed ingen placering.
+				</p>
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
 			</div>
@@ -120,8 +123,6 @@
 			<div class="entry">
 				<a name="def_other"></a>
 				<h3>Definitioner och övrigt</h3>
-
-				<p>Den tid som bedöms som en omöjlig tid är fördefinierad till 15 minuter, men kan ändras i konfigfilen.</p>
 
 				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit
 				registrerade sparas i en fil som heter <code>storedTimeOfUnknownDriver.txt</code>, denna skall
