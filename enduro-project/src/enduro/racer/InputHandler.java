@@ -44,28 +44,34 @@ public class InputHandler {
 	}
 	
 	public String print() {
-		
 		RacerPrinter printer;
 		Comparator<Racer> comp;
 		
 		String compare = ConfigParser.getInstance().getStringConf("sorting");
 		
 		if(compare.equals("number")) {
+			System.out.println("sorting based on number");
 			comp = new runnerNumberComparator();
 		} else if(compare.equals("sorted")){
+			System.out.println("sorting based on position");
 			comp = new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator()));
 		} else {
+			System.out.println("sorting based on number");
 			comp = new runnerNumberComparator();
 		}
 		
 		String printerType = ConfigParser.getInstance().getStringConf("race");
 		
 		if(printerType.equals("laps")) {
-			if(compare.equals("sorted"))
+			if(compare.equals("sorted")) {
 				printer = new SortedLapRacePrinter();
-			else
+				System.out.println("printing a sorted list");
+			} else {
 				printer = new LapRacePrinter();
+				System.out.println("printing a lapse list");
+			}
 		} else {
+			System.out.println("printing a lapse list");
 			printer = new LapRacePrinter();
 		}
 		

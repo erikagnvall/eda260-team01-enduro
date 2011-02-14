@@ -87,8 +87,11 @@ public class RacerSorter {
 			 */
 			try {
 				//tests if the total time running is larger than the minimum time, if that is the case the position attribute is added
-				if(racer.startTimes.first().getTotalTime(racer.finishTimes.last()).compareTo(minTotalTime) < 0) {
+				if(racer.startTimes.first().getTotalTime(racer.finishTimes.last()).compareTo(minTotalTime) > 0) {
 					extraInformation.put("position", position + "");
+					
+					//position increased
+					position++;
 				}
 			} catch(Exception E) {}
 
@@ -96,8 +99,7 @@ public class RacerSorter {
 			out.append(printer.print(racer, extraInformation));
 			out.append("\n");
 			
-			//position increases constantly.
-			position++;
+			
 		}
 		return out.toString();
 	}

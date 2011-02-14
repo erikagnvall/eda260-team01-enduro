@@ -1,0 +1,4 @@
+acceptanceTest/result/18_sortresultat/namnfil.txt
+acceptanceTest/result/18_sortresultat/starttider.txt
+acceptanceTest/result/18_sortresultat/maltider1.txt
+acceptanceTest/result/18_sortresultat/maltider2.txt

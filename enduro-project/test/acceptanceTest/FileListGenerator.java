@@ -33,6 +33,8 @@ class DynFileFilter implements FilenameFilter {
 		contains = cont;
 	}
     public boolean accept(File dir, String name) {
+    	if(name.contains("~"))
+    		return false;
     	return name.contains(contains);
     }
 }

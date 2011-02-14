@@ -26,6 +26,8 @@ public class MainClass {
 	public static boolean debug = false;
 	
 	public static void main(String[] args) {
+		for(String arg: args)
+			System.out.println(arg);
 		String input = "list.txt";
 		String output = "result.txt";
 		String html = "";

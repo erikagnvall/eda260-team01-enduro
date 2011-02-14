@@ -72,7 +72,7 @@ public class JUnitAcceptanceTest {
 			configLoc = testPath + configFileLoc[0];
 		
 		System.out.println("conf: " + configLoc + " list " + listLoc);
-		MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result"});
+		MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
 
 	}
 
