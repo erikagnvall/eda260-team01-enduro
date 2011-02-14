@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import enduro.racer.InputHandler;
 import enduro.racer.Configuration.ConfigParser;
 
@@ -21,6 +23,8 @@ import enduro.racer.Configuration.ConfigParser;
  */
 public class MainClass {
 	
+	public static boolean debug = false;
+	
 	public static void main(String[] args) {
 		String input = "list.txt";
 		String output = "result.txt";
@@ -35,6 +39,10 @@ public class MainClass {
 					output = args[i+1];
 				} else if(args[i].compareTo("-html")==0) {
 					html = args[i+1];
+				} else if(args[i].equals("-debug")) {
+					if(args[i+1].equals("true")) {
+						debug = true;
+					}
 				}
 			}
 		}
@@ -66,8 +74,8 @@ public class MainClass {
 		} else {
 			System.out.println("unable to load calculations - file list is incomplete");
 		}
-		
-		
+		if(!debug)
+			JOptionPane.showMessageDialog(null, "Sortering klar!");
 	}
 
 	/**
