@@ -17,8 +17,8 @@ import enduro.racer.printer.RacerPrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
 
 /**
- * this parses all files.
- *
+ * This class has a number of public void functions that adds name files, finish time files and start time files
+ * and adds them to internal lists. This class parses these files and gives as output the final output file content.
  */
 public class InputHandler {
 

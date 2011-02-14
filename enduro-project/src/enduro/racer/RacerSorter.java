@@ -8,6 +8,11 @@ import java.util.TreeSet;
 import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.RacerPrinter;
 
+/**
+ * This class handles the comparison between Racers based upon a set specific list of comparison critera
+ * (represented as a Comparator<Racer> class-instance. The output is corresponding to a "class".
+ * It uses the printer classes in enduro.racer.printer to output correct data.
+ */
 public class RacerSorter {
 	
 	private TreeSet<Racer> racers = new TreeSet<Racer>();
