@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import enduro.racer.InputHandler;
+import enduro.racer.Configuration.ConfigParser;
 
 public class InputHandlerTest {
 	
@@ -30,6 +31,7 @@ public class InputHandlerTest {
 	 * test in accordance with acceptance test 17_unit (default input file for previous work)
 	 */
 	@Test public void testRealInput() {
+		ConfigParser.getInstance("config.conf");
 		InputHandler handler = new InputHandler();
 		handler.addNameFile("acceptanceTest/result/17_unit/namnfil.txt");
 		handler.addFinishFile("acceptanceTest/result/17_unit/maltider1.txt");

@@ -19,6 +19,8 @@ public class RegistrationGUITest extends UISpecTestCase {
 	Button registerButton;
 	Button undoButton;
 	String time;
+	Calendar cal;
+	SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss");
 
 	@Before
 	protected void setUp() {
@@ -33,8 +35,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 
 	@Test
 	private void getTime() {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss");
+		cal = Calendar.getInstance();
 		time = sdf.format(cal.getTime());
 	}
 
@@ -76,7 +77,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1-3");
 		registerButton.click();
 		getTime();
-		assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
+		assertEquals("3; " + time + '\n' + "2; " + time + '\n' + "1; " + time
 				+ '\n', output.getText());
 	}
 
@@ -85,13 +86,8 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1,15,223");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Switch when it fails.
 		assertEquals("223; " + time + '\n' + "15; " + time + '\n' + "1; "
 				+ time + '\n', output.getText());
-		// End of alternate test
-		// Begin regular tests
-		// assertEquals("1; " + time + '\n' + "15; " + time + '\n' + "223; " +
-		// time + '\n', output.getText());
 	}
 
 	@Test
@@ -99,13 +95,8 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1-3,15");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Switch when it fails.
-		assertEquals("15; " + time + '\n' + "1; " + time + '\n' + "2; " + time
-				+ '\n' + "3; " + time + '\n', output.getText());
-		// End of alternate test
-		// Begin regular tests
-//		 assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
-//		 + '\n' + "15; " + time + '\n', output.getText());
+		assertEquals("15; " + time + '\n' + "3; " + time + '\n' + "2; " + time
+				+ '\n' + "1; " + time + '\n', output.getText());
 	}
 	
 	@Test
@@ -115,7 +106,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1-3");
 		registerButton.click();
 		getTime();
-		assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
+		assertEquals("3; " + time + '\n' + "2; " + time + '\n' + "1; " + time
 				+ '\n', output.getText());
 	}
 
@@ -126,13 +117,8 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1,15,223");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Switch when it fails.
 		assertEquals("223; " + time + '\n' + "15; " + time + '\n' + "1; "
 				+ time + '\n', output.getText());
-		// End of alternate test
-		// Begin regular tests
-		// assertEquals("1; " + time + '\n' + "15; " + time + '\n' + "223; " +
-		// time + '\n', output.getText());
 	}
 	
 	@Test
@@ -142,13 +128,8 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1-3,15");
 		registerButton.click();
 		getTime();
-		// Alternate test until GUI is fixed. Switch when it fails.
-		assertEquals("15; " + time + '\n' + "1; " + time + '\n' + "2; " + time
-				+ '\n' + "3; " + time + '\n', output.getText());
-		// End of alternate test
-		// Begin regular tests
-//		 assertEquals("1; " + time + '\n' + "2; " + time + '\n' + "3; " + time
-//		 + '\n' + "15; " + time + '\n', output.getText());
+		assertEquals("15; " + time + '\n' + "3; " + time + '\n' + "2; " + time
+				+ '\n' + "1; " + time + '\n', output.getText());
 	}
 	
 	@Test
@@ -157,17 +138,21 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("abcdefghijklmnopqrstuvwqyz.:,;_!\"#€%&/()=?");
 		registerButton.click();
 		assertEquals("", output.getText());
-		File f = new File("./StoredTimeOfUnknownDriver.txt");
+		File f = new File("./storedTimeOfUnknownDriver.txt");
 		assertTrue(f.exists());
 	}
 
 	//Used to work but now I can't get it working again >_<
+	// Will never work since we use acionPerformed but UISpec4J only listens for keyEvent.
+/*
 	@Test
 	public void testEnterButton(){
 		input.appendText("1");
 		input.pressKey(Key.ENTER);
-		System.out.println(input.getText());
+		System.out.println("Input: " + input.getText());
+		System.out.println("Output: " + output.getText());
 		getTime();
 		assertEquals("1; " + time + '\n', output.getText());	
 	}
+*/
 }
