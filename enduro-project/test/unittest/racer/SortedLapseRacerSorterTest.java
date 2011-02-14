@@ -44,7 +44,7 @@ public class SortedLapseRacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("random group", new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())), new Time("01.00.00")), printer, new Time("01.00.00"));
+		sorter = new RacerSorter("random group", new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator()))), printer);
 	}
 	
 	@Test public void testAll() {

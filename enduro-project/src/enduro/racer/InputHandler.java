@@ -55,7 +55,7 @@ public class InputHandler {
 			comp = new runnerNumberComparator();
 		} else if(compare.equals("sorted")){
 			System.out.println("sorting based on position");
-			comp = new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())), new Time("01.00.00"));
+			comp = new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())));
 		} else {
 			System.out.println("sorting based on number");
 			comp = new runnerNumberComparator();
@@ -111,8 +111,8 @@ public class InputHandler {
 			this.headerInformation = names[0].split("; ");
 			
 			rp.setHeaderInformation(this.headerInformation);
-			unnamedGroup = new RacerSorter("ungrouped people", rc, rp, new Time("01.00.00"));
-			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp, new Time("01.00.00"));
+			unnamedGroup = new RacerSorter("ungrouped people", rc, rp);
+			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp);
 			
 			for(int i = 1; i < names.length; i++) {
 				String[] lineSplit = names[i].split("; ");
@@ -122,7 +122,7 @@ public class InputHandler {
 					if(currentGroup != null)
 						this.groups.add(currentGroup);
 					
-					currentGroup = new RacerSorter(lineSplit[0], rc, rp, new Time("01.00.00"));
+					currentGroup = new RacerSorter(lineSplit[0], rc, rp);
 				} else {
 					Racer temp = new Racer(lineSplit);
 					racerList.put(temp.startNbr, temp);

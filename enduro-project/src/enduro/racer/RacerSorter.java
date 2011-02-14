@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import enduro.racedata.Time;
+import enduro.racer.Configuration.ConfigParser;
 import enduro.racer.printer.RacerPrinter;
 
 public class RacerSorter {
@@ -18,15 +19,13 @@ public class RacerSorter {
 	
 	/**
 	 * creates a new sorter according to a set number of parameters.
-	 * 
 	 * @param comp the comparator according to which the runners will be sorted
 	 * @param printer the output printer
-	 * @param minTotalTime PLACEHOLDER INFORMATION. WILL BE CHANGED FOR SOMETHING BETTER
 	 */
-	public RacerSorter(String groupName, Comparator<Racer> comp, RacerPrinter printer, Time minTotalTime) {
+	public RacerSorter(String groupName, Comparator<Racer> comp, RacerPrinter printer) {
 		this.comp = comp;
 		this.printer = printer;
-		this.minTotalTime = minTotalTime;
+		this.minTotalTime = new Time(ConfigParser.getInstance().getStringConf("maxtime"));
 		this.groupName = groupName;
 	}
 	

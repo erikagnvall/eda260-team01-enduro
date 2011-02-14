@@ -42,7 +42,7 @@ public class RacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("", new runnerNumberComparator(), printer, new Time("01.00.00"));
+		sorter = new RacerSorter("", new runnerNumberComparator(), printer);
 	}
 	
 	@Test public void testConstructionAddRacer() {

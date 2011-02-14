@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import enduro.racedata.Time;
@@ -15,6 +17,11 @@ public class SortedLapRacePrinterTest {
 
 	private Racer racer;
 	private SortedLapRacePrinter printer = new SortedLapRacePrinter();
+	@Before
+	public void setUp(){
+		printer.setHeaderInformation(new String[]{"StartNr", "Namn","Klubb", "MC"});
+	}
+	
 	
 	@Test public void assertTestLapsesAreCorrect() {
 		assertTrue(ConfigParser.getInstance().getIntConf("laps")==3);
@@ -22,7 +29,7 @@ public class SortedLapRacePrinterTest {
 	
 	@Test public void testPrintTopPart() {
 		StringBuilder out = new StringBuilder();
-		out.append("Plac; StartNr; Namn; #Varv; Totaltid");
+		out.append("Plac; StartNr; Namn; Klubb; MC; #Varv; TotalTid");
 		
 		for(int i = 1; i <= ConfigParser.getInstance().getIntConf("laps"); i++) {
 			out.append("; Varv");
@@ -41,7 +48,7 @@ public class SortedLapRacePrinterTest {
 
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
 		
-		assertEquals("; 2; Bengt Bsson; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16", printer.print(racer, extraInformation));
+		assertEquals("; 2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16", printer.print(racer, extraInformation));
 	}
 	
 	@Test public void testPrintWithPlace() {
@@ -53,7 +60,7 @@ public class SortedLapRacePrinterTest {
 
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
 		extraInformation.put("position", "1");
-		assertEquals("1; 2; Bengt Bsson; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16", printer.print(racer, extraInformation));
+		assertEquals("1; 2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.14.00; 00.27.00; 00.34.16", printer.print(racer, extraInformation));
 	}
 	
 }
