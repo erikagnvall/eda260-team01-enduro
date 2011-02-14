@@ -10,11 +10,14 @@ import java.util.HashMap;
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
 import enduro.racer.comparators.RunnerLapseComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
+import enduro.racer.comparators.RunnerStageComparator;
 import enduro.racer.comparators.RunnerTotalTimeComparator;
 import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.RacerPrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
+import enduro.racer.printer.SortedStageRacePrinter;
+import enduro.racer.printer.StageRacePrinter;
 
 /**
  * This class has a number of public void functions that adds name files, finish time files and start time files
@@ -53,6 +56,8 @@ public class InputHandler {
 		} else if(compare.equals("sorted")){
 			System.out.println("sorting based on position");
 			comp = new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
+		} else if(compare.equals("totaltime")){
+			comp = new RunnerStageComparator(new RunnerCheckTotalTimeMax(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
 		} else {
 			System.out.println("sorting based on number");
 			comp = new RunnerNumberComparator();
@@ -63,16 +68,23 @@ public class InputHandler {
 		if(printerType.equals("laps")) {
 			if(compare.equals("sorted")) {
 				printer = new SortedLapRacePrinter();
-				System.out.println("printing a sorted list");
+				System.out.println("printing a sorted lap list");
 			} else {
 				printer = new LapRacePrinter();
-				System.out.println("printing a lapse list");
+				System.out.println("printing a lap list");
+			}
+		} else if(printerType.equals("stages")){
+			if(compare.equals("sorted")) {
+				printer = new SortedStageRacePrinter();
+				System.out.println("printing a sorted stage list");
+			} else {
+				printer = new StageRacePrinter();
+				System.out.println("printing a stage list");
 			}
 		} else {
 			System.out.println("printing a lapse list");
 			printer = new LapRacePrinter();
 		}
-		
 		
 		String error =  this.preparePrint(printer, comp);
 		StringBuilder out = new StringBuilder();

@@ -50,7 +50,7 @@ public class SortedStageRacePrinterTest {
 
 		HashMap<String, String> extraInformation = new HashMap<String, String>();
 		
-		assertEquals("; Bengt Bsson; Bklobb; BTM; 01.22.02; 2; 01.10.00; 00.12.02", printer.print(racer, extraInformation));
+		assertEquals("; 2; Bengt Bsson; Bklobb; BTM; 01.22.02; 2; 01.10.00; 00.12.02", printer.print(racer, extraInformation));
 	}
 	
 	@Test public void testPrintWithPlace() {
