@@ -65,30 +65,54 @@ public class Time implements Comparable<Object> {
 		result %= 60;
 		return new Time(hours, minutes, (int) result);
 	}
+
 	/**
 	 * Compares this time with t.
 	 * 
 	 * @param t
 	 * 
-	 * @return If this time is greater than t, a positive integer is returned. If they are equal, 0 is returned.  
-	 * 		   If this time is smaller than t, a negative integer is returned.
+	 * @return If this time is greater than t, a positive integer is returned.
+	 *         If they are equal, 0 is returned. If this time is smaller than t,
+	 *         a negative integer is returned.
 	 */
 	public int compareTo(Object o) {
 		Time t = (Time) o;
 		long startSecs = this.sec + (this.min * 60) + (this.hour * 3600);
 		long endSecs = t.sec + (t.min * 60) + (t.hour * 3600);
-		return (int)(startSecs - endSecs);
+		return (int) (startSecs - endSecs);
 	}
+
 	/**
 	 * Compares this object with the Object o
 	 * 
 	 * @param o
 	 * 
-	 * @return if the objects are equal, <code>true</code> is returned. Else, <code>false</code> is returned. 
+	 * @return if the objects are equal, <code>true</code> is returned. Else,
+	 *         <code>false</code> is returned.
 	 */
 	public boolean equals(Object o) {
-		if(o instanceof Time){
-		return compareTo((Time)o)==0;
-		} else return false;
+		if (o instanceof Time) {
+			return compareTo((Time) o) == 0;
+		} else
+			return false;
+	}
+
+	/**
+	 * Adds a time t to this time.
+	 * 
+	 * @param t
+	 *            The time to add.
+	 */
+	public void increment(Time t) {
+		long thisSecs = this.sec + (this.min * 60) + (this.hour * 3600);
+		long tSecs = t.sec + (t.min * 60) + (t.hour * 3600);
+		long result = thisSecs + tSecs;
+		int hours = (int) (result / 3600);
+		result %= 3600;
+		int minutes = (int) (result / 60);
+		result %= 60;
+		this.hour = hours;
+		this.min = minutes;
+		this.sec = (int) result;
 	}
 }

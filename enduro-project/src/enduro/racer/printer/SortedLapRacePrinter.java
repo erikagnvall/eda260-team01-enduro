@@ -37,7 +37,7 @@ public class SortedLapRacePrinter implements RacerPrinter {
 
 	public String printTopInformation() {
 		StringBuilder out = new StringBuilder();
-		out.append("Plac; " + extraInformation + "#Varv; TotalTid");
+		out.append("Plac; " + extraInformation + "#Varv; Totaltid");
 		
 		for(int i = 1; i <= ConfigParser.getInstance().getIntConf("laps"); i++) {
 			out.append("; Varv");
