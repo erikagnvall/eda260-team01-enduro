@@ -35,7 +35,7 @@ public class LapRacePrinter implements RacerPrinter {
 			out.append("; Varvning");
 			out.append(i);
 		}
-		out.append("; MŒl");
+		out.append("; MÃ¥l");
 		return out.toString();
 	}
 	
@@ -159,13 +159,13 @@ public class LapRacePrinter implements RacerPrinter {
 				out.append(diff);
 				
 				if(diff.compareTo(new Time("00.15.00")) < 0)
-					errorTrail.append("Omšjlig varvtid? ");
+					errorTrail.append("OmÃ¶jlig varvtid? ");
 				
 				out.append("; ");
 				before = next;
 			}
 			if(numLapse < r.finishTimes.size()) {
-				errorTrail.append("fšr mŒnga varv ");
+				errorTrail.append("fÃ¶r mÃ¥nga varv ");
 				for(; i < r.finishTimes.size(); i++) {
 					errorTrail.append(itr.next());
 					errorTrail.append(" ");
