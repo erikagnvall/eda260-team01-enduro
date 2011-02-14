@@ -1,11 +1,14 @@
 package unittest.racer;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import enduro.racedata.Time;
 import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
+import enduro.racer.comparators.runnerCheckTotalTimeMax;
 import enduro.racer.comparators.runnerLapseComparator;
 import enduro.racer.comparators.runnerNumberComparator;
 import enduro.racer.comparators.runnerTotalTimeComparator;
@@ -41,14 +44,19 @@ public class SortedLapseRacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"));
 		racer103.addStartTime(new Time("12.15.00"));
 		
-		sorter = new RacerSorter("", new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())), printer, new Time("01.00.00"));
+		sorter = new RacerSorter("random group", new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())), new Time("01.00.00")), printer, new Time("01.00.00"));
 	}
 	
 	@Test public void testAll() {
 		sorter.addRacer(racer1);
 		sorter.addRacer(racer2);
 		
-		System.out.println(sorter.print());
+		String[] out = sorter.print().split("\n");
+		
+		assertEquals("Plac; startNr; Namn; Klubb; annat; #Varv; TotalTid; Varv1; Varv2; Varv3", out[1]);
+		assertEquals("1; 2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.15.01; 00.25.59; 00.34.16", out[2]);
+		assertEquals("2; 1; Anders Asson; FMCK Astad; ATM; 3; 01.23.34; 00.30.00; 00.30.00; 00.23.34", out[3]);
+		
 	}
 	
 }
