@@ -17,7 +17,7 @@ import org.junit.runners.Parameterized;
  * 
  *  results and facit must be in explicitly different locations
  *   
- * * @author alexander, mohamed
+ * @author alexander, mohamed
  *
  */
 public class CompareAcceptanceTests extends TestCase  {
