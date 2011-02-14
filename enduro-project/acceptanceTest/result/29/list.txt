@@ -1,0 +1,6 @@
+@Advanced
+name:acceptanceTest/result/29/namnfil.txt
+start:acceptanceTest/result/29/starttider1.txt
+start:acceptanceTest/result/29/starttider2.txt
+finish:acceptanceTest/result/29/maltider1.txt
+finish:acceptanceTest/result/29/maltider2.txt
