@@ -18,8 +18,7 @@ As well as describes the structure of the map hierarchy.
 			   Button for undo in GUI
 			   
 		/src/enduro/Registration.java
-		   Program for registering start and finish
-		   times in an Enduro race.
+		   Program for registering start and finish times in an Enduro race.
 		/src/enduro/racer
 			/src/enduro/racer/Racer.java
 			   A basic class that represents all information about the racer - number, extra information and lapse times.
@@ -30,30 +29,16 @@ As well as describes the structure of the map hierarchy.
 				/src/enduro/racer/printer/RacerPrinter.java
 				   a printer interface to print all relevant information for a race,
 				   both line by line for each racer as well as printing the overlaying "header" information.
-				  
 				/src/enduro/racer/printer/StageRacePrinter.java
+				   prints a stage race with each stage included and so forth.
 				/src/enduro/racer/printer/LapRacePrinter.java
+				   the default lap race printer - it prints all lapses and other relevant information.
 				/src/enduro/racer/printer/SortedLapRacePrinter.java
-			/src/enduro/racer/Configuration
-				/src/enduro/racer/Configuration/ConfigParser.java
-				   a basic config parser. It reads by default from config.conf in the CLASSPATH
-				   (but can be configured otherwise)
-				   
-				   It reads value pairs of the type A:B where B becomes the value and A the key.
-				   default values for race, sorting, input, laps and minimumTime (case
-				   sensative) exists, but older key value pairs gets deleted if new appears.
-				   Comments ( // )and empty lines are ignored.
-				   
-				   A parse error results in continued read. Errors can be polled by getError().
+				   Prints a sorted list (that is, a list with positions printed out, but no errors).
+				   Requires a lap race model for correct input, but no assumptions are made.
+				/src/enduro/racer/printer/SortedStageRacePrinter.java
+				   Prints a sorted (that is, no errors and position) of a racer.
 			/src/enduro/racer/comparators
-				/src/enduro/racer/comparators/runnerTotalTimeComparator.java
-				   a non-naive comparison class that computes and compares the total time between two Racer classes.
-				   this class is able to handle if finishtime / starttime doesn't exist in either or both and the comparison reflects the result.
-				   
-				/src/enduro/racer/comparators/runnerLapseComparator.java
-				   a naive comparison class that compares the size of finishtime, presumed to be how many lapses completed.
-				   Ignores error in output and all other unrelated stuff.
-				/src/enduro/racer/comparators/runnerNumberComparator.java
 				/src/enduro/racer/comparators/DecorationCompare.java
 				   This is the abstract decorationcompare class.
 				   All subclasses of this class implements the Decorator design pattern
@@ -65,13 +50,35 @@ As well as describes the structure of the map hierarchy.
 				   
 				   Subclasses should implement a basic constructor in addition to the required one - sending null to the super constructor means "no fallback"
 				   
-				/src/enduro/racer/comparators/runnerCheckTotalTimeMax.java
+				/src/enduro/racer/comparators/RunnerCheckTotalTimeMax.java
+				/src/enduro/racer/comparators/RunnerTotalTimeComparator.java
+				   a non-naive comparison class that computes and compares the total time between two Racer classes.
+				   this class is able to handle if finishtime / starttime doesn't exist in either or both and the comparison reflects the result.
+				   
+				/src/enduro/racer/comparators/RunnerLapseComparator.java
+				   a naive comparison class that compares the size of finishtime, presumed to be how many lapses completed.
+				   Ignores error in output and all other unrelated stuff.
+				/src/enduro/racer/comparators/RunnerNumberComparator.java
 			/src/enduro/racer/RacerSorter.java
+			   This class handles the comparison between Racers based upon a set specific list of comparison critera
+			   (represented as a Comparator<Racer> class-instance. The output is corresponding to a "class".
+			   It uses the printer classes in enduro.racer.printer to output correct data.
 			/src/enduro/racer/InputHandler.java
-			   this parses all files.
-			  
+			   This class has a number of public void functions that adds name files, finish time files and start time files
+			   and adds them to internal lists. This class parses these files and gives as output the final output file content.
 			/src/enduro/racer/Time.java
 			   Utility class for representing time.
+			/src/enduro/racer/configuration
+				/src/enduro/racer/configuration/ConfigParser.java
+				   a basic config parser. It reads by default from config.conf in the CLASSPATH
+				   (but can be configured otherwise)
+				   
+				   It reads value pairs of the type A:B where B becomes the value and A the key.
+				   default values for race, sorting, input, laps and minimumTime (case
+				   sensative) exists, but older key value pairs gets deleted if new appears.
+				   Comments ( // )and empty lines are ignored.
+				   
+				   A parse error results in continued read. Errors can be polled by getError().
 		/src/enduro/TxtToHtml.java
 		/src/enduro/MainClass.java
 		   this is the main class. it parses a command line of the type -COMMAND KEY
@@ -81,5 +88,3 @@ As well as describes the structure of the map hierarchy.
 		   (first file: name file, second file: start file and the following lines finish time files)
 		   The output is where the output should be written
 		   The result files listed in list.txt are outputted as html files 
-	/src/releaseCode
-		/src/releaseCode/fileFormatListing.java

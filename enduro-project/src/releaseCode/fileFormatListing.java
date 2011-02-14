@@ -8,7 +8,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 
 /**
- * A technical documentation / release aiding class.
+ * Parses javadoc for all classes in src (except this one) and output it to the technical documentation
  */
 public class fileFormatListing {
 
@@ -31,6 +31,9 @@ public class fileFormatListing {
 	}
 	
 	public static String print(String startLocation, String fileLocation, String before) {
+		if(fileLocation.contains("releaseCode"))
+			return "";
+		
 		File f = new File(fileLocation);
 		
 		StringBuilder out = new StringBuilder();
