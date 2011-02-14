@@ -11,6 +11,7 @@ import javax.security.auth.login.Configuration;
 
 import enduro.racedata.Time;
 import enduro.racer.Configuration.ConfigParser;
+import enduro.racer.comparators.runnerCheckTotalTimeMax;
 import enduro.racer.comparators.runnerLapseComparator;
 import enduro.racer.comparators.runnerNumberComparator;
 import enduro.racer.comparators.runnerTotalTimeComparator;
@@ -54,7 +55,7 @@ public class InputHandler {
 			comp = new runnerNumberComparator();
 		} else if(compare.equals("sorted")){
 			System.out.println("sorting based on position");
-			comp = new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator()));
+			comp = new runnerCheckTotalTimeMax(new runnerLapseComparator(new runnerTotalTimeComparator(new runnerNumberComparator())), new Time("01.00.00"));
 		} else {
 			System.out.println("sorting based on number");
 			comp = new runnerNumberComparator();

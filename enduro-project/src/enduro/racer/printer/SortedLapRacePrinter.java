@@ -8,13 +8,16 @@ import enduro.racer.Configuration.ConfigParser;
 
 public class SortedLapRacePrinter implements RacerPrinter {
 
+	String extraInformation = "";
+	int extraRunnerInformation = 0;
+	
 	public String print(Racer r, HashMap<String, String> extraInformation) {
 		//Plac; StartNr; Namn; #Varv; Totaltid; Varv1; Varv2
 		StringBuilder out = new StringBuilder();
 		
 		printPosition(r, out, extraInformation);
 		
-		printNameAndNumber(r, out);
+		printRunnerInformation(r, out);
 		
 		printNumLapses(r, out);
 		
@@ -34,7 +37,7 @@ public class SortedLapRacePrinter implements RacerPrinter {
 
 	public String printTopInformation() {
 		StringBuilder out = new StringBuilder();
-		out.append("Plac; StartNr; Namn; #Varv; Totaltid");
+		out.append("Plac; " + extraInformation + "#Varv; TotalTid");
 		
 		for(int i = 1; i <= ConfigParser.getInstance().getIntConf("laps"); i++) {
 			out.append("; Varv");
@@ -59,14 +62,25 @@ public class SortedLapRacePrinter implements RacerPrinter {
 		}
 	}
 
-	private void printNameAndNumber(Racer r, StringBuilder out) {
-		out.append(r.racerInformation.get(0));
-		out.append("; ");
+	/**
+	 * this function calculates the runner name and all extra information
+	 * that was inserted with the user. Unknown information is padded with ;<whitespace>
+	 * this is a "dumb" implementation as it does not map data which data is printed, it just uses the
+	 * racer arraylist.
+	 * @param r the racer that is printed
+	 * @param out the stringbuilder class that will in the end supply the result.
+	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
+	 */
+	private void printRunnerInformation(Racer r, StringBuilder out) {
+		int i = 0;
 		
-		if(r.racerInformation.size() > 1) {
-			out.append(r.racerInformation.get(1));
+		for(; i < r.racerInformation.size(); i++) {
+			out.append(r.racerInformation.get(i));
+			out.append("; ");
 		}
-		out.append("; ");
+		for(; i < extraRunnerInformation; i++) {
+			out.append("; ");
+		}
 	}
 
 	private void printPosition(Racer r, StringBuilder out, HashMap<String, String> extraInformation) {
@@ -82,8 +96,10 @@ public class SortedLapRacePrinter implements RacerPrinter {
 	}
 
 	public void setHeaderInformation(String[] extraInformation) {
-		// TODO Auto-generated method stub
-		
+		for(String str: extraInformation) {
+			this.extraInformation += str + "; ";
+		}
+		extraRunnerInformation = extraInformation.length;
 	}
 	
 
