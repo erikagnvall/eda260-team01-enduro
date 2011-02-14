@@ -96,7 +96,7 @@ public class InputHandler {
 		}
 		
 		if(error.length() > 0)
-			out.append("\n\n\nerror: \n");
+			out.append("\n\n\nerror: "+error+" \n");
 		return out.toString();
 	}
 	
