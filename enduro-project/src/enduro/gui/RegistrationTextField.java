@@ -12,7 +12,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,274 +34,206 @@ import enduro.racedata.Time;
  */
 @SuppressWarnings("serial")
 public class RegistrationTextField extends JTextField implements ActionListener {
-	private RegistrationTextArea registrationTextArea;
-	private Registration registration;
-	private StoredTime storedTime;
-	private UndoButton undo;
+        private RegistrationTextArea registrationTextArea;
+        private Registration registration;
+        private StoredTime storedTime;
+        private UndoButton undo;
 
-	/**
-	 * Creates a new RegistrationTextField with the specified Font and reference
-	 * to the RegistrationTextArea.
-	 * 
-	 * @param font
-	 *            The font to use in this text field.
-	 * @param registrationTextArea
-	 *            The RegistrationTextArea to add new stuff to.
-	 */
-	public RegistrationTextField(Font font,
-			RegistrationTextArea registrationTextArea, StoredTime storedTime) {
-		super(5);
-		setName("Input");
-		setFont(font);
-		this.registrationTextArea = registrationTextArea;
-		this.storedTime = storedTime;
-		addActionListener(this);
-	}
+        /**
+         * Creates a new RegistrationTextField with the specified Font and reference
+         * to the RegistrationTextArea.
+         * 
+         * @param font
+         *            The font to use in this text field.
+         * @param registrationTextArea
+         *            The RegistrationTextArea to add new stuff to.
+         */
+        public RegistrationTextField(Font font,
+                        RegistrationTextArea registrationTextArea, StoredTime storedTime) {
+                super(5);
+                setName("Input");
+                setFont(font);
+                this.registrationTextArea = registrationTextArea;
+                this.storedTime = storedTime;
+                addActionListener(this);
+        }
 
-	/**
-	 * Registers multiple racers if the input stream is written as first - last
-	 * where first is the first racer's number and last is the last racer's
-	 * number. Otherwise the racer is registered according to the input number.
-	 */
-	public void actionPerformed(ActionEvent ae) {
-		String currentTime = getTime();
-		Pattern p = Pattern
-				.compile("((\\d+)|(\\d+-\\d+))((,\\d+((,\\d+)|(-\\d+))?))*");
-		Matcher m = p.matcher(getText());
-		boolean invalid = !m.matches();
-		String[] commaSeparated = getText().split(",");
-		boolean isCommaSeparated = false;
-		// commaseperated handling
-		if (commaSeparated.length > 1 && !invalid && !getText().equals("")) {
-			isCommaSeparated = true;
-			for (String raceNbr : commaSeparated) {
-				String[] dashSeparated = raceNbr.split("-");
-				numHandler(currentTime, invalid, isCommaSeparated, dashSeparated);
-			}
-			storedTime.empty();
-		}else if(commaSeparated.length == 1 && !invalid && !getText().equals("")){
-		// Dashseperated handling
-		String[] dashSeparated = getText().split("-");
-		numHandler(currentTime, invalid, isCommaSeparated, dashSeparated);
-		}else if ((getText().equals("") || invalid) && storedTime.isEmpty()) {
-			if (storedTime.isEmpty()) {
-				storeTime();
-				undo.setVisible(true);
-			}
-		}
-		setText("");
-		requestFocus();
-	}
-	/**
-	 *  takes a String[] of expressions and handles them 
-	 * @param currentTime
-	 * @param invalid
-	 * @param isCommaSeparated
-	 * @param dashSeparated
-	 */
-	private void numHandler(String currentTime, boolean invalid,
-			boolean isCommaSeparated, String[] dashSeparated) {
-		if (dashSeparated.length > 1 && !invalid
-				&& !dashSeparated[0].equals("")) {
-			StringBuilder sb = new StringBuilder();
-			makeRow(currentTime, dashSeparated, sb);
-			try {
-				sb.deleteCharAt(sb.length() - 1);
-				registrationTextArea.update(sb.toString());
-			} catch (StringIndexOutOfBoundsException e) {
+        /**
+         * Registers multiple racers if the input stream is written as first - last
+         * where first is the first racer's number and last is the last racer's
+         * number. Otherwise the racer is registered according to the input number.
+         */
+        public void actionPerformed(ActionEvent ae) {
+                String currentTime = getTime();
+                String[] input = getText().split(",", Integer.MAX_VALUE);
+                boolean error = false;
 
-			}
-			storedTime.empty();
-		} else if (!dashSeparated[0].equals("") && !invalid) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(dashSeparated[0]);
-			sb.append(';');
-			sb.append(' ');
-			if (storedTime.isEmpty()) {
-				sb.append(currentTime);
-			} else {
-				sb.append(getStoredTime().toString());
+                Pattern p = Pattern.compile("((\\d+)|(\\d+-\\d+))((,\\d+((,\\d+)|(-\\d+))?))*");
+                if (!p.matcher(getText()).matches())
+                        error = true;
+                
+                p = Pattern.compile("((\\d+)(-(\\d+))?)");
+                for (int i = 0; i < input.length && !error; ++i) {
+                        Matcher m = p.matcher(input[i]);
+                        m.matches();
+                        String start = m.group(2);
+                        String end = (m.group(4) == null) ? start : m.group(4);
+                        String rows = makeRow(currentTime, start, end);
+                        registrationTextArea.update(rows);
+                }
+                
+                if (error) {
+                        if (storedTime.isEmpty()) {
+                                storeTime(currentTime);
+                                undo.setVisible(true);
+                        }
+                } else {
+                        storedTime.empty();
+                        undo.setVisible(false);
+                }
+                setText("");
+                requestFocus();
+        }
 
-				undo.setVisible(false);
-			}
+        /**
+         * Creates a new row in sb.
+         * 
+         * @param currentTime
+         * @param dashSeparated
+         * @param sb
+         */
+        private String makeRow(String currentTime, String start, String end) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = Integer.parseInt(end); i >= Integer.parseInt(start); --i) {
+                        sb.append(i + "; ");
+                        sb.append((storedTime.isEmpty() ? currentTime : getStoredTime()));
+                        sb.append('\n');
+                        saveToFile(i, (storedTime.isEmpty() ? new Time(currentTime) : getStoredTime()));
+                }
+                return sb.toString();
+        }
 
-			writeTime(currentTime, sb,dashSeparated);
-			storedTime.empty();
-		}
-	}
-	/**
-	 * Writes time to file
-	 * 
-	 * @param currentTime
-	 * @param sb
-	 */
-	private void writeTime(String currentTime, StringBuilder sb, String[] dashSeparated) {
-		try {
-			deleteStoredTimeFile();
-			if (storedTime.isEmpty()) {
-				saveToFile(Integer.parseInt(dashSeparated[0]), new Time(currentTime));
-			} else {
-				saveToFile(Integer.parseInt(getText()), getStoredTime());
-			}
-			registrationTextArea.update(sb.toString());
-		} catch (NumberFormatException e) {
+        /**
+         * Saves the current time to a text file.
+         */
+        private void storeTime(String time) {
+                try {
+                        PrintWriter out = new PrintWriter(new BufferedWriter(
+                                        new FileWriter("storedTimeOfUnknownDriver.txt")));
+                        out.println(time);
+                        out.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+                storedTime.setText(time);
+        }
 
-		}
-	}
+        /**
+         * Deletes the file storedTimeOfUnknownDriver.txt.
+         */
+        public void deleteStoredTimeFile() {
+                File f = new File("storedTimeOfUnknownDriver.txt");
+                f.delete();
+                storedTime.empty();
+        }
 
-	/**
-	 * Creates a new row in sb.
-	 * 
-	 * @param currentTime
-	 * @param dashSeparated
-	 * @param sb
-	 */
-	private void makeRow(String currentTime, String[] dashSeparated,
-			StringBuilder sb) {
-		for (int i = Integer.parseInt(dashSeparated[0]); i < Integer
-				.parseInt(dashSeparated[1]) + 1; i++) {
-			sb.append(i);
-			sb.append(';');
-			sb.append(' ');
-			if (storedTime.isEmpty()) {
-				sb.append(currentTime);
-			} else {
-				sb.append(getStoredTime().toString());
-			}
-			sb.append('\n');
-			if (storedTime.isEmpty()) {
-				saveToFile(i, new Time(currentTime));
-			} else {
-				saveToFile(i, getStoredTime());
-			}
-		}
+        /**
+         * Checks if storedTimeOfUnknownDriver.txt file exists.
+         */
+        public void checkForSavedTimeFile() {
+                BufferedReader in;
+                try {
+                        in = new BufferedReader(new FileReader(
+                                        "storedTimeOfUnknownDriver.txt"));
+                        storedTime.setText(in.readLine());
+                        undo.setVisible(true);
+                } catch (FileNotFoundException e1) {
 
-	}
+                } catch (IOException e) {
 
-	/**
-	 * Saves the current time to a text file.
-	 */
-	private void storeTime() {
-		String time = getTime();
-		try {
-			PrintWriter out = new PrintWriter(new BufferedWriter(
-					new FileWriter("storedTimeOfUnknownDriver.txt")));
-			out.println(time);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		storedTime.setText(time);
-	}
+                }
+        }
 
-	/**
-	 * Deletes the file storedTimeOfUnknownDriver.txt.
-	 */
-	public void deleteStoredTimeFile() {
-		File f = new File("storedTimeOfUnknownDriver.txt");
-		f.delete();
-		storedTime.empty();
-	}
+        /**
+         * Reads the temporary stored file, containing the last entered
+         * unknown-driver time.
+         * 
+         * @return
+         */
+        public Time getStoredTime() {
+                BufferedReader in;
+                try {
+                        in = new BufferedReader(new FileReader(
+                                        "storedTimeOfUnknownDriver.txt"));
+                        return new Time(in.readLine());
+                } catch (FileNotFoundException e1) {
 
-	/**
-	 * Checks if storedTimeOfUnknownDriver.txt file exists.
-	 */
-	public void checkForSavedTimeFile() {
-		BufferedReader in;
-		try {
-			in = new BufferedReader(new FileReader(
-					"storedTimeOfUnknownDriver.txt"));
-			storedTime.setText(in.readLine());
-			undo.setVisible(true);
-		} catch (FileNotFoundException e1) {
+                } catch (IOException e) {
 
-		} catch (IOException e) {
+                }
+                return null;
+        }
 
-		}
-	}
+        /**
+         * Returns the current time as a String. Probably exists in the back end.
+         * 
+         * @return The current time as a String.
+         */
+        private String getTime() {
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss");
+                return sdf.format(cal.getTime());
+        }
 
-	/**
-	 * Reads the temporary stored file, containing the last entered
-	 * unknown-driver time.
-	 * 
-	 * @return
-	 */
-	public Time getStoredTime() {
-		BufferedReader in;
-		try {
-			in = new BufferedReader(new FileReader(
-					"storedTimeOfUnknownDriver.txt"));
-			return new Time(in.readLine());
-		} catch (FileNotFoundException e1) {
+        /**
+         * Saves the input time for the entered number to file.
+         * 
+         * @param number
+         *            the racer's number
+         * @param t
+         *            the time for the racer.
+         */
 
-		} catch (IOException e) {
+        private void saveToFile(int number, Time t) {
+                try {
+                        registration = new Registration("times.txt");
+                        registration.registerTime(number, t);
+                        registration.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+        }
 
-		}
-		return null;
-	}
+        /**
+         * Used by JTextField and creates a new numberDocument object.
+         */
+        protected Document createDefaultModel() {
+                return new numberDocument();
+        }
 
-	/**
-	 * Returns the current time as a String. Probably exists in the back end.
-	 * 
-	 * @return The current time as a String.
-	 */
-	private String getTime() {
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("HH.mm.ss");
-		return sdf.format(cal.getTime());
-	}
+        /**
+         * A class that contains a method that is called every time a new character
+         * is entered in the text field. Checks if the character is a digit or ","
+         * or "-".s
+         */
+        private class numberDocument extends PlainDocument {
 
-	/**
-	 * Saves the input time for the entered number to file.
-	 * 
-	 * @param number
-	 *            the racer's number
-	 * @param t
-	 *            the time for the racer.
-	 */
+                public void insertString(int offs, String str, AttributeSet a)
+                                throws BadLocationException {
+                        char[] number = str.toCharArray();
+                        for (int i = 0; i < number.length; i++) {
+                                if (!Character.isDigit(number[i]) && number[i] != ','
+                                                && number[i] != '-')
+                                        return;
+                        }
 
-	private void saveToFile(int number, Time t) {
-		try {
-			registration = new Registration("times.txt");
-			registration.registerTime(number, t);
-			registration.close();
-			TxtToHtml txtHt = new TxtToHtml();
-			txtHt.makeHtmlFile("times.txt", "times.html");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+                        super.insertString(offs, new String(number), a);
+                }
 
-	/**
-	 * Used by JTextField and creates a new numberDocument object.
-	 */
-	protected Document createDefaultModel() {
-		return new numberDocument();
-	}
+        }
 
-	/**
-	 * A class that contains a method that is called every time a new character
-	 * is entered in the text field. Checks if the character is a digit or ","
-	 * or "-".s
-	 */
-	private class numberDocument extends PlainDocument {
-
-		public void insertString(int offs, String str, AttributeSet a)
-				throws BadLocationException {
-			char[] number = str.toCharArray();
-			for (int i = 0; i < number.length; i++) {
-				if (!Character.isDigit(number[i]) && number[i] != ','
-						&& number[i] != '-')
-					return;
-			}
-
-			super.insertString(offs, new String(number), a);
-		}
-
-	}
-
-	public void setRegretButton(UndoButton regret) {
-		this.undo = regret;
-	}
+        public void setRegretButton(UndoButton regret) {
+                this.undo = regret;
+        }
 
 }

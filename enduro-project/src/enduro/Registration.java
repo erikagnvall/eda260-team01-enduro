@@ -12,7 +12,7 @@ import enduro.racedata.Time;
  */
 public class Registration {
 	
-	private PrintWriter out;
+	private BufferedWriter out;
 	
 	/**
 	 * Creates a new Registration object.
@@ -20,7 +20,7 @@ public class Registration {
 	 * @throws IOException In case of an I/O error.
 	 */
 	public Registration(String fileName) throws IOException  {
-		out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+		out = new BufferedWriter(new FileWriter(fileName, true));
 	}
 	
 	/**
@@ -29,7 +29,12 @@ public class Registration {
 	 * @param time The racer's start or finish time.
 	 */
 	public void registerTime(int startNbr, Time time){
-		 out.println(startNbr + "; " + time);
+		 try {
+			out.write(startNbr + "; " + time);
+			out.newLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -38,7 +43,11 @@ public class Registration {
 	 * to the file.
 	 */
 	public void close() {
-		out.close();
+		try {
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

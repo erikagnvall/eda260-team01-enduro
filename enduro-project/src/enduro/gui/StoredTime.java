@@ -3,7 +3,7 @@ package enduro.gui;
 import javax.swing.JLabel;
 
 public class StoredTime extends JLabel {
-	boolean Empty;
+	private boolean empty;
 	
 	/**
 	 * Generated
@@ -12,19 +12,19 @@ public class StoredTime extends JLabel {
 
 	public StoredTime(){
 		super();
-		Empty = true;
+		empty = true;
 		empty();
 	}
 	public void empty(){
 		super.setText("              ");
-		Empty = true;
+		empty = true;
 	}
 	public void setText(String s){
 		super.setText(s);
-		Empty = false;
+		empty = false;
 	}
 	public boolean isEmpty() {
-		return Empty;
+		return empty;
 	}
 
 }

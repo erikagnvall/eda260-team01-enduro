@@ -34,7 +34,7 @@ public class RegistrationTextArea extends JTextArea {
 	 *            The text to insert in the text area.
 	 */
 	public void update(String result) {
-		insert(result + '\n', 0);
+		insert(result, 0);
 	}
 
 }
