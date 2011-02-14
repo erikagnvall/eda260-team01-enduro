@@ -7,6 +7,9 @@ import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
 
+/**
+ * the default lap race printer - it prints all lapses and other relevant information.
+ */
 public class LapRacePrinter implements RacerPrinter {
 
 	private int numLapse, extraRunnerInformation;

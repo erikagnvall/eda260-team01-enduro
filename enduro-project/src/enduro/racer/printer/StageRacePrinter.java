@@ -5,6 +5,9 @@ import java.util.HashMap;
 import enduro.racer.Racer;
 import enduro.racer.configuration.ConfigParser;
 
+/**
+ * prints a stage race with each stage included and so forth.
+ */
 public class StageRacePrinter implements RacerPrinter {
 	private String extraInformation = "";
 	private int stages = ConfigParser.getInstance().getIntConf("stages");

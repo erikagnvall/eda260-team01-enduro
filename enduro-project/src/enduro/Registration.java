@@ -8,8 +8,7 @@ import java.io.PrintWriter;
 import enduro.racer.Time;
 
 /**
- * Program for registering start and finish
- * times in an Enduro race.
+ * Program for registering start and finish times in an Enduro race.
  */
 public class Registration {
 	

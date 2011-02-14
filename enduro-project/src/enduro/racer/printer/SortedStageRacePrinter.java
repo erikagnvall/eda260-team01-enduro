@@ -7,6 +7,9 @@ import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
 
+/**
+ * Prints a sorted (that is, no errors and position) of a racer.
+ */
 public class SortedStageRacePrinter implements RacerPrinter {
 
 	String extraInformation = "";

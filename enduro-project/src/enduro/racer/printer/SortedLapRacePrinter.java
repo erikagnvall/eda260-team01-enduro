@@ -6,6 +6,10 @@ import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
 
+/**
+ * Prints a sorted list (that is, a list with positions printed out, but no errors).
+ * Requires a lap race model for correct input, but no assumptions are made.
+ */
 public class SortedLapRacePrinter implements RacerPrinter {
 
 	String extraInformation = "";

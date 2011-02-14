@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
+/**
+ * A technical documentation / release aiding class.
+ */
 public class fileFormatListing {
 
 	public static void main(String[] args) {

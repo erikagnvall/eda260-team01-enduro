@@ -7,7 +7,6 @@ import enduro.racer.Racer;
 /**
  * a printer interface to print all relevant information for a race,
  * both line by line for each racer as well as printing the overlaying "header" information.
- *
  */
 public interface RacerPrinter {
 	
