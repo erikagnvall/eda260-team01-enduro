@@ -1,10 +1,5 @@
 Denna readme är avsedd för teknisk dokumentation och är endast intressant för den som skall vidarutveckla systemet.
 
-Bygga systemet:
-Bygga systemet är automatiserat genom ett ANT-script som finns i filen build.xml vilken
-ligger i samma mapp som denna readme.
-För att bygga systemet körs detta script och då kommer även acceptanstester genomföras.
-
 Filstrukturen innehåller följande mappar:
 
 src - Innehåller källkoden för programmet

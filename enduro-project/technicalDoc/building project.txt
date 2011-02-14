@@ -1,0 +1,8 @@
+Projektet byggs genom att använda ant och byggscriptet "build.xml" 
+som först bygger ett junitpaket som testar alla relevant acceptanstester
+
+Därefter, om testen lyckas, bygger scriptet två mainfiler, ett för GUI:et och ett för admingränssnittet.
+Detta paketeras sedan i mappen "release" tillsammans med relevant testfiler och övrigt.
+Detta zippas sedan till "release.zip".
+
+Antscriptet bygger på beroende så om något s.k. target misslyckas så bygger inte projektet vidare.

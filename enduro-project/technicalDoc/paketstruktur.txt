@@ -3,18 +3,14 @@ Denna fil innehåller beskrivning av hur paketen är uppdelade i src-mappen
 Följande paket finns
 
 enduro:
-Innehåller huvudprogrammet som initirerar inläsningen av filer för backend (administratörsdelen av systemet) . 
+Innehåller huvudprogrammet som initiererar inläsningen av filer för backend (administratörsdelen av systemet) . 
 Inehåller klasser för att skriva till fil samt att konvertera text till html.
 
 enduro.gui:
-Innehåller GUIdelen av programmet och har klasser för att bygga ett GUI. Använder sig av enduro.racedata och enduro för att
-producera filer för start- och måltider
-
-enduro.racedata:
-Innehåller klassen Time som hanterar tider och genomför jämförning och beräkningar på dem
+Innehåller GUIdelen av programmet och har klasser för att bygga ett GUI.
 
 enduro.racer:
-Innehåller klasser för att hantera input, sortering och utskrift av resultat.
+Innehåller klasser för att hantera input, sortering och utskrift av resultat samt en intern tidshanterarklass.
  
 enduro.racer.comparators:
 Innehåller flera olika klasser som jämför Racer-klassen.
@@ -22,10 +18,10 @@ Använder sig av javas Comparator och Decoratorpatternet för att kunna skapa dy
 Ger möjlighet att jämföra tävlande på flera olika sätt utan att ändra racer-objektet.
 
 enduro.racer.Configuration:
-Innehåller en parser för att läsa in konfigurationsfilen.
+Innehåller en parser för att läsa in konfigurationsfilen. Klassen är en singleton som refereras av resten av projektet.
 
 enduro.racer.printer:
 Klasser för att producera resultatsträngar. Inehåller ett interface RacerPrinter som implementeras av de olika printerklasserna
-där varje printer är unik för en specifik typ av lopp.
+där varje printer är unik för en specifik typ av utdata.
 
 
