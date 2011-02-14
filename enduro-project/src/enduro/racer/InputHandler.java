@@ -49,14 +49,16 @@ public class InputHandler {
 		Comparator<Racer> comp;
 		
 		String compare = ConfigParser.getInstance().getStringConf("sorting");
+		String sorted = ConfigParser.getInstance().getStringConf("sorted");
 		
 		if(compare.equals("number")) {
 			System.out.println("sorting based on number");
 			comp = new RunnerNumberComparator();
-		} else if(compare.equals("sorted")){
-			System.out.println("sorting based on position");
+		} else if(compare.equals("laps")){
+			System.out.println("sorting based on laps");
 			comp = new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
-		} else if(compare.equals("totaltime")){
+		} else if(compare.equals("time")){
+			System.out.println("sorting based on time");
 			comp = new RunnerStageComparator(new RunnerCheckTotalTimeMax(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
 		} else {
 			System.out.println("sorting based on number");
@@ -66,7 +68,7 @@ public class InputHandler {
 		String printerType = ConfigParser.getInstance().getStringConf("race");
 		
 		if(printerType.equals("laps")) {
-			if(compare.equals("sorted")) {
+			if(sorted.equals("true")) {
 				printer = new SortedLapRacePrinter();
 				System.out.println("printing a sorted lap list");
 			} else {
@@ -74,7 +76,7 @@ public class InputHandler {
 				System.out.println("printing a lap list");
 			}
 		} else if(printerType.equals("stages")){
-			if(compare.equals("sorted")) {
+			if(sorted.equals("true")) {
 				printer = new SortedStageRacePrinter();
 				System.out.println("printing a sorted stage list");
 			} else {
@@ -82,7 +84,7 @@ public class InputHandler {
 				System.out.println("printing a stage list");
 			}
 		} else {
-			System.out.println("printing a lapse list");
+			System.out.println("printing a lap list");
 			printer = new LapRacePrinter();
 		}
 		

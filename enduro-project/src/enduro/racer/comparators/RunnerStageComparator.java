@@ -11,7 +11,7 @@ public class RunnerStageComparator extends DecorationCompare {
 	public RunnerStageComparator(DecorationCompare fallback) {
 		super(fallback);
 		
-		this.numStages = Integer.parseInt(ConfigParser.getInstance().getStringConf("numstages"));
+		this.numStages = Integer.parseInt(ConfigParser.getInstance().getStringConf("stages"));
 		}
 
 	@Override
