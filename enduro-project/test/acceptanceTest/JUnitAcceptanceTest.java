@@ -17,9 +17,6 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
-import enduro.LapRaceSorter;
-import enduro.MarathonSorter;
-import enduro.Sorter;
 import enduro.racer.MainClass;
 import enduro.racer.Configuration.ConfigParser;
 

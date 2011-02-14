@@ -50,7 +50,7 @@
 		<delete file = "MANIFEST.MF"/>
 		
 		<manifest file = "MANIFEST.MF">
-			<attribute name = "Main-Class" value = "enduro.IOHandler"/>
+			<attribute name = "Main-Class" value = "enduro.racer.MainClass"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
