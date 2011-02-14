@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import enduro.racedata.Time;
 import enduro.racer.Racer;
+import enduro.racer.Configuration.ConfigParser;
 
 public class LapRacePrinter implements RacerPrinter {
 
@@ -12,7 +13,7 @@ public class LapRacePrinter implements RacerPrinter {
 	private String extraInformation = "";
 	
 	public LapRacePrinter() {
-		numLapse = 3;
+		numLapse = ConfigParser.getInstance().getIntConf("laps");
 		
 	}
 	
