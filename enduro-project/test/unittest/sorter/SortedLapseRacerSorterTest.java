@@ -1,8 +1,6 @@
-package unittest.racer;
+package unittest.sorter;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,17 +8,21 @@ import org.junit.Test;
 import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
 import enduro.racer.Time;
+import enduro.racer.comparators.RunnerCheckTotalTimeMax;
+import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
+import enduro.racer.comparators.RunnerTotalTimeComparator;
 import enduro.racer.printer.LapRacePrinter;
+import enduro.racer.printer.SortedLapRacePrinter;
 
-public class RacerSorterTest {
+public class SortedLapseRacerSorterTest {
 
 	private Racer racer1, racer2, racer103;
 	private RacerSorter sorter;
 	
 	@Before public void bef() {
 		
-		LapRacePrinter printer = new LapRacePrinter();
+		SortedLapRacePrinter printer = new SortedLapRacePrinter();
 		printer.setHeaderInformation(new String[]{"startNr", "Namn", "Klubb", "annat"});
 		
 		racer1 = new Racer(new String("1; Anders Asson; FMCK Astad; ATM").split("; "));
@@ -30,7 +32,7 @@ public class RacerSorterTest {
 		racer1.addStartTime(new Time("12.00.00"), 1);
 		
 		racer2 = new Racer(new String("2; Bengt Bsson; FMCK Bstad; BTM").split("; "));
-		racer2.addFinishTime(new Time("12.14.00"), 1);
+		racer2.addFinishTime(new Time("12.15.01"), 1);
 		racer2.addFinishTime(new Time("12.41.00"), 1);
 		racer2.addFinishTime(new Time("13.15.16"), 1);
 		racer2.addStartTime(new Time("12.00.00"), 1);
@@ -42,44 +44,19 @@ public class RacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"), 1);
 		racer103.addStartTime(new Time("12.15.00"), 1);
 		
-		sorter = new RacerSorter("", new RunnerNumberComparator(), printer);
+		sorter = new RacerSorter("random group", new RunnerCheckTotalTimeMax(new RunnerLapsComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator()))), printer);
 	}
 	
-	@Test public void testConstructionAddRacer() {
-		try {
-			sorter.addRacer(racer1);
-			sorter.addRacer(racer2);
-		} catch(Exception E) {
-			fail("construction error");
-		}
-	}
-	
-	@Test public void testPrintOneRunner() {
-		sorter.addRacer(racer1);
-		String[] lines = sorter.print().split("\n");
-		assertTrue(lines.length == 3);
-	}
-	
-	@Test public void testPrintInCorrectOrder() {
+	@Test public void testAll() {
 		sorter.addRacer(racer1);
 		sorter.addRacer(racer2);
-		sorter.addRacer(racer103);
-		String[] lines = sorter.print().split("\n");
 		
-		assertTrue(lines.length == 5);
+		String[] out = sorter.print().split("\n");
 		
-		assertTrue(lines[2].startsWith("1"));
-		assertTrue(lines[3].startsWith("2"));
-		assertTrue(lines[4].startsWith("103"));
-	}
-	
-	@Test
-	public void testGetRacer() {
-		sorter.addRacer(racer1);
-		sorter.addRacer(racer2);
-		sorter.addRacer(racer103);
-		assertEquals(103, sorter.getRacer(103).getStartNbr());
-		assertEquals(null, sorter.getRacer(50));
+		assertEquals("Plac; startNr; Namn; Klubb; annat; #Varv; Totaltid; Varv1; Varv2; Varv3", out[1]);
+		assertEquals("1; 2; Bengt Bsson; FMCK Bstad; BTM; 3; 01.15.16; 00.15.01; 00.25.59; 00.34.16", out[2]);
+		assertEquals("2; 1; Anders Asson; FMCK Astad; ATM; 3; 01.23.34; 00.30.00; 00.30.00; 00.23.34", out[3]);
+		
 	}
 	
 }
