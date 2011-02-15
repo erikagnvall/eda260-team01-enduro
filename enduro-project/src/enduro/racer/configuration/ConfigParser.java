@@ -42,6 +42,12 @@ public class ConfigParser {
 		return parser;
 	}
 	
+	/**
+	 * overloads a key/value pair in the config file. should be used in debugging purposes or for other uses,
+	 * when a new config file is not needed / wished for.
+	 * @param key the configuration key
+	 * @param value the String value related to the key.
+	 */
 	public void overLoadValue(String key, String value) {
 		tmp.remove(key);
 		tmp.put(key, value);

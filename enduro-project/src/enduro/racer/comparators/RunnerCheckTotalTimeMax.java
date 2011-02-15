@@ -4,6 +4,11 @@ import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
 
+/**
+ * A basic comparison class that handles if racers are not able to fulfill a basic minimum time.
+ * The racers are therefore ordered based on whether or not they fulfill this basic premise.
+ * Returns 0 if both fulfill/both don't fulfill the time limit or -1 or 1 if one fulfills the minimum time.
+ */
 public class RunnerCheckTotalTimeMax extends DecorationCompare {
 
 	private Time maxTime;

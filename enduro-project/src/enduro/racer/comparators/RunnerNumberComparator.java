@@ -2,7 +2,9 @@ package enduro.racer.comparators;
 
 import enduro.racer.Racer;
 
-
+/**
+ * Compares racers based on their racing number.
+ */
 public class RunnerNumberComparator extends DecorationCompare {
 
 	public RunnerNumberComparator() {

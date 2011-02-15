@@ -1,7 +1,6 @@
 package enduro.racer.comparators;
 
 import enduro.racer.Racer;
-import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
 
 public class RunnerStageComparator extends DecorationCompare {

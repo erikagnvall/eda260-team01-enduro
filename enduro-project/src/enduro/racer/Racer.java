@@ -63,15 +63,23 @@ public class Racer implements Comparable<Racer> {
 		return startNbr;
 	}
 
+	/**
+	 * implementes comparable<Racer> based on comparison of start numbers
+	 */
 	public int compareTo(Racer arg0) {
 		return startNbr - arg0.startNbr;
 	}
-	
+	/**
+	 * implementes comparable<Racer> optional "equal" based on comparison of when start numbers are the same.
+	 */
 	public boolean equals(Racer arg0) {
 		return compareTo(arg0)==0;
 	}
+	
+	/*
+	//seems to be unused and therefore counter to the XP philosophy. Not correct anymore as you would either have to sum finish times from all finishtimes in the treemap or do something other awesome stuff.
 	public int getLength(){
 		return Math.max(startTimes.size(), finishTimes.size());
 	}
-	
+	*/
 }

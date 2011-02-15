@@ -8,7 +8,8 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 
 /**
- * Parses javadoc for all classes in src (except this one) and output it to the technical documentation
+ * Parses javadoc for all classes in src (except this one and files in the overlaying folder) and output it to the technical documentation.
+ * It is not javadoc - this code only parses it and presents it in a single file.  ;-)
  */
 public class fileFormatListing {
 
@@ -30,6 +31,9 @@ public class fileFormatListing {
 		
 	}
 	
+	/**
+	 * Crawls through a file structure and handles indentation for printing. Files are sent to the printFileJDoc function.
+	 */
 	public static String print(String startLocation, String fileLocation, String before) {
 		if(fileLocation.contains("releaseCode"))
 			return "";
@@ -54,6 +58,9 @@ public class fileFormatListing {
 		return out.toString();
 	}
 	
+	/**
+	 * Parses most java doc class information from a file.
+	 */
 	public static String printFileJDoc(String fileLocation, String before) {
 		StringBuilder out = new StringBuilder();
 		out.append("\n");
@@ -90,7 +97,9 @@ public class fileFormatListing {
 		return out.toString();
 	}
 }
-
+/**
+ * A simple Filenamefilter that disallows all files that starts with . (hidden) _ (specific marker) or contains ~ (temp file)
+ */
 class FileFilter implements FilenameFilter {
 	public boolean accept(File dir, String name) {
 		return !(name.startsWith(".") || name.startsWith("_") || name.contains("~"));

@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
 import enduro.racer.comparators.RunnerLapsComparator;
@@ -35,6 +34,17 @@ public class InputHandler {
 	HashMap<Integer, Racer> racerList;
 	ArrayList<RacerSorter> groups;
 	
+	/**
+	 * Adds a new name file to the handler.
+	 * The name file has an optional parameter "stage" (should be 1).
+	 * 
+	 * This file is only handled by print. No errors are passed in any form and no file checkups if the file exists is done.
+	 * 
+	 * !!This application only reads a single name file from stage 1 at this moment - nothing else is read or accepted.
+	 * 
+	 * @param location the file location
+	 * @param stage what stage the file is in
+	 */
 	public void addNameFile(String location, int stage) {
 		ArrayList<String> nameList = nameFileLocations.get(stage);
 		if(nameList == null) {
@@ -44,6 +54,15 @@ public class InputHandler {
 		nameList.add(location);
 	}
 	
+	/**
+	 * adds a finish file to the handler. The optional "stage" number should be 1 unless the printer supports the functionality
+	 * (currently only the "stage"-kind of printers are able to do anything such.
+	 * 
+	 * This file is only handled by print. No errors are passed in any form and no file checkups if the file exists is done.
+	 * 
+	 * @param location the file location
+	 * @param stage what stage the file is in.
+	 */
 	public void addFinishFile(String location, int stage) {
 		ArrayList<String> finishList = finishFileLocations.get(stage);
 		if(finishList == null) {
@@ -53,6 +72,15 @@ public class InputHandler {
 		finishList.add(location);
 	}
 	
+	/**
+	 * adds a start file to the handler. The optional "stage" number should be 1 unless the printer supports the functionality
+	 * (currently only the "stage"-kind of printers are able to do anything such.
+	 * 
+	 * This file is only handled by print. No errors are passed in any form and no file checkups if the file exists is done.
+	 * 
+	 * @param location
+	 * @param stage
+	 */
 	public void addStartFile(String location, int stage) {
 		ArrayList<String> startList = startFileLocations.get(stage);
 		if(startList == null) {
@@ -62,6 +90,11 @@ public class InputHandler {
 		startList.add(location);
 	}
 	
+	/**
+	 * Prints data based on the input files and configuration offered.
+	 * 
+	 * @return the output which should be written to a file.
+	 */
 	public String print() {
 		RacerPrinter printer;
 		Comparator<Racer> comp;
@@ -179,8 +212,12 @@ public class InputHandler {
 		return error.toString();
 	}
 
-	private void readStartFile(StringBuilder error,
-			RacerSorter unregisteredRacers) {
+	/**
+	 * reads and parses the start time files.
+	 * @param error a stringbuilder where errors will be printed.
+	 * @param unregisteredRacers a group of unregistered racers which unexisting racers are added.
+	 */
+	private void readStartFile(StringBuilder error, RacerSorter unregisteredRacers) {
 		try {
 			Set<Integer> stages = this.startFileLocations.keySet();
 
@@ -222,6 +259,11 @@ public class InputHandler {
 		}
 	}
 
+	/**
+	 * reads and parses the finish time files.
+	 * @param error a stringbuilder where errors will be printed.
+	 * @param unregisteredRacers a group of unregistered racers which unexisting racers are added.
+	 */
 	private void readFinishFile(StringBuilder error,
 			RacerSorter unregisteredRacers) {
 		try {

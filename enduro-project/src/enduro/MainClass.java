@@ -23,6 +23,13 @@ public class MainClass {
 	
 	public static boolean debug = false;
 	
+	/**
+	 * Reads the optional information "stage" from a string.
+	 * The form is A:B where the int of A is returned.
+	 * If this is not available, 1 is returned (for backwards compatibility)
+	 * @param str a string
+	 * @return the "stage" number.
+	 */
 	private static int getStage(String str) {
 		String[] temp = str.split(":");
 		
@@ -32,6 +39,12 @@ public class MainClass {
 			return Integer.parseInt(temp[0]);
 	}
 	
+	/**
+	 * obtains the file location from a text on the form A:B or A
+	 * and returns the correct file. 
+	 * @param preliminaryLocation a string
+	 * @return the location of a file
+	 */
 	private static String getLocation(String preliminaryLocation) {
 		String[] temp = preliminaryLocation.split(":");
 		
