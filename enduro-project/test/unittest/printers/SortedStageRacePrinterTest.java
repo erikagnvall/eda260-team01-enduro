@@ -21,12 +21,13 @@ public class SortedStageRacePrinterTest {
 	private SortedStageRacePrinter printer = new SortedStageRacePrinter();
 	@Before
 	public void setUp(){
+		ConfigParser.getInstance().overLoadValue("stages", "3");
 		printer.setHeaderInformation(new String[]{"StartNr", "Namn","Klubb", "MC"});
 	}
 	
 	
-	@Test public void assertTestLapsesAreCorrect() {
-		assertTrue(ConfigParser.getInstance().getIntConf("stages")==3);
+	@Test public void assertTestStagesAreCorrect() {
+		assertEquals(3,ConfigParser.getInstance().getIntConf("stages"));
 	}
 	
 	@Test public void testPrintTopPart() {

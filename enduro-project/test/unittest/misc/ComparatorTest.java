@@ -1,4 +1,4 @@
-package unittest.racer;
+package unittest.misc;
 
 
 import static org.junit.Assert.assertTrue;

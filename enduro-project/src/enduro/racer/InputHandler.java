@@ -141,7 +141,7 @@ public class InputHandler {
 			this.headerInformation = names[0].split("; ");
 			
 			rp.setHeaderInformation(this.headerInformation);
-			unnamedGroup = new RacerSorter("ungrouped people", rc, rp);
+			unnamedGroup = new RacerSorter("Ogrupperade förare", rc, rp);
 			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp);
 			
 			for(int i = 1; i < names.length; i++) {

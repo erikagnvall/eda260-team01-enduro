@@ -1,0 +1,8 @@
+StartNr; Namn; Klubb; MC
+2; Bengt Bsson; FMCK Bstad; BTM
+SENIOR
+1; Anders Asson; FMCK Astad; ATM
+JUNIOR
+101; Chris Csson; Cstad MCK; CTM
+102; David Dsson; Dstad MCK; DTM
+103; Erik Esson; Estad MCK; ETM
