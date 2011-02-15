@@ -140,6 +140,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 		assertEquals("", output.getText());
 		File f = new File("./storedTimeOfUnknownDriver.txt");
 		assertTrue(f.exists());
+		f.delete();
 	}
 
 	//Used to work but now I can't get it working again >_<
