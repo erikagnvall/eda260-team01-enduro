@@ -12,11 +12,11 @@ import enduro.racer.configuration.ConfigParser;
  */
 public class LapRacePrinter implements RacerPrinter {
 
-	private int numLapse, extraRunnerInformation;
+	private int numLaps, extraRunnerInformation;
 	private String extraInformation = "";
 	
 	public LapRacePrinter() {
-		numLapse = ConfigParser.getInstance().getIntConf("laps");
+		numLaps = ConfigParser.getInstance().getIntConf("laps");
 		
 	}
 	
@@ -34,12 +34,12 @@ public class LapRacePrinter implements RacerPrinter {
 		
 		out.append("#Varv; TotalTid");
 		
-		for(int i = 1; i <= numLapse; i++) {
+		for(int i = 1; i <= numLaps; i++) {
 			out.append("; Varv");
 			out.append(i);
 		}
 		out.append("; Start");
-		for(int i = 1; i < numLapse; i++) {
+		for(int i = 1; i < numLaps; i++) {
 			out.append("; Varvning");
 			out.append(i);
 		}
@@ -53,11 +53,11 @@ public class LapRacePrinter implements RacerPrinter {
 		
 		printRunnerInformation(r, out, errorTrail);
 		
-		printNumLapses(r, out, errorTrail);
+		printNumLaps(r, out, errorTrail);
 		
 		printTotalTime(r, out, errorTrail);
 		
-		printLapses(r, out, errorTrail);
+		printLaps(r, out, errorTrail);
 		
 		printStart(r, out, errorTrail);
 		
@@ -105,14 +105,14 @@ public class LapRacePrinter implements RacerPrinter {
 	private void printVarvning(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		int i = 0;
 		Iterator<Time> itr = r.finishTimes.get(1).iterator();
-		for(; i < Math.min(numLapse-1, r.finishTimes.get(1).size());i++) {
+		for(; i < Math.min(numLaps-1, r.finishTimes.get(1).size());i++) {
 			out.append(itr.next());
 			out.append("; ");
 		}
 		
 		
-		if(i < numLapse)
-			for(; i < numLapse-1; i++) {
+		if(i < numLaps)
+			for(; i < numLaps-1; i++) {
 				out.append("; ");
 			}
 	}
@@ -153,13 +153,13 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param out the stringbuilder class that will in the end supply the result.
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
-	private void printLapses(Racer r, StringBuilder out, StringBuilder errorTrail) {
+	private void printLaps(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		int i = 0;
 		if(r.startTimes.get(1).size() > 0) {
 			Time before = r.startTimes.get(1).first();
 			Iterator<Time> itr = r.finishTimes.get(1).iterator();
 			
-			for(; i < Math.min(r.finishTimes.get(1).size(), numLapse); i++) {
+			for(; i < Math.min(r.finishTimes.get(1).size(), numLaps); i++) {
 				Time next = itr.next();
 				
 				Time diff = before.getTotalTime(next);
@@ -172,18 +172,18 @@ public class LapRacePrinter implements RacerPrinter {
 				out.append("; ");
 				before = next;
 			}
-			if(numLapse < r.finishTimes.get(1).size()) {
+			if(numLaps < r.finishTimes.get(1).size()) {
 				errorTrail.append("för många varv ");
 				for(; i < r.finishTimes.get(1).size(); i++) {
 					errorTrail.append(itr.next());
 					errorTrail.append(" ");
 				}
-			} else if(numLapse > r.finishTimes.get(1).size()) {
-				for(; i < numLapse; i++)
+			} else if(numLaps > r.finishTimes.get(1).size()) {
+				for(; i < numLaps; i++)
 					out.append("; ");
 			}
 		} else {
-			for(; i < numLapse; i++)
+			for(; i < numLaps; i++)
 				out.append("; ");
 		}
 		
@@ -237,7 +237,7 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param out the stringbuilder class that will in the end supply the result.
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
-	private void printNumLapses(Racer r, StringBuilder out, StringBuilder errorTrail) {
+	private void printNumLaps(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		if(r.startTimes.get(1).size() > 0)
 			out.append(r.finishTimes.get(1).size());
 		else

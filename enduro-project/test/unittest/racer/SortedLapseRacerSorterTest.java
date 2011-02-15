@@ -9,7 +9,7 @@ import enduro.racer.Racer;
 import enduro.racer.RacerSorter;
 import enduro.racer.Time;
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
-import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.comparators.RunnerTotalTimeComparator;
 import enduro.racer.printer.LapRacePrinter;
@@ -44,7 +44,7 @@ public class SortedLapseRacerSorterTest {
 		racer103.addStartTime(new Time("12.00.00"), 1);
 		racer103.addStartTime(new Time("12.15.00"), 1);
 		
-		sorter = new RacerSorter("random group", new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator()))), printer);
+		sorter = new RacerSorter("random group", new RunnerCheckTotalTimeMax(new RunnerLapsComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator()))), printer);
 	}
 	
 	@Test public void testAll() {

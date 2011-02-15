@@ -11,7 +11,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
-import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.comparators.RunnerStageComparator;
 import enduro.racer.comparators.RunnerTotalTimeComparator;
@@ -74,7 +74,7 @@ public class InputHandler {
 			comp = new RunnerNumberComparator();
 		} else if(compare.equals("laps")){
 			System.out.println("sorting based on laps");
-			comp = new RunnerCheckTotalTimeMax(new RunnerLapseComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
+			comp = new RunnerCheckTotalTimeMax(new RunnerLapsComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
 		} else if(compare.equals("time")){
 			System.out.println("sorting based on time");
 			comp = new RunnerStageComparator(new RunnerCheckTotalTimeMax(new RunnerTotalTimeComparator(new RunnerNumberComparator())));

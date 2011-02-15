@@ -9,7 +9,7 @@ import org.junit.Test;
 import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
-import enduro.racer.comparators.RunnerLapseComparator;
+import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.comparators.RunnerTotalTimeComparator;
 
@@ -19,7 +19,7 @@ import enduro.racer.comparators.RunnerTotalTimeComparator;
 public class ComparatorTest {
 
 	
-	RunnerLapseComparator lapse = new RunnerLapseComparator();
+	RunnerLapsComparator lapse = new RunnerLapsComparator();
 	RunnerNumberComparator number = new RunnerNumberComparator();
 	RunnerTotalTimeComparator time = new RunnerTotalTimeComparator();
 	RunnerCheckTotalTimeMax timeMax = new RunnerCheckTotalTimeMax(null);
@@ -144,14 +144,14 @@ public class ComparatorTest {
 	 * test combinations
 	 */
 	@Test public void testBasicCombination() {
-		RunnerLapseComparator lapseplustime = new RunnerLapseComparator(new RunnerTotalTimeComparator());
+		RunnerLapsComparator lapseplustime = new RunnerLapsComparator(new RunnerTotalTimeComparator());
 		
 		assertTrue(lapse.compare(runner2, runner2copy)==0);
 		assertTrue(lapseplustime.compare(runner2, runner2copy)==time.compare(runner2, runner2copy));
 	}
 	
 	@Test public void testMaximumCombination() {
-		RunnerLapseComparator lapseplusnumberplustime = new RunnerLapseComparator(new RunnerNumberComparator(new RunnerTotalTimeComparator()));
+		RunnerLapsComparator lapseplusnumberplustime = new RunnerLapsComparator(new RunnerNumberComparator(new RunnerTotalTimeComparator()));
 		assertTrue(lapse.compare(runner2, runner2copy)==0);
 		assertTrue(number.compare(runner2, runner2copy)==0);
 		assertTrue(lapseplusnumberplustime.compare(runner2, runner2copy)==time.compare(runner2, runner2copy));
