@@ -25,6 +25,7 @@ public class StageRacePrinterTest {
 
 	@Test
 	public void assertTestStageAreCorrect() {
+		int i = (ConfigParser.getInstance().getIntConf("stages"));
 		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 3);
 	}
 

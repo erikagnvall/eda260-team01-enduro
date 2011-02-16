@@ -40,13 +40,29 @@ public class LapRacePrinterTest {
 	
 	@Test public void testManyStarts() {
 		racer = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
+		racer.addStartTime(new Time("12.00.00"), 1);
+		racer.addStartTime(new Time("12.15.00"), 1);
 		racer.addFinishTime(new Time("12.44.00"), 1);
 		racer.addFinishTime(new Time("12.24.00"), 1);
 		racer.addFinishTime(new Time("13.16.07"), 1);
-		racer.addStartTime(new Time("12.00.00"), 1);
-		racer.addStartTime(new Time("12.15.00"), 1);
 		
 		assertEquals("103; Erik Esson; Estad MCK; ETM; 3; 01.16.07; 00.24.00; 00.20.00; 00.32.07; 12.00.00; 12.24.00; 12.44.00; 13.16.07; Flera starttider? 12.15.00", printer.print(racer, null));
+	}
+	@Test public void testTooManyLaps() {
+		racer = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
+		racer.addStartTime(new Time("12.00.00"), 1);
+		racer.addFinishTime(new Time("12.15.00"), 1);
+		racer.addFinishTime(new Time("12.31.00"), 1);
+		racer.addFinishTime(new Time("13.16.07"), 1);
+		racer.addFinishTime(new Time("13.30.07"), 1);
+		
+		assertEquals("103; Erik Esson; Estad MCK; ETM; 4; 01.30.07; 00.15.00; 00.16.00; 00.45.07; 12.00.00; 12.15.00; 12.31.00; 13.30.07; för många varv 13.30.07", printer.print(racer, null));
+	}
+	@Test public void testMissingFinishTime() {
+		racer = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
+		racer.addStartTime(new Time("12.00.00"), 1);
+		
+		assertEquals("103; Erik Esson; Estad MCK; ETM; 0; --:--:--; ; ; ; 12.00.00; ; ; ", printer.print(racer, null));
 	}
 
 }
