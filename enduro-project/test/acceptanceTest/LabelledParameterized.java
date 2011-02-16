@@ -53,16 +53,18 @@ public class LabelledParameterized extends Parameterized {
 
     }
 
+    
     private Collection<Object[]> getParameterArrays() throws Exception {
         Method testClassMethod = getDeclaredMethod(this.getClass(),
                 "getTestClass");
         Class<?> returnType = testClassMethod.getReturnType();
-        if (returnType == Class.class)
-            return getParameterArrays4_3();
-        else
+        //if (returnType == Class.class)
+           // return getParameterArrays4_3();
+       // else
             return getParameterArrays4_4();
     }
-
+    //This method along with the commented code above was never used. Uncomment if broken.
+/*
     private Collection<Object[]> getParameterArrays4_3() throws Exception {
         Object[][] methodCalls = new Object[][] { new Object[] { "getTestClass" } };
         Class<?> cl = invokeMethodChain(this, methodCalls);
@@ -89,7 +91,7 @@ public class LabelledParameterized extends Parameterized {
                 .invoke(null);
         return parameterArrays;
 
-    }
+    }*/
 
     private Collection<Object[]> getParameterArrays4_4() throws Exception {
         Object[][] methodCalls = new Object[][] {

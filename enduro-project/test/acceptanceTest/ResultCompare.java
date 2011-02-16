@@ -21,11 +21,12 @@ public class ResultCompare {
 		this.result.mark(result.available());
 	}
 	
+	//Not really used for anything
 	/**
 	 * testing bitwise compare between two InputStreams
 	 * @return true if the two streams from the beginning are equal bitwise
 	 * @throws IOException
-	 */
+	 *//*
 	public boolean equals() throws IOException {
 		facit.reset();
 		result.reset();
@@ -38,7 +39,7 @@ public class ResultCompare {
 				return false;
 		}
 		return true;
-	}
+	}*/
 	
 	/**
 	 * Compares two streams line by line. If they are not equal they are both printed and marked "ERROR".
