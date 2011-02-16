@@ -15,12 +15,15 @@ import enduro.racer.printer.StageRacePrinter;
 
 public class StageRacePrinterTest {
 	private Racer racer;
-	private StageRacePrinter printer = new StageRacePrinter();
+	private StageRacePrinter printer;
 
 	@Before
 	public void doBefore() {
+		ConfigParser.getInstance().overLoadValue("stages", "3");
+		printer = new StageRacePrinter();
 		printer.setHeaderInformation(new String[] { "StartNr", "Namn", "Klubb",
 				"MC" });
+		
 	}
 
 	@Test
