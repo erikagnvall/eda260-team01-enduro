@@ -144,4 +144,11 @@ public class ConfigParser {
 	public boolean fileNotFound() {
 		return fileNotFound;
 	}
+	
+	/**
+	 * Deletes the singleton instance
+	 */
+	public static void delete(){
+		parser = null;
+	}
 }
