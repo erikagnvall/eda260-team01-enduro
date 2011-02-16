@@ -2,7 +2,10 @@ package enduro.racer.configuration;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import enduro.MainClass;
 
 /**
  * a basic config parser. It reads by default from config.conf in the CLASSPATH
@@ -19,6 +22,10 @@ public class ConfigParser {
 	private HashMap<String, String> tmp = new HashMap<String, String>();
 	private StringBuilder errors = new StringBuilder();
 	private boolean fileNotFound = false;
+	
+	private ArrayList<String> nameList = new ArrayList<String>();
+	private ArrayList<String> startList = new ArrayList<String>();
+	private ArrayList<String> finishList = new ArrayList<String>();
 
 	private static ConfigParser parser = null;
 
@@ -80,7 +87,31 @@ public class ConfigParser {
 			int line = 1;
 			while (in.ready()) {
 				String temp = in.readLine();
-				if (!temp.startsWith("//") && temp.length() > 0) {
+				
+				if(MainClass.debug)
+					System.out.println("config line:" + temp);
+				
+				
+				if(temp.startsWith("name")) {
+					if(MainClass.debug)
+						System.out.println("\tadding name:" + temp.substring(5));
+					this.nameList.add(temp.substring(5));
+					
+				} else if(temp.startsWith("finish")) {
+					if(MainClass.debug)
+						System.out.println("\tadding finish:" + temp.substring(7));
+					
+					this.finishList.add(temp.substring(7));
+					
+				} else if(temp.startsWith("start")) {
+					if(MainClass.debug)
+						System.out.println("\tadding start:" + temp.substring(6));
+					
+					this.startList.add(temp.substring(6));
+					
+				} else if (!temp.startsWith("//") && temp.length() > 0) {
+					if(MainClass.debug)
+						System.out.println("\tadding config" + temp);
 					try {
 						String[] res = temp.split(":");
 						tmp.remove(res[0]);
@@ -146,9 +177,37 @@ public class ConfigParser {
 	}
 	
 	/**
+	 * returns a list of the type A:B or possibly A depending on which format is used.
+	 * (A:B means stage:filename A means filename)
+	 * @return an array of name file information to be further parsed
+	 */
+	public String[] getNameFileList() {
+		return this.nameList.toArray(new String[this.nameList.size()]);
+	}
+	
+	/**
+	 * returns a list of the type A:B or possibly A depending on which format is used.
+	 * (A:B means stage:filename A means filename)
+	 * @return an array of start file information to be further parsed
+	 */
+	public String[] getStartFileList() {
+		return this.startList.toArray(new String[this.startList.size()]);
+	}
+	
+	/**
+	 * returns a list of the type A:B or possibly A depending on which format is used.
+	 * (A:B means stage:filename A means filename)
+	 * @return an array of finish file information to be further parsed
+	 */
+	public String[] getFinishFileList() {
+		return this.finishList.toArray(new String[this.finishList.size()]);
+	}
+	
+	/**
 	 * Deletes the singleton instance
 	 */
 	public static void delete(){
 		parser = null;
 	}
+	
 }

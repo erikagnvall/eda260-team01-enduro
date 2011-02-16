@@ -59,23 +59,17 @@ public class JUnitAcceptanceTest {
 		testPath = resultFolder + testId + "/";
 
 		FileListGenerator gen = new FileListGenerator(new File(testPath));
-		
-		String listLoc = "list.txt";
-		
-		String[] list = gen.getFilesThatContains("list");
-		if(list.length == 1)
-			listLoc =  testPath + list[0];
 			
 		String configLoc = "config.conf";
 		String[] configFileLoc = gen.getFilesThatContains("config");
 		if(configFileLoc.length == 1)
 			configLoc = testPath + configFileLoc[0];
 		
-		System.out.println("conf: " + configLoc + " list " + listLoc);
+		System.out.println("conf: " + configLoc);
 		if(testId.compareTo("29")==0) {
-			MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result"});
+			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result"});
 		} else {
-			MainClass.main(new String[]{"-config", configLoc, "-list", listLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
+			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
 
 		}
 		
