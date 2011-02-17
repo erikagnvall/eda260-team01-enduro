@@ -91,12 +91,31 @@ public class RacerSorter {
 			
 			try {
 				//tests if the total time running is larger than the minimum time, if that is the case the position attribute is added
-				if(racer.startTimes.get(1).first().getTotalTime(racer.finishTimes.get(1).last()).compareTo(minTotalTime) > 0) {
-					extraInformation.put("position", position + "");
+				if(racer.startTimes.size() > 1 || racer.finishTimes.size() > 1) {
+					TreeSet<Integer> keys = new TreeSet<Integer>();
+					keys.addAll(racer.finishTimes.keySet());
+					keys.addAll(racer.startTimes.keySet());
 					
-					//position increased
-					position++;
+					Time total = new Time("00.00.00");
+					for (int key : keys) {
+						if(racer.startTimes.get(key) != null && racer.finishTimes.get(key) != null)
+							total.increment(racer.startTimes.get(key).first().getTotalTime(racer.finishTimes.get(key).first()));
+					}
+					
+					if(total.compareTo(minTotalTime) > 0) {
+						extraInformation.put("position", position + "");
+						position++;
+					}
+					
+				} else {
+					if(racer.startTimes.get(1).first().getTotalTime(racer.finishTimes.get(1).last()).compareTo(minTotalTime) > 0) {
+						extraInformation.put("position", position + "");
+						
+						//position increased
+						position++;
+					}
 				}
+				
 			} catch(Exception E) {}
 
 			//lets the printer print all the whole line. if it doesn't need the (possible nonexistent) position: who cares? =)

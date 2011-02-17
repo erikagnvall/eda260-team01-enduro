@@ -2,6 +2,7 @@ package enduro.racer.printer;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
@@ -48,17 +49,22 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printStages(Racer r, StringBuilder out) {
+		TreeSet<Integer> keys = new TreeSet<Integer>();
+		keys.addAll(r.finishTimes.keySet());
+		keys.addAll(r.startTimes.keySet());
+		
 		Iterator<Time> itr = r.startTimes.get(1).iterator();
-		Time before;
-		for (Time next : r.finishTimes.get(1)) {
-			before = itr.next();
-			out.append(before.getTotalTime(next));
+		
+		for (int key: keys) {
+			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {
+				out.append(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
+			}
 			out.append("; ");
 		}
 	}
 
 	private void printNumStages(Racer r, StringBuilder out) {
-		out.append(r.finishTimes.get(1).size());
+		out.append(r.finishTimes.size());
 		out.append("; ");
 	}
 
@@ -75,12 +81,16 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printTotalTime(Racer r, StringBuilder out) {
-		Iterator<Time> itr = r.startTimes.get(1).iterator();
+		TreeSet<Integer> keys = new TreeSet<Integer>();
+		keys.addAll(r.finishTimes.keySet());
+		keys.addAll(r.startTimes.keySet());
+		
 		Time total = new Time("00.00.00");
-		Time before;
-		for (Time next : r.finishTimes.get(1)) {
-			before = itr.next();
-			total.increment(before.getTotalTime(next));
+		for (int key : keys) {
+			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {
+				total.increment(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
+			}
+			
 		}
 		out.append(total.toString());
 		out.append("; ");

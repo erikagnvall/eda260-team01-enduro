@@ -49,7 +49,7 @@ public class ResultCompare {
 	public boolean compareLineWise(boolean printOnlyErrors) throws IOException {
 		facit.reset();
 		result.reset();
-		BufferedReader facitReader = new BufferedReader(new InputStreamReader(facit, "ISO-8859-1"));
+		BufferedReader facitReader = new BufferedReader(new InputStreamReader(facit));
 		BufferedReader resultReader = new BufferedReader(new InputStreamReader(result));
 		int line = 0;
 		boolean error = true;
