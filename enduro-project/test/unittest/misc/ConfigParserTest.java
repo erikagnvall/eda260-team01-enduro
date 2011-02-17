@@ -9,7 +9,6 @@ import enduro.racer.configuration.ConfigParser;
 
 
 public class ConfigParserTest {
-	private ConfigParser cp;
 	
 	@Before
 	public void setUp(){

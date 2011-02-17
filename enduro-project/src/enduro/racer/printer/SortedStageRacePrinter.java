@@ -1,7 +1,6 @@
 package enduro.racer.printer;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 import enduro.racer.Racer;
@@ -53,7 +52,7 @@ public class SortedStageRacePrinter implements RacerPrinter {
 		keys.addAll(r.finishTimes.keySet());
 		keys.addAll(r.startTimes.keySet());
 		
-		Iterator<Time> itr = r.startTimes.get(1).iterator();
+		//Iterator<Time> itr = r.startTimes.get(1).iterator();
 		
 		for (int key: keys) {
 			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {

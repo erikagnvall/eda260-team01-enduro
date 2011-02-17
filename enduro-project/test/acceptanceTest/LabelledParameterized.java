@@ -55,9 +55,9 @@ public class LabelledParameterized extends Parameterized {
 
     
     private Collection<Object[]> getParameterArrays() throws Exception {
-        Method testClassMethod = getDeclaredMethod(this.getClass(),
-                "getTestClass");
-        Class<?> returnType = testClassMethod.getReturnType();
+        //Method testClassMethod = getDeclaredMethod(this.getClass(),
+        //       "getTestClass");
+        //Class<?> returnType = testClassMethod.getReturnType();
         //if (returnType == Class.class)
            // return getParameterArrays4_3();
        // else
@@ -107,7 +107,8 @@ public class LabelledParameterized extends Parameterized {
         return parameterArrays;
     }
 
-    private <T> T invokeMethodChain(Object object, Object[][] methodCalls)
+    @SuppressWarnings("unchecked")
+	private <T> T invokeMethodChain(Object object, Object[][] methodCalls)
             throws Exception {
         for (Object[] methodCall : methodCalls) {
             String methodName = (String) methodCall[0];

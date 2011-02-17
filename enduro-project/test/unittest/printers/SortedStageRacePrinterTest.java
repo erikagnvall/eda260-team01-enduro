@@ -1,7 +1,6 @@
 package unittest.printers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
@@ -12,7 +11,6 @@ import org.junit.Test;
 import enduro.racer.Racer;
 import enduro.racer.Time;
 import enduro.racer.configuration.ConfigParser;
-import enduro.racer.printer.SortedLapRacePrinter;
 import enduro.racer.printer.SortedStageRacePrinter;
 
 public class SortedStageRacePrinterTest {

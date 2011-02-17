@@ -12,7 +12,6 @@ import enduro.racer.comparators.RunnerCheckTotalTimeMax;
 import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.comparators.RunnerTotalTimeComparator;
-import enduro.racer.printer.LapRacePrinter;
 import enduro.racer.printer.SortedLapRacePrinter;
 
 public class SortedLapseRacerSorterTest {

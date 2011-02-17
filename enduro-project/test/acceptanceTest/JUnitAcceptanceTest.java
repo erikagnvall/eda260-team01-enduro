@@ -8,7 +8,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -18,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
 import enduro.MainClass;
-import enduro.racer.configuration.ConfigParser;
 
 /**
  * An automatic JUnit testclass. It uses an alternative runner which allows for

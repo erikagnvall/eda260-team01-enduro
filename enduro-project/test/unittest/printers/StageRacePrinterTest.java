@@ -3,8 +3,6 @@ package unittest.printers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +26,7 @@ public class StageRacePrinterTest {
 
 	@Test
 	public void assertTestStageAreCorrect() {
-		int i = (ConfigParser.getInstance().getIntConf("stages"));
+		// int i = (ConfigParser.getInstance().getIntConf("stages"));
 		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 3);
 	}
 

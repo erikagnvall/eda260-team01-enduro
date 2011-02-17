@@ -1,8 +1,6 @@
 package enduro.racer.printer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
