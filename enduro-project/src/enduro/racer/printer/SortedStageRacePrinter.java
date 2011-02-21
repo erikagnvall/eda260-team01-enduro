@@ -48,13 +48,10 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printStages(Racer r, StringBuilder out) {
-		TreeSet<Integer> keys = new TreeSet<Integer>();
-		keys.addAll(r.finishTimes.keySet());
-		keys.addAll(r.startTimes.keySet());
 		
 		//Iterator<Time> itr = r.startTimes.get(1).iterator();
 		
-		for (int key: keys) {
+		for (int key = 1; key <= this.stages; key++) {
 			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {
 				out.append(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
 			}
