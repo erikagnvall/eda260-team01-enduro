@@ -22,6 +22,7 @@ import enduro.racer.Log;
  */
 public class ConfigParser {
 	private HashMap<String, String> tmp = new HashMap<String, String>();
+	private HashMap<Integer, String> minTimeVariable = new HashMap<Integer, String>();
 	private StringBuilder errors = new StringBuilder();
 	private boolean fileNotFound = false;
 	
@@ -58,8 +59,13 @@ public class ConfigParser {
 	 * @param value the String value related to the key.
 	 */
 	public void overLoadValue(String key, String value) {
-		tmp.remove(key);
-		tmp.put(key, value);
+		if(key.equals("mintime")) {
+			this.minTimeVariable.remove(1);
+			this.minTimeVariable.put(1, value);
+		} else {
+			tmp.remove(key);
+			tmp.put(key, value);
+		}
 	}
 
 	/**
@@ -80,7 +86,8 @@ public class ConfigParser {
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
 		tmp.put("stages", "3");
-		tmp.put("mintime", "01.00.00");
+		//tmp.put("mintime", "01.00.00");
+		minTimeVariable.put(1, "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");
 		tmp.put("network", "false");
@@ -124,7 +131,12 @@ public class ConfigParser {
 					try {
 						String[] res = temp.split(":");
 						tmp.remove(res[0]);
-						tmp.put(res[0], res[1]);
+						if(res[0].equals("mintime")) {
+							this.minTimeVariable.remove(1);
+							this.minTimeVariable.put(1, res[1]);
+						} else {
+							tmp.put(res[0], res[1]);
+						}
 					} catch (Exception E) {
 						errors.append("line " + line + ":: parse error::"
 								+ temp + "\n");
@@ -158,6 +170,9 @@ public class ConfigParser {
 	 *         no mapping for this key
 	 */
 	public String getStringConf(String key) {
+		if(key.equals("mintime")) {
+			return this.minTimeVariable.get(1);
+		}
 		return tmp.get(key);
 	}
 
