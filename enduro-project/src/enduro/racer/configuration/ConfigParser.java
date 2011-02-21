@@ -90,11 +90,12 @@ public class ConfigParser {
 		minTimeVariable.put(1, "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");
+		tmp.put("special", "2");
+		tmp.put("multiply", "5");
 		tmp.put("network", "false");
 		tmp.put("ip", "127.0.0.1");
 		tmp.put("port", "44444");
 		tmp.put("timeType", "Start");
-
 		
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(fileLocation));
