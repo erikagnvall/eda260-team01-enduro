@@ -29,7 +29,6 @@ public class EnduroServerThread extends Thread {
 		super("EnduroServerThread " + number);
 		this.number = number;
 		this.socket = socket;
-		// out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
 /**
@@ -39,12 +38,13 @@ public class EnduroServerThread extends Thread {
 
 		int status = -1;
 		String s = null;
+		while (status == -1) {
 		try {
 			s = in.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		while (status == -1) {
+		
 			if (s.equals("Goal"))
 				status = GOAL;
 			else if (s.equals("Start"))
