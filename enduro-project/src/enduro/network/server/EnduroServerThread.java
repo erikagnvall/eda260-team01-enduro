@@ -15,9 +15,11 @@ public class EnduroServerThread extends Thread {
 	private Socket socket = null;
 	private PrintWriter out;
 	private BufferedReader in;
-
+	int number;
+	
 	public EnduroServerThread(Socket socket, int number) throws IOException {
 		super("EnduroServerThread " + number);
+		this.number = number;
 		this.socket = socket;
 		// out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -46,9 +48,11 @@ public class EnduroServerThread extends Thread {
 			switch (status) {
 			case GOAL: {
 				writer = new FileWriter("maltider.txt");
+				break;
 			}
 			case START: {
 				writer = new FileWriter("starttider.txt");
+				break;
 			}
 			}
 		} catch (Exception e) {
@@ -65,7 +69,8 @@ public class EnduroServerThread extends Thread {
 				if (s.equals("quit"))
 					break;
 				out.println(s);
-				System.out.println("client sends:" + s);
+				out.flush();
+				System.out.println("client " + number + " sends:" + s);
 			}
 		}
 		System.out.println("hejdå");

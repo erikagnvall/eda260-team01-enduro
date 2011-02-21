@@ -11,13 +11,12 @@ import java.net.*;
  * @author Rick
  * 
  */
-public class EnduroServer {
+public class EnduroServer implements Runnable{
 	ServerSocket serverSocket;
 	public EnduroServer(int port){
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Could not listen on port: " + port);
 			e.printStackTrace();
 		}
@@ -28,18 +27,27 @@ public class EnduroServer {
 			System.out.println("Arguments must match \"port\"");
 		}
 		EnduroServer serv = new EnduroServer(Integer.parseInt(args[0]));
+		serv.run();
+	}
+	
+	public void quit(){
 		try {
-			serv.run();
+			serverSocket.close();
 		} catch (IOException e) {
-			System.exit(-1);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
-	
-	
-	public void run() throws IOException{
-		System.out.println("Server is now running on port " + serverSocket.getLocalPort());		
+	public void run(){
+		System.out.println("Server is now running on port " + serverSocket.getLocalPort());
+		int counter = 0;
 		while (true)
-		    new EnduroServerThread(serverSocket.accept(), 1).start();
+			try {
+				new EnduroServerThread(serverSocket.accept(), counter++).start();
+			} catch (IOException e) {
+				counter--;
+				e.printStackTrace();
+			}
 	}
 }
