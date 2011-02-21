@@ -84,13 +84,12 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printTotalTime(Racer r, StringBuilder out) {
-		TreeSet<Integer> keys = new TreeSet<Integer>();
-		keys.addAll(r.finishTimes.keySet());
-		keys.addAll(r.startTimes.keySet());
 		
 		Time total = new Time("00.00.00");
-		for (int key : keys) {
-			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {
+		for (int key = 1; key <= this.stages; key++) {
+			if(r.finishTimes.containsKey(key) && r.startTimes.containsKey(key)) {
+				if(r.finishTimes.get(1).size() == 0 | r.startTimes.get(1).size() == 0)
+					continue;
 				total.increment(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
 			}
 			
