@@ -57,8 +57,8 @@ public class MainClass {
 	public static void main(String[] args) {
 		for(String arg: args)
 			System.out.println(arg);
-		String output = "result.txt";
-		String html = "result.html";
+		String output = "";
+		String html = "";
 		for(int i = 0; i < args.length; i++) {
 			if(i+1 < args.length) {
 				if(args[i].compareTo("-config")==0) {
@@ -77,6 +77,14 @@ public class MainClass {
 			}
 		}
 		Log.reset();
+		
+		if(output.length() == 0)
+			output = ConfigParser.getInstance().getStringConf("output");
+		if(html.length() == 0)
+			if(ConfigParser.getInstance().getStringConf("html") != null)
+				html = ConfigParser.getInstance().getStringConf("html");
+			else
+				html = "result.html";
 		
 		InputHandler handler = new InputHandler();
 		
