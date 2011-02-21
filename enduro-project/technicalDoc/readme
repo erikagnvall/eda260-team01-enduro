@@ -1,15 +1,10 @@
-Denna readme är avsedd för teknisk dokumentation och är endast intressant för den som skall vidarutveckla systemet.
-
 Filstrukturen innehåller följande mappar:
 
-/src
+/source
 	- Innehåller källkoden för programmet
 
 /test
 	- Innehåller de testfiler som körs för att testa koden
-
-/spike
-	- Innehåller diverse spikes som genomförts under utvecklingen
 
 /acceptanceTest 
 	- Innehåller filer relevanta för acceptanstestning samt till en mindre grad enhetstestning.
