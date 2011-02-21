@@ -28,6 +28,7 @@ public class ConfigParser {
 	private ArrayList<String> nameList = new ArrayList<String>();
 	private ArrayList<String> startList = new ArrayList<String>();
 	private ArrayList<String> finishList = new ArrayList<String>();
+	private ArrayList<String> clientList = new ArrayList<String>();
 
 	private static ConfigParser parser = null;
 
@@ -83,7 +84,11 @@ public class ConfigParser {
 		tmp.put("mintime", "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");
-		tmp.put("serverport", "1337");
+		tmp.put("network", "false");
+		tmp.put("ip", "127.0.0.1");
+		tmp.put("port", "44444");
+		tmp.put("timeType", "Start");
+
 		
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(fileLocation));
@@ -206,6 +211,10 @@ public class ConfigParser {
 	 */
 	public String[] getFinishFileList() {
 		return this.finishList.toArray(new String[this.finishList.size()]);
+	}
+	public String[] getClientSetup(){
+		String[] temp= {getStringConf("network"), getStringConf("ip"), getStringConf("port"), getStringConf("timeType")};
+		return temp;
 	}
 	
 	/**
