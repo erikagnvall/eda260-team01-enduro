@@ -3,17 +3,16 @@
     <target name="technicalDoc" depends="release">
         <delete dir="SourceCodeRelease" />
         <delete file="SourceCodeRelease.zip" />
-       <!--
+       
         <mkdir dir="SourceCodeRelease" />
         <copy todir="SourceCodeRelease/source">
             <fileset dir="src/enduro/" includes="**/*.java"/>
-      	 </copy>
-       -->
+        	</copy>
         <copy todir="SourceCodeRelease/technicalDoc">
-            <fileset dir="technicalDoc" includes="**/*.*"/>
+            <fileset dir="technicalDoc" includes="*"/>
         </copy>
     	
-    	<move file="SourceCodeRelease/technicalDoc/readme.txt" todir="SourceCodeRelease" />
+
     	<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
 
     	<!--
