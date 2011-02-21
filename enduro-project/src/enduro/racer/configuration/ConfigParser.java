@@ -257,7 +257,7 @@ public class ConfigParser {
 	private boolean correctLine(String lineText, int line) {
 		if(Pattern.matches("//.*", lineText)) {
 			return true;
-		} else if(Pattern.matches("(namn:.*)|(start:.*)|(finish:.*)",  lineText)) {
+		} else if(Pattern.matches("(namn:.*)|(start:.*)|(finish:.*)|(mintime:.*)",  lineText)) {
 			if(Pattern.matches("\\w+:(\\d+:)\\d+", "namn:12:1"))
 				return true;
 		} else if(Pattern.matches("[a-zA-Z]*:.*", lineText)) {
