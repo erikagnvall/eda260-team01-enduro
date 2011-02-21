@@ -2,7 +2,7 @@
 <project name="pvg.makejar" default="technicalDoc" basedir=".">
     <target name="technicalDoc" depends="release">
         <delete dir="SourceCodeRelease" />
-        <delete file="SourceCodeRelease.zip" />
+        <delete file="SourceCodeRelease.tar" />
        
         <mkdir dir="SourceCodeRelease" />
         <copy todir="SourceCodeRelease/source">
@@ -26,7 +26,7 @@
         <!--
     	<copy file="release.zip" todir="SourceCodeRelease" />
 		-->
-        <zip destfile="SourceCodeRelease.zip" basedir="SourceCodeRelease"/>
+        <tar destfile="SourceCodeRelease.tar" basedir="SourceCodeRelease"/>
     </target>
 	
 	<target name="release" depends="makeGUI">
@@ -44,7 +44,7 @@
 		</copy>
 		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
 		<copy file="config.conf" todir="release"/>
-		<zip destfile="release.zip" basedir="release"/>
+		<tar destfile="release.tar" basedir="release"/>
 			
 			
 	</target>
