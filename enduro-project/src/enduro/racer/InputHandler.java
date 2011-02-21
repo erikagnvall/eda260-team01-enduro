@@ -363,12 +363,12 @@ public class InputHandler {
 	private boolean correctNameFileLine(String line) {
 		if(line.length()==0)
 			return true;
-		return Pattern.matches("([a-zA-Z0-9. ]+; )+([a-zA-Z0-9. ]+)?", line);
+		return Pattern.matches("([äöÅÄÖa-zA-Z0-9. ]+; )+([äöÅÄÖa-zA-Z0-9. ]+)?", line);
 	}
 	
 	private boolean correctCategory(String line) {
 		if(line.length()==0)
 			return true;
-		return Pattern.matches("[a-zA-Z0-9]+", line);
+		return Pattern.matches("[a-zA-Z0-9åäöÅÄÖ]+", line);
 	}
 }
