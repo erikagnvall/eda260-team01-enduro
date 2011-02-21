@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
+/**
+ * Server thread to be ran in the main server program, contains information whether to write start or goal files
+ */
 public class EnduroServerThread extends Thread {
 	private final static int START = 0;
 	private final static int GOAL = 1;
@@ -17,6 +19,12 @@ public class EnduroServerThread extends Thread {
 	private BufferedReader in;
 	int number;
 	
+	/**
+	 * Sets up the server thread
+	 * @param socket Socket to connect on
+	 * @param number int representing which thread in order this is
+	 * @throws IOException
+	 */
 	public EnduroServerThread(Socket socket, int number) throws IOException {
 		super("EnduroServerThread " + number);
 		this.number = number;
@@ -24,7 +32,9 @@ public class EnduroServerThread extends Thread {
 		// out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
-
+/**
+ * Method to run the server thread
+ */
 	public void run() {
 
 		int status = -1;
