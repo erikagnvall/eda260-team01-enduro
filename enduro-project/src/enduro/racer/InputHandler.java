@@ -191,7 +191,13 @@ public class InputHandler {
 					Log.log("in the in the name file " + nameFileLocations.get(1).get(0) + " on line: " + (i+1) + " incorrect line:\n\t" + names[i] + "\n");
 					continue;
 				}
+				
 				String[] lineSplit = names[i].split("; ");
+				
+				if(this.headerInformation.length != lineSplit.length && lineSplit.length != 1) {
+					Log.log("in the in the name file " + nameFileLocations.get(1).get(0) + " on line: " + (i+1) + " incorrect line:\n\t" + names[i] + "\n");
+					continue;
+				}
 				
 				if(lineSplit.length == 1) {
 					//new group
