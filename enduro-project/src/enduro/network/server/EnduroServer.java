@@ -54,7 +54,6 @@ public class EnduroServer implements Runnable{
 			try {
 				new EnduroServerThread(serverSocket.accept(), counter++).start();
 			} catch (IOException e) {
-				counter--;
 				e.printStackTrace();
 			}
 	}
