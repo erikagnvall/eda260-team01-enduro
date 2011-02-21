@@ -60,7 +60,7 @@
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
 				<h4>Serverkonfiguration</h4>
-				<p>Servern läser portnummret som den ska lyssna på från tidigare nämnda config-fil. Klientdelen startas med tre argument, IP till servern, port att ansluta till samt en sträng "Start" om det är starttider som skall skickas eller "Goal" om det är måltider</p>
+				<p>För att köra servern och klienten krävs 4 olika delar angivna i configfilen. network:true/false som anger om GUI:t skall kopplas mot servern, ip:127.0.0.1 där ip-adressen skall anges (IPv4), port:44444 där portnummret anges samt timeType:Start/Goal som anger om det är start eller måltider som kommer in.</p> <p>Klienten och serverns skall läsa samma konfigfil vilken är den allmäna för hela systemet</p>
 				<b>Exempel:</b><br />
 				<code>java -jar EnduroClient.jar 1.3.3.7 1337 Start</code></p>
 			</div>
@@ -116,7 +116,8 @@
 				<a name="server_client"></a>
 				<h3>Server och klient</h3>
 
-				<p>För att föra över tider med hjälp av klienten så krävs det att servern kör. När klientprogrammet körs med sina argument kommer den automatiskt koppla upp sig till servern och skicka över all data som finns sparad från GUI:t till en fil på serversidan som kommer döpas till starttider.txt om argumentet "Start" angets eller maltider.txt om argumentet "Goal" angets.</p>
+				<p>Klienten ligger integrerad i GUI:t och alla registrerade tider förs över till den valda servern för då de registreras. Vid en eventuellt servercrash kan klienten köras direkt i konsollen genom att man kör filen client.jar och då synkroniseras den fil som lokalt ligger sparad med serverns fil.</p>
+
 			</div>
 
 			<div class="entry">
