@@ -5,7 +5,7 @@
 		<delete file="SourceCodeRelease.tar" />
 
 		<mkdir dir="SourceCodeRelease" />
-		<copy todir="SourceCodeRelease/src">
+		<copy todir="SourceCodeRelease/src/enduro">
 			<fileset dir="src/enduro/" includes="**/*.java"/>
 		</copy>
 		<copy todir="SourceCodeRelease/technicalDoc">
