@@ -29,6 +29,7 @@ public class EnduroServer implements Runnable{
 	public static void main(String[] args) throws IOException {
 		if(args.length != 1){
 			System.out.println("Arguments must match \"port\"");
+			System.exit(-1);
 		}
 		EnduroServer serv = new EnduroServer(Integer.parseInt(args[0]));
 		serv.run();

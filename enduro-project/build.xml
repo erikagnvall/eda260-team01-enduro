@@ -66,6 +66,8 @@
 		<mkdir dir="release" />
 		<move file="Backend.jar" todir="release" />
 		<move file="GUI.jar" todir="release" />
+		<move file="EnduroServer.jar" todir="release" />
+		<move file="EnduroClient.jar" todir="release" />
 		<copy file="docs/README" todir="release" />
 		<copy todir="release/docs">
 			<fileset dir="docs"/>
@@ -80,8 +82,39 @@
 
 
 	</target>
+	<target name ="makeClient" description="Create a jar for the server">
 
-	<target name ="makeRegistrator" description="Create a jar for the backend">
+				<delete file = "EnduroClient.jar"/>
+				<delete file = "MANIFEST.MF"/>
+
+				<manifest file = "MANIFEST.MF">
+					<attribute name = "Main-Class" value = "enduro.network.client.EnduroClient"/>
+					<attribute name = "Class-Path" value = "."/>
+				</manifest>
+				<jar jarfile="EnduroClient.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
+
+				<delete file = "MANIFEST.MF"/>
+				<delete dir = "Release/"/>
+				<delete dir = "META-INF/"/>
+			</target>
+	
+	<target name ="makeServer" description="Create a jar for the server" depends="makeClient">
+
+			<delete file = "EnduroServer.jar"/>
+			<delete file = "MANIFEST.MF"/>
+
+			<manifest file = "MANIFEST.MF">
+				<attribute name = "Main-Class" value = "enduro.network.server.EnduroServer"/>
+				<attribute name = "Class-Path" value = "."/>
+			</manifest>
+			<jar jarfile="EnduroServer.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
+
+			<delete file = "MANIFEST.MF"/>
+			<delete dir = "Release/"/>
+			<delete dir = "META-INF/"/>
+		</target>
+	
+	<target name ="makeRegistrator" description="Create a jar for the backend" depends="makeServer">
 
 		<delete file = "Backend.jar"/>
 		<delete file = "MANIFEST.MF"/>
