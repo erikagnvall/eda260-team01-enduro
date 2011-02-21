@@ -86,7 +86,7 @@ public class ConfigParser {
 		tmp.put("input", "file");
 		tmp.put("laps", "3");
 		tmp.put("stages", "3");
-		//tmp.put("mintime", "01.00.00");
+		tmp.put("mintimedefault", "01.00.00");
 		minTimeVariable.put(1, "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");
@@ -130,11 +130,18 @@ public class ConfigParser {
 						System.out.println("\tadding config" + temp);
 					try {
 						String[] res = temp.split(":");
-						tmp.remove(res[0]);
+						
 						if(res[0].equals("mintime")) {
-							this.minTimeVariable.remove(1);
-							this.minTimeVariable.put(1, res[1]);
+							if(res.length==3) {
+								this.minTimeVariable.remove(Integer.parseInt(res[1]));
+								this.minTimeVariable.put(Integer.parseInt(res[1]), res[2]);
+							} else {
+								this.minTimeVariable.remove(1);
+								this.minTimeVariable.put(1, res[1]);
+							}
+							
 						} else {
+							tmp.remove(res[0]);
 							tmp.put(res[0], res[1]);
 						}
 					} catch (Exception E) {
@@ -171,7 +178,10 @@ public class ConfigParser {
 	 */
 	public String getStringConf(String key) {
 		if(key.equals("mintime")) {
-			return this.minTimeVariable.get(1);
+			if(this.minTimeVariable.containsKey(1))
+				return this.minTimeVariable.get(1);
+			else
+				return getStringConf("mintimedefault");
 		}
 		return tmp.get(key);
 	}
@@ -229,6 +239,12 @@ public class ConfigParser {
 	public String[] getClientSetup(){
 		String[] temp= {getStringConf("network"), getStringConf("ip"), getStringConf("port"), getStringConf("timeType")};
 		return temp;
+	}
+	
+	public String getMinTimeStage(int stage) {
+		if(this.minTimeVariable.containsKey(stage))
+			return this.minTimeVariable.get(stage);
+		return this.tmp.get("mintimedefault");
 	}
 	
 	/**
