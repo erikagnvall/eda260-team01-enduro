@@ -77,7 +77,9 @@ beskriving av strukturen.
 				   
 
 				/src/enduro/racer/comparators/RunnerCheckTotalTimeMax.java
-
+				
+				Jämför två tävlandes totaltid och för att kolla om de uppfyller kravet för minimitid.
+				De sorteras sedan efter detta.
 
 				/src/enduro/racer/comparators/RunnerTotalTimeComparator.java
 
@@ -126,9 +128,10 @@ beskriving av strukturen.
 		/src/enduro/MainClass.java
 		   
 		   Det här är huvud klassen. Den läser in en kommandorad med formatet -KOMMANDO NYCKEL, där
-		   KOMMANDO kan vara sökvägen till config-, input-, list- eller outputfilen.
+		   KOMMANDO kan vara sökvägen till config-, input-, list- eller outputfilen. Programmet kan
+		   ta emot mer än en nyckel åt gången.
 		   input är sökvägen till infilen.
 		   config är konfigurationsfilen.
 		   output är vart resultatet ska skrivas ut.
-		   list innehåller resultat-filer som skrivs i html-format.		   
+		   list innehåller resultat-filer som skrivs ut i html-format.		   
 
