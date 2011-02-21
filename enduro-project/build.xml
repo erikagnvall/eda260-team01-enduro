@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="pvg.makejar" default="technicalDoc" basedir=".">
-    <target name="technicalDoc" depends="release">
-        <delete dir="SourceCodeRelease" />
-        <delete file="SourceCodeRelease.tar" />
-       
-        <mkdir dir="SourceCodeRelease" />
-        <copy todir="SourceCodeRelease/source">
-            <fileset dir="src/enduro/" includes="**/*.java"/>
-        	</copy>
-        <copy todir="SourceCodeRelease/technicalDoc">
-            <fileset dir="technicalDoc" includes="*"/>
-        </copy>
-    	<copy todir="SourceCodeRelease/technicalDoc/UML">
-    	            <fileset dir="technicalDoc/UML" includes="*"/>
-    	        </copy>
-    	
+	<target name="technicalDoc" depends="release">
+		<delete dir="SourceCodeRelease" />
+		<delete file="SourceCodeRelease.tar" />
 
-    	<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
+		<mkdir dir="SourceCodeRelease" />
+		<copy todir="SourceCodeRelease/source">
+			<fileset dir="src/enduro/" includes="**/*.java"/>
+		</copy>
+		<copy todir="SourceCodeRelease/technicalDoc">
+			<fileset dir="technicalDoc" includes="*"/>
+		</copy>
+		<copy todir="SourceCodeRelease/technicalDoc/UML">
+			<fileset dir="technicalDoc/UML" includes="*" />
+		</copy>
 
-    	<!--
+		<mkdir dir="SourceCodeRelease/test" />
+		<copy todir="SourceCodeRelease/test/">
+			<fileset dir="test" includes="**/*.*" />
+		</copy>
+
+		<mkdir dir="SourceCodeRelease/acceptanceTest" />
+		<copy todir="SourceCodeRelease/acceptanceTest/">
+			<fileset dir="acceptanceTest" includes="**/*.*" />
+		</copy>
+
+		<mkdir dir="SourceCodeRelease/docs" />
+		<copy todir="SourceCodeRelease/docs/">
+			<fileset dir="docs" includes="**/*.*" />
+		</copy>
+
+		<copy todir="SourceCodeRelease/">
+			<fileset dir="" includes="*.xml" />
+		</copy>
+		<copy todir="SourceCodeRelease/">
+					<fileset dir="" includes="*.conf" />
+				</copy>
+		<copy todir="SourceCodeRelease/">
+					<fileset dir="" includes="*.txt" />
+				</copy>
+
+
+
+
+		<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
+
+		<!--
     	<copy todir="SourceCodeRelease/tests">
 			<fileset dir="test/" includes="**/*.*"/>
 		</copy>
     	-->
-        <!--
+		<!--
     	<copy file="release.zip" todir="SourceCodeRelease" />
 		-->
-        <tar destfile="SourceCodeRelease.tar" basedir="SourceCodeRelease"/>
-    </target>
-	
+		<tar destfile="SourceCodeRelease.tar" basedir="SourceCodeRelease" />
+	</target>
+
 	<target name="release" depends="makeGUI">
 		<delete dir="release" />
 		<mkdir dir="release" />
@@ -45,41 +72,41 @@
 		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
 		<copy file="config.conf" todir="release"/>
 		<tar destfile="release.tar" basedir="release"/>
-			
-			
+
+
 	</target>
-	
+
 	<target name ="makeRegistrator" description="Create a jar for the backend">
-		
+
 		<delete file = "Backend.jar"/>
 		<delete file = "MANIFEST.MF"/>
-		
+
 		<manifest file = "MANIFEST.MF">
 			<attribute name = "Main-Class" value = "enduro.racer.MainClass"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
-		
+
 		<delete file = "MANIFEST.MF"/>
 		<delete dir = "Release/"/>
 		<delete dir = "META-INF/"/>
 	</target>
-	
+
 	<target name ="makeGUI" description="Create a jar for the GUI" depends="makeRegistrator">
-			
-			<delete file = "GUI.jar"/>
-			<delete file = "MANIFEST.MF"/>
-			
-			<manifest file = "MANIFEST.MF">
-				<attribute name = "Main-Class" value = "enduro.gui.RegistrationGUI"/>
-				<attribute name = "Class-Path" value = "."/>
-			</manifest>
-			<jar jarfile="GUI.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
-			
-			<delete file = "MANIFEST.MF"/>
-			<delete dir = "Release/"/>
+
+		<delete file = "GUI.jar"/>
+		<delete file = "MANIFEST.MF"/>
+
+		<manifest file = "MANIFEST.MF">
+			<attribute name = "Main-Class" value = "enduro.gui.RegistrationGUI"/>
+			<attribute name = "Class-Path" value = "."/>
+		</manifest>
+		<jar jarfile="GUI.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />
+
+		<delete file = "MANIFEST.MF"/>
+		<delete dir = "Release/"/>
 	</target>
-	
+
 
 	<!--
 	<target name ="junit" description="Run JUnit tests">
@@ -96,8 +123,8 @@
 	</target>
 	-->
 	<target name="junitBuild">
-		
-		
+
+
 		<!--<jar jarfile="test.jar"> includes="**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />-->
 		<jar destfile="test.jar">
 			<fileset dir="bin/" includes="**/*.class"/>
@@ -108,18 +135,18 @@
 			</manifest>
 		</jar>
 	</target>
-	
-	
+
+
 	<target name="junit" depends="junitBuild">
 		<junit printsummary="yes" haltonerror="yes">
 			<classpath>
 				<pathelement location="test.jar"/>
 			</classpath>
-			
+
 			<test name="acceptanceTest.CompareAcceptanceTests"/>
 		</junit>
 	</target>
-	
-	
+
+
 </project>
 
