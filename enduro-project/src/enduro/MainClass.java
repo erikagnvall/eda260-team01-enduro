@@ -4,6 +4,8 @@ import java.io.FileWriter;
 
 import javax.swing.JOptionPane;
 
+import org.uispec4j.utils.Log;
+
 import enduro.racer.InputHandler;
 import enduro.racer.configuration.ConfigParser;
 
@@ -72,6 +74,7 @@ public class MainClass {
 				}
 			}
 		}
+		Log.reset();
 		
 		InputHandler handler = new InputHandler();
 		

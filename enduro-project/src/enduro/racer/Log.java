@@ -1,5 +1,6 @@
 package enduro.racer;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -20,6 +21,11 @@ public class Log {
 	
 	public void setLogLocation(String location) {
 		logger = new Log(location);
+	}
+	
+	public void reset() {
+		File f = new File(location);
+		f.delete();
 	}
 	
 	public void writeToLog(String data) {
