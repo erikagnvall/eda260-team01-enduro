@@ -44,6 +44,12 @@
 		<copy todir="SourceCodeRelease/">
 					<fileset dir="" includes="*.txt" />
 				</copy>
+		<copy todir="SourceCodeRelease/">
+							<fileset dir="" includes="*.classpath" />
+						</copy>
+		<copy todir="SourceCodeRelease/">
+									<fileset dir="" includes="*.project" />
+								</copy>
 
 		<move file="SourceCodeRelease/technicalDoc/readme" todir="SourceCodeRelease" />
 
