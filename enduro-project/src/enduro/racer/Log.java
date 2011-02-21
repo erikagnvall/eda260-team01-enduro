@@ -19,7 +19,7 @@ public class Log {
 		logger.writeToLog(data);
 	}
 	
-	public void setLogLocation(String location) {
+	public static void setLogLocation(String location) {
 		logger = new Log(location);
 	}
 	

@@ -71,6 +71,8 @@ public class MainClass {
 					if(args[i+1].equals("true")) {
 						debug = true;
 					}
+				} else if(args[i].equals("-log")) {
+					enduro.racer.Log.setLogLocation(args[i+1]);
 				}
 			}
 		}

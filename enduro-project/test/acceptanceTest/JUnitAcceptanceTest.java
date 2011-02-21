@@ -65,9 +65,9 @@ public class JUnitAcceptanceTest {
 		
 		System.out.println("conf: " + configLoc);
 		if(testId.compareTo("29")==0) {
-			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result"});
+			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result","-log","acceptanceTest/result/" + test + ".normal.log"});
 		} else {
-			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true"});
+			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true", "-log","acceptanceTest/result/" + test + ".normal.log"});
 
 		}
 		
