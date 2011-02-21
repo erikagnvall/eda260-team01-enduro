@@ -37,7 +37,7 @@ Programmet är uppdelat i två delar, ett användargränssnitt där man registre
 och ett sorteringsprogram som genererar resultatslistan. Resultatlistan genereras som
 default både som en text- och htmlfil. De båda programmen finns i
 två jar-filer, GUI.jar respektive Backend.jar, som ligger direkt i mappen där
-zip-filen packas upp.
+tar-filen packas upp.
 
 
 -=!KONFIGURATIONSFIL!=-
