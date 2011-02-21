@@ -1,0 +1,31 @@
+Denna fil innehåller beskrivning av hur paketen är uppdelade i src-mappen
+
+Följande paket finns
+
+enduro:
+Innehåller backendets main-klass.
+Inehåller klasser för att skriva till fil samt att konvertera text till html.
+
+enduro.gui:
+Innehåller GUIdelen av programmet och har klasser för att bygga ett GUI.
+
+enduro.racer:
+Innehåller nyckelklassen InputHandler som hanterar parametrar från konfigfilen samt inläsning av alla indatafilen (namn, starttider och sluttider).
+Denna klass har nyckelfunktionen print som ger hela utdatan som en sträng, kombinerad av all relevant data.
+Racer är en enklare klass som representerar en tävlande, med alla start och måltider och annan relevant information.
+RacerSorter representerar en klass av tävlande. använder sig av TreeSet<Racer> med specifika komperatorer som sorterar tävlande baserat på olika paramterar.
+RacerSorter hanterar sedan, med hjälp av enduro.racer.printer-subpaketet all utskrift relevant för klassen.
+ 
+enduro.racer.comparators:
+Innehåller flera olika klasser som jämför Racer-klassen.
+Använder sig av javas Comparator och Decoratorpatternet för att kunna skapa dynamiska jämförelseobjekt med fallande prioritet (dvs. en comparator körs, om värdet blir lika körs nästa osv)
+Ger möjlighet att jämföra tävlande på flera olika sätt utan att ändra racer-objektet.
+
+enduro.racer.Configuration:
+Innehåller en parser för att läsa in konfigurationsfilen. Klassen är en singleton som refereras av resten av projektet.
+
+enduro.racer.printer:
+Klasser för att producera resultatsträngar. Inehåller ett interface RacerPrinter som implementeras av de olika printerklasserna
+där varje printer är unik för en specifik typ av utdata (ex. sorterade varv enl. story 18 eller vanliga varvlopp).
+
+

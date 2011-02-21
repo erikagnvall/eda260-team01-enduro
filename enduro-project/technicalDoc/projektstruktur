@@ -1,0 +1,134 @@
+En grundläggande beskrivning av de flesta filerna i källkatalogen. Samt en 
+beskriving av strukturen.
+
+/src/
+	/src/enduro
+		/src/enduro/gui
+			/src/enduro/gui/RegistrationGUI.java
+
+			   Det grafiska gränssnittet för registreringsprogrammet.
+
+			/src/enduro/gui/StoredTime.java
+
+
+			/src/enduro/gui/RegistrationTextField.java
+
+			   Text fältet där användaren skriver in text.
+			  
+
+			/src/enduro/gui/RegistrationButton.java
+
+
+			/src/enduro/gui/RegistrationTextArea.java
+
+			   Utrymmet där de inskrivna resultaten visas.
+
+			/src/enduro/gui/UndoButton.java
+
+			   Ångra knapp.
+
+		/src/enduro/Registration.java
+
+		   Registreringsprogram för start och måltider.
+
+		/src/enduro/racer
+			/src/enduro/racer/Racer.java
+
+			   En grundläggande klass för att representera all information om en tävlande - startnummer, varvtider osv.
+			   Det enda som klassen antar baseras på det första elementet i strängen i konstruktorn är startnumret.
+			   
+			   Klassen implementerar Comparable<Racer> baserat på startnumret. 
+
+			/src/enduro/racer/printer
+				/src/enduro/racer/printer/RacerPrinter.java
+
+				   Ett interface för utskrift av all relevant information för en tävling, såväl information för
+				   samtliga åkare och den övre, titel-raden.
+
+				/src/enduro/racer/printer/StageRacePrinter.java
+
+				   Implementerar RacerPrinter och används vid etapplopp.
+
+				/src/enduro/racer/printer/LapRacePrinter.java
+
+				   Implementerar RacerPrinter och används vid varvlopp.
+
+				/src/enduro/racer/printer/SortedLapRacePrinter.java
+				   
+				   Skriver ut en sorterad lista baserad på en osorterad varvloppsresultatlista.
+
+				/src/enduro/racer/printer/SortedStageRacePrinter.java
+				   
+				   Skriver ut en sorterad lista baserad på en osorterad etapploppsresultatlista.
+
+			/src/enduro/racer/comparators
+				/src/enduro/racer/comparators/DecorationCompare.java
+
+				   En abstract decorationcompare-klass(http://en.wikipedia.org/wiki/Decorator_pattern). Alla 
+				   subklasser till denna klass implementerar Decorator mönstret.
+				   
+				   Detta innebär att de kan kombineras och ersätta varandra. Till exempel om en jämförelse
+				   returnerar 0 så faller den tillbaka på en inte lika viktigt tills antingen något returnerar
+				   något skilt från 0 eller något returnerar null, då 0 returneras 
+				   
+				   Subklasser skall implmentera en enkel konstruktor tillsammans med den nödvändiga, där null 
+				   returneras till super-klassen om ingen återgång finns tillgänglig. 
+				   
+				   
+
+				/src/enduro/racer/comparators/RunnerCheckTotalTimeMax.java
+
+
+				/src/enduro/racer/comparators/RunnerTotalTimeComparator.java
+
+				   En icke-naiv jämförelse klass som beräknar och jämför den totala tiden mellan två Racer klasser.
+				   Denna klass kan hantera om finishtime / starttime inte finns i någon eller båda och jämförelsen speglar resultatet.
+				   
+
+				/src/enduro/racer/comparators/RunnerLapseComparator.java
+
+				   En naiv jämförelse klass som jämför storleken på måltider, vilket antas vara hur många varv avklarade. 
+				   Ignorerar fel i utfilen och alla andra icke-relevanta saker.
+
+				/src/enduro/racer/comparators/RunnerNumberComparator.java
+					
+					Jämför tävlande baserat på den tävlandes nummer.
+
+			/src/enduro/racer/RacerSorter.java
+
+			   Klassen hanterar jämförelse mellan tävlande baserat på en lista med jämförelseklasser för ett specifikt set (representerat av 
+			   en Compartor<Racer> klass). Resultatet motsvarar en klass och använder printer klassen för att skapa korrekt data.
+
+			/src/enduro/racer/InputHandler.java
+			   
+			   Klassen består av ett antal publika void funktioner som summerar namn-filer, mål-filer och start-filer, för att utifrån dessa
+			   skapa en intern lista. Klassen parsar sedan dessa och skapar till slut den innehållet till den färdiga utfilen.
+
+			/src/enduro/racer/Time.java
+			   
+			   Klass för att representera en tid.
+
+			/src/enduro/racer/configuration
+				/src/enduro/racer/configuration/ConfigParser.java
+				   
+				   Klass som används för att läsa in konfigurationer från config.conf filen i CLASSPATH. 
+				   
+				   Den läser värden som paras ihop enligt formatet A:B där A är nyckeln och B är värdet.
+				   Standard värden för tävling, sortering, indata, varv, och minimitid finns, men äldre
+				   värden raderas om nya upptäcks. Utkommentarede rader(//) och tomma rader ignoreras.
+				   
+				   Eventuella fel under parsningen påverkar inte inläsningen. Fel kan hämtas med metoden getError().
+
+		/src/enduro/TxtToHtml.java
+					
+				Omvandlar resultat i .txt-format till en tabell i .html-format för läsning via webläsare.
+
+		/src/enduro/MainClass.java
+		   
+		   Det här är huvud klassen. Den läser in en kommandorad med formatet -KOMMANDO NYCKEL, där
+		   KOMMANDO kan vara sökvägen till config-, input-, list- eller outputfilen.
+		   input är sökvägen till infilen.
+		   config är konfigurationsfilen.
+		   output är vart resultatet ska skrivas ut.
+		   list innehåller resultat-filer som skrivs i html-format.		   
+

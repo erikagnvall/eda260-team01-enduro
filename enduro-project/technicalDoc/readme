@@ -1,0 +1,46 @@
+Denna readme är avsedd för teknisk dokumentation och är endast intressant för den som skall vidarutveckla systemet.
+
+Filstrukturen innehåller följande mappar:
+
+/src
+	- Innehåller källkoden för programmet
+
+/test
+	- Innehåller de testfiler som körs för att testa koden
+
+/spike
+	- Innehåller diverse spikes som genomförts under utvecklingen
+
+/acceptanceTest 
+	- Innehåller filer relevanta för acceptanstestning samt till en mindre grad enhetstestning.
+		
+		/facit
+			- Innehåller facitfiler med namnen "resultat[key].txt" där [key] är vad projektet kallas.
+			  Alla filer som finns i denna katalog läggs automatiskt till JUnit-acceptanstesten som körs.
+		/result
+			- innehåller utdata för varje test i facit (efter att junit körs). Varje utdata fil har
+			  "resultat[key].txt.result" samt "resultat[key].txt.log" där resultatfilen är utdatan som programmet producerar
+			  och logfilen är alla system.out som systemet gör, följt av en radvis jämförelse mellan facitfilen i facitmappen
+			  samt utdatafilen. Lika rader skrivs inte ut, olika rader skrivs ut med "error", följt av raden och båda filernas
+			  utdata på den specifika raden.
+			  
+			  Innehåller även mappar av typen [key] (läs facit-map referensen för att läsa mer om var "[key]" definieras.
+			  Dessa innehåller antingen irrelevanta och gamla test alternativt nyare som innehåller en listfil, en konfigfil
+			  samt en grupp av namnfiler och start/målfiler.
+			  
+			  17_unit är f.ö. en normerad testmapp för alla enhetstest så att alla enhetstest använder samma indatafiler
+			  Den är förändrad från det vanliga acceptanstestet för 17 så att alla tidigare definierade fel dyker upp.
+
+/docs
+	- Innehåller den dokumentation som skall läsas av end user, bland annat manualer
+
+/technicalDoc 
+	- Här finns mer detaljerad dokumentation av den tekniska biten,
+	  intressant för den som skall utveckla systemet.
+	  Här finns även mer detaljerad information om mappstrukturen
+			   
+/UISpec4J
+	- Innehåller .jar-filer för GUI-test
+
+Vidare ligger de filer som systemet producerar i samma mapp som denna readme
+
