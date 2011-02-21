@@ -56,6 +56,7 @@ public class EnduroServerThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		while (status == -1) {
 			try {
 				if (s.equals("Goal")) {
@@ -72,8 +73,9 @@ public class EnduroServerThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Client handles " + s);
+		System.out.println("Client " + number+" handles " + s);
 		timesOut = new PrintWriter(new BufferedWriter(writer), true);
+
 		while (true) {
 			try {
 				s = socketIn.readLine();
@@ -94,7 +96,6 @@ public class EnduroServerThread extends Thread {
 			e.printStackTrace();
 		}
 	}
-
 	private void writeToFile(String s) {
 		boolean found = false;
 		try {
@@ -108,8 +109,9 @@ public class EnduroServerThread extends Thread {
 		if (!found) {
 			timesOut.println(s);
 			timesOut.flush();
-			System.out.println("client " + number + " sends:" + s);
+			System.out.println("Client " + number + " sends: " + s);
 		} else
-			System.out.println("Client sent redundant data.");
+			System.out.println("Client " + number + " sent redundant data. Time was already in file: " + s);
 	}
+
 }
