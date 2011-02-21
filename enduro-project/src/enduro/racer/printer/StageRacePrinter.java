@@ -45,13 +45,27 @@ public class StageRacePrinter implements RacerPrinter {
 		
 		return out.toString();
 	}
-
+	
+	/**
+	 * Prints the number of stages (as defined by the racer construct
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private void printNbrOfStages(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		out.append(stages.size());
 		out.append("; ");
 	}
 
+	/**
+	 * Prints the racer's information
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private void printRunnerInformation(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		int i = 0;
@@ -65,6 +79,14 @@ public class StageRacePrinter implements RacerPrinter {
 
 	}
 
+	/**
+	 * Prints the start and finish times. Nonexisting start or finish times are replaced by
+	 * "Start?" respectively "Slut?"
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private void printStartAndFinish(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 
@@ -120,6 +142,13 @@ public class StageRacePrinter implements RacerPrinter {
 		}
 	}
 
+	/**
+	 * Prints the "total time" of each stage. Handles wrong number of start/finish times and appends to error stream
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private void printStages(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		
@@ -158,6 +187,13 @@ public class StageRacePrinter implements RacerPrinter {
 		
 	}
 
+	/**
+	 * Prints the total time. if no completed finish times exists (e.g. time is zero); "--.--.--" is printed instead
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private void printTotalTime(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		Time totalTime = new Time(0, 0, 0);
@@ -171,6 +207,13 @@ public class StageRacePrinter implements RacerPrinter {
 		out.append("; ");
 	}
 
+	/**
+	 * iterates over all stages and adds the total time to each stage with both existing finish and start times.
+	 * @param r the racer to be printed
+	 * @param out the stringbuilder which will be outputed
+	 * @param stages the fully completed stages (e.g. stages with both start and finish times)
+	 * @param errorTrail outdata to be printed to the end of the out stream
+	 */
 	private TreeMap<Integer, Time> getStages(Racer r) {
 		TreeSet<Integer> stagesList = new TreeSet<Integer>();
 		stagesList.addAll(r.startTimes.keySet());
