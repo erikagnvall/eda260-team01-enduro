@@ -65,9 +65,11 @@ public class EnduroClient {
 	 * Terminates the connection
 	 */
 	public void shutDown() {
+		registerLine("quit");
 		out.close();
 		try {
 			clientSocket.close();
+			System.out.println("Goodbye!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -89,11 +91,15 @@ public class EnduroClient {
 				System.in));
 		while (true) {
 			String s = null;
+			try{
 			if (scan.hasNext())
 				s = scan.nextLine();
 			else {
 				// scan = null;
 				// scan = new Scanner(new FileInputStream("./times.txt"));
+				break;
+			}
+			}catch(NullPointerException w){
 				break;
 			}
 			registerLine(s);

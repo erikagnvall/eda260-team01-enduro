@@ -70,7 +70,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		try {
 			client.registerFile();
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 		
 	}
@@ -256,6 +256,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 	public void setRegretButton(UndoButton regret) {
 		this.undo = regret;
+	}
+	public void closeConnection() {
+		if(networkMode)
+		client.shutDown();
+		
 	}
 
 }

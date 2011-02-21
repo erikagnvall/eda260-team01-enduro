@@ -1,6 +1,8 @@
 package enduro.gui;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
@@ -37,21 +39,22 @@ public class RegistrationGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
-		RegistrationTextField registrationTextField;
-		if(args[0].equals("true"))
-			 registrationTextField = new RegistrationTextField(
-					font, registrationTextArea, storedTime, args);
-		
-		else registrationTextField = new RegistrationTextField(
-				font, registrationTextArea, storedTime);
-
+		final RegistrationTextField registrationTextField;
+		if (args[0].equals("true")){
+			registrationTextField = new RegistrationTextField(font,
+					registrationTextArea, storedTime, args);
+		}
+		else{
+			registrationTextField = new RegistrationTextField(font,
+					registrationTextArea, storedTime);
+		}
 		UndoButton undo = new UndoButton("Avbryt", storedTime,
 				registrationTextField);
 		registrationTextField.setRegretButton(undo);
 		undo.setVisible(false);
 
 		registrationTextField.checkForSavedTimeFile();
-		
+
 		northPanel.add(undo);
 		northPanel.add(registrationTextField);
 		northPanel.add(new RegistrationButton("Registrera", font,
@@ -60,13 +63,17 @@ public class RegistrationGUI extends JFrame {
 		add(BorderLayout.NORTH, northPanel);
 
 		add(BorderLayout.CENTER, registrationTextArea);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent ev) {
+				registrationTextField.closeConnection();
+			}
+		});
 	}
-	
-	
 
 	/** Main method. */
 	public static void main(String[] args) {
 		String[] arguments = ConfigParser.getInstance().getClientSetup();
 		new RegistrationGUI(arguments);
 	}
+
 }

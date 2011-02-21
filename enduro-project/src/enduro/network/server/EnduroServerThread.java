@@ -90,6 +90,7 @@ public class EnduroServerThread extends Thread {
 		}
 		timesOut.close();
 		try {
+			System.out.println("Server says: Goodbye!");
 			socketIn.close();
 			socket.close();
 		} catch (IOException e) {
