@@ -36,8 +36,8 @@
 -=!PROGRAMMENS PLACERING!=-
 Programmet är uppdelat i två delar, ett användargränssnitt där man registrerar tider
 och ett sorteringsprogram som genererar resultatslistan. Resultatlistan genereras som
-default både som en text- och htmlfil. De båda programmen finns i
-två jar-filer, GUI.jar respektive Backend.jar, som ligger direkt i mappen där
+default både som en text- och htmlfil. De fyra programmen finns i
+fyra jar-filer, GUI.jar Backend.jar, EnduroServer.jar samt EnduroClient.jar, som ligger direkt i mappen där
 tar-filen packas upp.
 
 
