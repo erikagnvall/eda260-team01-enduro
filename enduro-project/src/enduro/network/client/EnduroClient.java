@@ -79,6 +79,12 @@ public class EnduroClient {
 	 * @throws IOException
 	 */
 	public void run() throws IOException {
+		registerFile();
+		shutDown();
+	}
+		
+
+	public void registerFile() throws IOException {
 		BufferedReader terminalScan = new BufferedReader(new InputStreamReader(
 				System.in));
 		while (true) {
@@ -97,7 +103,6 @@ public class EnduroClient {
 			if (terminal != null && terminal.equals("quit"))
 				break;
 		}
-		shutDown();
 	}
 
 	/**
