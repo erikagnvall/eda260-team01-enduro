@@ -19,12 +19,17 @@ public class EnduroClient {
 	Scanner scan;
 	Socket clientSocket;
 	PrintWriter out;
-/**
- * Sets up the client
- * @param address String containing IP address of server
- * @param port int port number to connect too
- * @param type String stating if the client is sending Start or Goal data
- */
+
+	/**
+	 * Sets up the client
+	 * 
+	 * @param address
+	 *            String containing IP address of server
+	 * @param port
+	 *            int port number to connect too
+	 * @param type
+	 *            String stating if the client is sending Start or Goal data
+	 */
 	public EnduroClient(String address, int port, String type) {
 		try {
 			scan = new Scanner(new FileInputStream("./times.txt"));
@@ -45,10 +50,37 @@ public class EnduroClient {
 		out.println(type);
 		System.out.println("Client is handling " + type);
 	}
-/**
- * Runs the client until quit command is given
- * @throws IOException
- */
+
+	/**
+	 * Registers a single line to the server
+	 * 
+	 * @param line
+	 */
+	public void registerLine(String line) {
+		if (line != null) {
+			out.println(line);
+			out.flush();
+			System.out.println("Client: " + line);
+		}
+	}
+
+	/**
+	 * Terminates the connection
+	 */
+	public void shutDown() {
+		out.close();
+		try {
+			clientSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Runs the client until quit command is given
+	 * 
+	 * @throws IOException
+	 */
 	public void run() throws IOException {
 		BufferedReader terminalScan = new BufferedReader(new InputStreamReader(
 				System.in));
@@ -57,25 +89,23 @@ public class EnduroClient {
 			if (scan.hasNext())
 				s = scan.nextLine();
 			else {
-//				scan = null;
-//				scan = new Scanner(new FileInputStream("./times.txt"));
+				// scan = null;
+				// scan = new Scanner(new FileInputStream("./times.txt"));
 				break;
 			}
+			registerLine(s);
 			String terminal = null;
 			if (terminalScan.ready())
 				terminal = terminalScan.readLine();
-			if (s != null) {
-				out.println(s);
-				System.out.println("client: " + s);
-			}
 			if (terminal != null && terminal.equals("quit"))
 				break;
 		}
-		out.close();
-		clientSocket.close();
+		shutDown();
 	}
+
 	/**
 	 * Main method to start the client
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
