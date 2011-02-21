@@ -179,12 +179,18 @@ public class InputHandler {
 		try {
 			String[] names = this.getLines(nameFileLocations.get(1).get(0));
 			this.headerInformation = names[0].split("; ");
-			
+			if(!this.correctNameFileLine(names[0])) {
+				Log.log("in the name file " + nameFileLocations.get(1).get(0) + " incorrect header line");
+			}
 			rp.setHeaderInformation(this.headerInformation);
 			unnamedGroup = new RacerSorter("Ogrupperade förare", rc, rp);
 			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp);
 			
 			for(int i = 1; i < names.length; i++) {
+				if(!(correctNameFileLine(names[i]) || correctCategory(names[i]))) {
+					Log.log("in the in the name file " + nameFileLocations.get(1).get(0) + " on line: " + (i+1) + " incorrect line:\n\t" + names[i] + "\n");
+					continue;
+				}
 				String[] lineSplit = names[i].split("; ");
 				
 				if(lineSplit.length == 1) {
@@ -343,6 +349,20 @@ public class InputHandler {
 	}
 	
 	private boolean correctInputLine(String line) {
+		if(line.length()==0)
+			return true;
 		return Pattern.matches("\\d+;( )?\\d\\d.\\d\\d.\\d\\d", line);
+	}
+	
+	private boolean correctNameFileLine(String line) {
+		if(line.length()==0)
+			return true;
+		return Pattern.matches("([a-zA-Z0-9. ]+; )+([a-zA-Z0-9. ]+)?", line);
+	}
+	
+	private boolean correctCategory(String line) {
+		if(line.length()==0)
+			return true;
+		return Pattern.matches("[a-zA-Z0-9]+", line);
 	}
 }
