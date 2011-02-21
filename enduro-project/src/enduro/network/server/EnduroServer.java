@@ -3,6 +3,8 @@ package enduro.network.server;
 import java.io.*;
 import java.net.*;
 
+import enduro.racer.configuration.ConfigParser;
+
 /**
  * Server for EnduroProject, simple method that launches several threads in order for multiple clients to connect
  * 
@@ -27,11 +29,12 @@ public class EnduroServer implements Runnable{
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		if(args.length != 1){
-			System.out.println("Arguments must match \"port\"");
-			System.exit(-1);
-		}
-		EnduroServer serv = new EnduroServer(Integer.parseInt(args[0]));
+//		if(args.length != 1){
+//			System.out.println("Arguments must match \"port\"");
+//			System.exit(-1);
+//		}
+		EnduroServer serv = new EnduroServer(ConfigParser.getInstance().getIntConf("serverport"));
+//		EnduroServer serv = new EnduroServer(Integer.parseInt(args[0]));
 		serv.run();
 	}
 	/**

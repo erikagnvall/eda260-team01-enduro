@@ -83,6 +83,7 @@ public class ConfigParser {
 		tmp.put("mintime", "01.00.00");
 		tmp.put("timelimit", "00.15.00");
 		tmp.put("sorted", "false");
+		tmp.put("serverport", "1337");
 		
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(fileLocation));
