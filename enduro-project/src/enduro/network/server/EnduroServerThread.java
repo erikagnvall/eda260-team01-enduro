@@ -19,7 +19,7 @@ public class EnduroServerThread extends Thread {
 	public EnduroServerThread(Socket socket, int number) throws IOException {
 		super("EnduroServerThread " + number);
 		this.socket = socket;
-	//	out = new PrintWriter(socket.getOutputStream(), true);
+		// out = new PrintWriter(socket.getOutputStream(), true);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
 
@@ -56,16 +56,17 @@ public class EnduroServerThread extends Thread {
 		out = new PrintWriter(new BufferedWriter(writer), true);
 
 		while (true) {
-
 			try {
 				s = in.readLine();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if (s.equals("quit"))
-				break;
-			out.println(s);
-			System.out.println("client sends:" + s);
+			if (s != null) {
+				if (s.equals("quit"))
+					break;
+				out.println(s);
+				System.out.println("client sends:" + s);
+			}
 		}
 		System.out.println("hejdå");
 		out.close();
