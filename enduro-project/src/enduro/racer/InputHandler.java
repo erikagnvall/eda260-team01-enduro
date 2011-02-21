@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -230,8 +231,13 @@ public class InputHandler {
 			for(int stage: stages) {
 				for(String file: startFileLocations.get(stage)) {
 					String[] lineSplit = this.getLines(file);
-					
+					int numLine = 0;
 					for(String line: lineSplit) {
+						numLine++;
+						if(!correctInputLine(line)) {
+							Log.log("in the start file: " + file + " on line: " + numLine + " incorrect line:\n\t" + line + "\n");
+							continue;
+						}
 						String[] lineInfo = line.split("; ");
 						
 						if(lineInfo.length == 2) {
@@ -277,8 +283,13 @@ public class InputHandler {
 			for(int stage: stages) {
 				for(String file: finishFileLocations.get(stage)) {
 					String[] lineSplit = this.getLines(file);
-					
+					int numLine = 0;
 					for(String line: lineSplit) {
+						numLine++;
+						if(!correctInputLine(line)) {
+							Log.log("in the finish file: " + file + " on line: " + numLine + " incorrect line:\n\t" + line + "\n");
+							continue;
+						}
 						String[] lineInfo = line.split("; ");
 						
 						if(lineInfo.length == 2) {
@@ -329,5 +340,9 @@ public class InputHandler {
 			res.add(reader.readLine());
 		
 		return res.toArray(new String[res.size()]);
+	}
+	
+	private boolean correctInputLine(String line) {
+		return Pattern.matches("\\d+;( )?\\d\\d.\\d\\d.\\d\\d", line);
 	}
 }

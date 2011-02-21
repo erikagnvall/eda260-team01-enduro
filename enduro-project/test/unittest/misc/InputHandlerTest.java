@@ -311,9 +311,6 @@ public class InputHandlerTest {
 		assertEquals(
 				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
 				lines[13]);
-		assertEquals(
-				"error: integer parse error in start file: ./test/unittest/misc/unit-test-files/InputHandlerTestFiles/starttiderFail.txt line reads:: 1s; 12.00.00",
-				lines[17]);
 	}
 
 	@Test
@@ -365,9 +362,6 @@ public class InputHandlerTest {
 		assertEquals(
 				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
 				lines[13]);
-		assertEquals(
-				"error: error reading in a start file: ./test/unittest/misc/unit-test-files/InputHandlerTestFiles/starttiderFail2.txt line reads:: asd",
-				lines[17]);
 	}
 
 	@Test
@@ -421,9 +415,6 @@ public class InputHandlerTest {
 		assertEquals(
 				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
 				lines[13]);
-		assertEquals(
-				"error: integer parse error in finish file: ./test/unittest/misc/unit-test-files/InputHandlerTestFiles/maltiderFail.txt line reads:: 1s; 13.00.00",
-				lines[17]);
 	}
 
 	@Test
@@ -477,9 +468,6 @@ public class InputHandlerTest {
 		assertEquals(
 				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
 				lines[13]);
-		assertEquals(
-				"error: error reading in a finish file: ./test/unittest/misc/unit-test-files/InputHandlerTestFiles/maltiderFail2.txt line reads:: asd",
-				lines[17]);
 	}
 
 	@Test
