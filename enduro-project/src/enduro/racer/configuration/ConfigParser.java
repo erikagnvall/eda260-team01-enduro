@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import enduro.MainClass;
+import enduro.racer.Log;
 
 /**
  * a basic config parser. It reads by default from config.conf in the CLASSPATH
@@ -87,6 +89,8 @@ public class ConfigParser {
 			int line = 1;
 			while (in.ready()) {
 				String temp = in.readLine();
+				if(!correctLine(temp,line))
+					continue;
 				
 				if(MainClass.debug)
 					System.out.println("config line:" + temp);
@@ -208,6 +212,28 @@ public class ConfigParser {
 	 */
 	public static void delete(){
 		parser = null;
+	}
+	
+	private boolean correctLine(String lineText, int line) {
+		if(Pattern.matches("//.*", lineText)) {
+			return true;
+		} else if(Pattern.matches("(namn:.*)|(start:.*)|(finish:.*)",  lineText)) {
+			if(Pattern.matches("\\w+:(\\d+:)\\d+", "namn:12:1"))
+				return true;
+		} else if(Pattern.matches("[a-zA-Z]*:.*", lineText)) {
+			if(Pattern.matches("[a-zA-Z]*:\\w+", lineText))
+				return true;
+			else if(Pattern.matches("[a-zA-Z]*:\\d\\d\\.\\d\\d\\.\\d\\d", lineText))
+				return true;
+			else if(Pattern.matches("[a-zA-Z]*:[0-9a-zA-Z/._]+", lineText))
+				return true;
+		} else if(Pattern.matches("\\s", lineText)) {
+			return true;
+		} else if(lineText.length() == 0)
+			return true;
+		errors.append("in the config file on line " + line + ": incorrect line:\n\t" + lineText + "\n");
+		Log.log("in the config file on line " + line + ": incorrect line:\n\t" + lineText + "\n");
+		return false;
 	}
 	
 }

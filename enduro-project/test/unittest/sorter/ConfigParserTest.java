@@ -13,13 +13,16 @@ public class ConfigParserTest {
 	@Test
 	public void testSuccessfulRead() {
 		ConfigParser parser = ConfigParser.getInstance("test/unittest/misc/unit-test-files/config.conf/correctConf.conf");
-		assertTrue(parser.getError().length() ==0 && !parser.fileNotFound());
+		
+		assertTrue(parser.getError().length() ==0);
+		assertTrue(!parser.fileNotFound());
 	}
 	
 	@Test
 	public void testFailedRead() {
 		ConfigParser parser = ConfigParser.getInstance("test/unittest/misc/unit-test-files/config.conf/incorrectConf.conf");
-		assertTrue(parser.getError().length() != 0 && !parser.fileNotFound());
+		assertTrue(parser.getError().length() != 0);
+		assertTrue(!parser.fileNotFound());
 	}
 	
 	@Test public void readString() {
