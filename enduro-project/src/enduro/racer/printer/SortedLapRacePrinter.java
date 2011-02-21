@@ -14,6 +14,7 @@ public class SortedLapRacePrinter implements RacerPrinter {
 
 	String extraInformation = "";
 	int extraRunnerInformation = 0;
+	int numLaps = ConfigParser.getInstance().getIntConf("laps");
 	
 	public String print(Racer r, HashMap<String, String> extraInformation) {
 		//Plac; StartNr; Namn; #Varv; Totaltid; Varv1; Varv2
@@ -58,11 +59,20 @@ public class SortedLapRacePrinter implements RacerPrinter {
 
 	private void printLaps(Racer r, StringBuilder out) {
 		Time before = r.startTimes.get(1).first();
-		
+		int i = 0;
 		for(Time next: r.finishTimes.get(1)) {
 			out.append(before.getTotalTime(next));
 			out.append("; ");
 			before = next;
+			i++;
+		}
+		if(numLaps > r.finishTimes.get(1).size()) {
+			for(; i < numLaps; i++)
+				if (i == numLaps-1) {
+					out.append(";");
+				} else {
+					out.append("; ");
+				}
 		}
 	}
 

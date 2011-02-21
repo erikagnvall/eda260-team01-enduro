@@ -66,7 +66,7 @@ public class LapRacePrinter implements RacerPrinter {
 		printGoal(r, out, errorTrail);
 		
 		//removes a trailing "; " that the reference result file does not have.
-		out.delete(out.length()-2, out.length());
+//		out.delete(out.length()-2, out.length());
 		
 		if(errorTrail.length() > 0) {
 			out.append("; ");
@@ -86,9 +86,10 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printGoal(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.finishTimes.get(1).size() > 0 && r.startTimes.get(1).size() > 0)
+		if(r.finishTimes.get(1).size() == numLaps && r.startTimes.get(1).size() > 0) {
 			out.append(r.finishTimes.get(1).last());
-		out.append("; ");
+//			out.append(";");
+		}
 	}
 
 	/**
@@ -105,16 +106,26 @@ public class LapRacePrinter implements RacerPrinter {
 	private void printVarvning(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		int i = 0;
 		Iterator<Time> itr = r.finishTimes.get(1).iterator();
+
 		for(; i < Math.min(numLaps-1, r.finishTimes.get(1).size());i++) {
 			out.append(itr.next());
-			out.append("; ");
+			if (i == numLaps-2 && numLaps != r.finishTimes.get(1).size() && errorTrail.length() == 0) {
+				out.append(";");
+			} else {
+				out.append("; ");
+			}
 		}
 		
 		
-		if(i < numLaps)
+		if(i < numLaps) {
 			for(; i < numLaps-1; i++) {
-				out.append("; ");
+				if (i == numLaps-2 && errorTrail.length() == 0) {
+					out.append(";");
+				} else {
+					out.append("; ");
+				}
 			}
+		}
 	}
 
 	/**
@@ -186,7 +197,6 @@ public class LapRacePrinter implements RacerPrinter {
 			for(; i < numLaps; i++)
 				out.append("; ");
 		}
-		
 		
 		
 	}

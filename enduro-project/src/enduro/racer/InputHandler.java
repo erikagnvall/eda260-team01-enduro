@@ -363,7 +363,7 @@ public class InputHandler {
 	private boolean correctNameFileLine(String line) {
 		if(line.length()==0)
 			return true;
-		return Pattern.matches("([äöÅÄÖa-zA-Z0-9. \"øØüÜ]+; )+([äöÅÄÖa-zA-Z0-9. \"øØüÜ]+)?", line);
+		return Pattern.matches("([åäöÅÄÖa-zA-Z0-9. \"øØüÜ-]+; )+([åäöÅÄÖa-zA-Z0-9. \"øØüÜ-]+)?", line);
 	}
 	
 	private boolean correctCategory(String line) {

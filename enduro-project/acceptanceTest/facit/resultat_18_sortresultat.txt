@@ -6,4 +6,4 @@ JUNIOR
 Plac; StartNr; Namn; Klubb; MC; #Varv; Totaltid; Varv1; Varv2; Varv3
 1; 101; Chris Csson; Cstad MCK; CTM; 3; 01.05.06; 00.22.00; 00.20.00; 00.23.06
 2; 102; David Dsson; Dstad MCK; DTM; 3; 01.12.07; 00.23.00; 00.20.00; 00.29.07
-; 103; Erik Esson; Estad MCK; ETM; 2; 00.44.00; 00.24.00; 00.20.00
+; 103; Erik Esson; Estad MCK; ETM; 2; 00.44.00; 00.24.00; 00.20.00;

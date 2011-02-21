@@ -65,7 +65,7 @@ public class LapRacePrinterTest {
 		racer = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
 		racer.addStartTime(new Time("12.00.00"), 1);
 		
-		assertEquals("103; Erik Esson; Estad MCK; ETM; 0; --:--:--; ; ; ; 12.00.00; ; ; ", printer.print(racer, null));
+		assertEquals("103; Erik Esson; Estad MCK; ETM; 0; --:--:--; ; ; ; 12.00.00; ; ;", printer.print(racer, null));
 	}
 
 }
