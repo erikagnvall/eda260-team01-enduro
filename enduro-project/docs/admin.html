@@ -53,9 +53,8 @@
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
 				<h4>Serverkonfiguration</h4>
-				<p>Servern startas med ett argument, portnummer. Klientdelen startas med tre argument, IP till servern, port att ansluta till samt en sträng "Start" om det är starttider som skall skickas eller "Goal" om det är måltider</p>
+				<p>Servern läser portnummret som den ska lyssna på från tidigare nämnda config-fil. Klientdelen startas med tre argument, IP till servern, port att ansluta till samt en sträng "Start" om det är starttider som skall skickas eller "Goal" om det är måltider</p>
 				<b>Exempel:</b><br />
-				<code>java -jar EnduroServer.jar 1337</code> <br/>
 				<code>java -jar EnduroClient.jar 1.3.3.7 1337 Start</code></p>
 			</div>
 
