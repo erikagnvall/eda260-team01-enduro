@@ -45,6 +45,9 @@ Filstrukturen innehåller följande mappar:
 
 /config.conf
 	- Filen innehåller inställningar för programmet.
+
+/result.html
+	-Resultat-filen i html-format
 	
 Vidare ligger de filer som systemet producerar i samma mapp som denna readme
 
