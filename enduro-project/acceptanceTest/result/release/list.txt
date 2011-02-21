@@ -1,4 +1,0 @@
-testfiles/namnfil.txt
-testfiles/starttider.txt
-testfiles/maltider1.txt
-testfiles/maltider2.txt

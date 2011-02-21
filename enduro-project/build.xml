@@ -80,10 +80,9 @@
 		</copy>
 		<delete file="release/docs/README" />
 		<copy todir="release/testfiles">
-			<fileset dir="acceptanceTest/result/17_unit"/>
+			<fileset dir="acceptanceTest/result/varvlopptid"/>
 		</copy>
-		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
-		<copy file="config.conf" todir="release"/>
+		<copy file="acceptanceTest/result/release/config.conf" todir="release"/>
 		<tar destfile="release.tar" basedir="release"/>
 
 
@@ -126,7 +125,7 @@
 		<delete file = "MANIFEST.MF"/>
 
 		<manifest file = "MANIFEST.MF">
-			<attribute name = "Main-Class" value = "enduro.racer.MainClass"/>
+			<attribute name = "Main-Class" value = "enduro.MainClass"/>
 			<attribute name = "Class-Path" value = "."/>
 		</manifest>
 		<jar jarfile="Backend.jar" includes="enduro/**/*.class" basedir="bin/" manifest = "MANIFEST.MF" />

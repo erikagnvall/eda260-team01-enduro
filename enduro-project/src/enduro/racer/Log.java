@@ -23,9 +23,14 @@ public class Log {
 		logger = new Log(location);
 	}
 	
-	public void reset() {
+	private void removeLog() {
 		File f = new File(location);
 		f.delete();
+	}
+	
+	public static void reset() {
+		if(logger != null)
+			logger.removeLog();
 	}
 	
 	public void writeToLog(String data) {

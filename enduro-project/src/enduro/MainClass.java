@@ -4,9 +4,9 @@ import java.io.FileWriter;
 
 import javax.swing.JOptionPane;
 
-import org.uispec4j.utils.Log;
 
 import enduro.racer.InputHandler;
+import enduro.racer.Log;
 import enduro.racer.configuration.ConfigParser;
 
 /**
