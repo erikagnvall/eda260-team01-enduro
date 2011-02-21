@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import enduro.racer.configuration.ConfigParser;
+
 /**
  * Provides a GUI for the Enduro time registration program.
  */
@@ -13,9 +15,9 @@ public class RegistrationGUI extends JFrame {
 	/**
 	 * Creates the GUI, magic, do not touch!
 	 */
-	public RegistrationGUI() {
+	public RegistrationGUI(String[] args) {
 		super("Registration GUI");
-		buildLayout();
+		buildLayout(args);
 		setResizable(false);
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -25,7 +27,7 @@ public class RegistrationGUI extends JFrame {
 	/**
 	 * Adds all the components to the JFrame.
 	 */
-	private void buildLayout() {
+	private void buildLayout(String[] args) {
 		Font font = new Font(null, Font.PLAIN, 60);
 		setLayout(new BorderLayout());
 
@@ -35,8 +37,12 @@ public class RegistrationGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
+		RegistrationTextField registrationTextField;
+		if(args[0].equals("true"))
+			 registrationTextField = new RegistrationTextField(
+					font, registrationTextArea, storedTime, args);
 		
-		RegistrationTextField registrationTextField = new RegistrationTextField(
+		else registrationTextField = new RegistrationTextField(
 				font, registrationTextArea, storedTime);
 
 		UndoButton undo = new UndoButton("Avbryt", storedTime,
@@ -60,6 +66,7 @@ public class RegistrationGUI extends JFrame {
 
 	/** Main method. */
 	public static void main(String[] args) {
-		new RegistrationGUI();
+		String[] arguments = ConfigParser.getInstance().getClientSetup();
+		new RegistrationGUI(arguments);
 	}
 }

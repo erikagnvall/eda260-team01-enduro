@@ -28,7 +28,6 @@ public class ConfigParser {
 	private ArrayList<String> nameList = new ArrayList<String>();
 	private ArrayList<String> startList = new ArrayList<String>();
 	private ArrayList<String> finishList = new ArrayList<String>();
-	private ArrayList<String> clientList = new ArrayList<String>();
 
 	private static ConfigParser parser = null;
 

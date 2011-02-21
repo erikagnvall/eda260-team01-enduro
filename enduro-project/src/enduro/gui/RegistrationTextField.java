@@ -23,6 +23,7 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 import enduro.Registration;
+import enduro.network.client.EnduroClient;
 import enduro.racer.Time;
 
 /**
@@ -35,6 +36,8 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private Registration registration;
 	private StoredTime storedTime;
 	private UndoButton undo;
+	private EnduroClient client;
+	private boolean networkMode;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -53,6 +56,18 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;
 		addActionListener(this);
+		networkMode = false;
+	}
+	public RegistrationTextField(Font font, RegistrationTextArea registrationTextArea, StoredTime storedTime, String[] args){
+		super(5);
+		setName("Input");
+		setFont(font);
+		this.registrationTextArea = registrationTextArea;
+		this.storedTime = storedTime;
+		addActionListener(this);
+		client = new EnduroClient(args[1], Integer.parseInt(args[2]), args[3]);
+		networkMode = true;
+		
 	}
 
 	/**
@@ -200,6 +215,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			registration = new Registration("times.txt");
 			registration.registerTime(number, t);
 			registration.close();
+			if(networkMode) client.registerLine(number+ "; " +t);
 		} catch (IOException e) {
 
 		}
