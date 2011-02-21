@@ -38,7 +38,10 @@ Filstrukturen innehåller följande mappar:
 	- Här finns mer detaljerad dokumentation av den tekniska biten,
 	  intressant för den som skall utveckla systemet.
 	  Här finns även mer detaljerad information om mappstrukturen
-			   
+	  
+	 /UML
+	 Här finns UML filerna.
+	 		   
 /UISpec4J
 	- Innehåller .jar-filer för GUI-test
 
