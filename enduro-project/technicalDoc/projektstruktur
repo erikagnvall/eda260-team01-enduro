@@ -8,6 +8,7 @@ beskriving av strukturen.
 
 			   Det grafiska gränssnittet för registreringsprogrammet.
 
+
 			/src/enduro/gui/StoredTime.java
 
 
@@ -23,13 +24,16 @@ beskriving av strukturen.
 
 			   Utrymmet där de inskrivna resultaten visas.
 
+
 			/src/enduro/gui/UndoButton.java
 
 			   Ångra knapp.
 
+
 		/src/enduro/Registration.java
 
 		   Registreringsprogram för start och måltider.
+
 
 		/src/enduro/racer
 			/src/enduro/racer/Racer.java
@@ -39,27 +43,33 @@ beskriving av strukturen.
 			   
 			   Klassen implementerar Comparable<Racer> baserat på startnumret. 
 
+
 			/src/enduro/racer/printer
 				/src/enduro/racer/printer/RacerPrinter.java
 
 				   Ett interface för utskrift av all relevant information för en tävling, såväl information för
 				   samtliga åkare och den övre, titel-raden.
 
+
 				/src/enduro/racer/printer/StageRacePrinter.java
 
 				   Implementerar RacerPrinter och används vid etapplopp.
+
 
 				/src/enduro/racer/printer/LapRacePrinter.java
 
 				   Implementerar RacerPrinter och används vid varvlopp.
 
+
 				/src/enduro/racer/printer/SortedLapRacePrinter.java
 				   
 				   Skriver ut en sorterad lista baserad på en osorterad varvloppsresultatlista.
 
+
 				/src/enduro/racer/printer/SortedStageRacePrinter.java
 				   
 				   Skriver ut en sorterad lista baserad på en osorterad etapploppsresultatlista.
+
 
 			/src/enduro/racer/comparators
 				/src/enduro/racer/comparators/DecorationCompare.java
@@ -74,41 +84,49 @@ beskriving av strukturen.
 				   Subklasser skall implmentera en enkel konstruktor tillsammans med den nödvändiga, där null 
 				   returneras till super-klassen om ingen återgång finns tillgänglig. 
 				   
-				   
 
 				/src/enduro/racer/comparators/RunnerCheckTotalTimeMax.java
 				
 				Jämför två tävlandes totaltid och för att kolla om de uppfyller kravet för minimitid.
 				De sorteras sedan efter detta.
 
+
 				/src/enduro/racer/comparators/RunnerTotalTimeComparator.java
 
 				   En icke-naiv jämförelse klass som beräknar och jämför den totala tiden mellan två Racer klasser.
-				   Denna klass kan hantera om finishtime / starttime inte finns i någon eller båda och jämförelsen speglar resultatet.
-				   
+				   Denna klass kan hantera om finishtime / starttime inte finns i någon eller båda och jämförelsen 
+				   speglar resultatet.
+
 
 				/src/enduro/racer/comparators/RunnerLapseComparator.java
 
 				   En naiv jämförelse klass som jämför storleken på måltider, vilket antas vara hur många varv avklarade. 
 				   Ignorerar fel i utfilen och alla andra icke-relevanta saker.
 
+
 				/src/enduro/racer/comparators/RunnerNumberComparator.java
 					
 					Jämför tävlande baserat på den tävlandes nummer.
 
+
 			/src/enduro/racer/RacerSorter.java
 
-			   Klassen hanterar jämförelse mellan tävlande baserat på en lista med jämförelseklasser för ett specifikt set (representerat av 
-			   en Compartor<Racer> klass). Resultatet motsvarar en klass och använder printer klassen för att skapa korrekt data.
+			   Klassen hanterar jämförelse mellan tävlande baserat på en lista med jämförelseklasser för ett specifikt set 
+			   (representerat av en Compartor<Racer> klass). Resultatet motsvarar en klass och använder printer klassen 
+			   för att skapa korrekt data.
+
 
 			/src/enduro/racer/InputHandler.java
 			   
-			   Klassen består av ett antal publika void funktioner som summerar namn-filer, mål-filer och start-filer, för att utifrån dessa
-			   skapa en intern lista. Klassen parsar sedan dessa och skapar till slut den innehållet till den färdiga utfilen.
+			   Klassen består av ett antal publika void funktioner som summerar namn-filer, mål-filer och start-filer, 
+			   för att utifrån dessa skapa en intern lista. Klassen parsar sedan dessa och skapar till slut den 
+			   innehållet till den färdiga utfilen.
+
 
 			/src/enduro/racer/Time.java
 			   
 			   Klass för att representera en tid.
+
 
 			/src/enduro/racer/configuration
 				/src/enduro/racer/configuration/ConfigParser.java
@@ -121,9 +139,11 @@ beskriving av strukturen.
 				   
 				   Eventuella fel under parsningen påverkar inte inläsningen. Fel kan hämtas med metoden getError().
 
+
 		/src/enduro/TxtToHtml.java
 					
 				Omvandlar resultat i .txt-format till en tabell i .html-format för läsning via webläsare.
+
 
 		/src/enduro/MainClass.java
 		   
