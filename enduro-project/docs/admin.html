@@ -25,6 +25,8 @@
 				<h3 style="display:none;">Installation</h3>
 				<p>För att köra programmet, ladda ner JAR-filen <code>Backend.jar</code> och
 				spara den i den mapp tidsfilerna ligger i.</p>
+				<p>För att köra klient/server skall serverfilen <code>EnduroServer.jar</code> laddas ner och köras på serverdatorn i en folder där användaren har skrivrättigheter</p>
+				<p>Klienten <code>EnduroClient.jar</code> skall läggas i samma mapp som GUIt</p>
 			</div> <!-- end of .entry -->
 		</div> <!-- end of .subsection -->
 		
@@ -50,6 +52,8 @@
 				</p>
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
+				<h4>Serverkonfiguration</h4>
+				<p>Servern startas med ett argument, portnummer. Klientdelen startas med tre argument, IP till servern, port att ansluta till samt en sträng "Start" om det är starttider som skall skickas eller "Goal" om det är måltider</p>
 			</div>
 
 			<div class="entry">
@@ -135,6 +139,13 @@
 					.<br />
 					.<br />
 				</code>
+			</div>
+
+			<div class="entry">
+				<a name="server_client"></a>
+				<h3>Server och klient</h3>
+
+				<p>För att föra över tider med hjälp av klienten så krävs det att servern kör. När klientprogrammet körs med sina argument kommer den automatiskt koppla upp sig till servern och skicka över all data som finns sparad från GUI:t till en fil på serversidan som kommer döpas till starttider.txt om argumentet "Start" angets eller maltider.txt om argumentet "Goal" angets.</p>
 			</div>
 
 			<div class="entry">
