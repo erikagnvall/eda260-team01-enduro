@@ -39,6 +39,9 @@ Filstrukturen innehåller följande mappar:
 	 		   
 /UISpec4J
 	- Innehåller .jar-filer för GUI-test
-
+	
+/build.xml
+	- Denna fil skapar release.tar och SourceCodeRelease.tar
+	
 Vidare ligger de filer som systemet producerar i samma mapp som denna readme
 
