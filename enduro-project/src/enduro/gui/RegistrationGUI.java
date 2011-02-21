@@ -39,7 +39,7 @@ public class RegistrationGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
-		final RegistrationTextField registrationTextField;
+		RegistrationTextField registrationTextField;
 		if (args[0].equals("true")){
 			registrationTextField = new RegistrationTextField(font,
 					registrationTextArea, storedTime, args);
@@ -63,11 +63,7 @@ public class RegistrationGUI extends JFrame {
 		add(BorderLayout.NORTH, northPanel);
 
 		add(BorderLayout.CENTER, registrationTextArea);
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent ev) {
-				registrationTextField.closeConnection();
-			}
-		});
+		
 	}
 
 	/** Main method. */

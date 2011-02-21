@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -65,13 +66,19 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;
 		addActionListener(this);
-		client = new EnduroClient(args[1], Integer.parseInt(args[2]), args[3]);
-		networkMode = true;
-		try {
-			client.registerFile();
-		} catch (IOException e) {
+		try{
+			client = new EnduroClient(args[1], Integer.parseInt(args[2]), args[3]);
+			networkMode = true;
+			try {
+				client.registerFile();
+			} catch (IOException e) {
+				
+			}
+		}
+		catch(Exception e){
 			
 		}
+		
 		
 	}
 
