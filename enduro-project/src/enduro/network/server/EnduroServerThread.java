@@ -100,7 +100,7 @@ public class EnduroServerThread extends Thread {
 		try {
 			outputFileScanner = new Scanner(output);
 			while (outputFileScanner.hasNext()) {
-				String existing = outputFileScanner.next();
+				String existing = outputFileScanner.nextLine();
 				if (existing.equals(s))
 					found = true;
 			}
