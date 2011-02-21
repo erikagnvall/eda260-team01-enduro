@@ -258,7 +258,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[12]);
 		assertEquals(
-				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
+				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ;",
 				lines[13]);
 	}
 
@@ -309,7 +309,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[12]);
 		assertEquals(
-				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
+				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ;",
 				lines[13]);
 	}
 
@@ -360,7 +360,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[12]);
 		assertEquals(
-				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
+				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ;",
 				lines[13]);
 	}
 
@@ -386,7 +386,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[1]);
 		assertEquals(
-				"1; Anders Asson; FMCK Astad; ATM; 2; 01.23.34; 00.30.00; 00.53.34; ; 12.00.00; 12.30.00; 13.23.34; 13.23.34",
+				"1; Anders Asson; FMCK Astad; ATM; 2; 01.23.34; 00.30.00; 00.53.34; ; 12.00.00; 12.30.00; 13.23.34;",
 				lines[2]);
 		assertEquals("JUNIOR", lines[3]);
 		assertEquals(
@@ -413,7 +413,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[12]);
 		assertEquals(
-				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
+				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ;",
 				lines[13]);
 	}
 
@@ -466,7 +466,7 @@ public class InputHandlerTest {
 				"StartNr; Namn; Klubb; MC; #Varv; TotalTid; Varv1; Varv2; Varv3; Start; Varvning1; Varvning2; Mål",
 				lines[12]);
 		assertEquals(
-				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ; 13.16.07",
+				"210; ; ; ; 1; 00.16.07; 00.16.07; ; ; 13.00.00; 13.16.07; ;",
 				lines[13]);
 	}
 
