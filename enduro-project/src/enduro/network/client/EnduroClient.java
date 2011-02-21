@@ -34,17 +34,14 @@ public class EnduroClient {
 		try {
 			scan = new Scanner(new FileInputStream("./times.txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			clientSocket = new Socket(address, port);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		out.println(type);
