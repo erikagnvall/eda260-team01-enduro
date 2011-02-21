@@ -47,9 +47,16 @@
 				sorteras programmet med utgång från indatafilen <code>list.txt</code>, samma sak gäller
 				om indatainformation saknas i konfigurationsfilen.</p>
 				<p>Den tid som bedöms som en omöjlig tid är fördefinierad till 15 minuter, men kan ändras i konfigfilen.</p>
-				<p>I konfigfilen anges bland annat tidsgränsen för en tävling samt antal varv som en förare förväntas uppnå.</p>
+				<p>I konfigfilen ska användaren ange vilken typ av tävling som ska köras, varvlopp eller etapplopp.</p>
+				<p>I konfigfilen anges också tidsgränsen för en tävling samt antal varv eller antal etapper som en förare förväntas uppnå.</p>
 				<p>Om en förare har för många varv anges att han har för många måltider. Om en förare har för kort tid anses han inte ha fullföljt tävlingen och får därmed ingen placering.
 				</p>
+				<p>Varje indatafil (namn, start och måltidsfiler) ska skrivas in i konfigurationsfilen enligt följande mönster:</p>
+					<code>name:acceptanceTest/test/namnfil.txt</code>
+				<p>name kan bytas ut mot start och finish för start- resp. målfiler. Start och målfiler har även möjligheten att sätta ett s.k. etappvärde, enl.</p>
+					<code>start:1:acceptanceTest/test/maltid1.txt</code>
+				<p>Detta säger till programmet vilken etapp som avses. Det är inte en bra idé att använda denna funktionalitet med varvlopp eller andra lopp än etapplopp.</p>
+				<p>För nuvarande accepteras endast en namnfil.</p>
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
 				<h4>Serverkonfiguration</h4>
@@ -57,48 +64,8 @@
 				<b>Exempel:</b><br />
 				<code>java -jar EnduroClient.jar 1.3.3.7 1337 Start</code></p>
 			</div>
-
-			<div class="entry">
-				<a name="listfil"></a>
-				<h3>Listfil</h3>
-				<p>Programmet behöver en listfil som behöver innehålla följande information i
-				samma ordning som den visas nedan.</p>
-
-				<b>Exempel:</b><br />
-				<code>
-					namnfil.txt<br />
-					starttidsFil.txt<br />
-					målfil1.txt<br />
-					målfil2.txt<br />
-					.<br />
-					.<br />
-					.<br />
-				</code>
+			
 				
-				<p>Det finns ett alternativt sätt att skriva den fil om man behöver ett variabelt antal filer<br />
-				(och inte bara en variabel mängd målfiler).</p>
-				<p>Då börjar man en listfil med @Advanced följt av name:FIL, start:FIL alt. finish:FIL</p>
-				<b>Exempel:</b><br />
-				<code>
-					@Advanced<br />
-					name:namnfil.txt<br />
-					start:starttidsFil1.txt<br />
-					finish:målfil1.txt<br />
-					finish:målfil2.txt<br />
-					start:starttidsFil2.txt<br />
-					.<br />
-					.<br />
-					.<br />
-				</code>
-
-				<p>På första raden återfinns filen med namn på förarna, på rad två återfinns filen för
-				starttider följt av  en eller flera målfiler på separata rader. Dessa slås sedan
-				ihop till en resultatsfil som läggs i samma mapp som programmet. Namnet på filen kan
-				väljas i konfigurationsfilen.</p>
-				
-				<p>Samtliga filer som skall läsas in skall beskrivas i listfilen med sökvägarna relativt
-				till sorteringsprogrammet.</p>
-			</div>
 			
 			<div class="entry">
 				<a name="timefil"></a>
@@ -117,6 +84,7 @@
 					.<br />
 					.<br />
 				</code>
+				<p>Rader som inte matchar detta format accepteras inte av programmet och skrivs ut i en loggfil</p>
 			</div>
 
 			<div class="entry">
@@ -141,6 +109,7 @@
 					.<br />
 					.<br />
 				</code>
+				<p>Rader som inte matchar detta format accepteras inte av programmet och skrivs ut i en loggfil</p>
 			</div>
 
 			<div class="entry">
