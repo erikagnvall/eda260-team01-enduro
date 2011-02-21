@@ -68,7 +68,7 @@
 	</target>
 
 	<target name="release" depends="makeGUI">
-		<delete dir="release" />
+
 		<mkdir dir="release" />
 		<move file="Backend.jar" todir="release" />
 		<move file="GUI.jar" todir="release" />
@@ -82,10 +82,7 @@
 		<copy todir="release/testfiles">
 			<fileset dir="acceptanceTest/result/varvlopptid"/>
 		</copy>
-		<copy file="acceptanceTest/result/release/list.txt" todir="release"/>
-		<copy file="acceptanceTest/result/release/starttider.txt" todir="release"/>
-		<copy file="acceptanceTest/result/release/times.txt" todir="release"/>
-		<copy file="config.conf" todir="release"/>
+
 		<copy file="acceptanceTest/result/release/config.conf" todir="release"/>
 		<tar destfile="release.tar" basedir="release"/>
 
