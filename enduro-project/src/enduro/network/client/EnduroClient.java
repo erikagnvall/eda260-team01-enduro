@@ -12,16 +12,19 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 /**
- * A Java client, mostly self-written.
- * 
- * @author Rick
+ * A simple client for sending information linewise from a file to a server
  * 
  */
 public class EnduroClient {
 	Scanner scan;
 	Socket clientSocket;
 	PrintWriter out;
-
+/**
+ * Sets up the client
+ * @param address String containing IP address of server
+ * @param port int port number to connect too
+ * @param type String stating if the client is sending Start or Goal data
+ */
 	public EnduroClient(String address, int port, String type) {
 		try {
 			scan = new Scanner(new FileInputStream("./times.txt"));
@@ -42,7 +45,10 @@ public class EnduroClient {
 		out.println(type);
 		System.out.println("Client is handling " + type);
 	}
-
+/**
+ * Runs the client until quit command is given
+ * @throws IOException
+ */
 	public void run() throws IOException {
 		BufferedReader terminalScan = new BufferedReader(new InputStreamReader(
 				System.in));
@@ -68,7 +74,10 @@ public class EnduroClient {
 		out.close();
 		clientSocket.close();
 	}
-	
+	/**
+	 * Main method to start the client
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// Scanner terminalScan = new Scanner(System.in);
 		if (args.length != 3) {
