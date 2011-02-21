@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.swing.JOptionPane;
+
 import enduro.racer.comparators.RunnerCheckTotalTimeMax;
 import enduro.racer.comparators.RunnerLapsComparator;
 import enduro.racer.comparators.RunnerNumberComparator;
@@ -146,8 +148,12 @@ public class InputHandler {
 			out.append(sorter.print());
 		}
 		
-		if(error.length() > 0)
+		if(error.length() != 0) {
+			
+			Log.log(error);
+			
 			out.append("\n\n\nerror: "+error+" \n");
+		}
 		return out.toString();
 	}
 	
