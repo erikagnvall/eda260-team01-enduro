@@ -29,6 +29,11 @@
 		<copy todir="SourceCodeRelease/docs/">
 			<fileset dir="docs" includes="**/*.*" />
 		</copy>
+		
+		<mkdir dir="SourceCodeRelease/UISpec4J" />
+				<copy todir="SourceCodeRelease/UISpec4J/">
+					<fileset dir="UISpec4J" includes="**/*.*" />
+				</copy>
 
 		<copy todir="SourceCodeRelease/">
 			<fileset dir="" includes="*.xml" />
@@ -40,7 +45,7 @@
 					<fileset dir="" includes="*.txt" />
 				</copy>
 
-
+		<move file="SourceCodeRelease/technicalDoc/readme" todir="SourceCodeRelease" />
 
 
 		<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
