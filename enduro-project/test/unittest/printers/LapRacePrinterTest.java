@@ -59,7 +59,7 @@ public class LapRacePrinterTest {
 		racer.addFinishTime(new Time("13.16.07"), 1);
 		racer.addFinishTime(new Time("13.30.07"), 1);
 		
-		assertEquals("103; Erik Esson; Estad MCK; ETM; 4; 01.30.07; 00.15.00; 00.16.00; 00.45.07; 12.00.00; 12.15.00; 12.31.00; 13.30.07; för många varv 13.30.07", printer.print(racer, null));
+		assertEquals("103; Erik Esson; Estad MCK; ETM; 4; 01.30.07; 00.15.00; 00.16.00; 00.45.07; 12.00.00; 12.15.00; 12.31.00; ; för många varv 13.30.07", printer.print(racer, null));
 	}
 	@Test public void testMissingFinishTime() {
 		racer = new Racer(new String("103; Erik Esson; Estad MCK; ETM").split("; "));
