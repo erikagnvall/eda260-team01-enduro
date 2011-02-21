@@ -19,17 +19,25 @@
 15: Felhantering varvlopp
 16: Hantera registreringar med otillåtna startnummer
 17: Variabelt antal uppgifter om förarna
+
+
+nya stories sedan förra releasen:
 18: Sorterad resultatlista
 19: Etapplopp
+21: Felhantering för Etapp
 23: Sorterad resultatlista
 24: Masstart
 25: stöd för konfiguration
+1337л Integrera konfiguration
+26: Teknisk dokumentation
 27: Serverlösning
 28: Integrera html-baserad resultatlista
 29: Html-resultat
 31: Teknisk dokumentation
 31b: Ny Tekn. dok. till Release 2
 32: Källkodsrelease 2
+33b: Robust program
+
 
 
 
