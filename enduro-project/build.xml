@@ -11,6 +11,9 @@
         <copy todir="SourceCodeRelease/technicalDoc">
             <fileset dir="technicalDoc" includes="*"/>
         </copy>
+    	<copy todir="SourceCodeRelease/technicalDoc/UML">
+    	            <fileset dir="technicalDoc/UML" includes="*"/>
+    	        </copy>
     	
 
     	<!--<copy file="build.xml" todir="SourceCodeRelease/" />-->
