@@ -7,14 +7,17 @@ import org.junit.Test;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
+import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.LapRacePrinter;
 
 public class LapRacePrinterTest {
 
 	private Racer racer;
-	private LapRacePrinter printer = new LapRacePrinter();
+	private LapRacePrinter printer;
 	
 	@Before public void doBefore() {
+		ConfigParser.delete();
+		printer = new LapRacePrinter();
 		printer.setHeaderInformation(new String[]{"startNr", "Namn", "Klubb", "annat"});
 	}
 	

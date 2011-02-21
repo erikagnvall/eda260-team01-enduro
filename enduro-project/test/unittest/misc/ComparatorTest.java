@@ -78,8 +78,8 @@ public class ComparatorTest {
 	}
 	
 	@Test public void testRunnerLapseComparatorCompareDiff() {
-		assertTrue(lapse.compare(runner1, runner2)==-1);
-		assertTrue(lapse.compare(runner2, runner1)==1);
+		assertTrue(lapse.compare(runner1, runner2)==1);
+		assertTrue(lapse.compare(runner2, runner1)==-1);
 	}
 
 	/*
