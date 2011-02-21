@@ -60,7 +60,14 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printNumStages(Racer r, StringBuilder out) {
-		out.append(r.finishTimes.size());
+		int stages = 0;
+		if(r.finishTimes.get(1).size() > 0 && r.startTimes.get(1).size() > 0)
+			stages++;
+		for(int i = 2; i <= this.stages; i++) {
+			if(r.finishTimes.containsKey(i) && r.startTimes.containsKey(i))
+				stages++;
+		}
+		out.append(stages);
 		out.append("; ");
 	}
 
