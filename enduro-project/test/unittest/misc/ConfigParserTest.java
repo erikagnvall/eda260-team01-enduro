@@ -29,7 +29,7 @@ public class ConfigParserTest {
 	@Test
 	public void testGuiConfig(){
 		String[] s = ConfigParser.getInstance("config.conf").getClientSetup();
-		assertEquals("true", s[0]);
+		assertEquals("false", s[0]);
 		assertEquals("127.0.0.1", s[1]);
 		assertEquals("44444", s[2]);
 		assertEquals("Start", s[3]);
