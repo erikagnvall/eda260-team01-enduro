@@ -17,7 +17,7 @@ public class StageRacePrinterTest {
 
 	@Before
 	public void doBefore() {
-		ConfigParser.getInstance().overLoadValue("stages", "3");
+		ConfigParser.getInstance().overLoadValue("stages", "2");
 		printer = new StageRacePrinter();
 		printer.setHeaderInformation(new String[] { "StartNr", "Namn", "Klubb",
 				"MC" });
@@ -27,7 +27,7 @@ public class StageRacePrinterTest {
 	@Test
 	public void assertTestStageAreCorrect() {
 		// int i = (ConfigParser.getInstance().getIntConf("stages"));
-		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 3);
+		assertTrue(ConfigParser.getInstance().getIntConf("stages") == 2);
 	}
 
 	@Test

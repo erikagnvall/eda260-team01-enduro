@@ -1,6 +1,7 @@
 package enduro.racer.printer;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -16,9 +17,6 @@ public class StageRacePrinter implements RacerPrinter {
 	private int stages = ConfigParser.getInstance().getIntConf("stages");
 	private int extraRunnerInformation;
 
-	/**
-	 * returns a string that contains stage race info. 
-	 */
 	public String print(Racer r, HashMap<String, String> extraInformation) {
 		
 		System.out.println(r.finishTimes.toString());
@@ -39,7 +37,11 @@ public class StageRacePrinter implements RacerPrinter {
 		
 		printStartAndFinish(r, out, stages, errorTrail);
 		
-		out.append(errorTrail.toString());
+		if(errorTrail.length() > 0) {
+			out.append("; ");
+			out.append(errorTrail.toString());
+		}
+		
 		
 		return out.toString();
 	}
@@ -65,13 +67,29 @@ public class StageRacePrinter implements RacerPrinter {
 
 	private void printStartAndFinish(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		
-		for(int stage:stages.keySet()) {
-			if(r.startTimes.get(stage)!=null)
-				out.append(r.startTimes.get(stage).first());
+
+		/*
+		  || (stage == 1 && r.startTimes.get(1).size()==0)
+		  
+		 */
+		for(int stage=1; stage <= this.stages; stage++) {
+			if(r.startTimes.containsKey(stage))
+				if(stage == 1 && r.startTimes.get(1).size()==0)
+					out.append("Start?");
+				else
+					out.append(r.startTimes.get(stage).first());
+			else
+				out.append("Start?");
 			out.append("; ");
-			if(r.finishTimes.get(stage)!=null)
-				out.append(r.finishTimes.get(stage).first());
+			
+
+			if(r.finishTimes.containsKey(stage))
+				if(stage == 1 && r.finishTimes.get(1).size()==0)
+					out.append("Slut?");
+				else
+					out.append(r.finishTimes.get(stage).first());
+			else
+				out.append("Slut?");
 			out.append("; ");
 		}
 		out.delete(out.length()-2, out.length());
@@ -104,21 +122,52 @@ public class StageRacePrinter implements RacerPrinter {
 
 	private void printStages(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
-		for(int stage:stages.keySet()) {
+		
+		StringBuilder startErr = new StringBuilder();
+		StringBuilder finishErr = new StringBuilder();
+		
+		
+		
+		for(int stage=1; stage <= this.stages; stage++) {
 			if(stages.get(stage) != null)
 				out.append(stages.get(stage));
+			
+			if(r.finishTimes.containsKey(stage))
+				if(r.finishTimes.get(stage).size() > 1) {
+					Iterator<Time> t = r.finishTimes.get(stage).iterator();
+					t.next();
+					while(t.hasNext())
+						finishErr.append("Etapp" + stage + " " + t.next().toString());
+				}
+			
+			if(r.startTimes.containsKey(stage))
+				if(r.startTimes.get(stage).size() > 1) {
+					Iterator<Time> t = r.startTimes.get(stage).iterator();
+					t.next();
+					while(t.hasNext())
+						startErr.append("Etapp" + stage + " " + t.next().toString());
+				}
+			
 			out.append("; ");
 		}
+		
+		if(startErr.length() > 0)
+			errorTrail.append("Flera Startttider " + startErr.toString());
+		if(finishErr.length() > 0)
+			errorTrail.append("Flera Sluttider " + finishErr.toString());
+		
 	}
 
 	private void printTotalTime(Racer r, StringBuilder out, TreeMap<Integer, Time> stages,
 			StringBuilder errorTrail) {
 		Time totalTime = new Time(0, 0, 0);
 		for(int stage:stages.keySet()) {
-			if(stages.get(stage) != null)
-				totalTime.increment(stages.get(stage));
+			totalTime.increment(stages.get(stage));
 		}
-		out.append(totalTime.toString());
+		if(totalTime.equals(new Time("00.00.00")))
+			out.append("--.--.--");
+		else
+			out.append(totalTime.toString());
 		out.append("; ");
 	}
 
@@ -131,9 +180,10 @@ public class StageRacePrinter implements RacerPrinter {
 		
 		for(int stage: stagesList) {
 			if(r.startTimes.containsKey(stage) && r.finishTimes.containsKey(stage)) {
-				res.put(stage, r.startTimes.get(stage).first().getTotalTime(r.finishTimes.get(stage).last()));
-			} else {
-				res.put(stage, null);
+				if(stage == 1)
+					if(!(r.startTimes.get(1).size() > 0 && r.finishTimes.get(1).size() > 0))
+						continue;
+				res.put(stage, r.startTimes.get(stage).first().getTotalTime(r.finishTimes.get(stage).first()));
 			}
 		}
 		return res;
