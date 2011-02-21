@@ -1,6 +1,6 @@
 Filstrukturen innehåller följande mappar:
 
-/source
+/src
 	- Innehåller källkoden för programmet
 
 /test
