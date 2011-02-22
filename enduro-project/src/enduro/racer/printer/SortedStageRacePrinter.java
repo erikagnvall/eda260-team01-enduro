@@ -1,7 +1,6 @@
 package enduro.racer.printer;
 
 import java.util.HashMap;
-import java.util.TreeSet;
 
 import enduro.racer.Racer;
 import enduro.racer.Time;
