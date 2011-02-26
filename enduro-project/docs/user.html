@@ -36,19 +36,37 @@
 				<p>Starta det grafiska gränssnittet genom att dubbelklicka på filen GUI.jar. Då öppnas ett fönster som ser ut som på bilden nedan. Överst till vänster är inmatningsfältet (1) och till höger om detta är registreringsknappen (2). Nedanför dessa två är utdatafältet (3) där det man matar in i inmatningsfältet dycker upp.</p>
 				<img src="http://img13.imageshack.us/img13/306/registrationc.png" width="600" alt="" />
 				<h4>Singelregistrering</h4>
-				<p>För att registrera en förare, skriv in förarnummer i registreringsrutan och tryck på Registrera-knappen eller Enter-tangenten på ditt tangentbord. Nu dyker förarnummer med tillhörande tid upp i utdatarutan.</p>
+				<p>För att registrera en förare, skriv in förarnummer i registreringsrutan och tryck på Registrera-knappen 
+				eller Enter-tangenten på ditt tangentbord. Nu dyker förarnummer med tillhörande tid upp i 
+				utdatarutan.</p>
 				<h4>Masstart</h4>
-				<p>För att registrera flera förare samtidigt, så kallad masstart, skriv in första förarens nummer, följt av bindestreck och sedan sista förarens nummer. Exempelvis '1-15' startar förarna med nummer mellan 1 och 15 när Registreringsknappen trycks ned. Om man vill starta förare med blandade startnummer, skriver man in dessa skiljt med kommatecken. Man kan även blanda dessa två metoder och skriva t.ex. 1,3,6-10 för att starta de förare med nummer 1, 3 och 6-10.</p>
+				<p>För att registrera flera förare samtidigt, så kallad masstart, skriv in första förarens 
+				nummer, följt av bindestreck och sedan sista förarens nummer. Exempelvis '1-15' startar 
+				förarna med nummer mellan 1 och 15 när Registreringsknappen trycks ned. Om man vill starta 
+				förare med blandade startnummer, skriver man in dessa skiljt med kommatecken. Man kan även 
+				blanda dessa två metoder och skriva t.ex. '1,3,6-10' för att starta de förare med nummer 1, 3 
+				och 6-10.</p>
 				<h4>Förregistrerings av tid</h4>
-				<p>Vid förregistrering, trycks registreringsknappen ned och aktuell tid visas till höger om Registreringsknappen. För att sedan associera den sparade tiden med ett förarnummer, skrivs förarnumret in i registreringsrutan och Registreringsknappen trycks ned. Då dyker förarnumret och tiden upp i utdatarutan. Om man råkat förregistrera av misstag, trycker man helt enkelt på Avbryt-knappen och den förregistrerade tiden försvinner.</p>
+				<p>Vid förregistrering, trycks registreringsknappen ned och aktuell tid visas till höger om 
+				Registreringsknappen. För att sedan associera den sparade tiden med ett förarnummer, skrivs 
+				förarnumret in i registreringsrutan och Registreringsknappen trycks ned. Då dyker förarnumret 
+				och tiden upp i utdatarutan. Om man råkat förregistrera av misstag, trycker man helt enkelt 
+				på Avbryt-knappen och den förregistrerade tiden försvinner.</p>
 				<h4>Återställning av icke sparad tid</h4>
-				<p>Om en förregistrerad tid har angivits men inte sparats när programmet stängs ner, kommer denna tid att finnas tillgänglig nästa gång programmet startar. 
+				<p>Om en förregistrerad tid har angivits men inte sparats när programmet stängs ner, kommer denna 
+				tid att finnas tillgänglig nästa gång programmet startar. 
 				<h4>Felaktig nummerinmatning</h4>
-				<p>Om en felaktig inmatning anges, till exempel "1,-3", sparas tiden på samma sätt som vid förregistrering av tid. En ny inmatning görs sedan i registreringsrutan för att spara den rätta registreringen.</p>
+				<p>Om en felaktig inmatning anges, till exempel '1,-3', sparas tiden på samma sätt som vid 
+				förregistrering av tid. En ny inmatning görs sedan i registreringsrutan för att spara den rätta 
+				registreringen.</p>
 				<h4>Avstängning av gränssnittet</h4>
-				<p>Programmet avslutas enkelt genom att trycka på krysset i hörnet av fönstret. Tiderna sparas kontinuerligt medan programmet kör och ligger nu i en fil med namn times.txt i samma mapp som programmet.</p>
+				<p>Programmet avslutas enkelt genom att trycka på krysset i hörnet av fönstret. Tiderna sparas 
+				kontinuerligt medan programmet kör och ligger nu i en fil med namn times.txt i samma mapp som 
+				programmet.</p>
 				<h4> Säkerhetsfunktioner </h4>
-				<p> Programmet är utformat så att inga tider skall gå förlorade om programmet stängs av på ett felaktigt sätt under en tävling. Felaktiga inmatningar skall inte heller påverka på ett sådant sätt att tider kan förloras</p>
+				<p> Programmet är utformat så att inga tider skall gå förlorade om programmet stängs av på ett 
+				felaktigt sätt under en tävling. Felaktiga inmatningar skall inte heller påverka på ett sådant 
+				sätt att tider kan förloras</p>
 			</div> <!-- end of .entry -->
 			
 		
@@ -59,15 +77,19 @@
 			<div class="entry">
 				<a name="normal_start"></a>
 				<h3> Vanlig start </h3>
-				<p>Förare nummer 5 skall starta, en femma skrivs in i textfältet och när starten går trycker man registrera för att registrera den aktuella starttiden.</p>
+				<p>Förare nummer 5 skall starta, en femma skrivs in i textfältet och när starten går trycker man 
+				registrera för att registrera den aktuella starttiden.</p>
 			</div> <!-- end of .entry -->
 			<div class="entry">
 				<a name="masstart"></a>
 				<h3> Masstart</h3>
 				<center><img src="http://img46.imageshack.us/img46/8224/masstart.png" /></center>
-				<p><b>Exempel 1:</b> Förare 1-50 ska starta samtidigt. Då anger man "1-50" i textfältet och trycker registrera för att ge alla samma starttid.</p>
-				<p><b>Exempel 2:</b> Förarna 1,4,7,9 ska starta samtidigt. Då anger man 1,4,7,9 i textfältet och trycker registrera för att ge alla samma starttid.</p>
-				<p><b>Exempel 3:</b> Förarna 1-10 och 15-20 ska starta samtidigt. Då anger man 1-10,15-20 i textfälted och trycker registrera för att ge alla samma starttid.</p>
+				<p><b>Exempel 1:</b> Förare 1-50 ska starta samtidigt. Då anger man '1-50' i textfältet och 
+				trycker registrera för att ge alla samma starttid.</p>
+				<p><b>Exempel 2:</b> Förarna 1,4,7,9 ska starta samtidigt. Då anger man '1,4,7,9' i textfältet 
+				och trycker registrera för att ge alla samma starttid.</p>
+				<p><b>Exempel 3:</b> Förarna 1-10 och 15-20 ska starta samtidigt. Då anger man '1-10,15-20' i 
+				textfälted och trycker registrera för att ge alla samma starttid.</p>
 			</div> <!-- end of .entry -->
 			<div class="entry">
 				<a name="normal_goal"></a>
@@ -78,9 +100,13 @@
 				<a name="smutsig"></a>
 				<h3>Smutsig nummerplåt</h3>
 				<center><img src="http://img831.imageshack.us/img831/1272/nummerplat.png" /></center>
-				<p> Förare kommer in med smutsig nummerplåt lämna textfältet blankt och tryck registera. Ange förarens nummer i efterhand genom att skriva in det i textfältet och trycka reistrera, då kopplas den förregisterade tiden med förarnumret.</p>
+				<p> Förare kommer in med smutsig nummerplåt lämna textfältet blankt och tryck registera. Ange 
+				förarens nummer i efterhand genom att skriva in det i textfältet och trycka reistrera, då kopplas
+				 den förregisterade tiden med förarnumret.</p>
 				<h4> Felaktig registrering </h4>
-				<p> Vid en stressig tävling råkar en tid registreras med ett tomt nummerfält vilket innebär att systemet kommer låsa den tid som registrerats. När detta sker trycker man avbryt och systemet är redo att registrera nya tider igen.</p>
+				<p> Vid en stressig tävling råkar en tid registreras med ett tomt nummerfält vilket innebär att 
+				systemet kommer låsa den tid som registrerats. När detta sker trycker man avbryt och systemet är
+				 redo att registrera nya tider igen.</p>
 			</div> <!-- end of .entry -->
 				
 			
