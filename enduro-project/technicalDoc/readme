@@ -49,5 +49,8 @@ Filstrukturen innehåller följande mappar:
 /result.html
 	-Resultat-filen i html-format
 	
+/result.txt
+	-Resultat-filen i txt-format
+	
 Vidare ligger de filer som systemet producerar i samma mapp som denna readme
 
