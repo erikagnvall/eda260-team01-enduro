@@ -38,9 +38,11 @@
 
 -=!NYA STORIES!=-
 30: Integrera med Klient/Server-lösning
+1338: producera båda resultatfilerna
 1341: Kunna hantera både mål och startfiler
 
 -=!SKILLNADER MOT RELEASE 2!=-
+* 1338: Innan var man tvungen att välja om man ville ge ut en sorterad eller "debug"-lista. Nu ger programmet ut båda filerna automatiskt.
 * 1341: Nu används inte längre times.txt som enda tidsfil för GUIt, detta innebär vissa förändringar i hur GUIt byggs
 då det nu behöver en variabel för filnamn vid namn fileName. Funktionen för att kolla om GUIt skall köra i serverläge
 kollas numera i RegistrationTextField istället för RegistrationGUI.
