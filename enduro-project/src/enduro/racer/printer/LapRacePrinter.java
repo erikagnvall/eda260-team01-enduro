@@ -184,7 +184,7 @@ public class LapRacePrinter implements RacerPrinter {
 				before = next;
 			}
 			if(numLaps < r.finishTimes.get(1).size()) {
-				errorTrail.append("för många varv ");
+				errorTrail.append("För många varv ");
 				for(; i < r.finishTimes.get(1).size(); i++) {
 					errorTrail.append(itr.next());
 					errorTrail.append(" ");
