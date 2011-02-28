@@ -71,6 +71,8 @@ public class LapRacePrinter implements RacerPrinter {
 		if(errorTrail.length() > 0) {
 			out.append("; ");
 			out.append(errorTrail.toString());
+			//Only delete trailing ';' and ' ', not other chars.
+			if(out.charAt(out.length()-1) == ';' || out.charAt(out.length()-1) == ' ')
 			out.delete(out.length()-1, out.length());
 		}
 		
@@ -78,8 +80,6 @@ public class LapRacePrinter implements RacerPrinter {
 	}
 	
 	/**
-	 * this function prints the last finish time. naive and simple solution. risk of
-	 * printing same values multiple times. should be fixed.
 	 * 
 	 * @param r the racer that is printed
 	 * @param out the stringbuilder class that will in the end supply the result.
@@ -88,7 +88,9 @@ public class LapRacePrinter implements RacerPrinter {
 	private void printGoal(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		if(r.finishTimes.get(1).size() == numLaps) {
 			out.append(r.finishTimes.get(1).last());
-//			out.append(";");
+		} else if(r.finishTimes.get(1).size() < numLaps){
+			out.append("--.--.--");
+			errorTrail.append("Slut?");
 		}
 	}
 
