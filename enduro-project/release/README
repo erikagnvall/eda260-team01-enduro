@@ -70,12 +70,4 @@ Manualer ligger i mappen som heter "docs", user.html avser manual
 för GUI, admin.html avser manual för sorteringsprogrammet.
 
 
-Följande filer och mappar finns i tar-filen
-/docs - innehåller dokument
-/testfiles - innehåller exempelfiler
--Backend.jar - producerar en sorterad lista
--config.conf - innehåller konfigurationer
--EnduroClient.jar - clienten
--EduroServer.jar - servern
--GUI.jar - GUI:t
--README - innehåller information om filer och mappar som finns i tar-filen
+

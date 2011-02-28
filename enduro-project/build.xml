@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="pvg.makejar" default="technicalDoc" basedir=".">
+<project name="pvg.makejar" default="makeCompetition" basedir=".">
+	
+	<target name ="makeCompetition" description="creates files for a competition!" depends="technicalDoc">
+
+			<delete dir = "competition" />
+			<mkdir dir="competition" />
+			
+			<copy todir="competition">
+				<fileset dir="filesForCompetition"/>
+			</copy>
+			
+			<copy file="release/Backend.jar" todir="competition" />
+			<copy file="release/GUI.jar" todir="competition/finish" />
+			<copy file="release/GUI.jar" todir="competition/start" />
+		</target>
+	
 	<target name="technicalDoc" depends="release">
 		<delete dir="SourceCodeRelease" />
 		<delete file="SourceCodeRelease.tar" />
