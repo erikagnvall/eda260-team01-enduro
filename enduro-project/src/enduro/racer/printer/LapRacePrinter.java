@@ -86,7 +86,7 @@ public class LapRacePrinter implements RacerPrinter {
 	 * @param errorTrail the stringbuilder class that will summarize the errors collected.
 	 */
 	private void printGoal(Racer r, StringBuilder out, StringBuilder errorTrail) {
-		if(r.finishTimes.get(1).size() == numLaps && r.startTimes.get(1).size() > 0) {
+		if(r.finishTimes.get(1).size() == numLaps) {
 			out.append(r.finishTimes.get(1).last());
 //			out.append(";");
 		}
@@ -149,7 +149,7 @@ public class LapRacePrinter implements RacerPrinter {
 					errorTrail.append(itr.next() + " ");
 			}
 		} else {
-			out.append("--:--:--; ");
+			out.append("--.--.--; ");
 			errorTrail.append("Start? ");
 		}
 	}
@@ -195,7 +195,7 @@ public class LapRacePrinter implements RacerPrinter {
 			}
 		} else {
 			for(; i < numLaps; i++)
-				out.append("; ");
+				out.append("--.--.--; ");
 		}
 		
 		
@@ -209,14 +209,14 @@ public class LapRacePrinter implements RacerPrinter {
 	 */
 	private void printTotalTime(Racer r, StringBuilder out, StringBuilder errorTrail) {
 		if(r.startTimes.get(1).size() > 0) {
-			if(r.finishTimes.get(1).size() > 0) {
+			if(r.finishTimes.get(1).size() > 0 && r.startTimes.get(1).size() > 0) {
 				out.append(r.startTimes.get(1).first().getTotalTime(r.finishTimes.get(1).last()));
 				out.append("; ");
 			} else {
-				out.append("--:--:--; ");
+				out.append("--.--.--; ");
 			}
 		} else {
-			out.append("--:--:--; ");
+			out.append("--.--.--; ");
 		}
 	}
 
