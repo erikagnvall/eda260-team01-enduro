@@ -1,4 +1,0 @@
-acceptanceTest/result/varvlopptid/namnfil.txt
-acceptanceTest/result/varvlopptid/starttider.txt
-acceptanceTest/result/varvlopptid/maltider.txt
-
