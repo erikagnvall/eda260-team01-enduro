@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -30,7 +31,7 @@ public class EnduroClient {
 	 * @param type
 	 *            String stating if the client is sending Start or Goal data
 	 */
-	public EnduroClient(String address, int port, String type) {
+	public EnduroClient(String address, int port, String type) throws ConnectException {
 		try {
 			scan = new Scanner(new FileInputStream("./times.txt"));
 		} catch (FileNotFoundException e) {
@@ -40,9 +41,9 @@ public class EnduroClient {
 			clientSocket = new Socket(address, port);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 		} catch (UnknownHostException e1) {
-			e1.printStackTrace();
+			System.out.println("Server not found, running without network support");
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println("Server not found, running without network support");
 		}
 		out.println(type);
 		System.out.println("Client is handling " + type);
@@ -111,25 +112,25 @@ public class EnduroClient {
 		}
 	}
 
-	/**
-	 * Main method to start the client
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// Scanner terminalScan = new Scanner(System.in);
-		if (args.length != 3) {
-			System.out
-					.println("Invalid arguments, must match \"IP port Start/Goal\"");
-			System.exit(-1);
-		}
-		EnduroClient client = new EnduroClient(args[0], Integer
-				.parseInt(args[1]), args[2]);
-		try {
-			client.run();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	/**
+//	 * Main method to start the client
+//	 * 
+//	 * @param args
+//	 */
+//	public static void main(String[] args) {
+//		// Scanner terminalScan = new Scanner(System.in);
+//		if (args.length != 3) {
+//			System.out
+//					.println("Invalid arguments, must match \"IP port Start/Goal\"");
+//			System.exit(-1);
+//		}
+//		EnduroClient client = new EnduroClient(args[0], Integer
+//				.parseInt(args[1]), args[2]);
+//		try {
+//			client.run();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

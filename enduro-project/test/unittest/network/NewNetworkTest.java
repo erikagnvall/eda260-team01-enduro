@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.ConnectException;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,7 +37,7 @@ public class NewNetworkTest {
 		str.reset();
 		System.setOut(str);
 	}
-	@Test public void connectAndDisconnect() {
+	@Test public void connectAndDisconnect() throws ConnectException {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
@@ -55,7 +56,7 @@ public class NewNetworkTest {
 		assertEquals("Goodbye!", lines[2]);
 	}
 	
-	@Test public void sendLine() {
+	@Test public void sendLine() throws ConnectException {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
