@@ -39,6 +39,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private UndoButton undo;
 	private EnduroClient client;
 	private boolean networkMode;
+	private String fileName;
 
 	/**
 	 * Creates a new RegistrationTextField with the specified Font and reference
@@ -59,27 +60,37 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		addActionListener(this);
 		networkMode = false;
 	}
-	public RegistrationTextField(Font font, RegistrationTextArea registrationTextArea, StoredTime storedTime, String[] args){
+
+	public RegistrationTextField(Font font,
+			RegistrationTextArea registrationTextArea, StoredTime storedTime,
+			String[] args) {
 		super(5);
 		setName("Input");
 		setFont(font);
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;
 		addActionListener(this);
-		try{
-			client = new EnduroClient(args[1], Integer.parseInt(args[2]), args[3]);
-			networkMode = true;
+		if(args[3].equals("Start"))
+			fileName = "starttider.txt";
+		else if(args[3].equals("Goal"))
+			fileName = "maltider.txt";
+		else
+			fileName = "times.txt";
+		if (args[0].equals("true")) {
 			try {
-				client.registerFile();
-			} catch (IOException e) {
-				
+				client = new EnduroClient(args[1], Integer.parseInt(args[2]),
+						args[3]);
+				networkMode = true;
+				try {
+					client.registerFile();
+				} catch (IOException e) {
+
+				}
+			} catch (Exception e) {
+
 			}
 		}
-		catch(Exception e){
-			
-		}
-		
-		
+
 	}
 
 	/**
@@ -149,7 +160,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			out.println(time);
 			out.close();
 			System.gc(); // run garbage collector, absolutely needed to be able
-						 // to delete the file on Windows
+			// to delete the file on Windows
 		} catch (IOException e) {
 
 		}
@@ -224,10 +235,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 
 	private void saveToFile(int number, Time t) {
 		try {
-			registration = new Registration("times.txt");
+			registration = new Registration(fileName);
 			registration.registerTime(number, t);
 			registration.close();
-			if(networkMode) client.registerLine(number+ "; " +t);
+			if (networkMode)
+				client.registerLine(number + "; " + t);
 		} catch (IOException e) {
 
 		}
@@ -264,10 +276,11 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	public void setRegretButton(UndoButton regret) {
 		this.undo = regret;
 	}
+
 	public void closeConnection() {
-		if(networkMode)
-		client.shutDown();
-		
+		if (networkMode)
+			client.shutDown();
+
 	}
 
 }

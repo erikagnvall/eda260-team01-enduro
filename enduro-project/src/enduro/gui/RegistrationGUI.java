@@ -40,14 +40,8 @@ public class RegistrationGUI extends JFrame {
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
 		RegistrationTextField registrationTextField;
-		if (args[0].equals("true")){
-			registrationTextField = new RegistrationTextField(font,
-					registrationTextArea, storedTime, args);
-		}
-		else{
-			registrationTextField = new RegistrationTextField(font,
-					registrationTextArea, storedTime);
-		}
+		registrationTextField = new RegistrationTextField(font,
+				registrationTextArea, storedTime, args);
 		UndoButton undo = new UndoButton("Avbryt", storedTime,
 				registrationTextField);
 		registrationTextField.setRegretButton(undo);
@@ -63,7 +57,7 @@ public class RegistrationGUI extends JFrame {
 		add(BorderLayout.NORTH, northPanel);
 
 		add(BorderLayout.CENTER, registrationTextArea);
-		
+
 	}
 
 	/** Main method. */
