@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import enduro.racer.comparators.RunnerNumberComparator;
 import enduro.racer.configuration.ConfigParser;
 import enduro.racer.printer.RacerPrinter;
 
@@ -58,6 +59,15 @@ public class RacerSorter {
 			}
 		}
 		return null;
+	}
+	
+	public String debugPrint() {
+		Comparator<Racer> savedComp = this.comp;
+		this.comp = new RunnerNumberComparator();
+		StringBuilder out = new StringBuilder();
+		out.append(this.print());
+		this.comp = savedComp;
+		return out.toString();
 	}
 	
 	/**
