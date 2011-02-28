@@ -75,6 +75,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			fileName = "maltider.txt";
 		else
 			fileName = "times.txt";
+		networkMode = false;
 		if (args[0].equals("true")) {
 			try {
 				client = new EnduroClient(args[1], Integer.parseInt(args[2]),
