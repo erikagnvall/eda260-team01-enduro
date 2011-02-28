@@ -1,10 +1,12 @@
 package unittest.network;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.ConnectException;
+import java.util.regex.Pattern;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,8 +54,10 @@ public class NewNetworkTest {
 		}*/
 		
 		assertEquals("Client is handling Start", lines[0]);
-		assertEquals("Client: quit", lines[1]);
-		assertEquals("Goodbye!", lines[2]);
+		assertTrue(Pattern.matches("(Client: quit)?(Goodbye!)?", lines[1]));
+		assertTrue(Pattern.matches("(Client: quit)?(Goodbye!)?", lines[2]));
+		//assertEquals("Client: quit", lines[1]);
+		//assertEquals("Goodbye!", lines[2]);
 	}
 	
 	@Test public void sendLine() throws ConnectException {
