@@ -1,5 +1,7 @@
 package enduro;
 
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -14,6 +16,13 @@ public class EnduroDialogs {
 	}
 	public static void showFailDialog(){
 		EnduroDialogs df = new EnduroDialogs();
+		if(System.getProperty("os.name").contains("Mac"))
+			try {
+				Runtime.getRuntime().exec("say \"It's a trap\"");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		JOptionPane.showMessageDialog(null, "Se debugResult.txt", "Sortering misslyckad!", 0, df.getItsATrap());
 	
 	}
