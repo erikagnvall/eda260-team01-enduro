@@ -65,8 +65,7 @@ public class RegistrationGUI extends JFrame implements WindowListener{
 	/** Main method. */
 	public static void main(String[] args) {
 		String[] arguments = ConfigParser.getInstance().getClientSetup();
-		RegistrationGUI gui = new RegistrationGUI(arguments);
-	
+		new RegistrationGUI(arguments);	
 	}
 
 	@Override

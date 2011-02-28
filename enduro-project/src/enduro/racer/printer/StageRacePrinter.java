@@ -16,8 +16,8 @@ public class StageRacePrinter implements RacerPrinter {
 	private String extraInformation = "";
 	private int stages = ConfigParser.getInstance().getIntConf("stages");
 	private int extraRunnerInformation;
-	private String[] specialStages = ConfigParser.getInstance().getStringConf("special").split(",");
-	private String[] multiplyers = ConfigParser.getInstance().getStringConf("multiply").split(",");
+//	private String[] specialStages = ConfigParser.getInstance().getStringConf("special").split(",");
+//	private String[] multiplyers = ConfigParser.getInstance().getStringConf("multiply").split(",");
 	
 
 	public String print(Racer r, HashMap<String, String> extraInformation) {

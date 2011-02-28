@@ -1,19 +1,10 @@
 package unittest.misc;
 
 import static org.junit.Assert.*;
-
-import org.junit.Before;
 import org.junit.Test;
-
 import enduro.racer.configuration.ConfigParser;
 
-
 public class ConfigParserTest {
-	
-	@Before
-	public void setUp(){
-		
-	}
 	
 	@Test
 	public void testSetUpWithoutParameter(){
@@ -34,5 +25,4 @@ public class ConfigParserTest {
 		assertEquals("44444", s[2]);
 		assertEquals("Start", s[3]);
 	}
-
 }
