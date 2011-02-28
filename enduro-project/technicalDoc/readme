@@ -40,17 +40,8 @@ Filstrukturen innehåller följande mappar:
 /UISpec4J
 	- Innehåller .jar-filer för GUI-test.
 	
-/build.xml
-	- Denna fil skapar release.tar och SourceCodeRelease.tar.
-
-/config.conf
-	- Filen innehåller inställningar för programmet.
-
-/result.html
-	-Resultat-filen i html-format
-	
-/result.txt
-	-Resultat-filen i txt-format
+build.xml
+	- Vårt ANT-byggscript
 	
 Vidare ligger de filer som systemet producerar i samma mapp som denna readme
 

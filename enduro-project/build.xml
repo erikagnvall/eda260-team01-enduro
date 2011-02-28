@@ -24,10 +24,7 @@
 			<fileset dir="src/enduro/" includes="**/*.java"/>
 		</copy>
 		<copy todir="SourceCodeRelease/technicalDoc">
-			<fileset dir="technicalDoc" includes="*"/>
-		</copy>
-		<copy todir="SourceCodeRelease/technicalDoc/UML">
-			<fileset dir="technicalDoc/UML" includes="*" />
+			<fileset dir="technicalDoc" includes="**/*"/>
 		</copy>
 
 		<mkdir dir="SourceCodeRelease/test" />
@@ -46,25 +43,13 @@
 		</copy>
 		
 		<mkdir dir="SourceCodeRelease/UISpec4J" />
-				<copy todir="SourceCodeRelease/UISpec4J/">
-					<fileset dir="UISpec4J" includes="**/*.*" />
-				</copy>
+		<copy todir="SourceCodeRelease/UISpec4J/">
+			<fileset dir="UISpec4J" includes="**/*.*" />
+		</copy>
 
 		<copy todir="SourceCodeRelease/">
-			<fileset dir="" includes="*.xml" />
+			<fileset dir="" includes="build.xml" />
 		</copy>
-		<copy todir="SourceCodeRelease/">
-					<fileset dir="" includes="*.conf" />
-				</copy>
-		<copy todir="SourceCodeRelease/">
-					<fileset dir="" includes="*.txt" />
-				</copy>
-		<copy todir="SourceCodeRelease/">
-							<fileset dir="" includes="*.classpath" />
-						</copy>
-		<copy todir="SourceCodeRelease/">
-									<fileset dir="" includes="*.project" />
-								</copy>
 
 		<move file="SourceCodeRelease/technicalDoc/readme" todir="SourceCodeRelease" />
 
