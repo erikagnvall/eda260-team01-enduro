@@ -121,8 +121,10 @@ public class MainClass {
 				
 				TxtToHtml htmlWriter = new TxtToHtml();
 				htmlWriter.makeHtmlFile(output, html);
-				if(!debug)
+				if(!debug && !Log.checkLog())
 					JOptionPane.showMessageDialog(null, "Sortering klar!");
+				else
+					JOptionPane.showMessageDialog(null, "Sortering misslyckades!");
 			} catch(Exception E) {
 				System.out.println("Exception::" + E.toString());
 			}
