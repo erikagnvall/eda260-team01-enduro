@@ -1,0 +1,81 @@
+-=!STORIES DONE!=-
+3: Enkel resultatlista
+3.1: Datastrukturer
+3.2: Läs in filer
+3.3: Skriv ut
+3.4: Anpassa huvudprogram
+3.5: Acceptanstesta
+4: Personuppgifter
+5: Totaltid
+6: Felaktiga registreringar
+7: GUI för registreringar
+8: Registrering av tider 
+9: Varvlopp
+10: Flera skall kunna registrera måltider 
+11: Enkel masstart 
+12: Målgång där nummerplåten inte kan läsas i förväg
+13: Hantera klasser
+14: Manual
+15: Felhantering varvlopp
+16: Hantera registreringar med otillåtna startnummer
+17: Variabelt antal uppgifter om förarna
+18: Sorterad resultatlista
+19: Etapplopp
+21: Felhantering för Etapp
+23: Sorterad resultatlista
+24: Masstart
+25: stöd för konfiguration
+1337л Integrera konfiguration
+26: Teknisk dokumentation
+27: Serverlösning
+28: Integrera html-baserad resultatlista
+29: Html-resultat
+31: Teknisk dokumentation
+31b: Ny Tekn. dok. till Release 2
+32: Källkodsrelease 2
+33b: Robust program
+
+
+-=!NYA STORIES!=-
+30: Integrera med Klient/Server-lösning
+1341: Kunna hantera både mål och startfiler
+
+-=!SKILLNADER MOT RELEASE 2!=-
+* 1341: Nu används inte längre times.txt som enda tidsfil för GUIt, detta innebär vissa förändringar i hur GUIt byggs
+då det nu behöver en variabel för filnamn vid namn fileName. Funktionen för att kolla om GUIt skall köra i serverläge
+kollas numera i RegistrationTextField istället för RegistrationGUI.
+* storedTimeOfUnknownDriver.txt heter numera .temp och är dold under Linux/Unix/BSD/OSX. Om man skriver in
+text i inputgfältet som är "fel", mer exakt t.ex. 5-1, där det första är större än det andra så funkar det nu.
+* Klienten hanterar nu om servern inte finns. Då låtsas den som om den inte ville köra i nätverks läge och bara kör på.
+	Den skickar också en "quit"-sträng när man stänger fönstrer så att servern stänger ner tråden.
+	Funkar dock bara om man stänger fönstret med "krysset" och inte om man använder t.ex. Cmd+Q på Mac
+
+
+-=!PROGRAMMENS PLACERING!=-
+Programmet är uppdelat i två delar, ett användargränssnitt där man registrerar tider
+och ett sorteringsprogram som genererar resultatslistan. Resultatlistan genereras som
+default både som en text- och htmlfil. De fyra programmen finns i
+fyra jar-filer, GUI.jar Backend.jar, EnduroServer.jar samt EnduroClient.jar, som ligger direkt i mappen där
+tar-filen packas upp.
+
+
+-=!KONFIGURATIONSFIL!=-
+Inställningarna till sorteringsprogrammet görs i filen config.conf (syntaxen
+förklaras i filen). Konfigurationsfilen finns i samma mapp som Backend.jar och måste
+även vara kvar i samma mapp för att kunna läsas av sorteringsprogrammet.
+
+
+-=!MANUAL!=-
+Manualer ligger i mappen som heter "docs", user.html avser manual
+för GUI, admin.html avser manual för sorteringsprogrammet.
+
+
+Följande filer och mappar finns i tar-filen
+/docs - innehåller dokument
+/testfiles - innehåller exempelfiler
+-Backend.jar - producerar en sorterad lista
+-config.conf - innehåller konfigurationer
+-EnduroClient.jar - clienten
+-EduroServer.jar - servern
+-GUI.jar - GUI:t
+-README - innehåller information om filer och mappar som finns i tar-filen
