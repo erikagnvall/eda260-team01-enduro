@@ -46,6 +46,9 @@ då det nu behöver en variabel för filnamn vid namn fileName. Funktionen för 
 kollas numera i RegistrationTextField istället för RegistrationGUI.
 * storedTimeOfUnknownDriver.txt heter numera .temp och är dold under Linux/Unix/BSD/OSX. Om man skriver in
 text i inputgfältet som är "fel", mer exakt t.ex. 5-1, där det första är större än det andra så funkar det nu.
+* Klienten hanterar nu om servern inte finns. Då låtsas den som om den inte ville köra i nätverks läge och bara kör på.
+	Den skickar också en "quit"-sträng när man stänger fönstrer så att servern stänger ner tråden.
+	Funkar dock bara om man stänger fönstret med "krysset" och inte om man använder t.ex. Cmd+Q på Mac
 
 
 -=!PROGRAMMENS PLACERING!=-
