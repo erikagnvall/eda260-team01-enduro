@@ -19,9 +19,6 @@
 15: Felhantering varvlopp
 16: Hantera registreringar med otillåtna startnummer
 17: Variabelt antal uppgifter om förarna
-
-
-nya stories sedan förra releasen:
 18: Sorterad resultatlista
 19: Etapplopp
 21: Felhantering för Etapp
@@ -38,7 +35,8 @@ nya stories sedan förra releasen:
 32: Källkodsrelease 2
 33b: Robust program
 
-
+-=!NYA STORIES!=-
+30: Integrera med Klient/Server-lösning
 
 
 -=!PROGRAMMENS PLACERING!=-
