@@ -31,12 +31,9 @@ public class EnduroClient {
 	 * @param type
 	 *            String stating if the client is sending Start or Goal data
 	 */
-	public EnduroClient(String address, int port, String type) throws ConnectException {
-		try {
-			scan = new Scanner(new FileInputStream("./times.txt"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+
+	public EnduroClient(String address, int port, String type, String fileName){
+
 		try {
 			clientSocket = new Socket(address, port);
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -44,6 +41,11 @@ public class EnduroClient {
 			System.out.println("Server not found, running without network support");
 		} catch (IOException e1) {
 			System.out.println("Server not found, running without network support");
+		}
+		try {
+			scan = new Scanner(new FileInputStream("./"+fileName));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 		out.println(type);
 		System.out.println("Client is handling " + type);
@@ -112,25 +114,4 @@ public class EnduroClient {
 		}
 	}
 
-//	/**
-//	 * Main method to start the client
-//	 * 
-//	 * @param args
-//	 */
-//	public static void main(String[] args) {
-//		// Scanner terminalScan = new Scanner(System.in);
-//		if (args.length != 3) {
-//			System.out
-//					.println("Invalid arguments, must match \"IP port Start/Goal\"");
-//			System.exit(-1);
-//		}
-//		EnduroClient client = new EnduroClient(args[0], Integer
-//				.parseInt(args[1]), args[2]);
-//		try {
-//			client.run();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 }

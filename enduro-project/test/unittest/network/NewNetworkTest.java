@@ -41,7 +41,7 @@ public class NewNetworkTest {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
-		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start");
+		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "times.txt");
 		client.shutDown();
 		System.setOut(oldstream);
 		
@@ -60,7 +60,7 @@ public class NewNetworkTest {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
-		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start");
+		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "times.txt");
 		client.registerLine("1;00.00.00");
 		client.shutDown();
 		System.setOut(oldstream);

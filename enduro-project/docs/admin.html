@@ -117,7 +117,7 @@
 				<a name="server_client"></a>
 				<h3>Server och klient</h3>
 
-				<p>Klienten ligger integrerad i GUI:t och alla registrerade tider förs över till den valda servern för då de registreras. Vid en eventuellt servercrash kan klienten köras direkt i konsollen genom att man kör filen client.jar och då synkroniseras den fil som lokalt ligger sparad med serverns fil.</p>
+				<p>Klienten ligger integrerad i GUI:t och alla registrerade tider förs över till den valda servern för då de registreras. Vid en eventuellt servercrash kommer filer fortfarande sparas lokalt och när GUIt startas upp på nytt försöker den synka med servern och skicka samtliga registrerade tider. Servern sorterar sedan bort redan registrerade tider.</p>
 
 			</div>
 

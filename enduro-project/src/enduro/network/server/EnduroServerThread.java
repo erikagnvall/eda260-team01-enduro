@@ -36,7 +36,7 @@ public class EnduroServerThread extends Thread {
 	 * @throws IOException
 	 */
 	public EnduroServerThread(Socket socket, int number) throws IOException {
-		super("EnduroServerThre		ad " + number);
+		super("EnduroServerThread " + number);
 		this.number = number;
 		this.socket = socket;
 		// out = new PrintWriter(socket.getOutputStream(), true);
@@ -61,12 +61,12 @@ public class EnduroServerThread extends Thread {
 			try {
 				if (s.equals("Goal")) {
 					status = GOAL;
-					writer = new FileWriter("maltider.txt", true);
-					output = new File("maltider.txt");
+					writer = new FileWriter("maltider1.txt", true);
+					output = new File("maltider1.txt");
 				} else if (s.equals("Start")) {
 					status = START;
-					writer = new FileWriter("starttider.txt", true);
-					output = new File("starttider.txt");
+					writer = new FileWriter("starttider1.txt", true);
+					output = new File("starttider1.txt");
 				} else
 					System.out.println("Unexpected file format from client");
 			} catch (Exception e) {
