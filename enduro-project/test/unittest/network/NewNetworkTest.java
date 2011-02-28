@@ -66,11 +66,6 @@ public class NewNetworkTest {
 		System.setOut(oldstream);
 		
 		String[] lines = str.getoutput().split("\n");
-		
-		/*for(String line: lines) {
-			System.out.println("test send line: " + line);
-		}*/
-		
 		assertEquals("Client: 1;00.00.00", lines[1]);
 	}	
 }
