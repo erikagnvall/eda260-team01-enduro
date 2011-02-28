@@ -66,8 +66,6 @@ public class RegistrationGUI extends JFrame implements WindowListener{
 	/** Main method. 
 	 * @throws IOException */
 	public static void main(String[] args) throws IOException {
-		if(System.getProperty("os.name").contains("Mac"))
-		Runtime.getRuntime().exec("say \"It's a trap\"");
 		String[] arguments = ConfigParser.getInstance().getClientSetup();
 		new RegistrationGUI(arguments);	
 	}
