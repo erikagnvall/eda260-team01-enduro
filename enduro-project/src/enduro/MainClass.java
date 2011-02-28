@@ -122,9 +122,9 @@ public class MainClass {
 				TxtToHtml htmlWriter = new TxtToHtml();
 				htmlWriter.makeHtmlFile(output, html);
 				if(!debug && !Log.checkLog())
-					JOptionPane.showMessageDialog(null, "Sortering klar!");
-				else
-					JOptionPane.showMessageDialog(null, "Sortering misslyckades!");
+					EnduroDialogs.showConfirmDialog();
+				else if(!debug)
+					EnduroDialogs.showFailDialog();
 			} catch(Exception E) {
 				System.out.println("Exception::" + E.toString());
 			}
