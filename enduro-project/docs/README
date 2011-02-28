@@ -40,13 +40,15 @@
 30: Integrera med Klient/Server-lösning
 1338: producera båda resultatfilerna
 1341: Kunna hantera både mål och startfiler
+1339: Fixa GUI-bugg 
+
 
 -=!SKILLNADER MOT RELEASE 2!=-
 * 1338: Innan var man tvungen att välja om man ville ge ut en sorterad eller "debug"-lista. Nu ger programmet ut båda filerna automatiskt.
 * 1341: Nu används inte längre times.txt som enda tidsfil för GUIt, detta innebär vissa förändringar i hur GUIt byggs
 då det nu behöver en variabel för filnamn vid namn fileName. Funktionen för att kolla om GUIt skall köra i serverläge
 kollas numera i RegistrationTextField istället för RegistrationGUI.
-* storedTimeOfUnknownDriver.txt heter numera .temp och är dold under Linux/Unix/BSD/OSX. Om man skriver in
+*1339: storedTimeOfUnknownDriver.txt heter numera .temp och är dold under Linux/Unix/BSD/OSX. Om man skriver in
 text i inputgfältet som är "fel", mer exakt t.ex. 5-1, där det första är större än det andra så funkar det nu.
 * Klienten hanterar nu om servern inte finns. Då låtsas den som om den inte ville köra i nätverks läge och bara kör på.
 	Den skickar också en "quit"-sträng när man stänger fönstrer så att servern stänger ner tråden.
