@@ -141,4 +141,15 @@ public class RegistrationGUITest extends UISpecTestCase {
 		assertTrue(f.exists());
 		f.delete();
 	}
+	public void testEnterValidCharacterInvalidInput(){
+		input.appendText("1--3");
+		registerButton.click();
+		assertEquals("", output.getText());
+		input.appendText("1,,3");
+		registerButton.click();
+		assertEquals("", output.getText());
+		File f = new File("./storedTimeOfUnknownDriver.txt");
+		assertTrue(f.exists());
+		f.delete();
+	}
 }
