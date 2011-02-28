@@ -41,7 +41,7 @@ public class NewNetworkTest {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
-		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "times.txt");
+		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "starttider.txt");
 		client.shutDown();
 		System.setOut(oldstream);
 		
@@ -60,7 +60,7 @@ public class NewNetworkTest {
 		try {
 			Thread.sleep(1000);
 		} catch(Exception E) {}
-		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "times.txt");
+		EnduroClient client = new EnduroClient("127.0.0.1", 1338, "Start", "starttider.txt");
 		client.registerLine("1;00.00.00");
 		client.shutDown();
 		System.setOut(oldstream);
@@ -72,13 +72,7 @@ public class NewNetworkTest {
 		}*/
 		
 		assertEquals("Client: 1;00.00.00", lines[1]);
-	}
-	
-	@AfterClass public static void teardownServer() {
-		//server.quit();
-		//behövdes visst inte. junit är lite smartare än vad man trodde.
-	}
-	
+	}	
 }
 
 class PVGStream extends PrintStream {
@@ -87,7 +81,6 @@ class PVGStream extends PrintStream {
 	
 	public PVGStream(OutputStream out) {
 		super(out);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void println(String x) {
