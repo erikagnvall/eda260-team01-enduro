@@ -121,7 +121,7 @@ public class InputHandler {
 		
 		error =  this.preparePrint(printer, comp);
 		if(error.length() != 0) {
-			Log.log(error);
+			Log.log("error" + error);
 		}
 		
 		

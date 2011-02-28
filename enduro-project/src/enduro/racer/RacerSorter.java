@@ -128,17 +128,21 @@ public class RacerSorter {
 					}
 					
 				} else {
-					if(racer.startTimes.get(1).first().getTotalTime(racer.finishTimes.get(1).last()).compareTo(minTotalTime) > 0) {
-						extraInformation.put("position", position + "");
+					if(racer.startTimes.get(1).size() > 0 && racer.finishTimes.get(1).size() > 0) {
+						if(racer.startTimes.get(1).first().getTotalTime(racer.finishTimes.get(1).last()).compareTo(minTotalTime) > 0) {
 						
-						//position increased
-						position++;
+							extraInformation.put("position", position + "");
+							
+							//position increased
+							position++;
+						}
+						
 					}
 				}
 				//lets the printer print all the whole line. if it doesn't need the (possible nonexistent) position: who cares? =)
 				
 			} catch(Exception E) {
-				Log.log(E.toString());
+				Log.log("Exception Racersorter: " + E.toString() + " id: " + racer.startNbr);
 			}
 
 			out.append(printer.print(racer, extraInformation));
