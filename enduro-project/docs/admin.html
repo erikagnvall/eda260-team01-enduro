@@ -60,8 +60,9 @@
 				<p>För nuvarande accepteras endast en namnfil.</p>
 				<p>Inställningsalternativen förklaras i konfigurationsfilen men är till största del på
 				enklare engelska av tekniska skäl.</p>
+				<p>Även GUIt är beroende av konfigurationsfilen där raden timeType:Start/Goal avgör om GUIt skall spara tiderna i starttider.txt eller maltider.txt, anges inget värde 					sparas filerna i times.txt. Vidare finns det serverkonfiguration för GUIt i konfigurationsfilen, detta beskrivs i nästa rubrik.</p>
 				<h4>Serverkonfiguration</h4>
-				<p>För att köra servern och klienten krävs 4 olika delar angivna i configfilen. network:true/false som anger om GUI:t skall kopplas mot servern, ip:127.0.0.1 där ip-adressen skall anges (IPv4), port:44444 där portnummret anges samt timeType:Start/Goal som anger om det är start eller måltider som kommer in.</p> <p>Klienten och serverns skall läsa samma konfigfil vilken är den allmäna för hela systemet</p>
+				<p>För att köra servern och klienten krävs 4 olika delar angivna i configfilen. network:true/false som anger om GUI:t skall kopplas mot servern, ip:127.0.0.1 där 					ip-adressen skall anges (IPv4) samt port:44444 där portnummret anges.</p> <p>Klienten och serverns skall läsa samma konfigfil vilken är den allmäna för hela systemet</p>
 				<b>Exempel:</b><br />
 				<code>java -jar EnduroClient.jar 1.3.3.7 1337 Start</code>
 			</div>
