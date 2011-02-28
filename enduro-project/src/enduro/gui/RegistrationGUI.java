@@ -1,8 +1,8 @@
 package enduro.gui;
 
 import java.awt.*;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
@@ -12,8 +12,9 @@ import enduro.racer.configuration.ConfigParser;
  * Provides a GUI for the Enduro time registration program.
  */
 @SuppressWarnings("serial")
-public class RegistrationGUI extends JFrame {
+public class RegistrationGUI extends JFrame implements WindowListener{
 
+	RegistrationTextField registrationTextField;
 	/**
 	 * Creates the GUI, magic, do not touch!
 	 */
@@ -24,6 +25,7 @@ public class RegistrationGUI extends JFrame {
 		setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		addWindowListener(this);
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class RegistrationGUI extends JFrame {
 		JPanel northPanel = new JPanel();
 		StoredTime storedTime = new StoredTime();
 		storedTime.setFont(new Font(null, Font.PLAIN, 80));
-		RegistrationTextField registrationTextField;
+		
 		registrationTextField = new RegistrationTextField(font,
 				registrationTextArea, storedTime, args);
 		UndoButton undo = new UndoButton("Avbryt", storedTime,
@@ -63,7 +65,42 @@ public class RegistrationGUI extends JFrame {
 	/** Main method. */
 	public static void main(String[] args) {
 		String[] arguments = ConfigParser.getInstance().getClientSetup();
-		new RegistrationGUI(arguments);
+		RegistrationGUI gui = new RegistrationGUI(arguments);
+	
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		registrationTextField.closeConnection();
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		
 	}
 
 }

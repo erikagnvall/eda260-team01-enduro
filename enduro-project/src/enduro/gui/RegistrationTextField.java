@@ -81,11 +81,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				client = new EnduroClient(args[1], Integer.parseInt(args[2]),
 						args[3]);
 				networkMode = true;
-				try {
 					client.registerFile();
-				} catch (IOException e) {
-
-				}
 			} catch (Exception e) {
 
 			}
