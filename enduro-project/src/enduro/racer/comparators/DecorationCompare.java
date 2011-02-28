@@ -25,7 +25,13 @@ public abstract class DecorationCompare implements Comparator<Racer> {
 	}
 	
 	public int compare(Racer arg0, Racer arg1) {
-		int res = compareRacers(arg0, arg1);
+		int res = 0;
+		try {
+			res = compareRacers(arg0, arg1);
+		} catch(Exception E) {
+			System.out.println("it was a comparator!!!" + E.toString());
+		}
+		
 		
 		if(res == 0)
 			if(fallback != null)
