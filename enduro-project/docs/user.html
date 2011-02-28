@@ -54,7 +54,7 @@
 				på Avbryt-knappen och den förregistrerade tiden försvinner.</p>
 				<h4>Återställning av icke sparad tid</h4>
 				<p>Om en förregistrerad tid har angivits men inte sparats när programmet stängs ner, kommer denna 
-				tid att finnas tillgänglig nästa gång programmet startar. 
+				tid att finnas tillgänglig nästa gång programmet startar. </p>
 				<h4>Felaktig nummerinmatning</h4>
 				<p>Om en felaktig inmatning anges, till exempel '1,-3', sparas tiden på samma sätt som vid 
 				förregistrering av tid. En ny inmatning görs sedan i registreringsrutan för att spara den rätta 
@@ -83,7 +83,7 @@
 			<div class="entry">
 				<a name="masstart"></a>
 				<h3> Masstart</h3>
-				<center><img src="http://img46.imageshack.us/img46/8224/masstart.png" /></center>
+				<center><img src="http://img46.imageshack.us/img46/8224/masstart.png" alt="" /></center>
 				<p><b>Exempel 1:</b> Förare 1-50 ska starta samtidigt. Då anger man '1-50' i textfältet och 
 				trycker registrera för att ge alla samma starttid.</p>
 				<p><b>Exempel 2:</b> Förarna 1,4,7,9 ska starta samtidigt. Då anger man '1,4,7,9' i textfältet 
@@ -99,33 +99,36 @@
 			<div class="entry">
 				<a name="smutsig"></a>
 				<h3>Smutsig nummerplåt</h3>
-				<center><img src="http://img831.imageshack.us/img831/1272/nummerplat.png" /></center>
+				<center><img src="http://img831.imageshack.us/img831/1272/nummerplat.png" alt="" /></center>
 				<p> Förare kommer in med smutsig nummerplåt lämna textfältet blankt och tryck registera. Ange 
 				förarens nummer i efterhand genom att skriva in det i textfältet och trycka reistrera, då kopplas
 				 den förregisterade tiden med förarnumret.</p>
-				<h4> Felaktig registrering </h4>
+			</div>
+			<div class="entry">
+				<a name="felaktig"></a>
+				<h3> Felaktig registrering </h3>
 				<p> Vid en stressig tävling råkar en tid registreras med ett tomt nummerfält vilket innebär att 
 				systemet kommer låsa den tid som registrerats. När detta sker trycker man avbryt och systemet är
 				 redo att registrera nya tider igen.</p>
 			</div> <!-- end of .entry -->
-			<div class="subsection">
+		</div><!-- end of .subsection -->
+		<div class="subsection">
 			<h2> Avancerade inställningar</h2>
 			<div class="entry">
+			<a name="network"></a>
+			<h3>Klient/Server</h3>
 			<p>För att konfigurera klienten behöver fyra värden anges i konfigfilen: network:true/false som anger om GUI:t skall kopplas mot servern, ip där ip-adressen skall anges (IPv4), port där portnummret anges samt timeType:Start/Goal som anger om det är start eller måltider som kommer in.</p>
 			<p>Exempel:</p>
 			<p><code>network:true</code></p>
 			<p><code>ip:1.3.3.7</code></p>
 			<p><code>port:1337</code></p>
 			<p><code>timeType:Start</code></p>
-			</div>
 			</div> <!-- end of .entry -->
-				
-			
-		
 		</div> <!-- end of .subsection -->
+
 	</div> <!-- end of #content -->
 	
-	<script src="jquery.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		(function(){
 			document.getElementById("no_script").style.display="none";
@@ -139,7 +142,7 @@
 
 			$show_toc.click(function(e) {
 				if ($toc.height() === 0) {
-					$toc.animate({'height' : 220});
+					$toc.animate({'height' : 250});
 				} else {
 					$toc.animate({'height' : 0});
 				}

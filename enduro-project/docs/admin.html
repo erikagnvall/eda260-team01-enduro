@@ -125,12 +125,12 @@
 				<h3>Definitioner och övrigt</h3>
 
 				<p>Om registreringsinterfacet ej stängts av korrekt kommer tider som ej blivit
-				registrerade sparas i en fil som heter <code>storedTimeOfUnknownDriver.txt</code>, denna skall
-				ligga i samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan
+				registrerade sparas i en dold fil som heter <code>.temp</code>, denna ligger i
+				samma mapp som den tidsfil GUIt producerat. Med hjälp av denna fil kan
 				eventuellt förlorade tider matas in manuellt i tidsfilen genom att följa det syntax
 				som tidigare tidregistreringar använder.</p>
 				
-				<p>När programmet startas igen kontrolleras det om det finns en <code>storedTimeOfUnknownDriver.txt</code>
+				<p>När programmet startas igen kontrolleras det om det finns en <code>.temp</code>
 				i samma mapp som programmet och om det gör det läses den tiden in och man kan registrera en förare på
 				den tiden genom att följa instruktionerna i manualen för registreringsprogrammet under Smutsig nummerplåt.</p>
 				<br /><br />
@@ -139,7 +139,7 @@
 		</div> <!-- end of .subsection -->
 	</div> <!-- end of #content -->
 	
-	<script src="jquery.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		(function(){
 			document.getElementById("no_script").style.display="none";
