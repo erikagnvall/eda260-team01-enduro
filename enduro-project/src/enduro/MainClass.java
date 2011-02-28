@@ -58,6 +58,7 @@ public class MainClass {
 		for(String arg: args)
 			System.out.println(arg);
 		String output = "";
+		String debugoutput = "";
 		String html = "";
 		for(int i = 0; i < args.length; i++) {
 			if(i+1 < args.length) {
@@ -65,6 +66,8 @@ public class MainClass {
 					ConfigParser.getInstance(args[i+1]);
 				} else if(args[i].compareTo("-output")==0) {
 					output = args[i+1];
+				} else if(args[i].compareTo("-debugoutput")==0) {
+					debugoutput = args[i+1];
 				} else if(args[i].compareTo("-html")==0) {
 					html = args[i+1];
 				} else if(args[i].equals("-debug")) {
@@ -85,6 +88,8 @@ public class MainClass {
 				html = ConfigParser.getInstance().getStringConf("html");
 			else
 				html = "result.html";
+		if(debugoutput.length() == 0)
+			debugoutput = ConfigParser.getInstance().getStringConf("debugoutput");
 		
 		InputHandler handler = new InputHandler();
 		
@@ -100,9 +105,20 @@ public class MainClass {
 				for(String unparsedInfo:ConfigParser.getInstance().getStartFileList())
 					handler.addStartFile(getLocation(unparsedInfo), getStage(unparsedInfo));
 				System.out.println("\n\n printing output to: " + output);
-				FileWriter writer = new FileWriter(output);
-				writer.append(handler.print());
-				writer.close();
+				try {
+					FileWriter writer = new FileWriter(output);
+					writer.append(handler.print());
+					writer.close();
+				} catch(Exception E) {
+					System.out.println("large error: " + E.toString());
+				}
+				
+				
+				System.out.println("\n\n printing debug output to: " + debugoutput);
+				FileWriter debugWriter = new FileWriter(debugoutput);
+				debugWriter.append(handler.debugPrint());
+				debugWriter.close();
+				
 				TxtToHtml htmlWriter = new TxtToHtml();
 				htmlWriter.makeHtmlFile(output, html);
 				if(!debug)

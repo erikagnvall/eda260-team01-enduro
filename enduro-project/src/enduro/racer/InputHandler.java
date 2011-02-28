@@ -35,6 +35,9 @@ public class InputHandler {
 	HashMap<Integer, Racer> racerList;
 	ArrayList<RacerSorter> groups;
 	
+	//these two variables are for debugging purposes
+	private String error = null;
+	private RacerPrinter debugPrinter;
 	/**
 	 * Adds a new name file to the handler.
 	 * The name file has an optional parameter "stage" (should be 1).
@@ -98,61 +101,49 @@ public class InputHandler {
 	 */
 	public String print() {
 		RacerPrinter printer;
-		Comparator<Racer> comp;
-		
-		String compare = ConfigParser.getInstance().getStringConf("sorting");
-		String sorted = ConfigParser.getInstance().getStringConf("sorted");
-		
-		if(compare.equals("number")) {
-			System.out.println("sorting based on number");
-			comp = new RunnerNumberComparator();
-		} else if(compare.equals("laps")){
-			System.out.println("sorting based on laps");
-			comp = new RunnerCheckTotalTimeMax(new RunnerLapsComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
-		} else if(compare.equals("time")){
-			System.out.println("sorting based on time");
-			comp = new RunnerStageComparator(new RunnerCheckTotalTimeMax(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
-		} else {
-			System.out.println("sorting based on number");
-			comp = new RunnerNumberComparator();
-		}
+		Comparator<Racer> comp;		
 		
 		String printerType = ConfigParser.getInstance().getStringConf("race");
 		
 		if(printerType.equals("laps")) {
-			if(sorted.equals("true")) {
-				printer = new SortedLapRacePrinter();
-				System.out.println("printing a sorted lap list");
-			} else {
-				printer = new LapRacePrinter();
-				System.out.println("printing a lap list");
-			}
-		} else if(printerType.equals("stages")){
-			if(sorted.equals("true")) {
-				printer = new SortedStageRacePrinter();
-				System.out.println("printing a sorted stage list");
-			} else {
-				printer = new StageRacePrinter();
-				System.out.println("printing a stage list");
-			}
+			debugPrinter = new LapRacePrinter();
+			comp = new RunnerCheckTotalTimeMax(new RunnerLapsComparator(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
+			printer = new SortedLapRacePrinter();
+			System.out.println("printing a sorted lap list");
 		} else {
-			System.out.println("printing a lap list");
-			printer = new LapRacePrinter();
+			debugPrinter = new StageRacePrinter();
+			comp = new RunnerStageComparator(new RunnerCheckTotalTimeMax(new RunnerTotalTimeComparator(new RunnerNumberComparator())));
+			printer = new SortedStageRacePrinter();
+			System.out.println("printing a sorted stage list");
 		}
 		
-		String error =  this.preparePrint(printer, comp);
 		StringBuilder out = new StringBuilder();
+		
+		error =  this.preparePrint(printer, comp);
+		if(error.length() != 0) {
+			Log.log(error);
+		}
+		
 		
 		for(RacerSorter sorter : groups) {
 			out.append(sorter.print());
 		}
+
+		return out.toString();
+	}
+	
+	public String debugPrint() {
+		StringBuilder out = new StringBuilder();
+		if(this.error == null)
+			return new String("FATAL ERROR: initialization: print() must be called in the InputHandler class before a debug print is possible!!");
+		for(RacerSorter sorter : groups) {
+			out.append(sorter.debugPrint(this.debugPrinter));
+		}
 		
 		if(error.length() != 0) {
-			
-			Log.log(error);
-			
 			out.append("\n\n\nerror: "+error+" \n");
 		}
+		
 		return out.toString();
 	}
 	
@@ -181,6 +172,8 @@ public class InputHandler {
 				Log.log("in the name file " + nameFileLocations.get(1).get(0) + " incorrect header line");
 			}
 			rp.setHeaderInformation(this.headerInformation);
+			this.debugPrinter.setHeaderInformation(this.headerInformation);
+			
 			unnamedGroup = new RacerSorter("Ogrupperade förare", rc, rp);
 			unregisteredRacers = new RacerSorter("Icke existerande startnummer", rc, rp);
 			

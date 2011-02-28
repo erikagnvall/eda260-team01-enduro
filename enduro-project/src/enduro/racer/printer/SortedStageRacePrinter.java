@@ -18,7 +18,7 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	public String print(Racer r, HashMap<String, String> extraInformation) {
 		// Plac; StartNr; Namn; #Varv; Totaltid; Varv1; Varv2
 		StringBuilder out = new StringBuilder();
-
+		
 		printPosition(r, out, extraInformation);
 
 		printRunnerInformation(r, out);
@@ -35,6 +35,7 @@ public class SortedStageRacePrinter implements RacerPrinter {
 	}
 
 	private void printRunnerInformation(Racer r, StringBuilder out) {
+		
 		int i = 0;
 
 		for (; i < r.racerInformation.size(); i++) {
@@ -44,18 +45,26 @@ public class SortedStageRacePrinter implements RacerPrinter {
 		for (; i < extraRunnerInformation; i++) {
 			out.append("; ");
 		}
+		
 	}
 
 	private void printStages(Racer r, StringBuilder out) {
 		
-		//Iterator<Time> itr = r.startTimes.get(1).iterator();
+		
 		
 		for (int key = 1; key <= this.stages; key++) {
 			if(r.finishTimes.get(key)!=null && r.startTimes.get(key)!=null) {
+				if(key == 1)
+					if(r.finishTimes.get(1).size() == 0 || r.startTimes.get(1).size() == 0) {
+						out.append("; ");
+						continue;
+					}
+						
 				out.append(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
 			}
 			out.append("; ");
 		}
+		
 	}
 
 	private void printNumStages(Racer r, StringBuilder out) {
@@ -87,8 +96,9 @@ public class SortedStageRacePrinter implements RacerPrinter {
 		Time total = new Time("00.00.00");
 		for (int key = 1; key <= this.stages; key++) {
 			if(r.finishTimes.containsKey(key) && r.startTimes.containsKey(key)) {
-				if(r.finishTimes.get(1).size() == 0 | r.startTimes.get(1).size() == 0)
-					continue;
+				if(key == 1)
+					if(r.finishTimes.get(1).size() == 0 || r.startTimes.get(1).size() == 0)
+						continue;
 				total.increment(r.startTimes.get(key).first().getTotalTime(r.finishTimes.get(key).first()));
 			}
 			

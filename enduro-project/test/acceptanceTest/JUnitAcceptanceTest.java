@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameters;
 
 import enduro.MainClass;
+import enduro.racer.Log;
 
 /**
  * An automatic JUnit testclass. It uses an alternative runner which allows for
@@ -65,9 +66,13 @@ public class JUnitAcceptanceTest {
 		
 		System.out.println("conf: " + configLoc);
 		if(testId.compareTo("29")==0) {
-			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result","-log","acceptanceTest/result/" + test + ".normal.log"});
+			MainClass.main(new String[]{"-config", configLoc, "-debugoutput", "acceptanceTest/result/" + test + ".debugres", "-output", "acceptanceTest/result/" + test + ".tmpres", "-debug", "true", "-html", "acceptanceTest/result/" + test + ".result","-log","acceptanceTest/result/" + test + ".normal.log"});
 		} else {
-			MainClass.main(new String[]{"-config", configLoc, "-output", "acceptanceTest/result/" + test + ".result", "-debug", "true", "-log","acceptanceTest/result/" + test + ".normal.log"});
+			String output = "acceptanceTest/result/" + test + ".result";
+			String debugoutput = "acceptanceTest/result/" + test + ".debugres";
+			if(testId.equals("21") || testId.equals("varvlopptid"))
+				debugoutput = output;
+			MainClass.main(new String[]{"-config", configLoc, "-debugoutput", debugoutput, "-output", output, "-debug", "true", "-log","acceptanceTest/result/" + test + ".normal.log"});
 
 		}
 		
@@ -133,6 +138,7 @@ public class JUnitAcceptanceTest {
 			System.out.println("result file not found");
 			assertTrue(false);
 		} catch (Exception e) {
+			System.out.println("error: " + e.toString());
 			e.printStackTrace();
 			assertTrue(false);
 		}

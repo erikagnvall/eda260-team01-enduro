@@ -61,12 +61,19 @@ public class RacerSorter {
 		return null;
 	}
 	
-	public String debugPrint() {
+	public String debugPrint(RacerPrinter debugprinter) {
 		Comparator<Racer> savedComp = this.comp;
+		RacerPrinter savedprinter = this.printer;
+		
 		this.comp = new RunnerNumberComparator();
+		this.printer = debugprinter;
+		
 		StringBuilder out = new StringBuilder();
+		
 		out.append(this.print());
+		
 		this.comp = savedComp;
+		this.printer = savedprinter;
 		return out.toString();
 	}
 	
@@ -109,6 +116,9 @@ public class RacerSorter {
 					Time total = new Time("00.00.00");
 					for (int key : keys) {
 						if(racer.startTimes.get(key) != null && racer.finishTimes.get(key) != null)
+							if(key == 1)
+								if(racer.startTimes.get(1).size() == 0 || racer.finishTimes.get(1).size() == 0)
+									continue;
 							total.increment(racer.startTimes.get(key).first().getTotalTime(racer.finishTimes.get(key).first()));
 					}
 					
@@ -125,10 +135,12 @@ public class RacerSorter {
 						position++;
 					}
 				}
+				//lets the printer print all the whole line. if it doesn't need the (possible nonexistent) position: who cares? =)
 				
-			} catch(Exception E) {}
+			} catch(Exception E) {
+				Log.log(E.toString());
+			}
 
-			//lets the printer print all the whole line. if it doesn't need the (possible nonexistent) position: who cares? =)
 			out.append(printer.print(racer, extraInformation));
 			out.append("\n");
 			

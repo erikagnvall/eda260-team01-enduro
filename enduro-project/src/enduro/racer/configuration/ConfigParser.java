@@ -84,6 +84,8 @@ public class ConfigParser {
 		tmp.put("race", "laps");
 		tmp.put("sorting", "number");
 		tmp.put("input", "file");
+		tmp.put("output", "result.txt");
+		tmp.put("debugoutput", "debugResult.txt");
 		tmp.put("laps", "3");
 		tmp.put("stages", "3");
 		tmp.put("mintimedefault", "01.00.00");
