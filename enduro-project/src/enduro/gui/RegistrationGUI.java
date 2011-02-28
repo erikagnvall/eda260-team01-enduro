@@ -3,6 +3,7 @@ package enduro.gui;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
@@ -62,8 +63,11 @@ public class RegistrationGUI extends JFrame implements WindowListener{
 
 	}
 
-	/** Main method. */
-	public static void main(String[] args) {
+	/** Main method. 
+	 * @throws IOException */
+	public static void main(String[] args) throws IOException {
+		if(System.getProperty("os.name").contains("Mac"))
+		Runtime.getRuntime().exec("say \"It's a trap\"");
 		String[] arguments = ConfigParser.getInstance().getClientSetup();
 		new RegistrationGUI(arguments);	
 	}
