@@ -62,14 +62,14 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1");
 		registerButton.click();
 		assertEquals("1; " + time + '\n', output.getText());
-		File f = new File("./storedTimeOfUnknownDriver.txt");
+		File f = new File("./.temp");
 		assertFalse(f.exists());
 	}
 
 	public void testUndoUnknownDriverTime() {
 		registerButton.click();
 		undoButton.click();
-		File f = new File("./storedTimeOfUnknownDriver.txt");
+		File f = new File("./.temp");
 		assertFalse(f.exists());
 		assertFalse(undoButton.isVisible());
 	}
@@ -137,7 +137,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("abcdefghijklmnopqrstuvwqyz.:,;_!\"#€%&/()=?");
 		registerButton.click();
 		assertEquals("", output.getText());
-		File f = new File("./storedTimeOfUnknownDriver.txt");
+		File f = new File("./.temp");
 		assertTrue(f.exists());
 		f.delete();
 	}
@@ -148,7 +148,7 @@ public class RegistrationGUITest extends UISpecTestCase {
 		input.appendText("1,,3");
 		registerButton.click();
 		assertEquals("", output.getText());
-		File f = new File("./storedTimeOfUnknownDriver.txt");
+		File f = new File("./.temp");
 		assertTrue(f.exists());
 		f.delete();
 	}

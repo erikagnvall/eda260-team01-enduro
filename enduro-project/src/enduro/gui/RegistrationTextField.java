@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ConnectException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -70,9 +69,9 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		this.registrationTextArea = registrationTextArea;
 		this.storedTime = storedTime;
 		addActionListener(this);
-		if(args[3].equals("Start"))
+		if (args[3].equals("Start"))
 			fileName = "starttider.txt";
-		else if(args[3].equals("Goal"))
+		else if (args[3].equals("Goal"))
 			fileName = "maltider.txt";
 		else
 			fileName = "times.txt";
@@ -81,7 +80,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 				client = new EnduroClient(args[1], Integer.parseInt(args[2]),
 						args[3], fileName);
 				networkMode = true;
-					client.registerFile();
+				client.registerFile();
 			} catch (Exception e) {
 
 			}
@@ -110,6 +109,10 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 			m.matches();
 			String start = m.group(2);
 			String end = (m.group(4) == null) ? start : m.group(4);
+			if (Integer.parseInt(start) > Integer.parseInt(end)) {
+				start = end;
+				end = m.group(2);
+			}
 			String rows = makeRow(currentTime, start, end);
 			registrationTextArea.update(rows);
 		}
@@ -122,6 +125,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		} else {
 			storedTime.empty();
 			undo.setVisible(false);
+			deleteStoredTimeFile();
 		}
 		setText("");
 		requestFocus();
@@ -152,7 +156,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	private void storeTime(String time) {
 		try {
 			PrintWriter out = new PrintWriter(new BufferedWriter(
-					new FileWriter("storedTimeOfUnknownDriver.txt")));
+					new FileWriter(".temp")));
 			out.println(time);
 			out.close();
 			System.gc(); // run garbage collector, absolutely needed to be able
@@ -167,7 +171,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 	 * Deletes the file storedTimeOfUnknownDriver.txt.
 	 */
 	public void deleteStoredTimeFile() {
-		File f = new File("storedTimeOfUnknownDriver.txt");
+		File f = new File(".temp");
 		f.delete();
 		storedTime.empty();
 	}
@@ -179,7 +183,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader(
-					"storedTimeOfUnknownDriver.txt"));
+					".temp"));
 			storedTime.setText(in.readLine());
 			undo.setVisible(true);
 		} catch (FileNotFoundException e1) {
@@ -199,7 +203,7 @@ public class RegistrationTextField extends JTextField implements ActionListener 
 		BufferedReader in;
 		try {
 			in = new BufferedReader(new FileReader(
-					"storedTimeOfUnknownDriver.txt"));
+					".temp"));
 			return new Time(in.readLine());
 		} catch (FileNotFoundException e1) {
 
