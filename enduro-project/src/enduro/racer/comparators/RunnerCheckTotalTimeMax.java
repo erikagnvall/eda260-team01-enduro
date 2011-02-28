@@ -35,8 +35,12 @@ public class RunnerCheckTotalTimeMax extends DecorationCompare {
 			
 			Time totalArg0 = new Time("00.00.00");
 			for (int key : keys) {
-				if(arg0.startTimes.get(key) != null && arg0.finishTimes.get(key) != null)
+				if(arg0.startTimes.get(key) != null && arg0.finishTimes.get(key) != null) {
+					if(key == 1)
+						if(arg0.startTimes.get(1).size() == 0 || arg0.finishTimes.get(1).size() == 0)
+							continue;
 					totalArg0.increment(arg0.startTimes.get(key).first().getTotalTime(arg0.finishTimes.get(key).first()));
+				}
 			}
 			
 			keys = new TreeSet<Integer>();
@@ -45,8 +49,12 @@ public class RunnerCheckTotalTimeMax extends DecorationCompare {
 			
 			Time totalArg1 = new Time("00.00.00");
 			for (int key : keys) {
-				if(arg1.startTimes.get(key) != null && arg1.finishTimes.get(key) != null)
+				if(arg1.startTimes.get(key) != null && arg1.finishTimes.get(key) != null) {
+					if(key == 1)
+						if(arg1.startTimes.get(1).size() == 0 || arg1.finishTimes.get(1).size() == 0)
+							continue;
 					totalArg1.increment(arg1.startTimes.get(key).first().getTotalTime(arg1.finishTimes.get(key).first()));
+				}
 			}
 			
 			arg0Check = totalArg0.compareTo(maxTime) > 0;
