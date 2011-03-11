@@ -8,7 +8,6 @@ import java.io.PrintStream;
 import java.net.ConnectException;
 import java.util.regex.Pattern;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;

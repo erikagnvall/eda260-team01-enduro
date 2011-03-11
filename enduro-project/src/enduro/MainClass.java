@@ -2,9 +2,6 @@ package enduro;
 
 import java.io.FileWriter;
 
-import javax.swing.JOptionPane;
-
-
 import enduro.racer.InputHandler;
 import enduro.racer.Log;
 import enduro.racer.configuration.ConfigParser;
